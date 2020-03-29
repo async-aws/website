@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="en"><head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/assets/app.css">
+
+    <title>AsyncAWS</title>
+</head>
+<body>
+<div class="d-flex">
+    <nav id="sidebar" class="sidebar">
+        <div class="custom-menu-toggle">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                ☰
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4 pt-1">
+            <a href="/" class="logo mx-auto d-block">
+                <img src="/assets/image/logo.png">
+            </a>
+            <ul class="list-unstyled p-0 mb-5">
+
+                                                                <li>
+                        <a href="/">
+                            Start
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/compare.html">
+                            Compare with AWS
+                        </a>
+                    </li>
+                                    <li class="current">
+                        <a href="/configuration.html">
+                            Configuration
+                        </a>
+                    </li>
+                                                                                <li>
+                    <a href="#clients" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
+                    <ul class="collapse list-unstyled " id="clients">
+                                                    <li>
+                        <a href="/clients/">
+                            Overview
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/clients/lambda.html">
+                            Lambda
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/clients/s3.html">
+                            S3
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#features" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Features</a>
+                    <ul class="collapse list-unstyled " id="features">
+                                                    <li>
+                        <a href="/features/async.html">
+                            Why "async"?
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/pagination.html">
+                            Pagination
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/presign.html">
+                            Presign requests
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/waiter.html">
+                            Waiters
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/tests.html">
+                            Writing tests
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#integration" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Integration</a>
+                    <ul class="collapse list-unstyled " id="integration">
+                                                    <li>
+                        <a href="/integration/symfony-bundle.html">
+                            Symfony Bundle
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/integration/flysystem.html">
+                            Flysystem
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#authentication" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
+                    <ul class="collapse list-unstyled " id="authentication">
+                                                    <li>
+                        <a href="/authentication/">
+                            Overview
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/credentials-file.html">
+                            Credentials file
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/ec2-metadata.html">
+                            EC2 instance metadata
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/environment.html">
+                            Environment variables
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/hard-coded.html">
+                            Hard-Coded values
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/web-identity.html">
+                            WebIdentity
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#contribute" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Contribute</a>
+                    <ul class="collapse list-unstyled " id="contribute">
+                                                    <li>
+                        <a href="/contribute/">
+                            Introduction
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/contribute/website.html">
+                            Documentation
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/contribute/generate.html">
+                            Generate code
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                                                <li>
+                        <a href="https://github.com/async-aws/aws">
+                            Github
+                        </a>
+                    </li>
+                                                            </ul>
+
+            <p class="created-by">
+                Async AWS is created by <br>
+                <a href="https://github.com/jderusse">Jérémy Derussé</a>,
+                <a href="https://github.com/Nyholm">Tobias Nyholm</a> <br>
+                and <a href="https://github.com/async-aws/aws/graphs/contributors">contributors</a>.
+            </p>
+
+            <p class="copyright mt-5">
+                Copyright © 2020<br>
+                Project licensed under MIT
+            </p>
+        </div>
+    </nav>
+
+    <main role="main" id="content" class="content p-4 p-md-5 pt-5">
+    
+    <h1 id="configuration">Configuration</h1>
+<p>There are some configuration you can pass to an API client. Use an instance of the
+<code>Configuration</code> class or a plain array.</p>
+<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Configuration</span>;
+
+$config = Configuration::create([
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+]);
+$sqs = <span class="hljs-keyword">new</span> SqsClient($config);
+
+<span class="hljs-comment">// Or with an array</span>
+$sqs = <span class="hljs-keyword">new</span> SqsClient([
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+]);</code></pre>
+<h2 id="configuration-reference">Configuration reference</h2>
+<p>Below is a list of all supported configuration keys, their default value and what
+they are used for.</p>
+<h3 id="region">region</h3>
+<p><strong>Default:</strong> 'us-east-1'</p>
+<p>The AWS region the client should be targeting.</p>
+<h3 id="profile">profile</h3>
+<p><strong>Default:</strong> 'default'</p>
+<p>The name of the AWS Profile configured when using <a href="/authentication/credentials-file.html">credential and configuration files</a>
+for authentication.</p>
+<h3 id="accesskeyid">accessKeyId</h3>
+<p>The AWS access key id used for authentication.</p>
+<h3 id="accesskeysecret">accessKeySecret</h3>
+<p>The AWS access key secret used for authentication.</p>
+<h3 id="sessiontoken">sessionToken</h3>
+<p>The AWS session token passed alongside temporary credentials.</p>
+<p>See <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html">AWS documentation</a>
+and <a href="https://docs.aws.amazon.com/cli/latest/reference/sts/get-session-token.html">CLI reference</a>
+for more information.</p>
+<h3 id="sharedcredentialsfile">sharedCredentialsFile</h3>
+<p><strong>Default:</strong> '~/.aws/credentials'</p>
+<p>The credentials file to look in when using <a href="/authentication/credentials-file.html">credential and configuration files</a>
+for authentication.</p>
+<h3 id="sharedconfigfile">sharedConfigFile</h3>
+<p><strong>Default:</strong> '~/.aws/config'</p>
+<p>The config file to look in when using <a href="/authentication/credentials-file.html">credential and configuration files</a>
+for authentication.</p>
+<h3 id="endpoint">endpoint</h3>
+<p><strong>Default:</strong> '<a href="https://%service%.%region%.amazonaws.com">https://%service%.%region%.amazonaws.com</a>'</p>
+<h3 id="rolearn">roleArn</h3>
+<p>The Amazon Resource Name (ARN) of the role that the caller is assuming when using
+the <a href="/authentication/web-identity.html">WebIdentity Provider</a></p>
+<h3 id="webidentitytokenfile">webIdentityTokenFile</h3>
+<p>Path to the file that contains the OAuth 2.0 access token when using the <a href="/authentication/web-identity.html">WebIdentity Provider</a></p>
+<h3 id="rolesessionname">roleSessionName</h3>
+<p><strong>Default:</strong> 'async-aws-' followed by random chars</p>
+<p>An identifier for the assumed role session</p>
+
+    </main>
+</div>
+
+<script src="/assets/app.js"></script>
+
+
+</body></html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="en"><head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/assets/app.css">
+
+    <title>AsyncAWS</title>
+</head>
+<body>
+<div class="d-flex">
+    <nav id="sidebar" class="sidebar">
+        <div class="custom-menu-toggle">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                ☰
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4 pt-1">
+            <a href="/" class="logo mx-auto d-block">
+                <img src="/assets/image/logo.png">
+            </a>
+            <ul class="list-unstyled p-0 mb-5">
+
+                                                                <li>
+                        <a href="/">
+                            Start
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/compare.html">
+                            Compare with AWS
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/configuration.html">
+                            Configuration
+                        </a>
+                    </li>
+                                                                                <li>
+                    <a href="#clients" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
+                    <ul class="collapse list-unstyled " id="clients">
+                                                    <li>
+                        <a href="/clients/">
+                            Overview
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/clients/lambda.html">
+                            Lambda
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/clients/s3.html">
+                            S3
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#features" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Features</a>
+                    <ul class="collapse list-unstyled " id="features">
+                                                    <li>
+                        <a href="/features/async.html">
+                            Why "async"?
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/pagination.html">
+                            Pagination
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/presign.html">
+                            Presign requests
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/waiter.html">
+                            Waiters
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/tests.html">
+                            Writing tests
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#integration" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Integration</a>
+                    <ul class="collapse list-unstyled " id="integration">
+                                                    <li>
+                        <a href="/integration/symfony-bundle.html">
+                            Symfony Bundle
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/integration/flysystem.html">
+                            Flysystem
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#authentication" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
+                    <ul class="collapse list-unstyled " id="authentication">
+                                                    <li>
+                        <a href="/authentication/">
+                            Overview
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/credentials-file.html">
+                            Credentials file
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/ec2-metadata.html">
+                            EC2 instance metadata
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/environment.html">
+                            Environment variables
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/hard-coded.html">
+                            Hard-Coded values
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/web-identity.html">
+                            WebIdentity
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#contribute" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Contribute</a>
+                    <ul class="collapse list-unstyled show" id="contribute">
+                                                    <li class="current">
+                        <a href="/contribute/">
+                            Introduction
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/contribute/website.html">
+                            Documentation
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/contribute/generate.html">
+                            Generate code
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                                                <li>
+                        <a href="https://github.com/async-aws/aws">
+                            Github
+                        </a>
+                    </li>
+                                                            </ul>
+
+            <p class="created-by">
+                Async AWS is created by <br>
+                <a href="https://github.com/jderusse">Jérémy Derussé</a>,
+                <a href="https://github.com/Nyholm">Tobias Nyholm</a> <br>
+                and <a href="https://github.com/async-aws/aws/graphs/contributors">contributors</a>.
+            </p>
+
+            <p class="copyright mt-5">
+                Copyright © 2020<br>
+                Project licensed under MIT
+            </p>
+        </div>
+    </nav>
+
+    <main role="main" id="content" class="content p-4 p-md-5 pt-5">
+    
+    <h1 id="contribution-guide">Contribution guide</h1>
+<p>Contribution are always appreciated. Like most contribution guides there are links
+to <a href="https://help.github.com/en/github/getting-started-with-github/fork-a-repo">how to fork a repository</a>
+and <a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">information about Pull Requests</a>.
+There are aslo some extra info you need to know about the async-aws/aws repository
+that might differ from other repositories.</p>
+<ol>
+<li>It is a mono repository</li>
+<li>Most code is generated</li>
+</ol>
+<p>Read about them <a href="#this-repo-is-special">below</a>.</p>
+<p>There are many ways to contribute to a project then just writing code. All of them
+are equally important. Some super helpful things include (in no particular order):</p>
+<ul>
+<li>Write issues</li>
+<li>Comment on issues</li>
+<li>Verify bugs submitted by other people</li>
+<li>Review PRs</li>
+<li>Test PRs</li>
+<li>Write documentation</li>
+<li>Make the website more pretty and accessible</li>
+<li>Tweet or blog about AsyncAws</li>
+</ul>
+<p>Read more about documentation and the website <a href="./website.html">here</a>.</p>
+<h2 id="this-repo-is-special">This repo is special</h2>
+<h3 id="mono-repository">Mono repository</h3>
+<p>It means that all PRs and issues goes to <a href="https://github.com/async-aws/aws">async-aws/aws</a>
+and not to individual client's repositories. When a commit is merged to master, the
+<a href="https://www.subtreesplit.com/">Subtree Split</a> service will push the changes to other
+repositories.</p>
+<p>Using a mono repository will simplify maintenance.</p>
+<h3 id="generated-code">Generated code</h3>
+<p>Most classes and functions in this repository are generated by <a href="https://github.com/async-aws/aws/tree/master/src/CodeGenerator">the code generator</a>.
+API clients, input classes, result classes etc are generated from the JSON provided
+by the official <a href="https://github.com/aws/aws-sdk-php">AWS PHP SDK</a>. This will assure
+correctness and it will be easy to keep up to with API changes.</p>
+<p>As a rule of thumb all code in <code>src/Service</code> is generated. That code cannot be manually
+changed. Only the test code can be manually changed.</p>
+<p>To create a class run the <code>generate</code> command.</p>
+<pre><code class="language-shell hljs"><span class="hljs-meta">$</span> ./generate
+<span class="hljs-meta">
+#</span> Or
+<span class="hljs-meta">$</span> ./generate S3 CreateBucket</code></pre>
+<p>The <code>./manifest.json</code> file contains information where the source is located
+and some metadata about the generated files and methods.</p>
+<p>You may also regenerate an existing operation and result classes:</p>
+<pre><code class="language-shell hljs"><span class="hljs-meta">$</span> ./generate S3 CreateBucket
+<span class="hljs-meta">$</span> ./generate S3 --all</code></pre>
+<p>Or regenerate everything:</p>
+<pre><code class="language-shell hljs"><span class="hljs-meta">$</span> ./generate --all</code></pre>
+<p>Read more about generating new code <a href="./generate.html">here</a>.</p>
+
+    </main>
+</div>
+
+<script src="/assets/app.js"></script>
+
+
+</body></html>

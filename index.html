@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="en"><head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/assets/app.css">
+
+    <title>AsyncAWS</title>
+</head>
+<body>
+<div class="d-flex">
+    <nav id="sidebar" class="sidebar">
+        <div class="custom-menu-toggle">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                ☰
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4 pt-1">
+            <a href="/" class="logo mx-auto d-block">
+                <img src="/assets/image/logo.png">
+            </a>
+            <ul class="list-unstyled p-0 mb-5">
+
+                                                                <li class="current">
+                        <a href="/">
+                            Start
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/compare.html">
+                            Compare with AWS
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/configuration.html">
+                            Configuration
+                        </a>
+                    </li>
+                                                                                <li>
+                    <a href="#clients" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
+                    <ul class="collapse list-unstyled " id="clients">
+                                                    <li>
+                        <a href="/clients/">
+                            Overview
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/clients/lambda.html">
+                            Lambda
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/clients/s3.html">
+                            S3
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#features" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Features</a>
+                    <ul class="collapse list-unstyled " id="features">
+                                                    <li>
+                        <a href="/features/async.html">
+                            Why "async"?
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/pagination.html">
+                            Pagination
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/presign.html">
+                            Presign requests
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/waiter.html">
+                            Waiters
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/tests.html">
+                            Writing tests
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#integration" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Integration</a>
+                    <ul class="collapse list-unstyled " id="integration">
+                                                    <li>
+                        <a href="/integration/symfony-bundle.html">
+                            Symfony Bundle
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/integration/flysystem.html">
+                            Flysystem
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#authentication" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
+                    <ul class="collapse list-unstyled " id="authentication">
+                                                    <li>
+                        <a href="/authentication/">
+                            Overview
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/credentials-file.html">
+                            Credentials file
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/ec2-metadata.html">
+                            EC2 instance metadata
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/environment.html">
+                            Environment variables
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/hard-coded.html">
+                            Hard-Coded values
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/web-identity.html">
+                            WebIdentity
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#contribute" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Contribute</a>
+                    <ul class="collapse list-unstyled " id="contribute">
+                                                    <li>
+                        <a href="/contribute/">
+                            Introduction
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/contribute/website.html">
+                            Documentation
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/contribute/generate.html">
+                            Generate code
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                                                <li>
+                        <a href="https://github.com/async-aws/aws">
+                            Github
+                        </a>
+                    </li>
+                                                            </ul>
+
+            <p class="created-by">
+                Async AWS is created by <br>
+                <a href="https://github.com/jderusse">Jérémy Derussé</a>,
+                <a href="https://github.com/Nyholm">Tobias Nyholm</a> <br>
+                and <a href="https://github.com/async-aws/aws/graphs/contributors">contributors</a>.
+            </p>
+
+            <p class="copyright mt-5">
+                Copyright © 2020<br>
+                Project licensed under MIT
+            </p>
+        </div>
+    </nav>
+
+    <main role="main" id="content" class="content p-4 p-md-5 pt-5">
+    
+    <h1 id="asyncaws-client">AsyncAWS client</h1>
+<p>If you are one of those people that like the Amazon PHP SDK but hate the fact
+that you need to download Guzzle, PSR-7 and <strong>every</strong> AWS API client to use it?</p>
+<p>This is the library for you!</p>
+<h2 id="what-is-new">What is new?</h2>
+<p>The official <a href="https://github.com/aws/aws-sdk-php">AWS PHP SDK</a> is great. It is
+feature complete, it supports all Amazon APIs and is maintained by some really talented
+developers. This library is different. It is maintained by some dumb and lazy people.</p>
+<p>The goals of this client are:</p>
+<ol>
+<li><strong>Async first.</strong> Everything is asynchronous and responses are only downloaded
+if needed.</li>
+<li><strong>Not feature complete.</strong> AsyncAws is only covering the handful of AWS APIs
+that are used by most people.</li>
+<li><strong>No frequent updates.</strong> Updates are great, but if changes are released multiple
+times every week you cannot keep up-to-date with the changelog. That is especially
+annoying when the changes are not related to services you use.</li>
+<li><strong>Readable code.</strong> One should be able to read the code and follow the logic.</li>
+</ol>
+<p>See <a href="./compare.html">full comparison</a> between AsyncAws and the official AWS PHP SDK.</p>
+<h2 id="how-is-it-async-first">How is it async first?</h2>
+<p>The secret ingredient in creating asynchronous first is not implemented in this library.
+It actually comes from <a href="https://symfony.com/doc/current/components/http_client.html">Symfony's HTTP client</a>.
+They have implemented all the cool asynchronous features that this AWS library just
+take advantage of.</p>
+<h4 id="so-what-is-this-library-really-doing">So what is this library really doing?</h4>
+<p>Except for being a wrapper around Symfony's HTTP client and make sure the asynchronous
+features are properly used, AsyncAws also <a href="./authtentication/authentication.html">handles authentication</a>,
+exceptions and provide input and result objects.</p>
+<p>Read more about <a href="./features/async.html">how do use asynchronous features</a>.</p>
+<h2 id="quick-example">Quick example</h2>
+<p>All APIs are located in different packages. To install SQS run</p>
+<pre><code class="language-shell hljs"><span class="hljs-meta">$</span> composer require async-aws/sqs</code></pre>
+<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
+
+$sqs = <span class="hljs-keyword">new</span> SqsClient([
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'foo'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'bar'</span>,
+]);
+
+<span class="hljs-comment">// Call a client's method with an array</span>
+$result = $sqs-&gt;createQueue([<span class="hljs-string">'QueueName'</span> =&gt; <span class="hljs-string">'bar'</span>]);
+
+<span class="hljs-comment">// Request is automatically sent when reading the result</span>
+<span class="hljs-keyword">echo</span> $result-&gt;getQueueUrl();
+
+<span class="hljs-comment">// You can also call a client's method with an input object</span>
+$input = <span class="hljs-keyword">new</span> SendMessageRequest();
+$input
+    -&gt;setQueueUrl(<span class="hljs-string">'https://foo.com/bar'</span>)
+    -&gt;setMessageBody(<span class="hljs-string">'foobar'</span>);
+
+<span class="hljs-comment">// Since the returned value is ignored,</span>
+<span class="hljs-comment">// the HTTP request is sent automatically.</span>
+$sqs-&gt;sendMessage($input);</code></pre>
+<p>Continue reading about our different <a href="/clients/index.html">API clients</a> or select
+a topic in the sidebar.</p>
+<h2 id="backwards-compatibility-promise">Backwards compatibility promise</h2>
+<p>This package is currently stabilizing. Versions released in April 2020 is considered
+fairly stable. After 1.0 is released the library strictly follows the process to
+keep backwards compatibility defined by Symfony.</p>
+<p>See <a href="https://symfony.com/bc">Symfony backwards compatibility promise</a> for more information.</p>
+
+    </main>
+</div>
+
+<script src="/assets/app.js"></script>
+
+
+</body></html>

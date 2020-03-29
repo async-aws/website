@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="en"><head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/assets/app.css">
+
+    <title>AsyncAWS</title>
+</head>
+<body>
+<div class="d-flex">
+    <nav id="sidebar" class="sidebar">
+        <div class="custom-menu-toggle">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                ☰
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4 pt-1">
+            <a href="/" class="logo mx-auto d-block">
+                <img src="/assets/image/logo.png">
+            </a>
+            <ul class="list-unstyled p-0 mb-5">
+
+                                                                <li>
+                        <a href="/">
+                            Start
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/compare.html">
+                            Compare with AWS
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/configuration.html">
+                            Configuration
+                        </a>
+                    </li>
+                                                                                <li>
+                    <a href="#clients" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
+                    <ul class="collapse list-unstyled " id="clients">
+                                                    <li>
+                        <a href="/clients/">
+                            Overview
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/clients/lambda.html">
+                            Lambda
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/clients/s3.html">
+                            S3
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#features" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Features</a>
+                    <ul class="collapse list-unstyled show" id="features">
+                                                    <li>
+                        <a href="/features/async.html">
+                            Why "async"?
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/pagination.html">
+                            Pagination
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/presign.html">
+                            Presign requests
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/features/waiter.html">
+                            Waiters
+                        </a>
+                    </li>
+                                    <li class="current">
+                        <a href="/features/tests.html">
+                            Writing tests
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#integration" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Integration</a>
+                    <ul class="collapse list-unstyled " id="integration">
+                                                    <li>
+                        <a href="/integration/symfony-bundle.html">
+                            Symfony Bundle
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/integration/flysystem.html">
+                            Flysystem
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#authentication" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
+                    <ul class="collapse list-unstyled " id="authentication">
+                                                    <li>
+                        <a href="/authentication/">
+                            Overview
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/credentials-file.html">
+                            Credentials file
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/ec2-metadata.html">
+                            EC2 instance metadata
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/environment.html">
+                            Environment variables
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/hard-coded.html">
+                            Hard-Coded values
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/authentication/web-identity.html">
+                            WebIdentity
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                            <li>
+                    <a href="#contribute" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Contribute</a>
+                    <ul class="collapse list-unstyled " id="contribute">
+                                                    <li>
+                        <a href="/contribute/">
+                            Introduction
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/contribute/website.html">
+                            Documentation
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/contribute/generate.html">
+                            Generate code
+                        </a>
+                    </li>
+                                                        </ul>
+                </li>
+                                                                                <li>
+                        <a href="https://github.com/async-aws/aws">
+                            Github
+                        </a>
+                    </li>
+                                                            </ul>
+
+            <p class="created-by">
+                Async AWS is created by <br>
+                <a href="https://github.com/jderusse">Jérémy Derussé</a>,
+                <a href="https://github.com/Nyholm">Tobias Nyholm</a> <br>
+                and <a href="https://github.com/async-aws/aws/graphs/contributors">contributors</a>.
+            </p>
+
+            <p class="copyright mt-5">
+                Copyright © 2020<br>
+                Project licensed under MIT
+            </p>
+        </div>
+    </nav>
+
+    <main role="main" id="content" class="content p-4 p-md-5 pt-5">
+    
+    <h1 id="writing-tests-and-mocking">Writing tests and mocking</h1>
+<p>Below is an example of a unit test for a <code>FileUploader</code> class. It is mocking the <code>S3Client</code>
+and makes sure it returns a <code>PutObjectOutput</code> result.</p>
+<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">PHPUnit</span>\<span class="hljs-title">Framework</span>\<span class="hljs-title">TestCase</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Result</span>\<span class="hljs-title">PutObjectOutput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Test</span>\<span class="hljs-title">ResultMockFactory</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">FileUploader</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">S3UploadTest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TestCase</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testWrite</span><span class="hljs-params">()</span>
+    </span>{
+        $file = <span class="hljs-string">'/foo/bar.txt'</span>;
+
+        $s3Client = <span class="hljs-keyword">$this</span>-&gt;getMockBuilder(S3Client::class)
+            -&gt;disableOriginalConstructor()
+            -&gt;onlyMethods([<span class="hljs-string">'putObject'</span>])
+            -&gt;getMock();
+
+        $result = ResultMockFactory::create(PutObjectOutput::class);
+
+        $s3Client-&gt;expects(<span class="hljs-keyword">self</span>::once())
+            -&gt;method(<span class="hljs-string">'putObject'</span>)
+            -&gt;with(<span class="hljs-keyword">self</span>::callback(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array $input)</span> <span class="hljs-title">use</span> <span class="hljs-params">($file)</span> </span>{
+                <span class="hljs-keyword">if</span> ($input[<span class="hljs-string">'Key'</span>] !== $file) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+                }
+                <span class="hljs-keyword">if</span> (<span class="hljs-string">'my file contents'</span> !== $input[<span class="hljs-string">'Body'</span>]) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+                }
+
+                <span class="hljs-keyword">if</span> (<span class="hljs-string">'myBucket'</span> !== $input[<span class="hljs-string">'Bucket'</span>]) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+                }
+
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            }))-&gt;willReturn($result);
+
+        $uploader = <span class="hljs-keyword">new</span> FileUploader($s3Client);
+        $uploader-&gt;write($file, <span class="hljs-string">'my file contents'</span>);
+    }
+}
+</code></pre>
+<p>The <code>ResultMockFactory</code> is used to create mocks for result classes. Use the second
+argument to set properties to the result class.</p>
+<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Result</span>\<span class="hljs-title">GetObjectOutput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Test</span>\<span class="hljs-title">ResultMockFactory</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Test</span>\<span class="hljs-title">SimpleResultStream</span>;
+
+$result = ResultMockFactory::create(GetObjectOutput::class, [
+    <span class="hljs-string">'LastModified'</span> =&gt; <span class="hljs-keyword">new</span> \DateTimeImmutable(),
+    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-keyword">new</span> SimpleResultStream(<span class="hljs-string">'my content'</span>),
+]);</code></pre>
+
+    </main>
+</div>
+
+<script src="/assets/app.js"></script>
+
+
+</body></html>

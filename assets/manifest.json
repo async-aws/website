@@ -1,0 +1,11 @@
+{
+  "assets/app.css": "/assets/app.css",
+  "assets/app.js": "/assets/app.js",
+  "assets/image/compare/aa-input.png": "/assets/image/compare/aa-input.png",
+  "assets/image/compare/aa-method.png": "/assets/image/compare/aa-method.png",
+  "assets/image/compare/aa-result.png": "/assets/image/compare/aa-result.png",
+  "assets/image/compare/aws-input.png": "/assets/image/compare/aws-input.png",
+  "assets/image/compare/aws-method.png": "/assets/image/compare/aws-method.png",
+  "assets/image/compare/aws-result.png": "/assets/image/compare/aws-result.png",
+  "assets/image/logo.png": "/assets/image/logo.png"
+}
