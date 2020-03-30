@@ -39,7 +39,7 @@
                     </li>
                                                                                 <li>
                     <a href="#clients" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -59,7 +59,7 @@
                 </li>
                                                             <li>
                     <a href="#features" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Features</a>
-                    <ul class="collapse list-unstyled show" id="features">
+                    <ul class="collapse list-unstyled " id="features">
                                                     <li>
                         <a href="/features/async.html">
                             Why "async"?
@@ -80,7 +80,7 @@
                             Waiters
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/features/tests.html">
                             Writing tests
                         </a>
@@ -180,60 +180,34 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="writing-tests-and-mocking">Writing tests and mocking</h1>
-<p>Below is an example of a unit test for a <code>FileUploader</code> class. It is mocking the <code>S3Client</code>
-and makes sure it returns a <code>PutObjectOutput</code> result.</p>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">PHPUnit</span>\<span class="hljs-title">Framework</span>\<span class="hljs-title">TestCase</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Result</span>\<span class="hljs-title">PutObjectOutput</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Test</span>\<span class="hljs-title">ResultMockFactory</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">FileUploader</span>;
+    <h1 id="ses-client">SES Client</h1>
+<h2 id="examples">Examples</h2>
+<h3 id="send-a-message">Send a message</h3>
+<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendEmailRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">SesClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Body</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Destination</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">EmailContent</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Message</span>;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">S3UploadTest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TestCase</span>
-</span>{
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testWrite</span><span class="hljs-params">()</span>
-    </span>{
-        $file = <span class="hljs-string">'/path/file.txt'</span>;
+$ses = <span class="hljs-keyword">new</span> SesClient();
 
-        $s3Client = <span class="hljs-keyword">$this</span>-&gt;getMockBuilder(S3Client::class)
-            -&gt;disableOriginalConstructor()
-            -&gt;onlyMethods([<span class="hljs-string">'putObject'</span>])
-            -&gt;getMock();
+$result = $ses-&gt;sendEmail(<span class="hljs-keyword">new</span> SendEmailRequest([
+    <span class="hljs-string">'FromEmailAddress'</span> =&gt; <span class="hljs-string">'invoice-bot@my-company.com'</span>,
+    <span class="hljs-string">'Content'</span> =&gt; <span class="hljs-keyword">new</span> EmailContent([
+        <span class="hljs-string">'Simple'</span> =&gt; <span class="hljs-keyword">new</span> Message([
+            <span class="hljs-string">'Subject'</span> =&gt; <span class="hljs-string">'New Invoice'</span>,
+            <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-keyword">new</span> Body([
+                <span class="hljs-string">'Text'</span> =&gt; <span class="hljs-string">'A new invoice is available'</span>,
+            ]),
+        ]),
+    ]),
+    <span class="hljs-string">'Destination'</span> =&gt; <span class="hljs-keyword">new</span> Destination([
+        <span class="hljs-string">'ToAddresses'</span> =&gt; <span class="hljs-string">'customer@customer-company.com'</span>
+    ]),
+]));
 
-        $result = ResultMockFactory::create(PutObjectOutput::class);
-
-        $s3Client-&gt;expects(<span class="hljs-keyword">self</span>::once())
-            -&gt;method(<span class="hljs-string">'putObject'</span>)
-            -&gt;with(<span class="hljs-keyword">self</span>::callback(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array $input)</span> <span class="hljs-title">use</span> <span class="hljs-params">($file)</span> </span>{
-                <span class="hljs-keyword">if</span> ($input[<span class="hljs-string">'Key'</span>] !== $file) {
-                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
-                }
-                <span class="hljs-keyword">if</span> (<span class="hljs-string">'my file contents'</span> !== $input[<span class="hljs-string">'Body'</span>]) {
-                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
-                }
-
-                <span class="hljs-keyword">if</span> (<span class="hljs-string">'myBucket'</span> !== $input[<span class="hljs-string">'Bucket'</span>]) {
-                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
-                }
-
-                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
-            }))-&gt;willReturn($result);
-
-        $uploader = <span class="hljs-keyword">new</span> FileUploader($s3Client);
-        $uploader-&gt;write($file, <span class="hljs-string">'my file contents'</span>);
-    }
-}
-</code></pre>
-<p>The <code>ResultMockFactory</code> is used to create mocks for result classes. Use the second
-argument to set properties to the result class.</p>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Result</span>\<span class="hljs-title">GetObjectOutput</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Test</span>\<span class="hljs-title">ResultMockFactory</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Test</span>\<span class="hljs-title">SimpleResultStream</span>;
-
-$result = ResultMockFactory::create(GetObjectOutput::class, [
-    <span class="hljs-string">'LastModified'</span> =&gt; <span class="hljs-keyword">new</span> \DateTimeImmutable(),
-    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-keyword">new</span> SimpleResultStream(<span class="hljs-string">'my content'</span>),
-]);</code></pre>
+<span class="hljs-keyword">echo</span> $result-&gt;getMessageId();</code></pre>
 
     </main>
 </div>

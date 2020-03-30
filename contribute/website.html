@@ -196,12 +196,12 @@ to update <code>./couscous.yml</code>.</p>
 <ul>
 <li>Write <code>AsyncAws</code> or <code>async-aws</code> to refer to the project.</li>
 <li>Dont use "we" at any cost.</li>
-<li>Try not to write "you"</li>
-<li>Define variables all variables to make examples executable.</li>
-<li>Use meaningful naming of variables and values. Avoid <code>foobar</code> and dummy values.</li>
-<li>Write examples with  use <code>use</code> statements and don't use <code>&lt;?php</code></li>
+<li>Try not to write "you".</li>
+<li>Define all variables to make examples executable.</li>
+<li>Use meaningful names of variables and values. Avoid "foobar" and other dummy values.</li>
+<li>Write examples with  use <code>use</code> statements and don't use <code>&lt;?php</code>.</li>
 <li>Use input objects over arrays.</li>
-<li>Use short variable names for clients. Ie <code>$lambda</code> over <code>$lambdaClient</code> and <code>$s3</code> over <code>$s3Client</code></li>
+<li>Use short variable names for clients. Ie <code>$lambda</code> over <code>$lambdaClient</code> and <code>$s3</code> over <code>$s3Client</code>.</li>
 </ul>
 <h2 id="improving-the-websites-appearance">Improving the website's appearance</h2>
 <p>To update the websites HTML or style one need to use Couscous. Its basic operations
@@ -232,8 +232,8 @@ unless other is specified at the metadata section at the top of the markdown fil
 That will look at the generated HTML and style all code examples with <code>highlight.js</code>.</p>
 <h3 id="3-publishing-the-files">3. Publishing the files</h3>
 <p>There is a github action that make sure to generate the HTML and push it do a
-"read only"-repository for the website. That repository is using Github Pages to
-deploy the contents to <a href="https://github.com/async-aws/aws">async-aws/aws</a>.</p>
+"read only"-repository for the website. That repository is using <a href="https://www.netlify.com/">Netlify</a>
+to deploy the contents to <a href="https://github.com/async-aws/aws">async-aws/aws</a>.</p>
 
     </main>
 </div>

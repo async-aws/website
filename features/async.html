@@ -196,8 +196,8 @@ $sqs = <span class="hljs-keyword">new</span> SqsClient();
 
 $input = <span class="hljs-keyword">new</span> SendMessageRequest();
 $input
-    -&gt;setQueueUrl(<span class="hljs-string">'https://foo.com/bar'</span>)
-    -&gt;setMessageBody(<span class="hljs-string">'foobar'</span>);
+    -&gt;setQueueUrl(<span class="hljs-string">'https://sqs.us-east-2.amazonaws.com/123456789012/invoice'</span>)
+    -&gt;setMessageBody(<span class="hljs-string">'invoiceId: 1337'</span>);
 
 $sqs-&gt;sendMessage($input);</code></pre>
 <p>The HTTP request is sent and a HTTP response is received. Everything works as expected.</p>
@@ -212,8 +212,8 @@ $sqs = <span class="hljs-keyword">new</span> SqsClient();
 
 $input = <span class="hljs-keyword">new</span> SendMessageRequest();
 $input
-    -&gt;setQueueUrl(<span class="hljs-string">'https://foo.com/bar'</span>)
-    -&gt;setMessageBody(<span class="hljs-string">'foobar'</span>);
+    -&gt;setQueueUrl(<span class="hljs-string">'https://sqs.us-east-2.amazonaws.com/123456789012/invoice'</span>)
+    -&gt;setMessageBody(<span class="hljs-string">'invoiceId: 1337'</span>);
 
 $result = $sqs-&gt;sendMessage($input);
 
@@ -230,8 +230,8 @@ will be parsed.</p>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendSqsMessage</span><span class="hljs-params">($client)</span> </span>{
     $input = <span class="hljs-keyword">new</span> SendMessageRequest();
     $input
-        -&gt;setQueueUrl(<span class="hljs-string">'https://foo.com/bar'</span>)
-        -&gt;setMessageBody(<span class="hljs-string">'foobar'</span>);
+        -&gt;setQueueUrl(<span class="hljs-string">'https://sqs.us-east-2.amazonaws.com/123456789012/invoice'</span>)
+        -&gt;setMessageBody(<span class="hljs-string">'invoiceId: 1337'</span>);
 
     $result = $client-&gt;sendMessage($input);
 

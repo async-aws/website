@@ -218,12 +218,12 @@ exceptions and provide input and result objects.</p>
 
 $sqs = <span class="hljs-keyword">new</span> SqsClient([
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
-    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'foo'</span>,
-    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'bar'</span>,
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
 ]);
 
 <span class="hljs-comment">// Call a client's method with an array</span>
-$result = $sqs-&gt;createQueue([<span class="hljs-string">'QueueName'</span> =&gt; <span class="hljs-string">'bar'</span>]);
+$result = $sqs-&gt;createQueue([<span class="hljs-string">'QueueName'</span> =&gt; <span class="hljs-string">'invoice'</span>]);
 
 <span class="hljs-comment">// Request is automatically sent when reading the result</span>
 <span class="hljs-keyword">echo</span> $result-&gt;getQueueUrl();
@@ -231,8 +231,8 @@ $result = $sqs-&gt;createQueue([<span class="hljs-string">'QueueName'</span> =&g
 <span class="hljs-comment">// You can also call a client's method with an input object</span>
 $input = <span class="hljs-keyword">new</span> SendMessageRequest();
 $input
-    -&gt;setQueueUrl(<span class="hljs-string">'https://foo.com/bar'</span>)
-    -&gt;setMessageBody(<span class="hljs-string">'foobar'</span>);
+    -&gt;setQueueUrl(<span class="hljs-string">'https://sqs.us-east-2.amazonaws.com/123456789012/invoice'</span>)
+    -&gt;setMessageBody(<span class="hljs-string">'invoiceId: 1337'</span>);
 
 <span class="hljs-comment">// Since the returned value is ignored,</span>
 <span class="hljs-comment">// the HTTP request is sent automatically.</span>

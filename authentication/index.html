@@ -191,13 +191,13 @@ password (in simple terms).</p>
 <p>By default AsyncAWS uses a ChainProvider that iterates over all providers and uses
 the first provider in the chain that returns credentials without an error.</p>
 <p>The providers are currently chained in the following order:</p>
-<ul>
+<ol>
 <li><a href="./hard-coded.html">Hard-Coded Configuration</a></li>
 <li><a href="./environment.html">Environment Variables</a></li>
 <li><a href="./web-identity.html">WebIdentity</a></li>
 <li><a href="./credentials-file.html">Credential and Configuration Files</a></li>
 <li><a href="./ec2-metadata.html">EC2 Instance Metadata</a></li>
-</ul>
+</ol>
 <h2 id="testing-with-authentication-providers">Testing with authentication providers</h2>
 <p>The default provider chain could be too slow or too complex for testing. It is recommended
 to use the <code>NullProvider</code> in tests where you dont provide valid configuration values.</p>

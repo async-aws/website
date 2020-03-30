@@ -197,15 +197,15 @@ $s3 = <span class="hljs-keyword">new</span> S3Client();
 
 <span class="hljs-comment">// Upload plain text</span>
 $s3-&gt;PutObject([
-    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'foo'</span>,
-    <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file.txt'</span>,
-    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-string">'foobar'</span>,
+    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
+    <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'robots.txt'</span>,
+    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-string">"User-agent: *\nDisallow:"</span>,
 ]);
 
 <span class="hljs-comment">// Upload with stream</span>
 $resource = \fopen(<span class="hljs-string">'/path/to/big/file'</span>, <span class="hljs-string">'r'</span>);
 $s3-&gt;PutObject([
-    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'foo'</span>,
+    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file.jpg'</span>,
     <span class="hljs-string">'Body'</span> =&gt; $resource,
 ]);
@@ -213,7 +213,7 @@ $s3-&gt;PutObject([
 <span class="hljs-comment">// Upload with Closure</span>
 $fp = \fopen(<span class="hljs-string">'/path/to/big/file'</span>, <span class="hljs-string">'r'</span>);
 $s3-&gt;PutObject([
-    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'foo'</span>,
+    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file.jpg'</span>,
     <span class="hljs-string">'ContentLength'</span> =&gt; filesize(<span class="hljs-string">'/path/to/big/file'</span>), <span class="hljs-comment">// This is important</span>
     <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(int $length)</span> <span class="hljs-title">use</span> <span class="hljs-params">($fp)</span>: <span class="hljs-title">string</span> </span>{
@@ -224,7 +224,7 @@ $s3-&gt;PutObject([
 <span class="hljs-comment">// Upload with an iterable</span>
 $files = [<span class="hljs-string">'/path/to/file1.txt'</span>, <span class="hljs-string">'/path/to/file2.txt'</span>];
 $s3-&gt;PutObject([
-    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'foo'</span>,
+    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file_merged.jpg'</span>,
     <span class="hljs-string">'ContentLength'</span> =&gt; array_sum(array_map(<span class="hljs-string">'filesize'</span>, $files)), <span class="hljs-comment">// This is important</span>
     <span class="hljs-string">'Body'</span> =&gt; (<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> <span class="hljs-title">use</span><span class="hljs-params">($files)</span>: <span class="hljs-title">iterable</span> </span>{
@@ -235,8 +235,8 @@ $s3-&gt;PutObject([
 ]);</code></pre>
 <p>When using a <code>Closure</code>, it's important to provide the property <code>ContentLength</code>.
 This information is required by AWS, and cannot be guessed by AsyncAws.
-If <code>ContentLength</code> is absent, AsyncAws will read the output into memory before
-sending the request.</p>
+If <code>ContentLength</code> is absent, AsyncAws will read the output before sending the
+request which could have a performance impact.</p>
 
     </main>
 </div>

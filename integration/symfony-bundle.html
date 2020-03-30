@@ -200,7 +200,7 @@ service you define.</p>
         <span class="hljs-attr">sqs:</span>
             <span class="hljs-attr">config:</span>
                 <span class="hljs-attr">region:</span> <span class="hljs-string">us-west-1</span>
-        <span class="hljs-attr">foobar:</span>
+        <span class="hljs-attr">delayed:</span>
             <span class="hljs-attr">type:</span> <span class="hljs-string">sqs</span></code></pre>
 <p>The config above will create the following services:</p>
 <table>
@@ -220,8 +220,8 @@ service you define.</p>
 <td>AsyncAws\Sqs\SqsClient</td>
 </tr>
 <tr>
-<td><code>async_aws.client.foobar</code></td>
-<td>AsyncAws\Sqs\SqsClient $foobar</td>
+<td><code>async_aws.client.delayed</code></td>
+<td>AsyncAws\Sqs\SqsClient $delayed</td>
 </tr>
 <tr>
 <td><code>async_aws.client.s3</code></td>
