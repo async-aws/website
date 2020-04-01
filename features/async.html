@@ -307,7 +307,7 @@ it will return <code>false</code>.</p>
 <p>Consider the following example. It is creating 10 <code>InvocationRequest</code>s and printing
 their result. The result that is downloaded first will be printed first. The order
 the requests are created do not matter.</p>
-<p>The <code>Result::multiplex</code> function will iterate over provided results, and yield
+<p>The <code>Result::wait</code> function will iterate over provided results, and yield
 the the response as soon as it has been resolved.</p>
 <p>The function has a <code>?float $timeout = null</code> argument. If the timeout is set to
 <code>2.0</code>, the HTTP client will wait for 2 seconds for responses. Each time a response
@@ -330,7 +330,7 @@ $results = [];
     ]));
 }
 
-<span class="hljs-keyword">foreach</span> (Result::multiplex($results, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">true</span>) <span class="hljs-keyword">as</span> $result) {
+<span class="hljs-keyword">foreach</span> (Result::wait($results, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">true</span>) <span class="hljs-keyword">as</span> $result) {
     <span class="hljs-keyword">echo</span> $result-&gt;getPayload();
 }</code></pre>
 <p>The pseudo code at the lambda function:</p>
