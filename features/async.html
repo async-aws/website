@@ -307,7 +307,17 @@ it will return <code>false</code>.</p>
 <p>Consider the following example. It is creating 10 <code>InvocationRequest</code>s and printing
 their result. The result that is downloaded first will be printed first. The order
 the requests are created do not matter.</p>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">LambdaClient</span>;
+<p>The <code>Result::multiplex</code> function will iterate over provided results, and yield
+the the response as soon as it has been resolved.</p>
+<p>The function has a <code>?float $timeout = null</code> argument. If the timeout is set to
+<code>2.0</code>, the HTTP client will wait for 2 seconds for responses. Each time a response
+is received, the function will yield the response. If the timeout is reached, or
+all responses are resolved, the loop stops.</p>
+<p>The function has also a <code>$fullResponse</code> argument. When <code>false</code> (default value)
+the HTTP client will wait only for HTTP status code and headers. When <code>true</code>,
+the HTTP client will wait until receiving the full response body.</p>
+<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Result</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">LambdaClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">InvocationRequest</span>;
 
 $lambda = <span class="hljs-keyword">new</span> LambdaClient();
@@ -320,13 +330,8 @@ $results = [];
     ]));
 }
 
-<span class="hljs-keyword">while</span> (!<span class="hljs-keyword">empty</span>($results)) {
-    <span class="hljs-keyword">foreach</span> ($results <span class="hljs-keyword">as</span> $i =&gt; $result) {
-        <span class="hljs-keyword">if</span> ($result-&gt;resolve(<span class="hljs-number">0.01</span>)) {
-            <span class="hljs-keyword">echo</span> $result-&gt;getPayload();
-            <span class="hljs-keyword">unset</span>($results[$i]);
-        }
-    }
+<span class="hljs-keyword">foreach</span> (Result::multiplex($results, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">true</span>) <span class="hljs-keyword">as</span> $result) {
+    <span class="hljs-keyword">echo</span> $result-&gt;getPayload();
 }</code></pre>
 <p>The pseudo code at the lambda function:</p>
 <pre><code class="language-php hljs"><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($event)</span> </span>{
