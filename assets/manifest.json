@@ -1,11 +1,13 @@
 {
-  "assets/app.css": "/assets/app.css",
-  "assets/app.js": "/assets/app.js",
-  "assets/image/compare/aa-input.png": "/assets/image/compare/aa-input.png",
-  "assets/image/compare/aa-method.png": "/assets/image/compare/aa-method.png",
-  "assets/image/compare/aa-result.png": "/assets/image/compare/aa-result.png",
-  "assets/image/compare/aws-input.png": "/assets/image/compare/aws-input.png",
-  "assets/image/compare/aws-method.png": "/assets/image/compare/aws-method.png",
-  "assets/image/compare/aws-result.png": "/assets/image/compare/aws-result.png",
-  "assets/image/logo.png": "/assets/image/logo.png"
+  "assets/0.3639a826.css": "/assets/0.3639a826.css",
+  "assets/0.3c04c260.js": "/assets/0.3c04c260.js",
+  "assets/app.css": "/assets/app.733f7b23.css",
+  "assets/app.js": "/assets/app.4834514c.js",
+  "assets/image/compare/aa-input.png": "/assets/image/compare/aa-input.d5fef3a0.png",
+  "assets/image/compare/aa-method.png": "/assets/image/compare/aa-method.a6eb6a64.png",
+  "assets/image/compare/aa-result.png": "/assets/image/compare/aa-result.bcbe8f57.png",
+  "assets/image/compare/aws-input.png": "/assets/image/compare/aws-input.0d69cf56.png",
+  "assets/image/compare/aws-method.png": "/assets/image/compare/aws-method.00d2a9ea.png",
+  "assets/image/compare/aws-result.png": "/assets/image/compare/aws-result.b126f5ec.png",
+  "assets/image/logo.png": "/assets/image/logo.8de63200.png"
 }
