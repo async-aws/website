@@ -228,30 +228,51 @@
 </a>
     
     <h1 id="pagination">Pagination</h1>
-<p>Some API Results are lists of items, like the result of <code>S3Client::listObjectsV2()</code>.
+<p>Some API Results are lists of items, like the result of <code>CloudFormationClient::DescribeStacks()</code>.
 These results implement <code>\IteratorAggregate</code> and will automatically use AWS's pagination
 API to make a new request to fetch the remaining resources in the list.</p>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Stack</span>;
+
+$cloudFormation = <span class="hljs-keyword">new</span> CloudFormationClient();
+
+$result = $cloudFormation-&gt;describeStacks();
+
+<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> Stack $stack */</span>
+<span class="hljs-keyword">foreach</span>($result <span class="hljs-keyword">as</span> $stack) {
+    <span class="hljs-keyword">echo</span> $stack-&gt;getStackName();
+}</code></pre>
+<p>These results also provide methods to fetch metadata returned by AWS or
+to explicitly access the list of items by using a meaningful method name.</p>
+<pre><code class="language-diff hljs"><span class="hljs-deletion">-foreach($result as $stack) {</span>
+<span class="hljs-addition">+foreach($result-&gt;getStacks() as $stack) {</span></code></pre>
+<p>If you want to disable pagination, you may call the <code>getStacks()</code> function with
+boolean <code>true</code> as first argument.</p>
+<pre><code class="language-diff hljs"><span class="hljs-deletion">-foreach($result-&gt;getStacks() as $stack) {</span>
+<span class="hljs-addition">+foreach($result-&gt;getStacks(true) as $stack) {</span></code></pre>
+<p>Some endpoints return several lists of items in the same response, like the
+result of <code>S3::ListObjectsV2()</code>.
+When iterating over those results, all lists will be mixed in the yielded items.</p>
+<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListObjectsV2Request</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AwsObject</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">CommonPrefix</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListObjectsV2Request</span>;
 
 $s3 = <span class="hljs-keyword">new</span> S3Client();
-$input = <span class="hljs-keyword">new</span> ListObjectsV2Request();
-$input-&gt;setBucket(<span class="hljs-string">'my-company-website'</span>);
 
-$result = $s3-&gt;listObjectsV2($input);
+$objects = $s3-&gt;listObjectsV2(<span class="hljs-keyword">new</span> ListObjectsV2Request([
+    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
+    <span class="hljs-string">'Delimiter'</span> =&gt; <span class="hljs-string">'/'</span>
+]));
 
-<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> AwsObject|CommonPrefix $file */</span>
-<span class="hljs-keyword">foreach</span>($result <span class="hljs-keyword">as</span> $file) {
-    <span class="hljs-keyword">if</span> ($file <span class="hljs-keyword">instanceof</span> AwsObject) {
-        <span class="hljs-keyword">echo</span> $file-&gt;getKey();
+<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> AwsObject|CommonPrefix $object */</span>
+<span class="hljs-keyword">foreach</span>($objects <span class="hljs-keyword">as</span> $object) {
+    <span class="hljs-keyword">if</span> ($object <span class="hljs-keyword">instanceof</span> AwsObject) {
+        <span class="hljs-keyword">echo</span> <span class="hljs-string">'- '</span>.$object-&gt;getKey();
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">echo</span> <span class="hljs-string">'d '</span>.$object-&gt;getPrefix();
     }
 }</code></pre>
-<p>If you want to disable pagination, you may call the <code>getContents()</code> function with
-boolean <code>true</code> as first argument.</p>
-<pre><code class="language-diff hljs"><span class="hljs-deletion">-foreach($result as $file) {</span>
-<span class="hljs-addition">+foreach($result-&gt;getContents(true) as $file) {</span></code></pre>
 
     </main>
 </div>
