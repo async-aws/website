@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/0.3639a826.css"><link rel="stylesheet" href="/assets/app.f0ea4ca5.css">
+    <link rel="stylesheet" href="/assets/0.3639a826.css"><link rel="stylesheet" href="/assets/app.94726c55.css">
 
     <title>AsyncAWS</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -229,12 +229,14 @@
     
     <h1 id="using-credentials-from-environment-variables">Using Credentials from Environment Variables</h1>
 <p>AsyncAWS recognize Env variables that are used by most official AWS tools and SDK.</p>
-<pre><code class="language-shell hljs"><span class="hljs-meta">$</span> export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
-<span class="hljs-meta">   #</span> The access key for your AWS account.
-<span class="hljs-meta">$</span> export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-<span class="hljs-meta">   #</span> The secret access key for your AWS account.
-<span class="hljs-meta">$</span> export AWS_SESSION_TOKEN=AQoDYXdzEJr...&lt;remainder of security token&gt;
-<span class="hljs-meta">   #</span> The session key for your AWS account. This is needed only when you are using temporary credentials.</code></pre>
+<pre><code class="language-shell hljs"><span class="hljs-comment"># The access key for your AWS account.</span>
+<span class="hljs-built_in">export</span> AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+
+<span class="hljs-comment"># The secret access key for your AWS account.</span>
+<span class="hljs-built_in">export</span> AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+<span class="hljs-comment"># The session key for your AWS account. This is needed only when you are using temporary credentials.</span>
+<span class="hljs-built_in">export</span> AWS_SESSION_TOKEN=AQoDYXdzEJr...&lt;remainder of security token&gt;</code></pre>
 <blockquote>
 <p><strong>Note</strong>: You cannot mix env variables with configuration config with hard-coded configuration.</p>
 </blockquote>
