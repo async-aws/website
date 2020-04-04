@@ -275,8 +275,9 @@ unless other is specified at the metadata section at the top of the markdown fil
 <p>All frontend assets are built using Webpack Encore. The source files lives in
 <code>./website/assets</code>.</p>
 <h3 id="2-process-html-files">2. Process HTML files</h3>
-<p>After the HTML files are generated, Couscous will execute <code>make website-highlight</code>.
-That will look at the generated HTML and style all code examples with <code>highlight.js</code>.</p>
+<p>After the HTML files are generated, Couscous will execute <code>make website-post-process</code>.
+That will look at the generated HTML and make some changes to it. As example it will
+style all code examples with <code>highlight.js</code>.</p>
 <h3 id="3-publishing-the-files">3. Publishing the files</h3>
 <p>There is a github action that make sure to generate the HTML and push it do a
 "read only"-repository for the website. That repository is using <a href="https://www.netlify.com/">Netlify</a>
