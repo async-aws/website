@@ -228,13 +228,13 @@ for a limited time.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetObjectRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-$s3Client = <span class="hljs-keyword">new</span> S3Client();
+$s3 = <span class="hljs-keyword">new</span> S3Client();
 $input = <span class="hljs-keyword">new</span> GetObjectRequest([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'test'</span>,
 ]);
 
-$url = $s3Client-&gt;presign($input, <span class="hljs-keyword">new</span> \DateTimeImmutable(<span class="hljs-string">'+60 min'</span>));
+$url = $s3-&gt;presign($input, <span class="hljs-keyword">new</span> \DateTimeImmutable(<span class="hljs-string">'+60 min'</span>));
 
 <span class="hljs-keyword">echo</span> $url;</code></pre>
 

@@ -225,14 +225,14 @@ until an long operation finished.</p>
 <p>To ease the development, the above code is wrapped in a helper called "waiter".</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
-$dbClient = <span class="hljs-keyword">new</span> DynamoDbClient();
-$dbClient-&gt;createTable([]);
+$dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient();
+$dynamoDb-&gt;createTable([]);
 
 <span class="hljs-comment">// Create a new table.</span>
 <span class="hljs-comment">// It normally takes around 5 seconds to complete this action.</span>
-$dbClient-&gt;createTable([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>, <span class="hljs-comment">/* ...*/</span>]);
+$dynamoDb-&gt;createTable([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>, <span class="hljs-comment">/* ...*/</span>]);
 
-$waiter = $dbClient-&gt;tableExists([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>]);
+$waiter = $dynamoDb-&gt;tableExists([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>]);
 <span class="hljs-keyword">echo</span> $waiter-&gt;isSuccess(); <span class="hljs-comment">// false</span>
 
 $waiter-&gt;wait();
@@ -248,9 +248,9 @@ $waiter-&gt;wait();
 <p>To make sure to use <code>wait()</code> as non blocking. Set the timeout to <code>0</code>:</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
-$dbClient = <span class="hljs-keyword">new</span> DynamoDbClient();
+$dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient();
 
-$waiter = $dbClient-&gt;tableExists([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>]);
+$waiter = $dynamoDb-&gt;tableExists([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>]);
 <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>) {
     <span class="hljs-keyword">if</span> ($waiter-&gt;wait(<span class="hljs-number">0</span>)) {
         <span class="hljs-comment">// When method `wait` returns true, the state is resolved.</span>

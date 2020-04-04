@@ -234,14 +234,14 @@ and makes sure it returns a <code>PutObjectOutput</code> result.</p>
     </span>{
         $file = <span class="hljs-string">'/path/file.txt'</span>;
 
-        $s3Client = <span class="hljs-keyword">$this</span>-&gt;getMockBuilder(S3Client::class)
+        $s3 = <span class="hljs-keyword">$this</span>-&gt;getMockBuilder(S3Client::class)
             -&gt;disableOriginalConstructor()
             -&gt;onlyMethods([<span class="hljs-string">'putObject'</span>])
             -&gt;getMock();
 
         $result = ResultMockFactory::create(PutObjectOutput::class);
 
-        $s3Client-&gt;expects(<span class="hljs-keyword">self</span>::once())
+        $s3-&gt;expects(<span class="hljs-keyword">self</span>::once())
             -&gt;method(<span class="hljs-string">'putObject'</span>)
             -&gt;with(<span class="hljs-keyword">self</span>::callback(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array $input)</span> <span class="hljs-title">use</span> <span class="hljs-params">($file)</span> </span>{
                 <span class="hljs-keyword">if</span> ($input[<span class="hljs-string">'Key'</span>] !== $file) {
@@ -258,7 +258,7 @@ and makes sure it returns a <code>PutObjectOutput</code> result.</p>
                 <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
             }))-&gt;willReturn($result);
 
-        $uploader = <span class="hljs-keyword">new</span> FileUploader($s3Client);
+        $uploader = <span class="hljs-keyword">new</span> FileUploader($s3);
         $uploader-&gt;write($file, <span class="hljs-string">'my file contents'</span>);
     }
 }

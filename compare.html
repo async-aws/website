@@ -300,10 +300,10 @@ $files = [];
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">GuzzleHttp</span>\<span class="hljs-title">Promise</span>;
 
-$s3Client = <span class="hljs-keyword">new</span> S3Client([]);
+$s3 = <span class="hljs-keyword">new</span> S3Client([]);
 $promises = [];
 <span class="hljs-keyword">foreach</span> (range(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>) <span class="hljs-keyword">as</span> $index) {
-    $promises[] = $s3Client-&gt;putObjectAsync([
+    $promises[] = $s3-&gt;putObjectAsync([
         <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>,
         <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file-'</span> . uniqid(<span class="hljs-string">'file-'</span>, <span class="hljs-keyword">true</span>),
         <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-string">'test'</span>,
@@ -314,7 +314,7 @@ $deletePromises = [];
 <span class="hljs-keyword">foreach</span> ($promises <span class="hljs-keyword">as</span> $promise) {
     $file = $promise-&gt;wait();
 
-    $deletePromises[] = $s3Client-&gt;deleteObjectAsync([
+    $deletePromises[] = $s3-&gt;deleteObjectAsync([
         <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>,
         <span class="hljs-string">'Key'</span> =&gt; $file[<span class="hljs-string">'Key'</span>],
     ]);
@@ -338,10 +338,10 @@ $objects = $s3-&gt;listObjectsV2([<span class="hljs-string">'Bucket'</span> =&gt
 <h3 id="official-aws-php-sdk-1">Official AWS PHP SDK<a href="#official-aws-php-sdk-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-$s3Client = <span class="hljs-keyword">new</span> S3Client([]);
+$s3 = <span class="hljs-keyword">new</span> S3Client([]);
 $nextToken = <span class="hljs-keyword">null</span>;
 <span class="hljs-keyword">do</span> {
-    $objects = $s3Client-&gt;ListObjectsV2([
+    $objects = $s3-&gt;ListObjectsV2([
         <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
         <span class="hljs-string">'NextContinuationToken'</span> =&gt; $nextToken,
     ]);
@@ -357,7 +357,7 @@ $nextToken = <span class="hljs-keyword">null</span>;
 
 <span class="hljs-comment">// or with paginator</span>
 
-$pages = $s3Client-&gt;getPaginator(<span class="hljs-string">'ListObjectsV2'</span>, [<span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>]);
+$pages = $s3-&gt;getPaginator(<span class="hljs-string">'ListObjectsV2'</span>, [<span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>]);
 <span class="hljs-keyword">foreach</span> ($pages <span class="hljs-keyword">as</span> $page) {
     <span class="hljs-keyword">foreach</span> ($page[<span class="hljs-string">'Contents'</span>] <span class="hljs-keyword">as</span> $object) {
         <span class="hljs-comment">// ...</span>
@@ -392,19 +392,19 @@ $url = $s3-&gt;presign($input, <span class="hljs-keyword">new</span> \DateTimeIm
 <h3 id="official-aws-php-sdk-2">Official AWS PHP SDK<a href="#official-aws-php-sdk-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-$s3Client = <span class="hljs-keyword">new</span> S3Client([]);
+$s3 = <span class="hljs-keyword">new</span> S3Client([]);
 <span class="hljs-comment">// Sign on the fly</span>
-$content = $s3Client-&gt;getObject([
+$content = $s3-&gt;getObject([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'test'</span>,
 ]);
 
 <span class="hljs-comment">// Presign Url</span>
-$command = $s3Client-&gt;getCommand(<span class="hljs-string">'GetObject'</span>, [
+$command = $s3-&gt;getCommand(<span class="hljs-string">'GetObject'</span>, [
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'test'</span>,
 ]);
-$psr7 = $s3Client-&gt;createPresignedRequest($cmd, <span class="hljs-string">'+60 min'</span>);
+$psr7 = $s3-&gt;createPresignedRequest($cmd, <span class="hljs-string">'+60 min'</span>);
 <span class="hljs-keyword">echo</span> (string) $psr7-&gt;getUri();
 </code></pre>
 <blockquote>
