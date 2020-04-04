@@ -227,8 +227,17 @@
     <div class="contribute-badge">Contribute</div>
 </a>
     
-    <h1 id="sns-client">SNS Client</h1>
-<h2 id="examples">Examples</h2>
+    <h1>SQS client</h1>
+
+    <p>This page contains some example usage for SQS. There are other
+        resources that explain <a href="/authentication/">authentication</a> and
+        <a href="/clients/">configuration</a>.</p>
+
+    <p>The SQS package could be installed with Composer.</p>
+
+    <pre><code class="language-shell hljs">composer require async-aws/sqs</code></pre>
+
+    <h2 id="usage">Usage</h2>
 <h3 id="send-a-message">Send a message</h3>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetQueueUrlRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;

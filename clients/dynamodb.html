@@ -227,8 +227,17 @@
     <div class="contribute-badge">Contribute</div>
 </a>
     
-    <h1 id="dynamodb-client">DynamoDb Client</h1>
-<h2 id="examples">Examples</h2>
+    <h1>DynamoDb client</h1>
+
+    <p>This page contains some example usage for DynamoDb. There are other
+        resources that explain <a href="/authentication/">authentication</a> and
+        <a href="/clients/">configuration</a>.</p>
+
+    <p>The DynamoDb package could be installed with Composer.</p>
+
+    <pre><code class="language-shell hljs">composer require async-aws/dynamo-db</code></pre>
+
+    <h2 id="usage">Usage</h2>
 <h3 id="create-a-table">Create a table</h3>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateTableInput</span>;

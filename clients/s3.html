@@ -227,13 +227,20 @@
     <div class="contribute-badge">Contribute</div>
 </a>
     
-    <h1 id="s3-client">S3 Client</h1>
-<p>Everyone's favorite client. It supports most common use cases like uploading and
-downloading files and setting permissions etc.</p>
-<p>You can of course presign requests to be able to pass the URL to a normal mortal
+    <h1>S3 client</h1>
+
+    <p>This page contains some example usage for S3. There are other
+        resources that explain <a href="/authentication/">authentication</a> and
+        <a href="/clients/">configuration</a>.</p>
+
+    <p>The S3 package could be installed with Composer.</p>
+
+    <pre><code class="language-shell hljs">composer require async-aws/s3</code></pre>
+
+    <p>The client supports presign of requests to be able to pass the URL to a normal mortal
 person so they can download a file within the next X minutes. Read more about presign
 <a href="/features/presign.html">here</a>.</p>
-<h2 id="examples">Examples</h2>
+<h2 id="usage">Usage</h2>
 <h3 id="upload-file">Upload file</h3>
 <p>If you want to upload a 1 Gb file, you really dont want to put that file in memory
 before uploading. You want to use a something smarted. AsyncAws allow you to upload

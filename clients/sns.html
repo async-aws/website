@@ -227,8 +227,17 @@
     <div class="contribute-badge">Contribute</div>
 </a>
     
-    <h1 id="sns-client">SNS Client</h1>
-<h2 id="examples">Examples</h2>
+    <h1>SNS client</h1>
+
+    <p>This page contains some example usage for SNS. There are other
+        resources that explain <a href="/authentication/">authentication</a> and
+        <a href="/clients/">configuration</a>.</p>
+
+    <p>The SNS package could be installed with Composer.</p>
+
+    <pre><code class="language-shell hljs">composer require async-aws/sns</code></pre>
+
+    <h2 id="usage">Usage</h2>
 <h3 id="send-a-message">Send a message</h3>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sns</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PublishInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sns</span>\<span class="hljs-title">SnsClient</span>;
