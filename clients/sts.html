@@ -227,11 +227,11 @@
 
     <p>The STS package could be installed with Composer.</p>
 
-    <pre><code class="language-shell hljs">composer require async-aws/core</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/core</code></pre>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="retrieve-current-account">Retrieve current Account<a href="#retrieve-current-account" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Sts</span>\<span class="hljs-title">StsClient</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Sts</span>\<span class="hljs-title">StsClient</span>;
 
 $sts = <span class="hljs-keyword">new</span> StsClient();
 
@@ -239,7 +239,7 @@ $result = $sts-&gt;getCallerIdentity();
 
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'current Account:'</span> . $result-&gt;getAccount();</code></pre>
 <h3 id="retrieve-current-account-1">Retrieve current Account<a href="#retrieve-current-account-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Sts</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">AssumeRoleRequest</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Sts</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">AssumeRoleRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Sts</span>\<span class="hljs-title">StsClient</span>;
 
 $sts = <span class="hljs-keyword">new</span> StsClient();
@@ -265,7 +265,7 @@ $result = $sts-&gt;assumeRole(<span class="hljs-keyword">new</span> AssumeRoleRe
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.cfad5cda.js"></script><script src="/assets/app.d4702f3e.js"></script>
+<script src="/assets/0.cfad5cda.js"></script><script src="/assets/app.0aec83c7.js"></script>
 
 
 </body></html>

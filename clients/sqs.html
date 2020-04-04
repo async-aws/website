@@ -227,11 +227,11 @@
 
     <p>The SQS package could be installed with Composer.</p>
 
-    <pre><code class="language-shell hljs">composer require async-aws/sqs</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/sqs</code></pre>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="send-a-message">Send a message<a href="#send-a-message" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetQueueUrlRequest</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetQueueUrlRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 
@@ -248,7 +248,7 @@ $result = $sqs-&gt;sendMessage(<span class="hljs-keyword">new</span> SendMessage
 
 <span class="hljs-keyword">echo</span> $result-&gt;getMessageId();</code></pre>
 <h3 id="receive-messages">Receive Messages<a href="#receive-messages" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ChangeMessageVisibilityRequest</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ChangeMessageVisibilityRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteMessageRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetQueueUrlRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ReceiveMessageRequest</span>;
@@ -296,7 +296,7 @@ $result = $sqs-&gt;receiveMessage(<span class="hljs-keyword">new</span> ReceiveM
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.cfad5cda.js"></script><script src="/assets/app.d4702f3e.js"></script>
+<script src="/assets/0.cfad5cda.js"></script><script src="/assets/app.0aec83c7.js"></script>
 
 
 </body></html>

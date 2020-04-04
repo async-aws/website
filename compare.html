@@ -272,7 +272,7 @@
 <a href="https://symfony.com/doc/current/components/http_client.html">Symfony HTTP client</a>
 the process is not blocking until you need to read the result.</p>
 <h3 id="asyncaws">AsyncAws<a href="#asyncaws" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 $s3 = <span class="hljs-keyword">new</span> S3Client();
 $files = [];
@@ -297,7 +297,7 @@ $files = [];
 <span class="hljs-comment">// No need to wait ends of deleteObject.</span>
 <span class="hljs-comment">// It will be automatically resolved on destruct.</span></code></pre>
 <h3 id="official-aws-php-sdk">Official AWS PHP SDK<a href="#official-aws-php-sdk" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">GuzzleHttp</span>\<span class="hljs-title">Promise</span>;
 
 $s3Client = <span class="hljs-keyword">new</span> S3Client([]);
@@ -327,7 +327,7 @@ Promise\all($deletePromises)-&gt;wait();</code></pre>
 have to worry about <code>IsTruncated</code> or <code>NextMarker</code> or calling magic methods, just
 iterates over results, AsyncAws do the rest.</p>
 <h3 id="asyncaws-1">AsyncAws<a href="#asyncaws-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 $s3 = <span class="hljs-keyword">new</span> S3Client();
 
@@ -336,7 +336,7 @@ $objects = $s3-&gt;listObjectsV2([<span class="hljs-string">'Bucket'</span> =&gt
     <span class="hljs-comment">// ...</span>
 }</code></pre>
 <h3 id="official-aws-php-sdk-1">Official AWS PHP SDK<a href="#official-aws-php-sdk-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 $s3Client = <span class="hljs-keyword">new</span> S3Client([]);
 $nextToken = <span class="hljs-keyword">null</span>;
@@ -374,7 +374,7 @@ without exposing the key. For instance, provide a link to download an S3 Object.
 AsycAWS provides a fancy way to generate such url by reusing the same objects
 used in the standard way.</p>
 <h3 id="asyncaws-2">AsyncAws<a href="#asyncaws-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetObjectRequest</span>;
 
 $s3 = <span class="hljs-keyword">new</span> S3Client();
@@ -390,7 +390,7 @@ $content = $s3-&gt;getObject($input);
 $url = $s3-&gt;presign($input, <span class="hljs-keyword">new</span> \DateTimeImmutable(<span class="hljs-string">'+60 min'</span>));
 <span class="hljs-keyword">echo</span> $url;</code></pre>
 <h3 id="official-aws-php-sdk-2">Official AWS PHP SDK<a href="#official-aws-php-sdk-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 $s3Client = <span class="hljs-keyword">new</span> S3Client([]);
 <span class="hljs-comment">// Sign on the fly</span>
@@ -472,7 +472,7 @@ methods).</p>
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.cfad5cda.js"></script><script src="/assets/app.d4702f3e.js"></script>
+<script src="/assets/0.cfad5cda.js"></script><script src="/assets/app.0aec83c7.js"></script>
 
 
 </body></html>
