@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6748e30b.css">
+    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6ad6f0bc.css">
 
     <title>AsyncAWS</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -232,9 +232,9 @@
 away from it. But hopefully, using this library will straight forward. The goal is
 to always be "async first" but developers don't have to care about async if they
 don't want to.</p>
-<h2 id="normal-use-cases">Normal use cases</h2>
+<h2 id="normal-use-cases">Normal use cases<a href="#normal-use-cases" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Let's show some examples to better understand how this library works.</p>
-<h3 id="ignoring-results">Ignoring results</h3>
+<h3 id="ignoring-results">Ignoring results<a href="#ignoring-results" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Consider the following example:</p>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
@@ -250,7 +250,7 @@ $sqs-&gt;sendMessage($input);</code></pre>
 <p>The HTTP request is sent and a HTTP response is received. Everything works as expected.</p>
 <p>A small bonus is that the full HTTP response is not downloaded. Only the first line
 with the status code is fetched from the server.</p>
-<h3 id="getting-data-from-result">Getting data from result</h3>
+<h3 id="getting-data-from-result">Getting data from result<a href="#getting-data-from-result" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>The example below is slightly different.</p>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
@@ -269,7 +269,7 @@ $result = $sqs-&gt;sendMessage($input);
 On the first call to a getter, the HTTP response will be downloaded and the body
 will be parsed.</p>
 <p>This behavior can be observed when using a debugger like xDebug.</p>
-<h3 id="not-using-the-result">Not using the result</h3>
+<h3 id="not-using-the-result">Not using the result<a href="#not-using-the-result" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Consider this rare scenario:</p>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
@@ -307,9 +307,9 @@ the others are listed as examples.</p>
 for more information.</p>
 <pre><code class="language-diff hljs">    $result = $sqs-&gt;sendMessage($input);
 <span class="hljs-addition">+   $result-&gt;resolve();</span></code></pre>
-<h2 id="advanced-use-cases">Advanced use cases</h2>
+<h2 id="advanced-use-cases">Advanced use cases<a href="#advanced-use-cases" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>The normal use cases covers 90% of all code. Let's dig in to the advanced stuff.</p>
-<h3 id="using-resolve-function">Using resolve-function</h3>
+<h3 id="using-resolve-function">Using resolve-function<a href="#using-resolve-function" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>The <code>$result-&gt;resolve()</code> function is making sure the request is executed. There is
 normally no point in using this function, but in some scenarios it may be handy.</p>
 <p>Calling this function with no arguments will either return <code>true</code> or throw an exception.
@@ -323,7 +323,7 @@ it will return <code>false</code>.</p>
 <p><strong>Note:</strong> The call <code>$result-&gt;resolve()</code> is a blocking call because we are waiting
 for the response. Use <code>$result-&gt;resolve(0)</code> for a non-blocking call.</p>
 </blockquote>
-<h3 id="batch-requests">Batch requests</h3>
+<h3 id="batch-requests">Batch requests<a href="#batch-requests" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Consider the following example. It is creating 10 Lambda <code>InvocationRequest</code>s and printing
 their result. The HTTP response that is downloaded first will be printed first. The order
 the requests are created do not matter.</p>

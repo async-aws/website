@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6748e30b.css">
+    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6ad6f0bc.css">
 
     <title>AsyncAWS</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -237,8 +237,8 @@
 
     <pre><code class="language-shell hljs">composer require async-aws/cloud-formation</code></pre>
 
-    <h2 id="usage">Usage</h2>
-<h3 id="list-stacks">List stacks</h3>
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="list-stacks">List stacks<a href="#list-stacks" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
 
 $cloudFormation = <span class="hljs-keyword">new</span> CloudFormationClient();
@@ -248,7 +248,7 @@ $result = $cloudFormation-&gt;describeStacks();
 <span class="hljs-keyword">foreach</span> ($result-&gt;getStacks() <span class="hljs-keyword">as</span> $stack) {
     <span class="hljs-keyword">echo</span> $stack-&gt;getStackName().<span class="hljs-string">'-'</span>.$stack-&gt;getStackStatus().PHP_EOL;
 }</code></pre>
-<h3 id="list-stacks-events">List stack's events</h3>
+<h3 id="list-stacks-events">List stack's events<a href="#list-stacks-events" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeStackEventsInput</span>;
 

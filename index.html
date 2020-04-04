@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6748e30b.css">
+    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6ad6f0bc.css">
 
     <title>AsyncAWS</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -231,7 +231,7 @@
 <p>If you are one of those people that like the Amazon PHP SDK but hate the fact
 that you need to download Guzzle, PSR-7 and <strong>every</strong> AWS API client to use it?</p>
 <p>This is the library for you!</p>
-<h2 id="what-is-new">What is new?</h2>
+<h2 id="what-is-new">What is new?<a href="#what-is-new" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>The official <a href="https://github.com/aws/aws-sdk-php">AWS PHP SDK</a> is great. It is
 feature complete, it supports all Amazon APIs and is maintained by some really talented
 developers. This library is different. It is maintained by some dumb and lazy people.</p>
@@ -247,7 +247,7 @@ annoying when the changes are not related to services you use.</li>
 <li><strong>Readable code.</strong> One should be able to read the code and follow the logic.</li>
 </ol>
 <p>See <a href="./compare.html">full comparison</a> between AsyncAws and the official AWS PHP SDK.</p>
-<h2 id="installation-and-usage">Installation and usage</h2>
+<h2 id="installation-and-usage">Installation and usage<a href="#installation-and-usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>All APIs are located in different packages. To install SQS run</p>
 <pre><code class="language-shell hljs">composer require async-aws/sqs</code></pre>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
@@ -276,7 +276,7 @@ $input
 $sqs-&gt;sendMessage($input);</code></pre>
 <p>Continue reading about our different <a href="/clients/index.html">API clients</a> or select
 a topic in the sidebar.</p>
-<h2 id="how-is-it-async-first">How is it async first?</h2>
+<h2 id="how-is-it-async-first">How is it async first?<a href="#how-is-it-async-first" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>The secret ingredient in creating asynchronous first is not implemented in this library.
 It actually comes from <a href="https://symfony.com/doc/current/components/http_client.html">Symfony's HTTP client</a>.
 They have implemented all the cool asynchronous features that this AWS library just
@@ -286,7 +286,7 @@ take advantage of.</p>
 features are properly used, AsyncAws also <a href="./authtentication/authentication.html">handles authentication</a>,
 exceptions and provide input and result objects.</p>
 <p>Read more about <a href="./features/async.html">how do use asynchronous features</a>.</p>
-<h2 id="backwards-compatibility-promise">Backwards compatibility promise</h2>
+<h2 id="backwards-compatibility-promise">Backwards compatibility promise<a href="#backwards-compatibility-promise" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>This package is currently stabilizing. Versions released in April 2020 is considered
 fairly stable. After 1.0 is released the library strictly follows the process to
 keep backwards compatibility defined by Symfony.</p>

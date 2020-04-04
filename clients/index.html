@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6748e30b.css">
+    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6ad6f0bc.css">
 
     <title>AsyncAWS</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -231,7 +231,7 @@
 <p>AsyncAws has implemented the most popular API clients, but not all of them are promoted
 with their own page in the documentation. On this page you find some installation
 instructions and a complete list of clients.</p>
-<h2 id="install-and-configure">Install and configure</h2>
+<h2 id="install-and-configure">Install and configure<a href="#install-and-configure" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>You install a client with Composer. Here is an example to install DynamoDb:</p>
 <pre><code class="language-shell hljs">composer require async-aws/dynamo-db</code></pre>
 <p>To instantiate a DynamoDb client (or any other client) you could provide four arguments.
@@ -258,7 +258,7 @@ $dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient([
 ]);</code></pre>
 <p>See section about <a href="/authentication/index.html">authentication</a> to learn more about
 different ways to authenticate.</p>
-<h3 id="dependency-injection-container">Dependency injection container</h3>
+<h3 id="dependency-injection-container">Dependency injection container<a href="#dependency-injection-container" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>If your application is using a dependency injection container, you may configure a
 client like:</p>
 <h4 id="symfony">Symfony</h4>
@@ -292,7 +292,7 @@ client like:</p>
         );
     }
 }</code></pre>
-<h3 id="client-factory">Client factory</h3>
+<h3 id="client-factory">Client factory<a href="#client-factory" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>If you dont use dependency injection, you might be interested in the <code>AwsClientFactory</code>
 that can be used to instantiate API clients.</p>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
@@ -305,7 +305,7 @@ $factory = <span class="hljs-keyword">new</span> AwsClientFactory([
 
 $dynamoDb = $factory-&gt;dynamoDb();
 $sqs = $factory-&gt;sqs();</code></pre>
-<h2 id="use">Use</h2>
+<h2 id="use">Use<a href="#use" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Every API client has functions that represent "operations" or API calls. Every such
 function takes an Input object (or array) as parameter and will return a Result.
 See the API client's class to learn what operations are supported and what the input
@@ -315,7 +315,7 @@ and all Result objects are located in <a href="https://github.com/async-aws/aws/
 <p>Your IDE will also be helpful to discover function and how to use them. See example
 from PHPStorm:</p>
 <p><a href="/assets/image/compare/aa-method.a6eb6a64.png"><img src="/assets/image/compare/aa-method.a6eb6a64.png" alt="PHPStorm function help"></a></p>
-<h2 id="all-supported-clients">All supported clients</h2>
+<h2 id="all-supported-clients">All supported clients<a href="#all-supported-clients" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Here is a list of supported clients. If there is a need for another client or a new
 operation, it can be automatically generated. See the <a href="/contribute/index.html">contribution guide</a>
 for more information.</p>

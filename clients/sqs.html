@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6748e30b.css">
+    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6ad6f0bc.css">
 
     <title>AsyncAWS</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -237,8 +237,8 @@
 
     <pre><code class="language-shell hljs">composer require async-aws/sqs</code></pre>
 
-    <h2 id="usage">Usage</h2>
-<h3 id="send-a-message">Send a message</h3>
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="send-a-message">Send a message<a href="#send-a-message" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetQueueUrlRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
@@ -255,7 +255,7 @@ $result = $sqs-&gt;sendMessage(<span class="hljs-keyword">new</span> SendMessage
 ]));
 
 <span class="hljs-keyword">echo</span> $result-&gt;getMessageId();</code></pre>
-<h3 id="receive-messages">Receive Messages</h3>
+<h3 id="receive-messages">Receive Messages<a href="#receive-messages" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ChangeMessageVisibilityRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteMessageRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetQueueUrlRequest</span>;

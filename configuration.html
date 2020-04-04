@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6748e30b.css">
+    <link rel="stylesheet" href="/assets/0.22a6512e.css"><link rel="stylesheet" href="/assets/app.6ad6f0bc.css">
 
     <title>AsyncAWS</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -242,41 +242,41 @@ $sqs = <span class="hljs-keyword">new</span> SqsClient($config);
 $sqs = <span class="hljs-keyword">new</span> SqsClient([
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
 ]);</code></pre>
-<h2 id="configuration-reference">Configuration reference</h2>
+<h2 id="configuration-reference">Configuration reference<a href="#configuration-reference" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Below is a list of all supported configuration keys, their default value and what
 they are used for.</p>
-<h3 id="region">region</h3>
+<h3 id="region">region<a href="#region" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> 'us-east-1'</p>
 <p>The AWS region the client should be targeting.</p>
-<h3 id="profile">profile</h3>
+<h3 id="profile">profile<a href="#profile" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> 'default'</p>
 <p>The name of the AWS Profile configured when using <a href="/authentication/credentials-file.html">credential and configuration files</a>
 for authentication.</p>
-<h3 id="accesskeyid">accessKeyId</h3>
+<h3 id="accesskeyid">accessKeyId<a href="#accesskeyid" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>The AWS access key id used for authentication.</p>
-<h3 id="accesskeysecret">accessKeySecret</h3>
+<h3 id="accesskeysecret">accessKeySecret<a href="#accesskeysecret" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>The AWS access key secret used for authentication.</p>
-<h3 id="sessiontoken">sessionToken</h3>
+<h3 id="sessiontoken">sessionToken<a href="#sessiontoken" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>The AWS session token passed alongside temporary credentials.</p>
 <p>See <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html">AWS documentation</a>
 and <a href="https://docs.aws.amazon.com/cli/latest/reference/sts/get-session-token.html">CLI reference</a>
 for more information.</p>
-<h3 id="sharedcredentialsfile">sharedCredentialsFile</h3>
+<h3 id="sharedcredentialsfile">sharedCredentialsFile<a href="#sharedcredentialsfile" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> '~/.aws/credentials'</p>
 <p>The credentials file to look in when using <a href="/authentication/credentials-file.html">credential and configuration files</a>
 for authentication.</p>
-<h3 id="sharedconfigfile">sharedConfigFile</h3>
+<h3 id="sharedconfigfile">sharedConfigFile<a href="#sharedconfigfile" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> '~/.aws/config'</p>
 <p>The config file to look in when using <a href="/authentication/credentials-file.html">credential and configuration files</a>
 for authentication.</p>
-<h3 id="endpoint">endpoint</h3>
+<h3 id="endpoint">endpoint<a href="#endpoint" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> '<a href="https://%service%.%region%.amazonaws.com">https://%service%.%region%.amazonaws.com</a>'</p>
-<h3 id="rolearn">roleArn</h3>
+<h3 id="rolearn">roleArn<a href="#rolearn" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>The Amazon Resource Name (ARN) of the role that the caller is assuming when using
 the <a href="/authentication/web-identity.html">WebIdentity Provider</a></p>
-<h3 id="webidentitytokenfile">webIdentityTokenFile</h3>
+<h3 id="webidentitytokenfile">webIdentityTokenFile<a href="#webidentitytokenfile" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Path to the file that contains the OAuth 2.0 access token when using the <a href="/authentication/web-identity.html">WebIdentity Provider</a></p>
-<h3 id="rolesessionname">roleSessionName</h3>
+<h3 id="rolesessionname">roleSessionName<a href="#rolesessionname" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> 'async-aws-' followed by random chars</p>
 <p>An identifier for the assumed role session</p>
 
