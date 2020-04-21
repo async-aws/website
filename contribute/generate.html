@@ -239,7 +239,8 @@ is an example for DynamoDB.</p>
 <li>Clone the async-aws/aws repository.</li>
 <li>Run <code>composer install</code></li>
 <li>Copy <code>./src/Service/.template</code> to <code>./src/Service/DynamoDb</code></li>
-<li>Rename all occurrences of <code>Foobar</code> to <code>DynamoDb</code> and <code>foobar</code> to <code>dynamo-db</code></li>
+<li>Replace all occurrences of <code>Foobar</code> to <code>DynamoDb</code> and <code>foobar</code> to <code>dynamo-db</code></li>
+<li>Rename <code>FoobarClient</code> into <code>DynamoDbClient</code></li>
 <li>Register the service in the <code>services</code> section of the <code>./manifest.json</code> file.
 <ol>
 <li>Look at the official SDK for resources in <code>./src/data</code>. (<a href="https://github.com/aws/aws-sdk-php/tree/3.133.23/src/data/dynamodb/2012-08-10">DynamoDB example</a>)</li>
