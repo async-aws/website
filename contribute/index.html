@@ -243,6 +243,29 @@ are equally important. Some super helpful things include (in no particular order
 <li>Tweet or blog about AsyncAws</li>
 </ul>
 <p>Read more about documentation and the website <a href="./website.html">here</a>.</p>
+<h2 id="test-the-pr-in-a-local-project">Test the PR in a local project<a href="#test-the-pr-in-a-local-project" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>Sometimes, it's helpful to test the PR in a real project. This can be achieved
+by using the provided <code>link</code> binary which detects AsyncAws dependencies use by
+the project and replaces them by a symlink to the AsyncAws source code.</p>
+<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-built_in">cd</span> my-test-project
+
+/path-to-async-aws/link
+<span class="hljs-string">"async-aws/core"</span> has been linked to <span class="hljs-string">"/path-to-async-aws/src/./Core"</span>.
+<span class="hljs-string">"async-aws/sqs"</span> has been linked to <span class="hljs-string">"/path-to-async-aws/src/Service/Sqs"</span>.</code></pre>
+<p>The filesystem tree should look like.</p>
+<pre><code class="language-text">.
+├── my-test-project
+│   ├── composer.json
+│   ├── src
+│   └── vendor
+│       ├── async-aws
+│       │&nbsp;&nbsp; ├── core -&gt; path-to-async-aws/src/Core
+│       │&nbsp;&nbsp; └── sqs -&gt; path-to-async-aws/src/Services/Sqs
+│       ├── autoload.php
+│       └── composer
+└── aws
+ &nbsp;&nbsp; ├── link
+ &nbsp;&nbsp; └── src</code></pre>
 <h2 id="this-repo-is-special">This repo is special<a href="#this-repo-is-special" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="mono-repository">Mono repository<a href="#mono-repository" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>It means that all PRs and issues goes to <a href="https://github.com/async-aws/aws">async-aws/aws</a>
