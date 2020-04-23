@@ -274,6 +274,30 @@ service you define.</p>
 </table>
 <p>For a complete reference of the configuration please run:</p>
 <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>php bin/console config:dump-reference async_aws</code></pre>
+<h2 id="using-ssm-to-store-secrets">Using SSM to store secrets<a href="#using-ssm-to-store-secrets" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>Since version 4.4, Symfony provides <a href="https://symfony.com/doc/current/configuration/secrets.html">secrets management</a>.
+AsyncAws leverage this feature and by storing secrets in <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS SSM Parameter Store</a>:</p>
+<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/async_aws.yaml</span>
+
+<span class="hljs-attr">async_aws:</span>
+    <span class="hljs-attr">secrets:</span> <span class="hljs-string">~</span>
+<span class="hljs-comment">#        path: /parameters/my-project</span>
+<span class="hljs-comment">#        recursive: true</span>
+<span class="hljs-comment">#        client: app-secret</span>
+<span class="hljs-comment">#    clients:</span>
+<span class="hljs-comment">#        app-secret:</span>
+<span class="hljs-comment">#            type: ssm</span></code></pre>
+<p>Parameters stored in SSM will be available as env variable:</p>
+<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/doctrine.yaml</span>
+
+<span class="hljs-attr">doctrine:</span>
+    <span class="hljs-attr">dbal:</span>
+        <span class="hljs-attr">password:</span> <span class="hljs-string">'%env(DATABASE_PASSWORD)%'</span></code></pre>
+<p>When <code>recursive</code> option is <code>true</code>, AsyncAws Bundle will retrieve all parameters
+within a hierarchy, then will trim the <code>path</code> prefix option, replace <code>/</code> by <code>_</code>
+and uppercase the parameter name. ie. in the above configuration, a parameter
+stored in <code>/parameters/my-project/database/password</code> will be referenced by
+<code>DATABASE_PASSWORD</code>.</p>
 
     </main>
 </div>
