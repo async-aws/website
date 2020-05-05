@@ -209,7 +209,7 @@
                                                             </ul>
 
             <p class="created-by">
-                Async AWS is created by <br>
+                AsyncAws is created by <br>
                 <a href="https://github.com/jderusse">Jérémy Derussé</a>,
                 <a href="https://github.com/Nyholm">Tobias Nyholm</a> <br>
                 and <a href="https://github.com/async-aws/aws/graphs/contributors">contributors</a>.
@@ -376,7 +376,7 @@ $pages = $s3-&gt;getPaginator(<span class="hljs-string">'ListObjectsV2'</span>, 
 <h2 id="presign-experience">Presign experience<a href="#presign-experience" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>AWS allow pre-generating sign url that let user access to a resource
 without exposing the key. For instance, provide a link to download an S3 Object.
-AsycAWS provides a fancy way to generate such url by reusing the same objects
+AsyncAWS provides a fancy way to generate such url by reusing the same objects
 used in the standard way.</p>
 <h3 id="asyncaws-2">AsyncAws<a href="#asyncaws-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
@@ -449,9 +449,9 @@ the official AWS PHP SDK uses magic methods and undocumented array accessor.</p>
 </tr>
 </tbody>
 </table>
-<p>Like the official AWS PHP SDK, Async Aws supports multi-regions clients. This
+<p>Like the official AWS PHP SDK, AsyncAws supports multi-regions clients. This
 enables users to specify which AWS Region to call by providing an <code>@region</code>
-input parameter. But Async Aws don't require to create new objects.</p>
+input parameter. But AsyncAws don't require to create new objects.</p>
 <h3 id="asyncaws-3">AsyncAws<a href="#asyncaws-3" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-diff hljs"> $lambda = new LambdaClient();
  $result = $lambda-&gt;invoke([
@@ -480,7 +480,7 @@ The official AWS PHP SDK uses the magic <code>__call()</code> methods which incr
 complexity and reduce the developer experience.</p>
 <p>Read more about <a href="/features/tests.html">writing tests</a>.</p>
 <h2 id="features-coverage">Features coverage<a href="#features-coverage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>While AsyncAws focused on the most used operations (around 7 services),
+<p>While AsyncAws focused on the most used operations (around a dozen services),
 The official AWS PHP SDK covers the full scope of AWS (200 services and 8,000
 methods).</p>
 <p>Read more about what <a href="/clients/index.html">clients are supported</a>.</p>
