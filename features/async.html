@@ -285,10 +285,10 @@ will be parsed.</p>
 
 $sqs = <span class="hljs-keyword">new</span> SqsClient();
 sendSqsMessage($sqs);</code></pre>
-<p>In this example <code>$result</code> is never used. The HTTP request will be send on <code>$result-&gt;__desctuct()</code>.
+<p>In this example <code>$result</code> is never used. The HTTP request will be sent on <code>$result-&gt;__destruct()</code>.
 But that does not happen until the end of the block, after the 100 lines of business
 logic. This can be a bit confusing, especially when an exception is thrown.</p>
-<p>This scenario can be solved in a few ways. <strong>Solution A</strong> is the best one to use but
+<p>This scenario can be solved in a few ways. <strong>Solution A</strong> is the best one to use, but
 the others are listed as examples.</p>
 <h4 id="solution-a">Solution A</h4>
 <pre><code class="language-diff hljs"><span class="hljs-deletion">-    $result = $sqs-&gt;sendMessage($input);</span>
