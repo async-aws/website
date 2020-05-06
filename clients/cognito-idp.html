@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -59,7 +59,7 @@
                             Cloud Formation
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/cognito-idp.html">
                             Cognito Identity provider
                         </a>
@@ -153,7 +153,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
-                    <ul class="collapse list-unstyled show" id="authentication">
+                    <ul class="collapse list-unstyled " id="authentication">
                                                     <li>
                         <a href="/authentication/">
                             Overview
@@ -169,7 +169,7 @@
                             EC2 instance metadata
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/authentication/environment.html">
                             Environment variables
                         </a>
@@ -229,19 +229,49 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="using-credentials-from-environment-variables">Using Credentials from Environment Variables</h1>
-<p>AsyncAWS recognize Env variables that are used by most official AWS tools and SDK.</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># The access key for your AWS account.</span>
-<span class="hljs-built_in">export</span> AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+    <h1>CognitoIdentityProvider client</h1>
 
-<span class="hljs-comment"># The secret access key for your AWS account.</span>
-<span class="hljs-built_in">export</span> AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</code></pre>
-<blockquote>
-<p><strong>Note</strong>: You cannot mix env variables with configuration config with hard-coded configuration.</p>
-</blockquote>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
+    <p>This page contains some example usage for CognitoIdentityProvider. There are other
+        resources that explain <a href="/authentication/">authentication</a> and
+        <a href="/clients/">configuration</a>.</p>
 
-$client = <span class="hljs-keyword">new</span> AwsClientFactory();</code></pre>
+    <p>The CognitoIdentityProvider package could be installed with Composer.</p>
+
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/cognito-identity-provider</code></pre>
+
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="create-a-user-as-an-admin">Create a user as an admin<a href="#create-a-user-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeType</span>;
+
+$cognitoIdp = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
+
+$cognitoIdp-&gt;adminCreateUser([
+    <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
+    <span class="hljs-string">'Username'</span> =&gt; <span class="hljs-string">'1c202820-8eb5-11ea-bc55-0242ac130003'</span>,
+    <span class="hljs-string">'UserAttributes'</span> =&gt; [
+        <span class="hljs-keyword">new</span> AttributeType([<span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'phone_number'</span>, <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'+33600000000'</span>])
+    ],
+]);</code></pre>
+<h3 id="get-a-user-as-an-admin">Get a user as an admin<a href="#get-a-user-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+
+$cognitoIdp = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
+
+$result = $cognitoIdp-&gt;adminGetUser([
+    <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
+    <span class="hljs-string">'Username'</span> =&gt; <span class="hljs-string">'1c202820-8eb5-11ea-bc55-0242ac130003'</span>,
+    <span class="hljs-string">'UserAttributes'</span> =&gt; [
+        <span class="hljs-keyword">new</span> AttributeType([<span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'phone_number'</span>, <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'+33600000000'</span>])
+    ],
+]]);
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'User status is: '</span> . $result-&gt;getUserStatus() . PHP_EOL;
+$givenNameAttribute = array_filter(
+    $result-&gt;getUserAttributes(),
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($attr)</span> </span>{ <span class="hljs-keyword">return</span> $attr-&gt;getName() === <span class="hljs-string">'given_name'</span>); } ,
+);
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'User given name is: '</span> . $givenNameAttribute-&gt;getValue() . PHP_EOL;</code></pre>
 
     </main>
 </div>
