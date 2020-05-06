@@ -149,7 +149,7 @@
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
                     <ul class="collapse list-unstyled show" id="authentication">
-                                                    <li class="current">
+                                                    <li>
                         <a href="/authentication/">
                             Overview
                         </a>
@@ -224,28 +224,12 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="authentication">Authentication</h1>
-<p>To make requests to AWS, <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">credentials</a>
-are required. There are multiple ways to authenticate and the method you prefer probably
-depends on where and how you run the code.</p>
-<h2 id="how-authentication-works">How authentication works<a href="#how-authentication-works" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>Each API client needs an Authentication provider. The provider will use some logic
-to return a <code>Credentials</code> object. It is a value object to store username and
-password (in simple terms).</p>
-<p>By default AsyncAWS uses a ChainProvider that iterates over all providers and uses
-the first provider in the chain that returns credentials without an error.</p>
-<p>The providers are currently chained in the following order:</p>
-<ol>
-<li><a href="./hard-coded.html">Hard-Coded Configuration</a></li>
-<li><a href="./environment.html">Environment Variables</a></li>
-<li><a href="./web-identity.html">WebIdentity</a></li>
-<li><a href="./credentials-file.html">Credential and Configuration Files</a></li>
-<li><a href="./ecs-container.html">ECS Container Credentials</a></li>
-<li><a href="./ec2-metadata.html">EC2 Instance Metadata</a></li>
-</ol>
-<h2 id="testing-with-authentication-providers">Testing with authentication providers<a href="#testing-with-authentication-providers" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>The default provider chain could be too slow or too complex for testing. It is recommended
-to use the <code>NullProvider</code> in tests where you don't provide valid configuration values.</p>
+    <h1 id="using-ecs-container-authentication-endpoint">Using ECS Container Authentication Endpoint</h1>
+<p>When you run code within an ECS image, AsyncAws is able to fetch Credentials from the
+<a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">Role</a> attached to the instance using and internal aws endpoint.</p>
+<p>When running an application on ECS, this is the simplest way to grant permissions to the application. You
+have nothing to configure on the application, you only grant permissions on the Role attached to the instance.</p>
+<p>More about this in the AWS official documentation: <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html">IAM Roles for Tasks</a></p>
 
     </main>
 </div>
