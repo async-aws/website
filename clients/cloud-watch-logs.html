@@ -49,7 +49,7 @@
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
                     <ul class="collapse list-unstyled show" id="clients">
-                                                    <li class="current">
+                                                    <li>
                         <a href="/clients/">
                             Overview
                         </a>
@@ -229,156 +229,53 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="clients-overview">Clients overview</h1>
-<p>AsyncAws has implemented the most popular API clients, but not all of them are promoted
-with their own page in the documentation. On this page you find some installation
-instructions and a complete list of clients.</p>
-<h2 id="install-and-configure">Install and configure<a href="#install-and-configure" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>You install a client with Composer. Here is an example to install DynamoDb:</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/dynamo-db</code></pre>
-<p>To instantiate a DynamoDb client (or any other client) you could provide four arguments.
-All arguments are optional and sensible defaults are used.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Configuration</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">ConfigurationProvider</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+    <h1>CloudWatchLogs client</h1>
 
-$config = Configuration::create([
-    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
-]);
-$credentialProvider = <span class="hljs-keyword">new</span> ConfigurationProvider();
-$httpClient = <span class="hljs-comment">// ... Instance of Symfony's HttpClientInterface</span>
-$logger = <span class="hljs-comment">// ... A PSR-3 logger</span>
+    <p>This page contains some example usage for CloudWatchLogs. There are other
+        resources that explain <a href="/authentication/">authentication</a> and
+        <a href="/clients/">configuration</a>.</p>
 
-$dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient($config, $credentialProvider, $httpClient, $logger);</code></pre>
-<p>A common way to instantiate a DynamoDb client might look like:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+    <p>The CloudWatchLogs package could be installed with Composer.</p>
 
-$dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient([
-   <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
-   <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
-   <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
-]);</code></pre>
-<p>See section about <a href="/authentication/index.html">authentication</a> to learn more about
-different ways to authenticate.</p>
-<h3 id="dependency-injection-container">Dependency injection container<a href="#dependency-injection-container" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>If your application is using a dependency injection container, you may configure a
-client like:</p>
-<h4 id="symfony">Symfony</h4>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-attr">services:</span>
-    <span class="hljs-string">AsyncAws\DynamoDb\DynamoDbClient:</span>
-        <span class="hljs-attr">arguments:</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-attr">region:</span> <span class="hljs-string">'eu-central-1'</span>
-              <span class="hljs-attr">accessKeyId:</span> <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>
-              <span class="hljs-attr">accessKeySecret:</span> <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-string">~</span> <span class="hljs-comment"># Use the default authentication providers</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-string">'@http_client'</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-string">'@logger'</span></code></pre>
-<p>If you are using Symfony you may ease configuration by install the <a href="/integration/symfony-bundle.html">Symfony Bundle</a>.</p>
-<h4 id="laravel">Laravel</h4>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">ServiceProvider</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/cloud-watch-logs</code></pre>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncAwsProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceProvider</span>
-</span>{
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span><span class="hljs-params">()</span>
-    </span>{
-        <span class="hljs-keyword">$this</span>-&gt;app-&gt;bind(
-            DynamoDbClient::class,
-            <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($app)</span> </span>{
-                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DynamoDbClient([
-                   <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
-                   <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
-                   <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
-                ]);
-            }
-        );
-    }
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="list-log-streams">List log streams<a href="#list-log-streams" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeLogStreamsRequest</span>;
+
+$cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
+
+$result = $cloudWatchLogs-&gt;describeLogStreams(<span class="hljs-keyword">new</span> DescribeLogStreamsRequest([
+    <span class="hljs-string">'logGroupName'</span> =&gt; <span class="hljs-string">'company-website'</span>,
+]));
+
+<span class="hljs-keyword">foreach</span> ($result-&gt;getLogStreams() <span class="hljs-keyword">as</span> $stream) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'-'</span>.$stream-&gt;getLogStreamName().PHP_EOL;
 }</code></pre>
-<h3 id="client-factory">Client factory<a href="#client-factory" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>If you don't use dependency injection, you might be interested in the <code>AwsClientFactory</code>
-that can be used to instantiate API clients.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
+<h3 id="push-logs">Push logs<a href="#push-logs" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutLogEventsRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">InputLogEvent</span>;
 
-$factory = <span class="hljs-keyword">new</span> AwsClientFactory([
-   <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
-   <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
-   <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
-]);
+$cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
 
-$dynamoDb = $factory-&gt;dynamoDb();
-$sqs = $factory-&gt;sqs();</code></pre>
-<h2 id="use">Use<a href="#use" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>Every API client has functions that represent "operations" or API calls. Every such
-function takes an Input object (or array) as parameter and will return a Result.
-See the API client's class to learn what operations are supported and what the input
-and output are.</p>
-<p>All Input objects for SQS is located in <a href="https://github.com/async-aws/aws/tree/master/src/Service/Sqs/src/Input"><code>AsyncAws\Sqs\Input\*</code></a>
-and all Result objects are located in <a href="https://github.com/async-aws/aws/tree/master/src/Service/Sqs/src/Result"><code>AsyncAws\Sqs\Result\*</code></a>.</p>
-<p>Your IDE will also be helpful to discover function and how to use them. See example
-from PHPStorm:</p>
-<p><a href="/assets/image/compare/aa-method.a6eb6a64.png"><img src="/assets/image/compare/aa-method.a6eb6a64.png" alt="PHPStorm function help"></a></p>
-<h2 id="all-supported-clients">All supported clients<a href="#all-supported-clients" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>Here is a list of supported clients. If there is a need for another client or a new
-operation, it can be automatically generated. See the <a href="/contribute/index.html">contribution guide</a>
-for more information.</p>
-<table>
-<thead>
-<tr>
-<th>Api Client</th>
-<th>Package name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="./cf.html">CloudFormation</a></td>
-<td><a href="https://packagist.org/packages/async-aws/cloud-formation">async-aws/cloud-formation</a></td>
-</tr>
-<tr>
-<td><a href="./cloud-watch-logs.html">CloudWatchLogs</a></td>
-<td><a href="https://packagist.org/packages/async-aws/cloud-watch-logs">async-aws/cloud-watch-logs</a></td>
-</tr>
-<tr>
-<td>CodeDeploy</td>
-<td><a href="https://packagist.org/packages/async-aws/code-deploy">async-aws/code-deploy</a></td>
-</tr>
-<tr>
-<td><a href="./cognito-idp.html">CognitoIdentityProvider</a></td>
-<td><a href="https://packagist.org/packages/async-aws/cognito-identity-provider">async-aws/cognito-identity-provider</a></td>
-</tr>
-<tr>
-<td><a href="'./dynamodb.html">DynamoDb</a></td>
-<td><a href="https://packagist.org/packages/async-aws/dynamo-db">async-aws/dynamo-db</a></td>
-</tr>
-<tr>
-<td><a href="./lambda.html">Lambda</a></td>
-<td><a href="https://packagist.org/packages/async-aws/lambda">async-aws/lambda</a></td>
-</tr>
-<tr>
-<td><a href="./s3.html">S3</a></td>
-<td><a href="https://packagist.org/packages/async-aws/s3">async-aws/s3</a></td>
-</tr>
-<tr>
-<td><a href="./ses.html">SES</a></td>
-<td><a href="https://packagist.org/packages/async-aws/ses">async-aws/ses</a></td>
-</tr>
-<tr>
-<td><a href="./sns.html">SNS</a></td>
-<td><a href="https://packagist.org/packages/async-aws/sns">async-aws/sns</a></td>
-</tr>
-<tr>
-<td><a href="./sqs.html">SQS</a></td>
-<td><a href="https://packagist.org/packages/async-aws/sqs">async-aws/sqs</a></td>
-</tr>
-<tr>
-<td><a href="./ssm.html">SSM</a></td>
-<td><a href="https://packagist.org/packages/async-aws/ssm">async-aws/ssm</a></td>
-</tr>
-<tr>
-<td><a href="./sts.html">STS</a></td>
-<td><a href="https://packagist.org/packages/async-aws/core">async-aws/core</a></td>
-</tr>
-</tbody>
-</table>
+<span class="hljs-comment">// sequenceToken is not required for a new stream</span>
+$currentSequenceToken = <span class="hljs-keyword">null</span>;
+
+$result = $cloudWatchLogs-&gt;putLogEvents(<span class="hljs-keyword">new</span> PutLogEventsRequest([
+    <span class="hljs-string">'logGroupName'</span> =&gt; <span class="hljs-string">'company-website'</span>,
+    <span class="hljs-string">'logStreamName'</span> =&gt; <span class="hljs-string">'frontend-api'</span>,
+    <span class="hljs-string">'logEvents'</span> =&gt; [
+        <span class="hljs-keyword">new</span> InputLogEvent([
+            <span class="hljs-string">'timestamp'</span> =&gt; date(<span class="hljs-string">'U.u'</span>) * <span class="hljs-number">1000</span>,
+            <span class="hljs-string">'message'</span> =&gt; <span class="hljs-string">'an error occured'</span>,
+        ]),
+    ],
+    <span class="hljs-string">'sequenceToken'</span> =&gt; $currentSequenceToken,
+]));
+
+$currentSequenceToken = $result-&gt;getNextSequenceToken();</code></pre>
 
     </main>
 </div>
