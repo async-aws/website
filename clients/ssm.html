@@ -248,7 +248,6 @@
 <h3 id="list-parameters">List parameters<a href="#list-parameters" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetParametersByPathRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">SsmClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Parameter</span>;
 
 $ssm = <span class="hljs-keyword">new</span> SsmClient();
 
@@ -259,7 +258,6 @@ $parameters = $ssm-&gt;getParametersByPath(<span class="hljs-keyword">new</span>
 ]));
 
 $secrets = [];
-<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> Parameter $parameter */</span>
 <span class="hljs-keyword">foreach</span> ($parameters <span class="hljs-keyword">as</span> $parameter) {
     $secrets[$parameter-&gt;getName()] = $parameter-&gt;getValue();
 }</code></pre>

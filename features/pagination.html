@@ -239,13 +239,10 @@
 These results implement <code>\IteratorAggregate</code> and will automatically use AWS's pagination
 API to make a new request to fetch the remaining resources in the list.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Stack</span>;
 
 $cloudFormation = <span class="hljs-keyword">new</span> CloudFormationClient();
 
 $result = $cloudFormation-&gt;describeStacks();
-
-<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> Stack $stack */</span>
 <span class="hljs-keyword">foreach</span>($result <span class="hljs-keyword">as</span> $stack) {
     <span class="hljs-keyword">echo</span> $stack-&gt;getStackName();
 }</code></pre>
@@ -263,7 +260,6 @@ When iterating over those results, all lists will be mixed in the yielded items.
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListObjectsV2Request</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AwsObject</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">CommonPrefix</span>;
 
 $s3 = <span class="hljs-keyword">new</span> S3Client();
 
@@ -271,8 +267,6 @@ $objects = $s3-&gt;listObjectsV2(<span class="hljs-keyword">new</span> ListObjec
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Delimiter'</span> =&gt; <span class="hljs-string">'/'</span>
 ]));
-
-<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> AwsObject|CommonPrefix $object */</span>
 <span class="hljs-keyword">foreach</span>($objects <span class="hljs-keyword">as</span> $object) {
     <span class="hljs-keyword">if</span> ($object <span class="hljs-keyword">instanceof</span> AwsObject) {
         <span class="hljs-keyword">echo</span> <span class="hljs-string">'- '</span>.$object-&gt;getKey();
