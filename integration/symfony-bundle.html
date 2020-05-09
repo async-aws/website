@@ -314,10 +314,17 @@ AsyncAws leverage this feature and by storing secrets in <a href="https://docs.a
 <span class="hljs-comment">#        path: /parameters/my-project</span>
 <span class="hljs-comment">#        recursive: true</span>
 <span class="hljs-comment">#        client: app-secret</span>
+<span class="hljs-comment">#        cache:</span>
+<span class="hljs-comment">#            pool: cache.app</span>
+<span class="hljs-comment">#            ttl: 3600</span>
 <span class="hljs-comment">#    clients:</span>
 <span class="hljs-comment">#        app-secret:</span>
 <span class="hljs-comment">#            type: ssm</span></code></pre>
 <p>Parameters stored in SSM will be available as env variable:</p>
+<blockquote>
+<p><strong>Warning</strong>: Fetching parameters from SSM is billed by AWS. AsyncAws provide
+an optional cache layer that can be enabled with the <code>cache</code> configuration.</p>
+</blockquote>
 <pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/doctrine.yaml</span>
 
 <span class="hljs-attr">doctrine:</span>
