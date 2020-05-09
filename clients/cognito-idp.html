@@ -265,6 +265,7 @@ $cognitoIdp-&gt;adminCreateUser([
 ]);</code></pre>
 <h3 id="get-a-user-as-an-admin">Get a user as an admin<a href="#get-a-user-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeType</span>;
 
 $cognitoIdp = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
 
@@ -274,13 +275,13 @@ $result = $cognitoIdp-&gt;adminGetUser([
     <span class="hljs-string">'UserAttributes'</span> =&gt; [
         <span class="hljs-keyword">new</span> AttributeType([<span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'phone_number'</span>, <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'+33600000000'</span>])
     ],
-]]);
+]);
 
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'User status is: '</span> . $result-&gt;getUserStatus() . PHP_EOL;
-$givenNameAttribute = array_filter(
+$givenNameAttribute = current(array_filter(
     $result-&gt;getUserAttributes(),
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($attr)</span> </span>{ <span class="hljs-keyword">return</span> $attr-&gt;getName() === <span class="hljs-string">'given_name'</span>); } ,
-);
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($attr)</span> </span>{ <span class="hljs-keyword">return</span> $attr-&gt;getName() === <span class="hljs-string">'given_name'</span>; }
+));
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'User given name is: '</span> . $givenNameAttribute-&gt;getValue() . PHP_EOL;</code></pre>
 
     </main>
