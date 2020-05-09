@@ -149,12 +149,12 @@
                             Symfony Bundle
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/integration/laravel.html">
                             Laravel
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/integration/flysystem.html">
                             Flysystem
                         </a>
@@ -249,30 +249,75 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="flysystem-integration">Flysystem integration</h1>
-<p>The Flysystem integration supports both Flysystem version 1 and version 2.</p>
-<h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/flysystem-s3</code></pre>
-<h2 id="use">Use<a href="#use" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">League</span>\<span class="hljs-title">Flysystem</span>\<span class="hljs-title">Filesystem</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Flysystem</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3FilesystemV2</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+    <h1 id="asyncaws-for-laravel">AsyncAws for Laravel</h1>
+<p>The AsyncAws integrations for Laravel are similar to the integrations for the
+official AWS SDK. The sections below describe how you can install and configure
+Cache, Filesystem, Mail and Queue.</p>
+<h2 id="illuminate-cache">Illuminate Cache<a href="#illuminate-cache" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>Use DynamoDb as a Illuminate Cache store.</p>
+<h3 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-cache</code></pre>
+<p>Go to Aws Console to create a DynamoDb table. It is important that the table is using
+a Primary key (also called Partition key) to <code>key</code>. Any other value of the Primary
+key will not work.</p>
+<h3 id="configure">Configure<a href="#configure" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-diff hljs"># config/filesystems.php
 
-$adapter = <span class="hljs-keyword">new</span> S3FilesystemV2(<span class="hljs-keyword">new</span> S3Client(), <span class="hljs-string">'bucket'</span>);
-$filesystem = <span class="hljs-keyword">new</span> Filesystem($adapter);
-$resource = tmpfile();
+    'dynamodb' =&gt; [
+<span class="hljs-deletion">-       'driver' =&gt; 'dynamodb',</span>
+<span class="hljs-addition">+       'driver' =&gt; 'async-aws-dynamodb',</span>
+        'key' =&gt; env('AWS_ACCESS_KEY_ID'),
+        'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
+        'region' =&gt; env('AWS_DEFAULT_REGION', 'us-east-1'),
+        'table' =&gt; env('DYNAMODB_CACHE_TABLE', 'cache'),
+        'endpoint' =&gt; env('DYNAMODB_ENDPOINT'),
+    ],</code></pre>
+<h2 id="illuminate-filesystem">Illuminate Filesystem<a href="#illuminate-filesystem" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>Use S3 as filesystem.</p>
+<h3 id="install-1">Install<a href="#install-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-filesystem</code></pre>
+<h3 id="configure-1">Configure<a href="#configure-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-diff hljs"># config/filesystems.php
 
-$filesystem-&gt;write(<span class="hljs-string">'dir/path.txt'</span>, <span class="hljs-string">'contents'</span>);
-$filesystem-&gt;writeStream(<span class="hljs-string">'dir/path.txt'</span>, $resource);
+    's3' =&gt; [
+<span class="hljs-deletion">-       'driver' =&gt; 's3',</span>
+<span class="hljs-addition">+       'driver' =&gt; 'async-aws-s3',</span>
+        'key' =&gt; env('AWS_ACCESS_KEY_ID'),
+        'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
+        'region' =&gt; env('AWS_DEFAULT_REGION'),
+        'bucket' =&gt; env('AWS_BUCKET'),
+        'endpoint' =&gt; env('AWS_ENDPOINT'),
+    ],</code></pre>
+<h2 id="illuminate-mail">Illuminate Mail<a href="#illuminate-mail" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>Send emails with SES.</p>
+<h3 id="install-2">Install<a href="#install-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-mail</code></pre>
+<h3 id="configure-2">Configure<a href="#configure-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-diff hljs"># config/mail.php
 
-$filesystem-&gt;delete(<span class="hljs-string">'dir/path.txt'</span>);
+    'ses' =&gt; [
+<span class="hljs-deletion">-       'driver' =&gt; 'ses',</span>
+<span class="hljs-addition">+       'driver' =&gt; 'async-aws-ses',</span>
+        'key' =&gt; env('AWS_ACCESS_KEY_ID'),
+        'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
+    ],</code></pre>
+<h2 id="illuminate-queue">Illuminate Queue<a href="#illuminate-queue" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>Use SQS with Illuminate Queue.</p>
+<h3 id="install-3">Install<a href="#install-3" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-queue</code></pre>
+<h3 id="configure-3">Configure<a href="#configure-3" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-diff hljs"># config/queue.php
 
-$filesystem-&gt;createDirectory(<span class="hljs-string">'dir'</span>);
-$filesystem-&gt;deleteDirectory(<span class="hljs-string">'dir'</span>);
-
-$lastModified = $filesystem-&gt;lastModified(<span class="hljs-string">'path.txt'</span>);
-$mimeType = $filesystem-&gt;mimeType(<span class="hljs-string">'path.txt'</span>);
-$fileSize = $filesystem-&gt;fileSize(<span class="hljs-string">'path.txt'</span>);</code></pre>
+    'sqs' =&gt; [
+<span class="hljs-deletion">-       'driver' =&gt; 'sqs',</span>
+<span class="hljs-addition">+       'driver' =&gt; 'async-aws-sqs',</span>
+        'key' =&gt; env('AWS_ACCESS_KEY_ID'),
+        'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
+        'prefix' =&gt; env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+        'queue' =&gt; env('SQS_QUEUE', 'your-queue-name'),
+        'suffix' =&gt; env('SQS_SUFFIX'),
+        'region' =&gt; env('AWS_DEFAULT_REGION', 'us-east-1'),
+    ],</code></pre>
 
     </main>
 </div>
