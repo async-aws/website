@@ -319,16 +319,16 @@ the others are listed as examples.</p>
 <pre><code class="language-diff hljs"><span class="hljs-deletion">-    $result = $sqs-&gt;sendMessage($input);</span>
 <span class="hljs-addition">+    $sqs-&gt;sendMessage($input);</span></code></pre>
 <h4 id="solution-b">Solution B</h4>
-<pre><code class="language-diff hljs">    $result = $sqs-&gt;sendMessage($input);
-<span class="hljs-addition">+   $result-&gt;getMessageId();</span></code></pre>
+<pre><code class="language-diff hljs">     $result = $sqs-&gt;sendMessage($input);
+<span class="hljs-addition">+    $result-&gt;getMessageId();</span></code></pre>
 <h4 id="solution-c">Solution C</h4>
-<pre><code class="language-diff hljs">    $result = $sqs-&gt;sendMessage($input);
-<span class="hljs-addition">+   unset($result);</span></code></pre>
+<pre><code class="language-diff hljs">     $result = $sqs-&gt;sendMessage($input);
+<span class="hljs-addition">+    unset($result);</span></code></pre>
 <h4 id="solution-d">Solution D</h4>
 <p>This solution requires some more explanation. See <a href="#using-resolve-function">below</a>
 for more information.</p>
-<pre><code class="language-diff hljs">    $result = $sqs-&gt;sendMessage($input);
-<span class="hljs-addition">+   $result-&gt;resolve();</span></code></pre>
+<pre><code class="language-diff hljs">     $result = $sqs-&gt;sendMessage($input);
+<span class="hljs-addition">+    $result-&gt;resolve();</span></code></pre>
 <h2 id="advanced-use-cases">Advanced use cases<a href="#advanced-use-cases" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>The normal use cases covers 90% of all code. Let's dig in to the advanced stuff.</p>
 <h3 id="using-resolve-function">Using resolve-function<a href="#using-resolve-function" title="Permalink to this headline" class="headerlink">¶</a></h3>

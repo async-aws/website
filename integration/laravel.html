@@ -263,15 +263,15 @@ key will not work.</p>
 <h3 id="configure">Configure<a href="#configure" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-diff hljs"># config/filesystems.php
 
-    'dynamodb' =&gt; [
-<span class="hljs-deletion">-       'driver' =&gt; 'dynamodb',</span>
-<span class="hljs-addition">+       'driver' =&gt; 'async-aws-dynamodb',</span>
-        'key' =&gt; env('AWS_ACCESS_KEY_ID'),
-        'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
-        'region' =&gt; env('AWS_DEFAULT_REGION', 'us-east-1'),
-        'table' =&gt; env('DYNAMODB_CACHE_TABLE', 'cache'),
-        'endpoint' =&gt; env('DYNAMODB_ENDPOINT'),
-    ],</code></pre>
+ 'dynamodb' =&gt; [
+<span class="hljs-deletion">-    'driver' =&gt; 'dynamodb',</span>
+<span class="hljs-addition">+    'driver' =&gt; 'async-aws-dynamodb',</span>
+     'key' =&gt; env('AWS_ACCESS_KEY_ID'),
+     'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
+     'region' =&gt; env('AWS_DEFAULT_REGION', 'us-east-1'),
+     'table' =&gt; env('DYNAMODB_CACHE_TABLE', 'cache'),
+     'endpoint' =&gt; env('DYNAMODB_ENDPOINT'),
+ ],</code></pre>
 <h2 id="illuminate-filesystem">Illuminate Filesystem<a href="#illuminate-filesystem" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Use S3 as filesystem.</p>
 <h3 id="install-1">Install<a href="#install-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
@@ -279,15 +279,15 @@ key will not work.</p>
 <h3 id="configure-1">Configure<a href="#configure-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-diff hljs"># config/filesystems.php
 
-    's3' =&gt; [
-<span class="hljs-deletion">-       'driver' =&gt; 's3',</span>
-<span class="hljs-addition">+       'driver' =&gt; 'async-aws-s3',</span>
-        'key' =&gt; env('AWS_ACCESS_KEY_ID'),
-        'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
-        'region' =&gt; env('AWS_DEFAULT_REGION'),
-        'bucket' =&gt; env('AWS_BUCKET'),
-        'endpoint' =&gt; env('AWS_ENDPOINT'),
-    ],</code></pre>
+ 's3' =&gt; [
+<span class="hljs-deletion">-    'driver' =&gt; 's3',</span>
+<span class="hljs-addition">+    'driver' =&gt; 'async-aws-s3',</span>
+     'key' =&gt; env('AWS_ACCESS_KEY_ID'),
+     'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
+     'region' =&gt; env('AWS_DEFAULT_REGION'),
+     'bucket' =&gt; env('AWS_BUCKET'),
+     'endpoint' =&gt; env('AWS_ENDPOINT'),
+ ],</code></pre>
 <h2 id="illuminate-mail">Illuminate Mail<a href="#illuminate-mail" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Send emails with SES.</p>
 <h3 id="install-2">Install<a href="#install-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
@@ -295,12 +295,12 @@ key will not work.</p>
 <h3 id="configure-2">Configure<a href="#configure-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-diff hljs"># config/mail.php
 
-    'ses' =&gt; [
-<span class="hljs-deletion">-       'driver' =&gt; 'ses',</span>
-<span class="hljs-addition">+       'driver' =&gt; 'async-aws-ses',</span>
-        'key' =&gt; env('AWS_ACCESS_KEY_ID'),
-        'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
-    ],</code></pre>
+ 'ses' =&gt; [
+<span class="hljs-deletion">-    'driver' =&gt; 'ses',</span>
+<span class="hljs-addition">+    'driver' =&gt; 'async-aws-ses',</span>
+     'key' =&gt; env('AWS_ACCESS_KEY_ID'),
+     'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
+ ],</code></pre>
 <h2 id="illuminate-queue">Illuminate Queue<a href="#illuminate-queue" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Use SQS with Illuminate Queue.</p>
 <h3 id="install-3">Install<a href="#install-3" title="Permalink to this headline" class="headerlink">¶</a></h3>
@@ -308,16 +308,16 @@ key will not work.</p>
 <h3 id="configure-3">Configure<a href="#configure-3" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-diff hljs"># config/queue.php
 
-    'sqs' =&gt; [
-<span class="hljs-deletion">-       'driver' =&gt; 'sqs',</span>
-<span class="hljs-addition">+       'driver' =&gt; 'async-aws-sqs',</span>
-        'key' =&gt; env('AWS_ACCESS_KEY_ID'),
-        'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
-        'prefix' =&gt; env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
-        'queue' =&gt; env('SQS_QUEUE', 'your-queue-name'),
-        'suffix' =&gt; env('SQS_SUFFIX'),
-        'region' =&gt; env('AWS_DEFAULT_REGION', 'us-east-1'),
-    ],</code></pre>
+ 'sqs' =&gt; [
+<span class="hljs-deletion">-    'driver' =&gt; 'sqs',</span>
+<span class="hljs-addition">+    'driver' =&gt; 'async-aws-sqs',</span>
+     'key' =&gt; env('AWS_ACCESS_KEY_ID'),
+     'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
+     'prefix' =&gt; env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+     'queue' =&gt; env('SQS_QUEUE', 'your-queue-name'),
+     'suffix' =&gt; env('SQS_SUFFIX'),
+     'region' =&gt; env('AWS_DEFAULT_REGION', 'us-east-1'),
+ ],</code></pre>
 
     </main>
 </div>
