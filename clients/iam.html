@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -74,7 +74,7 @@
                             DynamoDB
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/iam.html">
                             IAM
                         </a>
@@ -173,7 +173,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
-                    <ul class="collapse list-unstyled show" id="authentication">
+                    <ul class="collapse list-unstyled " id="authentication">
                                                     <li>
                         <a href="/authentication/">
                             Overview
@@ -194,7 +194,7 @@
                             ECS container metadata
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/authentication/environment.html">
                             Environment variables
                         </a>
@@ -254,19 +254,30 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="using-credentials-from-environment-variables">Using Credentials from Environment Variables</h1>
-<p>AsyncAWS recognize Env variables that are used by most official AWS tools and SDK.</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># The access key for your AWS account.</span>
-<span class="hljs-built_in">export</span> AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+    <h1>Iam client</h1>
 
-<span class="hljs-comment"># The secret access key for your AWS account.</span>
-<span class="hljs-built_in">export</span> AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</code></pre>
-<blockquote>
-<p><strong>Note</strong>: You cannot mix env variables with configuration config with hard-coded configuration.</p>
-</blockquote>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
+    <p>This page contains some example usage for Iam. There are other
+        resources that explain <a href="/authentication/">authentication</a> and
+        <a href="/clients/">configuration</a>.</p>
 
-$client = <span class="hljs-keyword">new</span> AwsClientFactory();</code></pre>
+    <p>The Iam package could be installed with Composer.</p>
+
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/iam</code></pre>
+
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="invoke-a-function">Invoke a function<a href="#invoke-a-function" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListUsersRequest</span>;
+
+$iam = <span class="hljs-keyword">new</span> IamClient();
+
+$users = $iam-&gt;listUsers(<span class="hljs-keyword">new</span> ListUsersRequest([
+    <span class="hljs-string">'PathPrefix'</span> =&gt; <span class="hljs-string">'/division_engineering/subdivision_web'</span>,
+]));
+
+<span class="hljs-keyword">foreach</span> ($users <span class="hljs-keyword">as</span> $user) {
+    <span class="hljs-keyword">echo</span> $user-&gt;getUserName().<span class="hljs-string">' '</span>.($user-&gt;getPasswordLastUsed() ? $user-&gt;getPasswordLastUsed()-&gt;format(<span class="hljs-string">'Y-m-d'</span>) : <span class="hljs-string">''</span>).PHP_EOL;
+}</code></pre>
 
     </main>
 </div>
