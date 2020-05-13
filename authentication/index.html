@@ -276,6 +276,23 @@ the first provider in the chain that returns credentials without an error.</p>
 <h2 id="testing-with-authentication-providers">Testing with authentication providers<a href="#testing-with-authentication-providers" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>The default provider chain could be too slow or too complex for testing. It is recommended
 to use the <code>NullProvider</code> in tests where you don't provide valid configuration values.</p>
+<h2 id="caching-credential">Caching credential<a href="#caching-credential" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>Fetching credential from AWS metadata endpoint (EC2 Instance, ECS Container,
+WebIdentity...) for each request can introduce latency. AsyncAws provides a
+<code>PsrCacheProvider</code> and a <code>SymfonyCacheProvider</code> decorator to persist and reuse
+credentials between each request.</p>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">CacheProvider</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">ChainProvider</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">SymfonyCacheProvider</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Symfony</span>\<span class="hljs-title">Component</span>\<span class="hljs-title">Cache</span>\<span class="hljs-title">Adapter</span>\<span class="hljs-title">FilesystemAdapter</span>;
+
+$provider = ChainProvider::createDefaultChain();
+$provider = <span class="hljs-keyword">new</span> SymfonyCacheProvider($provider, <span class="hljs-keyword">new</span> FilesystemAdapter(<span class="hljs-string">'test'</span>));
+
+<span class="hljs-comment">// optional, decorate the provider with the in-memory Cache provider</span>
+$provider = <span class="hljs-keyword">new</span> CacheProvider($provider);
+
+$s3 = <span class="hljs-keyword">new</span> S3Client([], $provider);</code></pre>
 
     </main>
 </div>
