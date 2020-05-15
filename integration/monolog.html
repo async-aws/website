@@ -264,10 +264,11 @@
 <span class="hljs-keyword">use</span> <span class="hljs-title">Monolog</span>\<span class="hljs-title">Logger</span>;
 
 $client = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
-$groupName = <span class="hljs-string">'company-website'</span>;
-$streamName = <span class="hljs-string">'frontend-api'</span>;
 
-$handler = <span class="hljs-keyword">new</span> CloudWatchLogsHandler($client, $groupName, $streamName);
+$handler = <span class="hljs-keyword">new</span> CloudWatchLogsHandler($client, [
+    <span class="hljs-string">'group'</span> =&gt; <span class="hljs-string">'company-website'</span>,
+    <span class="hljs-string">'stream'</span> =&gt; <span class="hljs-string">'frontend-api'</span>,
+]);
 
 $logger = <span class="hljs-keyword">new</span> Logger(<span class="hljs-string">'logger'</span>);
 $logger-&gt;pushHandler($handler);
@@ -276,11 +277,15 @@ $logger-&gt;error(<span class="hljs-string">'an error occurred'</span>);</code><
 <p>The CloudWatchLogsHandler accepts the following parameters:</p>
 <ul>
 <li><code>$client</code>: the CloudWatchLogsClient instance</li>
-<li><code>$group</code>: name of the CloudWatch Log Group which was created previously</li>
-<li><code>$stream</code>: name of the CloudWatch Log Stream which was created previously</li>
-<li><code>$batchSize</code>: number of log records that are pushed to CloudWatch in a single call. This number cannot exceed 10,000.</li>
-<li><code>$level</code>: minimum logging level at which this handler will be triggered (see <a href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#log-levels">https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#log-levels</a>)</li>
-<li><code>$bubble</code>: whether the messages that are handled can bubble up the stack or not (see <a href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#core-concepts">https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#core-concepts</a>)</li>
+<li><code>$options</code>: handler configuration (see below)</li>
+<li><code>$level</code> (default <code>Logger::DEBUG</code>): minimum logging level at which this handler will be triggered (see <a href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#log-levels">https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#log-levels</a>)</li>
+<li><code>$bubble</code>(default <code>true</code>): whether the messages that are handled can bubble up the stack or not (see <a href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#core-concepts">https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#core-concepts</a>)</li>
+</ul>
+<p>For the <code>$options</code> parameter, the allowed values are:</p>
+<ul>
+<li><code>batchSize</code> (default <code>10000</code>): number of log records that are pushed to CloudWatch in a single call. This number cannot exceed 10,000.</li>
+<li><code>group</code>: name of the CloudWatch Log Group which was created previously</li>
+<li><code>stream</code>: name of the CloudWatch Log Stream which was created previously</li>
 </ul>
 <h2 id="symfony-usage">Symfony usage<a href="#symfony-usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>To ease service configuration, install the <a href="./symfony-bundle.html">AsyncAws Symfony Bundle</a> first.</p>
@@ -292,9 +297,9 @@ $logger-&gt;error(<span class="hljs-string">'an error occurred'</span>);</code><
         <span class="hljs-attr">class:</span> <span class="hljs-string">AsyncAws\Monolog\CloudWatch\CloudWatchLogsHandler</span>
         <span class="hljs-attr">arguments:</span>
             <span class="hljs-bullet">-</span> <span class="hljs-string">'@async_aws.client.cloud_watch_logs'</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-string">company-website</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-string">frontend-api</span>
-            <span class="hljs-comment"># more arguments, see Configuration</span></code></pre>
+            <span class="hljs-bullet">-</span> <span class="hljs-attr">group:</span> <span class="hljs-string">company-website</span>
+              <span class="hljs-attr">stream:</span> <span class="hljs-string">frontend-api</span>
+              <span class="hljs-comment"># more parameters, see Configuration</span></code></pre>
 <pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/prod/monolog.yaml</span>
 
 <span class="hljs-attr">monolog:</span>
