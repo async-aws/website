@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled show" id="clients">
+                    <ul class="collapse list-unstyled " id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -79,7 +79,7 @@
                             IAM
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/lambda.html">
                             Lambda
                         </a>
@@ -148,7 +148,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Integration</a>
-                    <ul class="collapse list-unstyled " id="integration">
+                    <ul class="collapse list-unstyled show" id="integration">
                                                     <li>
                         <a href="/integration/symfony-bundle.html">
                             Symfony Bundle
@@ -169,7 +169,7 @@
                             Monolog
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/integration/sessions.html">
                             PHP Sessions
                         </a>
@@ -259,30 +259,87 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>Lambda client</h1>
+    <h1 id="dynamodb-sessions-integration">DynamoDB Sessions integration</h1>
+<p>Store your PHP Sessions in DynamoDB.</p>
+<h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/dynamo-db-session</code></pre>
+<h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDbSession</span>\<span class="hljs-title">SessionHandler</span>;
 
-    <p>This page contains some example usage for Lambda. There are other
-        resources that explain <a href="/authentication/">authentication</a> and
-        <a href="/clients/">configuration</a>.</p>
-
-    <p>The Lambda package could be installed with Composer.</p>
-
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/lambda</code></pre>
-
-    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="invoke-a-function">Invoke a function<a href="#invoke-a-function" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">LambdaClient</span>;
-
-$lambda = <span class="hljs-keyword">new</span> LambdaClient();
-
-<span class="hljs-comment">// Find the value for FunctionName here:</span>
-<span class="hljs-comment">// https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions</span>
-$result = $lambda-&gt;invoke([
-  <span class="hljs-string">'FunctionName'</span> =&gt; <span class="hljs-string">'app-dev-hello_world'</span>,
-  <span class="hljs-string">'Payload'</span> =&gt; <span class="hljs-string">'{"name": "async-aws/lambda"}'</span>,
+$handler = <span class="hljs-keyword">new</span> SessionHandler(<span class="hljs-keyword">new</span> DynamoDbClient(), [
+    <span class="hljs-string">'table_name'</span> =&gt; <span class="hljs-string">'php-sessions'</span>,
 ]);
 
-<span class="hljs-keyword">echo</span> $result-&gt;getPayload();</code></pre>
+\session_set_save_handler($handler, <span class="hljs-keyword">true</span>);</code></pre>
+<hr>
+<p>A DynamoDb table needs to exist in the configured region with the given <code>table_name</code> option.</p>
+<p>The primary key of the table must be a String with key "id". This can be changed with the <code>hash_key</code> option.</p>
+<p>The Time to live attribute of the table must be set on the "expires" attribute. This can be changed with the <code>session_lifetime_attribute</code> option.</p>
+<hr>
+<p>Alternatively, the table can be created programmatically with the setUp method:</p>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>$handler-&gt;setUp();</code></pre>
+<p>Creating the table with the method ensures the settings meet the requirements.</p>
+<p>The table is created with On-Demand billing, which you can change to provisioned through the AWS console.</p>
+<h2 id="configuration">Configuration<a href="#configuration" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>The SessionHandler accepts the following options:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>consistent_read</td>
+<td>Whether or not to use consistent reads</td>
+<td>true</td>
+</tr>
+<tr>
+<td>data_attribute</td>
+<td>Name of the data attribute in table</td>
+<td>"data"</td>
+</tr>
+<tr>
+<td>hash_key</td>
+<td>Name of hash key in table</td>
+<td>"id"</td>
+</tr>
+<tr>
+<td>session_lifetime</td>
+<td>Lifetime of inactive sessions expiration</td>
+<td>ini_get('session.gc_maxlifetime')</td>
+</tr>
+<tr>
+<td>session_lifetime_attribute</td>
+<td>Name of the session life time attribute in table</td>
+<td>"expires"</td>
+</tr>
+<tr>
+<td>table_name</td>
+<td>Name of table to store the sessions</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="symfony-usage">Symfony usage<a href="#symfony-usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>To ease service configuration, install the <a href="./symfony-bundle.html">AsyncAws Symfony Bundle</a> first.</p>
+<p>The bundle will automatically configure DynamoDbClient with the given credentials.</p>
+<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/services.yaml</span>
+
+<span class="hljs-attr">services:</span>
+    <span class="hljs-string">AsyncAws\DynamoDbSession\SessionHandler:</span>
+        <span class="hljs-attr">arguments:</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-string">'@async_aws.client.dynamo_db'</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-attr">table_name:</span> <span class="hljs-string">php-sessions</span>
+              <span class="hljs-comment"># for more options, see Configuration</span></code></pre>
+<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/framework.yaml</span>
+
+<span class="hljs-attr">framework:</span>
+    <span class="hljs-attr">session:</span>
+        <span class="hljs-attr">handler_id:</span> <span class="hljs-string">AsyncAws\DynamoDbSession\SessionHandler</span></code></pre>
 
     </main>
 </div>
