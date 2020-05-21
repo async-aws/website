@@ -273,9 +273,9 @@
 person so they can download a file within the next X minutes. Read more about presign
 <a href="/features/presign.html">here</a>.</p>
 <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="upload-file">Upload file<a href="#upload-file" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<h3 id="upload-files">Upload files<a href="#upload-files" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>If you want to upload a 1 Gb file, you really don't want to put that file in memory
-before uploading. You want to use a something smarted. AsyncAws allow you to upload
+before uploading. You want to do it a smarter way. AsyncAws allow you to upload
 files using a string, resource, closure or a iterable. See the following examples:</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
@@ -323,6 +323,35 @@ $s3-&gt;PutObject([
 This information is required by AWS, and cannot be guessed by AsyncAws.
 If <code>ContentLength</code> is absent, AsyncAws will read the output before sending the
 request which could have a performance impact.</p>
+<h3 id="download-files">Download files<a href="#download-files" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<p>When you download a file from S3, AsyncAws gives you a <code>ResultStream</code> which
+can be used as a string, as a resource, or iterated over. This allows you to handle
+larger files without having them in memory.</p>
+<pre><code class="hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment">// download a file and use it directly as string</span>
+$result = $s3-&gt;GetObject([
+    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
+    <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'metadata.json'</span>,
+]);
+$metadata = json_decode($result-&gt;getBody()-&gt;getContentAsString());
+
+<span class="hljs-comment">// download a big file and save it efficiently</span>
+$result = $s3-&gt;GetObject([
+    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
+    <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'bunny.mkv'</span>,
+]);
+$fp = fopen(<span class="hljs-string">'/path/to/big_file.mkv'</span>, <span class="hljs-string">'wb'</span>);
+stream_copy_to_stream($f-&gt;getBody()-&gt;getContentAsResource(), $fp);
+
+<span class="hljs-comment">// use an iterable to perform some business logic on chunks while downloading (or show a progress bar)</span>
+$result = $s3-&gt;GetObject([
+    <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
+    <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'orders.csv'</span>,
+]);
+$fp = fopen(<span class="hljs-string">'/path/to/orders.csv'</span>, <span class="hljs-string">'wb'</span>);
+<span class="hljs-keyword">foreach</span> ($result-&gt;getBody()-&gt;getChunks() <span class="hljs-keyword">as</span> $chunk) {
+    fwrite($fp, $chunk);
+    $progress-&gt;advance();
+}</code></pre>
 
     </main>
 </div>
