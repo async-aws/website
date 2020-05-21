@@ -352,6 +352,13 @@ $fp = fopen(<span class="hljs-string">'/path/to/orders.csv'</span>, <span class=
     fwrite($fp, $chunk);
     $progress-&gt;advance();
 }</code></pre>
+<h2 id="virtual-hosted-style-requests">Virtual Hosted-Style Requests<a href="#virtual-hosted-style-requests" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>When calling AWS endpoints, Async Aws uses <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html">Virtual Hosted-Style Requests</a>:
+The bucket name is part of the endpoint's host. To disable this behavior, use
+the parameter <code>pathStyleEndpoint</code> when initializing the client.</p>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+
+$s3 = <span class="hljs-keyword">new</span> S3Client([<span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-keyword">true</span>]);</code></pre>
 
     </main>
 </div>
