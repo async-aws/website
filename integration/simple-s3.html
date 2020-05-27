@@ -148,7 +148,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Integration</a>
-                    <ul class="collapse list-unstyled " id="integration">
+                    <ul class="collapse list-unstyled show" id="integration">
                                                     <li>
                         <a href="/integration/symfony-bundle.html">
                             Symfony Bundle
@@ -174,7 +174,7 @@
                             PHP Sessions
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/integration/simple-s3.html">
                             Simple S3
                         </a>
@@ -183,13 +183,13 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
-                    <ul class="collapse list-unstyled show" id="authentication">
+                    <ul class="collapse list-unstyled " id="authentication">
                                                     <li>
                         <a href="/authentication/">
                             Overview
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/authentication/credentials-file.html">
                             Credentials file
                         </a>
@@ -264,56 +264,30 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="using-the-aws-credentials-file-and-credential-profiles">Using the AWS Credentials File and Credential Profiles</h1>
-<p>The AWS CLI stores configuration and credential in <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html">plain text files</a>.</p>
-<p>The format of the AWS credentials file should look something like the following.</p>
-<pre><code class="language-ini hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment">; ~/.aws/credentials</span>
-<span class="hljs-section">[default]</span>
-<span class="hljs-attr">aws_access_key_id</span> = AKIAIOSFODNN7EXAMPLE
-<span class="hljs-attr">aws_secret_access_key</span> = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    <h1 id="simple-s3-client">Simple S3 client</h1>
+<p>An abstraction layer above the S3Client that provides simpler functions to common
+tasks. The client will automatically switch to multipart upload for large files.</p>
+<h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/simple-s3</code></pre>
+<h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">SimpleS3</span>\<span class="hljs-title">SimpleS3Client</span>;
 
-<span class="hljs-section">[project1]</span>
-<span class="hljs-attr">aws_access_key_id</span> = AKIAIOSFODNN7EXAMPLE
-<span class="hljs-attr">aws_secret_access_key</span> = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</code></pre>
-<p>Each section represents a credential <code>Profile</code> which can be referenced in the Configuration</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
+$s3 = <span class="hljs-keyword">new</span> SimpleS3Client();
+$resource = \fopen(<span class="hljs-string">'/path/to/cat/image.jpg'</span>, <span class="hljs-string">'r'</span>);
+$s3-&gt;upload(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>, $resource);
+$s3-&gt;upload(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.txt'</span>, <span class="hljs-string">'I like this cat'</span>);
 
-$client = <span class="hljs-keyword">new</span> AwsClientFactory([
-    <span class="hljs-string">'profile'</span> =&gt; <span class="hljs-string">'project1'</span>
-]);</code></pre>
-<blockquote>
-<p><strong>Note</strong>: When not defined, AsyncAWS will use the profile named <code>default</code>.</p>
-</blockquote>
-<p>The profile can refer to a <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">Role</a> and specify the
-source of another profile that contains the IAM user credentials with permission to use the role.</p>
-<pre><code class="language-ini hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment">; ~/.aws/config:</span>
-<span class="hljs-section">[profile user1]</span>
-<span class="hljs-attr">aws_access_key_id</span> = AKIAIOSFODNN7EXAMPLE
-<span class="hljs-attr">aws_secret_access_key</span> = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+<span class="hljs-comment">// Check if a file exists</span>
+$s3-&gt;has(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>); <span class="hljs-comment">// true</span>
 
-<span class="hljs-section">[profile marketing]</span>
-<span class="hljs-attr">role_arn</span> = arn:aws:iam::<span class="hljs-number">123456789012</span>:role/marketing
-<span class="hljs-attr">source_profile</span> = user1</code></pre>
-<p>AWS also store Credentials in the <code>config</code> file that should like.</p>
-<pre><code class="language-ini hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment">; ~/.aws/config:</span>
-<span class="hljs-section">[profile default]</span>
-<span class="hljs-attr">aws_access_key_id</span> = AKIAIOSFODNN7EXAMPLE
-<span class="hljs-attr">aws_secret_access_key</span> = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-<span class="hljs-attr">region</span>=eu-west-<span class="hljs-number">1</span>
+<span class="hljs-comment">// Get file URL</span>
+$url = $s3-&gt;getUrl(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>);
+<span class="hljs-keyword">echo</span> $url; <span class="hljs-comment">// https://my-image-bucket.s3.eu-central-1.amazonaws.com/photos/cat_2.jpg</span>
 
-<span class="hljs-section">[profile project2]</span>
-<span class="hljs-attr">aws_access_key_id</span> = AKIAIOSFODNN7EXAMPLE
-<span class="hljs-attr">aws_secret_access_key</span> = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-<span class="hljs-attr">region</span>=us-west-<span class="hljs-number">2</span></code></pre>
-<p>The path to the <code>credentials</code> and <code>config</code> file can be <em>optionally</em> configured either with Configuration or env variables.</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-built_in">export</span> AWS_SHARED_CREDENTIALS_FILE=/path/to/shared_credentials_file
-<span class="hljs-built_in">export</span> AWS_CONFIG_FILE=/path/to/config_file</code></pre>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
-
-$client = <span class="hljs-keyword">new</span> AwsClientFactory([
-    <span class="hljs-string">'sharedCredentialsFile'</span> =&gt; <span class="hljs-string">'/path/to/shared_credentials_file'</span>,
-    <span class="hljs-string">'sharedConfigFile'</span> =&gt; <span class="hljs-string">'/path/to/config_file'</span>,
-]);</code></pre>
+<span class="hljs-comment">// Download a file</span>
+$resource = $s3-&gt;download(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>)-&gt;getContentAsResource();
+$text = $s3-&gt;download(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.txt'</span>)-&gt;getContentAsString();
+<span class="hljs-keyword">echo</span> $text; <span class="hljs-comment">// I like this cat</span></code></pre>
 
     </main>
 </div>
