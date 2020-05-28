@@ -280,6 +280,7 @@
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateTableInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeTableInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeDefinition</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">KeySchemaElement</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">ProvisionedThroughput</span>;
 
 $dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient();
@@ -291,8 +292,8 @@ $dynamoDb-&gt;createTable(<span class="hljs-keyword">new</span> CreateTableInput
             <span class="hljs-keyword">new</span> AttributeDefinition([<span class="hljs-string">'AttributeName'</span> =&gt; <span class="hljs-string">'time'</span>, <span class="hljs-string">'AttributeType'</span> =&gt; <span class="hljs-string">'N'</span>]),
         ],
         <span class="hljs-string">'KeySchema'</span> =&gt; [
-            <span class="hljs-keyword">new</span> AttributeDefinition([<span class="hljs-string">'AttributeName'</span> =&gt; <span class="hljs-string">'id'</span>, <span class="hljs-string">'KeyType'</span> =&gt; <span class="hljs-string">'HASH'</span>]),
-            <span class="hljs-keyword">new</span> AttributeDefinition([<span class="hljs-string">'AttributeName'</span> =&gt; <span class="hljs-string">'time'</span>, <span class="hljs-string">'KeyType'</span> =&gt; <span class="hljs-string">'RANGE'</span>]),
+            <span class="hljs-keyword">new</span> KeySchemaElement([<span class="hljs-string">'AttributeName'</span> =&gt; <span class="hljs-string">'id'</span>, <span class="hljs-string">'KeyType'</span> =&gt; <span class="hljs-string">'HASH'</span>]),
+            <span class="hljs-keyword">new</span> KeySchemaElement([<span class="hljs-string">'AttributeName'</span> =&gt; <span class="hljs-string">'time'</span>, <span class="hljs-string">'KeyType'</span> =&gt; <span class="hljs-string">'RANGE'</span>]),
         ],
         <span class="hljs-string">'ProvisionedThroughput'</span> =&gt; <span class="hljs-keyword">new</span> ProvisionedThroughput([
             <span class="hljs-string">'ReadCapacityUnits'</span> =&gt; <span class="hljs-number">10</span>,
