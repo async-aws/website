@@ -282,6 +282,9 @@ $input = <span class="hljs-keyword">new</span> GetObjectRequest([
 $url = $s3-&gt;presign($input, <span class="hljs-keyword">new</span> \DateTimeImmutable(<span class="hljs-string">'+60 min'</span>));
 
 <span class="hljs-keyword">echo</span> $url;</code></pre>
+<blockquote>
+<p><strong>Note</strong>: AWS has limitations on the expiration length. Read more in <a href="https://aws.amazon.com/premiumsupport/knowledge-center/presigned-url-s3-bucket-expiration/">the docs</a>.</p>
+</blockquote>
 
     </main>
 </div>
