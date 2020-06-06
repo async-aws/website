@@ -59,7 +59,7 @@
                             Cloud Formation
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/cloud-front.html">
                             CloudFront
                         </a>
@@ -104,7 +104,7 @@
                             SNS
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/sqs.html">
                             SQS
                         </a>
@@ -269,71 +269,35 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>SQS client</h1>
+    <h1>CloudFront client</h1>
 
-    <p>This page contains some example usage for SQS. There are other
+    <p>This page contains some example usage for CloudFront. There are other
         resources that explain <a href="/authentication/">authentication</a> and
         <a href="/clients/">configuration</a>.</p>
 
-    <p>The SQS package could be installed with Composer.</p>
+    <p>The CloudFront package could be installed with Composer.</p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/sqs</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/cloud-front</code></pre>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="send-a-message">Send a message<a href="#send-a-message" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetQueueUrlRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
+<h3 id="invalidate-paths">Invalidate paths<a href="#invalidate-paths" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">CloudFrontClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">InvalidationBatch</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Paths</span>;
 
-$sqs = <span class="hljs-keyword">new</span> SqsClient();
+$cloudFront = <span class="hljs-keyword">new</span> CloudFrontClient();
 
-$queueUrl = $sqs-&gt;getQueueUrl(<span class="hljs-keyword">new</span> GetQueueUrlRequest([
-    <span class="hljs-string">'QueueName'</span> =&gt; <span class="hljs-string">'invoices-queue'</span>,
-]))-&gt;getQueueUrl();
-
-$result = $sqs-&gt;sendMessage(<span class="hljs-keyword">new</span> SendMessageRequest([
-    <span class="hljs-string">'QueueUrl'</span> =&gt; $queueUrl,
-    <span class="hljs-string">'MessageBody'</span> =&gt; <span class="hljs-string">'invoiceId: 1337'</span>,
-]));
-
-<span class="hljs-keyword">echo</span> $result-&gt;getMessageId();</code></pre>
-<h3 id="receive-messages">Receive Messages<a href="#receive-messages" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ChangeMessageVisibilityRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteMessageRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetQueueUrlRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ReceiveMessageRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
-
-$sqs = <span class="hljs-keyword">new</span> SqsClient();
-
-$queueUrl = $sqs-&gt;getQueueUrl(<span class="hljs-keyword">new</span> GetQueueUrlRequest([
-    <span class="hljs-string">'QueueName'</span> =&gt; <span class="hljs-string">'invoices-queue'</span>,
-]))-&gt;getQueueUrl();
-
-$result = $sqs-&gt;receiveMessage(<span class="hljs-keyword">new</span> ReceiveMessageRequest([
-    <span class="hljs-string">'QueueUrl'</span> =&gt; $queueUrl,
-    <span class="hljs-string">'WaitTimeSeconds'</span> =&gt; <span class="hljs-number">20</span>,
-    <span class="hljs-string">'MaxNumberOfMessages'</span> =&gt; <span class="hljs-number">5</span>,
-]));
-<span class="hljs-keyword">foreach</span> ($result-&gt;getMessages() <span class="hljs-keyword">as</span> $message) {
-    <span class="hljs-keyword">try</span> {
-        <span class="hljs-comment">// Do something with message</span>
-        <span class="hljs-comment">// ...</span>
-
-        <span class="hljs-comment">// When finished, delete the message</span>
-        $sqs-&gt;deleteMessage(<span class="hljs-keyword">new</span> DeleteMessageRequest([
-            <span class="hljs-string">'QueueUrl'</span> =&gt; $queueUrl,
-            <span class="hljs-string">'ReceiptHandle'</span> =&gt; $message-&gt;getReceiptHandle(),
-        ]));
-    } <span class="hljs-keyword">catch</span> (\<span class="hljs-keyword">Exception</span> $e) {
-        <span class="hljs-comment">// Optional : Set the visibility to 0 to be instantaneously requeued</span>
-        $sqs-&gt;changeMessageVisibility(<span class="hljs-keyword">new</span> ChangeMessageVisibilityRequest([
-            <span class="hljs-string">'QueueUrl'</span> =&gt; $queueUrl,
-            <span class="hljs-string">'ReceiptHandle'</span> =&gt; $message-&gt;getReceiptHandle(),
-            <span class="hljs-string">'VisibilityTimeout'</span> =&gt; <span class="hljs-number">0</span>,
-        ]));
-    }
-}</code></pre>
+$paths = [<span class="hljs-string">'/assets/images/cat.jpg'</span>, <span class="hljs-string">'/image/*'</span>];
+$cloudFront-&gt;createInvalidation([
+    <span class="hljs-string">'DistributionId'</span> =&gt; <span class="hljs-string">'EQ44GEF5FAALL'</span>,
+    <span class="hljs-string">'InvalidationBatch'</span> =&gt; <span class="hljs-keyword">new</span> InvalidationBatch([
+        <span class="hljs-string">'Paths'</span> =&gt; <span class="hljs-keyword">new</span> Paths([
+            <span class="hljs-string">'Quantity'</span> =&gt; count($paths),
+            <span class="hljs-string">'Items'</span> =&gt; $paths,
+        ]),
+        <span class="hljs-string">'CallerReference'</span> =&gt; time(),
+    ]),
+]);</code></pre>
 
     </main>
 </div>
