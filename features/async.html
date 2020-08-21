@@ -275,10 +275,7 @@
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
     <h1 id="how-to-work-asynchronous">How to work asynchronous</h1>
-<p>Asynchronous stuff can be confusing and because of that it is normal to try to stay
-away from it. But hopefully, using this library will straight forward. The goal is
-to always be "async first" but developers don't have to care about async if they
-don't want to.</p>
+<p>Asynchronous stuff can be confusing, and because of that, it is reasonable to try to stay away from it. But hopefully, using this library will be straightforward. The goal is always to be "async first," but developers don't have to care about async if they don't want to.</p>
 <h2 id="normal-use-cases">Normal use cases<a href="#normal-use-cases" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Let's show some examples to better understand how this library works.</p>
 <h3 id="ignoring-results">Ignoring results<a href="#ignoring-results" title="Permalink to this headline" class="headerlink">¶</a></h3>
@@ -355,10 +352,9 @@ for more information.</p>
 <pre><code class="language-diff hljs">     $result = $sqs-&gt;sendMessage($input);
 <span class="hljs-addition">+    $result-&gt;resolve();</span></code></pre>
 <h2 id="advanced-use-cases">Advanced use cases<a href="#advanced-use-cases" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>The normal use cases covers 90% of all code. Let's dig in to the advanced stuff.</p>
+<p>The common use cases covers 90% of all code. Let's dig in to the advanced stuff.</p>
 <h3 id="using-resolve-function">Using resolve-function<a href="#using-resolve-function" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>The <code>$result-&gt;resolve()</code> function is making sure the request is executed. There is
-normally no point in using this function, but in some scenarios it may be handy.</p>
+<p>The <code>$result-&gt;resolve()</code> function is making sure the request is executed. There is normally no point in using this function, but it may be handy in some scenarios.</p>
 <p>Calling this function with no arguments will either return <code>true</code> or throw an exception.
 If the function is called again, it will give you the same output without contacting
 the remote server again.</p>
