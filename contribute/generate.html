@@ -301,6 +301,7 @@ is an example for DynamoDB.</p>
 <li>Look at the official SDK for resources in <code>./src/data</code>. (<a href="https://github.com/aws/aws-sdk-php/tree/3.133.23/src/data/dynamodb/2012-08-10">DynamoDB example</a>)</li>
 <li>Add a link to <code>source</code>, and, if the files exists, links to <code>documentation</code>, <code>example</code>, <code>pagination</code>, <code>waiter</code> etc.</li>
 <li>Leave the <code>methods</code> key empty. (<code>"methods": []</code>)</li>
+<li>Provide the base URL to the AWS API reference (use <a href="https://docs.aws.amazon.com/">AWS</a> or <a href="https://www.google.com/search?q=dynamodb+api+reference">Google</a>)</li>
 </ol></li>
 <li>Configure the autoload section of <code>./composer.json</code> to include the new service (<code>"AsyncAws\\DynamoDb\\": "src/Service/DynamoDb/src"</code>)</li>
 <li>Do the same thing with the autoload-dev section of <code>./composer.json</code>.</li>
