@@ -66,12 +66,22 @@
                     </li>
                                     <li>
                         <a href="/clients/cloud-watch-logs.html">
-                            Cloud Watch Log
+                            CloudWatch Logs
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/clients/code-deploy.html">
+                            CodeDeploy
                         </a>
                     </li>
                                     <li>
                         <a href="/clients/cognito-idp.html">
                             Cognito Identity provider
+                        </a>
+                    </li>
+                                    <li>
+                        <a href="/clients/event-bridge.html">
+                            EventBridge
                         </a>
                     </li>
                                     <li>
@@ -304,8 +314,8 @@ $logger-&gt;error(<span class="hljs-string">'an error occurred'</span>);</code><
 <p>For the <code>$options</code> parameter, the allowed values are:</p>
 <ul>
 <li><code>batchSize</code> (default <code>10000</code>): number of log records that are pushed to CloudWatch in a single call. This number cannot exceed 10,000.</li>
-<li><code>group</code>: name of the CloudWatch Log Group which was created previously</li>
-<li><code>stream</code>: name of the CloudWatch Log Stream which was created previously</li>
+<li><code>group</code>: name of the CloudWatch Logs Group which was created previously</li>
+<li><code>stream</code>: name of the CloudWatch Logs Stream which was created previously</li>
 </ul>
 <h2 id="symfony-usage">Symfony usage<a href="#symfony-usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>To ease service configuration, install the <a href="./symfony-bundle.html">AsyncAws Symfony Bundle</a> first.</p>

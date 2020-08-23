@@ -59,7 +59,7 @@
                             Cloud Formation
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/cloud-front.html">
                             CloudFront
                         </a>
@@ -69,7 +69,7 @@
                             CloudWatch Logs
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/code-deploy.html">
                             CodeDeploy
                         </a>
@@ -284,35 +284,33 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>CloudFront client</h1>
+    <h1>CodeDeploy client</h1>
 
-    <p>This page contains some example usage for CloudFront. There are other
+    <p>This page contains some example usage for CodeDeploy. There are other
         resources that explain <a href="/authentication/">authentication</a> and
         <a href="/clients/">configuration</a>.</p>
 
-    <p>The CloudFront package could be installed with Composer.</p>
+    <p>The CodeDeploy package could be installed with Composer.</p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/cloud-front</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/code-deploy</code></pre>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="invalidate-paths">Invalidate paths<a href="#invalidate-paths" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">CloudFrontClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">InvalidationBatch</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Paths</span>;
+<h3 id="sets-the-result-of-a-lambda-validation-function">Sets the result of a Lambda validation function<a href="#sets-the-result-of-a-lambda-validation-function" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">CodeDeployClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">LifecycleEventStatus</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutLifecycleEventHookExecutionStatusInput</span>;
 
-$cloudFront = <span class="hljs-keyword">new</span> CloudFrontClient();
+$codeDeploy = <span class="hljs-keyword">new</span> CodeDeployClient();
 
-$paths = [<span class="hljs-string">'/assets/images/cat.jpg'</span>, <span class="hljs-string">'/image/*'</span>];
-$cloudFront-&gt;createInvalidation([
-    <span class="hljs-string">'DistributionId'</span> =&gt; <span class="hljs-string">'EQ44GEF5FAALL'</span>,
-    <span class="hljs-string">'InvalidationBatch'</span> =&gt; <span class="hljs-keyword">new</span> InvalidationBatch([
-        <span class="hljs-string">'Paths'</span> =&gt; <span class="hljs-keyword">new</span> Paths([
-            <span class="hljs-string">'Quantity'</span> =&gt; count($paths),
-            <span class="hljs-string">'Items'</span> =&gt; $paths,
-        ]),
-        <span class="hljs-string">'CallerReference'</span> =&gt; time(),
-    ]),
-]);</code></pre>
+$event = []; <span class="hljs-comment">// fetched from lambda</span>
+
+$status = $codeDeploy-&gt;putLifecycleEventHookExecutionStatus(<span class="hljs-keyword">new</span> PutLifecycleEventHookExecutionStatusInput([
+    <span class="hljs-string">'deploymentId'</span> =&gt; $event[<span class="hljs-string">'deploymentId'</span>],
+    <span class="hljs-string">'lifecycleEventHookExecutionId'</span> =&gt; $event[<span class="hljs-string">'lifecycleEventHookExecutionId'</span>],
+    <span class="hljs-string">'status'</span> =&gt; LifecycleEventStatus::SUCCEEDED
+]));
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'ExecutionId: '</span>. $status-&gt;getLifecycleEventHookExecutionId();</code></pre>
 
     </main>
 </div>

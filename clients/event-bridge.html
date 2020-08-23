@@ -59,7 +59,7 @@
                             Cloud Formation
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/cloud-front.html">
                             CloudFront
                         </a>
@@ -79,7 +79,7 @@
                             Cognito Identity provider
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/event-bridge.html">
                             EventBridge
                         </a>
@@ -284,35 +284,36 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>CloudFront client</h1>
+    <h1>EventBridge client</h1>
 
-    <p>This page contains some example usage for CloudFront. There are other
+    <p>This page contains some example usage for EventBridge. There are other
         resources that explain <a href="/authentication/">authentication</a> and
         <a href="/clients/">configuration</a>.</p>
 
-    <p>The CloudFront package could be installed with Composer.</p>
+    <p>The EventBridge package could be installed with Composer.</p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/cloud-front</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/event-bridge</code></pre>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="invalidate-paths">Invalidate paths<a href="#invalidate-paths" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">CloudFrontClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">InvalidationBatch</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Paths</span>;
+<h3 id="sends-custom-events">Sends custom events<a href="#sends-custom-events" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutEventsRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">PutEventsRequestEntry</span>;
 
-$cloudFront = <span class="hljs-keyword">new</span> CloudFrontClient();
+$eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient();
 
-$paths = [<span class="hljs-string">'/assets/images/cat.jpg'</span>, <span class="hljs-string">'/image/*'</span>];
-$cloudFront-&gt;createInvalidation([
-    <span class="hljs-string">'DistributionId'</span> =&gt; <span class="hljs-string">'EQ44GEF5FAALL'</span>,
-    <span class="hljs-string">'InvalidationBatch'</span> =&gt; <span class="hljs-keyword">new</span> InvalidationBatch([
-        <span class="hljs-string">'Paths'</span> =&gt; <span class="hljs-keyword">new</span> Paths([
-            <span class="hljs-string">'Quantity'</span> =&gt; count($paths),
-            <span class="hljs-string">'Items'</span> =&gt; $paths,
-        ]),
-        <span class="hljs-string">'CallerReference'</span> =&gt; time(),
-    ]),
-]);</code></pre>
+$events = $eventBridge-&gt;putEvents(<span class="hljs-keyword">new</span> PutEventsRequest([
+    <span class="hljs-string">'Entries'</span> =&gt; [
+        <span class="hljs-keyword">new</span> PutEventsRequestEntry([
+            <span class="hljs-string">'EventBusName'</span> =&gt; <span class="hljs-string">'marketing'</span>,
+            <span class="hljs-string">'Source'</span> =&gt; <span class="hljs-string">'acme.newsletter.campaign'</span>,
+            <span class="hljs-string">'DetailType'</span> =&gt; <span class="hljs-string">'UserSignUp'</span>,
+            <span class="hljs-string">'Detail'</span> =&gt; json_encode([<span class="hljs-string">'email'</span> =&gt; $userEmail]),
+        ])
+    ],
+]));
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'Sent '</span>. count($events-&gt;getEntries()) . <span class="hljs-string">' events, with '</span> . $events-&gt;getFailedEntryCount() . <span class="hljs-string">' failures'</span>;</code></pre>
 
     </main>
 </div>
