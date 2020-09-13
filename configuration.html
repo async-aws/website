@@ -309,6 +309,13 @@ they are used for.</p>
 <p><strong>Note</strong>: Region can also be defined by providing a <code>@region</code> parameter in
 operation's input</p>
 </blockquote>
+<h3 id="debug">debug<a href="#debug" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<p><strong>Default:</strong> 'false'</p>
+<p>When this is set to <code>true</code> we will write the full HTTP request and response as
+an <code>debug</code> log entry. Make sure you pass a logger to the <code>Client</code>.</p>
+<blockquote>
+<p><strong>Note</strong>: This will have an negative impact on performance.</p>
+</blockquote>
 <h3 id="profile">profile<a href="#profile" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> 'default'</p>
 <p>The name of the AWS Profile configured when using <a href="/authentication/credentials-file.html">credential and configuration files</a>
