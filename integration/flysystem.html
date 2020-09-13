@@ -285,7 +285,12 @@
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
     <h1 id="flysystem-integration">Flysystem integration</h1>
-<p>The Flysystem integration supports both Flysystem version 1 and version 2.</p>
+<p><a href="https://flysystem.thephpleague.com/v2/docs/">Flysystem</a> is a great abstraction over
+different types of filesystems. Flysystem uses "adapters" internally to communicate
+with the actual filesystem implementation. They have adapters for local disk, FTP,
+in-memory etc.</p>
+<p>This package is a Flysystem adapter for S3 using AsyncAws. The integration supports
+both Flysystem version 1 and version 2.</p>
 <h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/flysystem-s3</code></pre>
 <h2 id="use">Use<a href="#use" title="Permalink to this headline" class="headerlink">¶</a></h2>
@@ -308,6 +313,11 @@ $filesystem-&gt;deleteDirectory(<span class="hljs-string">'dir'</span>);
 $lastModified = $filesystem-&gt;lastModified(<span class="hljs-string">'path.txt'</span>);
 $mimeType = $filesystem-&gt;mimeType(<span class="hljs-string">'path.txt'</span>);
 $fileSize = $filesystem-&gt;fileSize(<span class="hljs-string">'path.txt'</span>);</code></pre>
+<h2 id="large-file-uploads">Large file uploads<a href="#large-file-uploads" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>AWS S3 has a limit of how large files you can upload. No files can be larger than
+5GB. If you need to upload larger files you must use the much more complex "MultipartUpload".</p>
+<p>Using Flysystem V2 with <a href="./simple-s3.html">Simple S3</a> will practically increase this
+limit to 640GB.</p>
 
     </main>
 </div>
