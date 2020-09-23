@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -104,7 +104,7 @@
                             RdsDataService
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/rekognition.html">
                             Rekognition
                         </a>
@@ -208,7 +208,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
-                    <ul class="collapse list-unstyled show" id="authentication">
+                    <ul class="collapse list-unstyled " id="authentication">
                                                     <li>
                         <a href="/authentication/">
                             Overview
@@ -229,7 +229,7 @@
                             ECS container metadata
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/authentication/environment.html">
                             Environment variables
                         </a>
@@ -289,19 +289,75 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="using-credentials-from-environment-variables">Using Credentials from Environment Variables</h1>
-<p>AsyncAws recognize Env variables that are used by most official AWS tools and SDK.</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># The access key for your AWS account.</span>
-<span class="hljs-built_in">export</span> AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+    <h1>Rekognition client</h1>
 
-<span class="hljs-comment"># The secret access key for your AWS account.</span>
-<span class="hljs-built_in">export</span> AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY</code></pre>
-<blockquote>
-<p><strong>Note</strong>: You cannot mix env variables with configuration config with hard-coded configuration.</p>
-</blockquote>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
+    <p>This page contains some example usage for Rekognition. There are other
+        resources that explain <a href="/authentication/">authentication</a> and
+        <a href="/clients/">configuration</a>.</p>
 
-$client = <span class="hljs-keyword">new</span> AwsClientFactory();</code></pre>
+    <p>The Rekognition package could be installed with Composer.</p>
+
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/rekognition</code></pre>
+
+    <p>The client supports the basics methods for common use cases of facial recognition</p>
+<h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="create-collections">Create Collections<a href="#create-collections" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<p>Creating collection is a way to split your rekognition workflows into bags with
+is own characteristics, for easy searching:</p>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">RekognitionClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateCollectionRequest</span>;
+
+$rekognition = <span class="hljs-keyword">new</span> RekognitionClient();
+
+$request = <span class="hljs-keyword">new</span> CreateCollectionRequest([
+    <span class="hljs-string">"collectionId"</span> =&gt; <span class="hljs-string">"dogs-collection"</span>,
+]);
+
+$response = $rekognition-&gt;createCollection($request);
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'Version: '</span> . $response-&gt;getFaceModelVersion();</code></pre>
+<h3 id="add-faces-to-a-collection">Add faces to a collection<a href="#add-faces-to-a-collection" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<p>If you want to add faces from an image into a collection you will use the method
+indexFaces.</p>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">RekognitionClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">IndexFacesRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Image</span>;
+
+$rekognition = <span class="hljs-keyword">new</span> RekognitionClient();
+
+$addFacesRequest = <span class="hljs-keyword">new</span> IndexFacesRequest(
+    [
+        <span class="hljs-string">'Image'</span> =&gt; <span class="hljs-keyword">new</span> Image([<span class="hljs-string">'Bytes'</span> =&gt; file_get_contents(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">'/resources/snoopy.jpg'</span>)]),
+        <span class="hljs-string">'CollectionId'</span> =&gt; <span class="hljs-string">'dogs-collection'</span>,
+        <span class="hljs-string">'ExternalImageId'</span> =&gt; <span class="hljs-string">'snoopy_1'</span>,
+    ]
+);
+
+<span class="hljs-keyword">foreach</span> ($rekognition-&gt;indexFaces($addFacesRequest)-&gt;getFaceRecords() <span class="hljs-keyword">as</span> $faceRecord) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'face: '</span> . $faceRecord-&gt;getFace()-&gt;getFaceId() . <span class="hljs-string">' ('</span> . $faceRecord-&gt;getFace()-&gt;getConfidence() . <span class="hljs-string">'%)'</span>;
+}</code></pre>
+<h3 id="search-for-a-face-inside-a-collection">Search for a face inside a collection<a href="#search-for-a-face-inside-a-collection" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<p>When you want to search a face inside a collection with an image you will use
+the method searchFacesByImage.</p>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">RekognitionClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">searchFacesByImageRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Image</span>;
+
+$rekognition = <span class="hljs-keyword">new</span> RekognitionClient();
+
+$addFacesRequest = <span class="hljs-keyword">new</span> SearchFacesByImageRequest(
+    [
+        <span class="hljs-string">'image'</span> =&gt; <span class="hljs-keyword">new</span> Image([<span class="hljs-string">'Bytes'</span> =&gt; file_get_contents(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">'/resources/snoopy.jpg'</span>)]),
+        <span class="hljs-string">'faceMatchThreshold'</span> =&gt; <span class="hljs-number">75.5</span>,
+        <span class="hljs-string">'collectionId'</span> =&gt; <span class="hljs-string">'dogs-collection'</span>,
+    ]
+);
+
+$response = $rekognition-&gt;searchFacesByImage($addFacesRequest)-&gt;getSearchedFaceBoundingBox();
+
+<span class="hljs-keyword">foreach</span> ($rekognition-&gt;searchFacesByImage($addFacesRequest)-&gt;getFaceMatches() <span class="hljs-keyword">as</span> $faceMatch) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'face: '</span> . $faceMatch-&gt;getFace()-&gt;getFaceId() . <span class="hljs-string">' ('</span> . $faceMatch-&gt;getFace()-&gt;getConfidence() . <span class="hljs-string">'%)'</span>;
+}</code></pre>
 
     </main>
 </div>
