@@ -304,6 +304,7 @@
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendEmailRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">SesClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Body</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Content</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Destination</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">EmailContent</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Message</span>;
@@ -314,9 +315,9 @@ $result = $ses-&gt;sendEmail(<span class="hljs-keyword">new</span> SendEmailRequ
     <span class="hljs-string">'FromEmailAddress'</span> =&gt; <span class="hljs-string">'invoice-bot@my-company.com'</span>,
     <span class="hljs-string">'Content'</span> =&gt; <span class="hljs-keyword">new</span> EmailContent([
         <span class="hljs-string">'Simple'</span> =&gt; <span class="hljs-keyword">new</span> Message([
-            <span class="hljs-string">'Subject'</span> =&gt; <span class="hljs-string">'New Invoice'</span>,
+            <span class="hljs-string">'Subject'</span> =&gt; <span class="hljs-keyword">new</span> Content([<span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'New Invoice'</span>]),
             <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-keyword">new</span> Body([
-                <span class="hljs-string">'Text'</span> =&gt; <span class="hljs-string">'A new invoice is available'</span>,
+                <span class="hljs-string">'Text'</span> =&gt; <span class="hljs-keyword">new</span> Content([<span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'A new invoice is available'</span>]),
             ]),
         ]),
     ]),
