@@ -59,7 +59,7 @@
                             Cloud Formation
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/cloud-front.html">
                             CloudFront
                         </a>
@@ -79,7 +79,7 @@
                             Cognito Identity provider
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/ecr.html">
                             ECR
                         </a>
@@ -294,35 +294,32 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>CloudFront client</h1>
+    <h1>ECR client</h1>
 
-    <p>This page contains some example usage for CloudFront. There are other
+    <p>This page contains some example usage for ECR. There are other
         resources that explain <a href="/authentication/">authentication</a> and
         <a href="/clients/">configuration</a>.</p>
 
-    <p>The CloudFront package could be installed with Composer.</p>
+    <p>The ECR package could be installed with Composer.</p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/cloud-front</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/ecr</code></pre>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="invalidate-paths">Invalidate paths<a href="#invalidate-paths" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">CloudFrontClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">InvalidationBatch</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Paths</span>;
+<h3 id="invoke-a-function">Invoke a function<a href="#invoke-a-function" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ecr</span>\<span class="hljs-title">EcrClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ecr</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetAuthorizationTokenRequest</span>;
 
-$cloudFront = <span class="hljs-keyword">new</span> CloudFrontClient();
+$ecr = <span class="hljs-keyword">new</span> EcrClient();
 
-$paths = [<span class="hljs-string">'/assets/images/cat.jpg'</span>, <span class="hljs-string">'/image/*'</span>];
-$cloudFront-&gt;createInvalidation([
-    <span class="hljs-string">'DistributionId'</span> =&gt; <span class="hljs-string">'EQ44GEF5FAALL'</span>,
-    <span class="hljs-string">'InvalidationBatch'</span> =&gt; <span class="hljs-keyword">new</span> InvalidationBatch([
-        <span class="hljs-string">'Paths'</span> =&gt; <span class="hljs-keyword">new</span> Paths([
-            <span class="hljs-string">'Quantity'</span> =&gt; count($paths),
-            <span class="hljs-string">'Items'</span> =&gt; $paths,
-        ]),
-        <span class="hljs-string">'CallerReference'</span> =&gt; time(),
-    ]),
-]);</code></pre>
+$authorizationToken = $ecr-&gt;getAuthorizationToken(<span class="hljs-keyword">new</span> GetAuthorizationTokenRequest([
+    <span class="hljs-string">'registryIds'</span> =&gt; <span class="hljs-string">'000000000000'</span>,
+]));
+
+<span class="hljs-keyword">foreach</span> ($authorizationToken-&gt;getAuthorizationData() <span class="hljs-keyword">as</span> $authorizationData) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Authorization Token: '</span>.$authorizationData-&gt;getAuthorizationToken().PHP_EOL;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Expires At: '</span>.$authorizationData-&gt;getExpiresAt()-&gt;format(<span class="hljs-string">'Y-m-d H:i:s'</span>).PHP_EOL;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Proxy Endpoint: '</span>.$authorizationData-&gt;getProxyEndpoint().PHP_EOL;
+}</code></pre>
 
     </main>
 </div>
