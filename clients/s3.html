@@ -296,13 +296,45 @@
     
     <h1>S3 client</h1>
 
-    <p>This page contains some example usage for S3. There are other
-        resources that explain <a href="/authentication/">authentication</a> and
-        <a href="/clients/">configuration</a>.</p>
-
-    <p>The S3 package could be installed with Composer.</p>
+    <p>
+        This page contains examples with the S3 client. See the
+        <a href="/clients/">client introduction</a> for a more detailed description
+        how to use a client. You may also want to consider the
+        <a href="/authentication/">authentication</a> documentation to understand
+        the many ways you can authenticate with AWS.
+    </p>
+    <p>
+        The S3 package could be installed with Composer.
+    </p>
 
     <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/s3</code></pre>
+
+    
+    <p>
+        A new client object may be instantiated by:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+
+$s3 = <span class="hljs-keyword">new</span> S3Client();
+</code></pre>
+
+    <p>
+        The authentication parameters is read from the environment by default.
+        You can also specify a AWS access id and secret:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+
+$s3 = <span class="hljs-keyword">new</span> S3Client([
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+]);</code></pre>
+
+    <p>
+        For all available options, see the <a href="/configuration.html">configuration reference</a>.
+    </p>
 
     <p>The client supports presign of requests to be able to pass the URL to a normal mortal
 person so they can download a file within the next X minutes. Read more about presign
@@ -406,6 +438,12 @@ the <code>S3Client</code> with your endpoint.</p>
     <span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-keyword">true</span>,
 ]);</code></pre>
 
+    <hr style="margin-top:6rem; margin-bottom:3rem;">
+
+    <p>
+        The source code to this page is found on
+        <a href="https://github.com/async-aws/aws/tree/master/docs/clients">GitHub</a>.
+    </p>
     </main>
 </div>
 <a href="https://github.com/async-aws/aws" class="contribute" aria-label="View source on GitHub">
