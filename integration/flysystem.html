@@ -300,15 +300,15 @@ different types of filesystems. Flysystem uses "adapters" internally to communic
 with the actual filesystem implementation. They have adapters for local disk, FTP,
 in-memory etc.</p>
 <p>This package is a Flysystem adapter for S3 using AsyncAws. The integration supports
-both Flysystem version 1 and version 2.</p>
+only Flysystem version 1. Flysystem version 2 has an <a href="https://flysystem.thephpleague.com/v2/docs/adapter/async-aws-s3/">official AsyncAws adapter</a>.</p>
 <h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/flysystem-s3</code></pre>
 <h2 id="use">Use<a href="#use" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">League</span>\<span class="hljs-title">Flysystem</span>\<span class="hljs-title">Filesystem</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Flysystem</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3FilesystemV2</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Flysystem</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">AsyncAwsS3Adapter</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-$adapter = <span class="hljs-keyword">new</span> S3FilesystemV2(<span class="hljs-keyword">new</span> S3Client(), <span class="hljs-string">'bucket'</span>);
+$adapter = <span class="hljs-keyword">new</span> AsyncAwsS3Adapter(<span class="hljs-keyword">new</span> S3Client(), <span class="hljs-string">'bucket'</span>);
 $filesystem = <span class="hljs-keyword">new</span> Filesystem($adapter);
 $resource = tmpfile();
 
@@ -323,11 +323,6 @@ $filesystem-&gt;deleteDirectory(<span class="hljs-string">'dir'</span>);
 $lastModified = $filesystem-&gt;lastModified(<span class="hljs-string">'path.txt'</span>);
 $mimeType = $filesystem-&gt;mimeType(<span class="hljs-string">'path.txt'</span>);
 $fileSize = $filesystem-&gt;fileSize(<span class="hljs-string">'path.txt'</span>);</code></pre>
-<h2 id="large-file-uploads">Large file uploads<a href="#large-file-uploads" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>AWS S3 has a limit of how large files you can upload. No files can be larger than
-5GB. If you need to upload larger files you must use the much more complex "MultipartUpload".</p>
-<p>Using Flysystem V2 with <a href="./simple-s3.html">Simple S3</a> will practically increase this
-limit to 640GB.</p>
 
     </main>
 </div>
