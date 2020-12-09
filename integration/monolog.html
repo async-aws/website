@@ -303,16 +303,16 @@
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Monolog</span>\<span class="hljs-title">CloudWatch</span>\<span class="hljs-title">CloudWatchLogsHandler</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Monolog</span>\<span class="hljs-title">Logger</span>;
 
-$client = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
+<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
 
-$handler = <span class="hljs-keyword">new</span> CloudWatchLogsHandler($client, [
+<span class="hljs-variable">$handler</span> = <span class="hljs-keyword">new</span> CloudWatchLogsHandler(<span class="hljs-variable">$client</span>, [
     <span class="hljs-string">'group'</span> =&gt; <span class="hljs-string">'company-website'</span>,
     <span class="hljs-string">'stream'</span> =&gt; <span class="hljs-string">'frontend-api'</span>,
 ]);
 
-$logger = <span class="hljs-keyword">new</span> Logger(<span class="hljs-string">'logger'</span>);
-$logger-&gt;pushHandler($handler);
-$logger-&gt;error(<span class="hljs-string">'an error occurred'</span>);</code></pre>
+<span class="hljs-variable">$logger</span> = <span class="hljs-keyword">new</span> Logger(<span class="hljs-string">'logger'</span>);
+<span class="hljs-variable">$logger</span>-&gt;pushHandler(<span class="hljs-variable">$handler</span>);
+<span class="hljs-variable">$logger</span>-&gt;error(<span class="hljs-string">'an error occurred'</span>);</code></pre>
 <h2 id="configuration">Configuration<a href="#configuration" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>The CloudWatchLogsHandler accepts the following parameters:</p>
 <ul>
@@ -373,7 +373,7 @@ integration to work properly.</p>
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

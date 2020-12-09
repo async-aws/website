@@ -341,16 +341,16 @@ $eCR = <span class="hljs-keyword">new</span> ECRClient([
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ecr</span>\<span class="hljs-title">EcrClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ecr</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetAuthorizationTokenRequest</span>;
 
-$ecr = <span class="hljs-keyword">new</span> EcrClient();
+<span class="hljs-variable">$ecr</span> = <span class="hljs-keyword">new</span> EcrClient();
 
-$authorizationToken = $ecr-&gt;getAuthorizationToken(<span class="hljs-keyword">new</span> GetAuthorizationTokenRequest([
+<span class="hljs-variable">$authorizationToken</span> = <span class="hljs-variable">$ecr</span>-&gt;getAuthorizationToken(<span class="hljs-keyword">new</span> GetAuthorizationTokenRequest([
     <span class="hljs-string">'registryIds'</span> =&gt; <span class="hljs-string">'000000000000'</span>,
 ]));
 
-<span class="hljs-keyword">foreach</span> ($authorizationToken-&gt;getAuthorizationData() <span class="hljs-keyword">as</span> $authorizationData) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Authorization Token: '</span>.$authorizationData-&gt;getAuthorizationToken().PHP_EOL;
-    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Expires At: '</span>.$authorizationData-&gt;getExpiresAt()-&gt;format(<span class="hljs-string">'Y-m-d H:i:s'</span>).PHP_EOL;
-    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Proxy Endpoint: '</span>.$authorizationData-&gt;getProxyEndpoint().PHP_EOL;
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$authorizationToken</span>-&gt;getAuthorizationData() <span class="hljs-keyword">as</span> <span class="hljs-variable">$authorizationData</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Authorization Token: '</span>.<span class="hljs-variable">$authorizationData</span>-&gt;getAuthorizationToken().PHP_EOL;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Expires At: '</span>.<span class="hljs-variable">$authorizationData</span>-&gt;getExpiresAt()-&gt;format(<span class="hljs-string">'Y-m-d H:i:s'</span>).PHP_EOL;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Proxy Endpoint: '</span>.<span class="hljs-variable">$authorizationData</span>-&gt;getProxyEndpoint().PHP_EOL;
 }</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
@@ -370,7 +370,7 @@ $authorizationToken = $ecr-&gt;getAuthorizationToken(<span class="hljs-keyword">
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

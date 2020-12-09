@@ -349,43 +349,43 @@ before uploading. You want to do it a smarter way. AsyncAws allow you to upload
 files using a string, resource, closure or a iterable. See the following examples:</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-$s3 = <span class="hljs-keyword">new</span> S3Client();
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client();
 
 <span class="hljs-comment">// Upload plain text</span>
-$s3-&gt;PutObject([
+<span class="hljs-variable">$s3</span>-&gt;PutObject([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'robots.txt'</span>,
     <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-string">"User-agent: *\nDisallow:"</span>,
 ]);
 
 <span class="hljs-comment">// Upload with stream</span>
-$resource = \fopen(<span class="hljs-string">'/path/to/big/file'</span>, <span class="hljs-string">'r'</span>);
-$s3-&gt;PutObject([
+<span class="hljs-variable">$resource</span> = \fopen(<span class="hljs-string">'/path/to/big/file'</span>, <span class="hljs-string">'r'</span>);
+<span class="hljs-variable">$s3</span>-&gt;PutObject([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file.jpg'</span>,
-    <span class="hljs-string">'Body'</span> =&gt; $resource,
+    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-variable">$resource</span>,
 ]);
 
 <span class="hljs-comment">// Upload with Closure</span>
-$fp = \fopen(<span class="hljs-string">'/path/to/big/file'</span>, <span class="hljs-string">'r'</span>);
-$s3-&gt;PutObject([
+<span class="hljs-variable">$fp</span> = \fopen(<span class="hljs-string">'/path/to/big/file'</span>, <span class="hljs-string">'r'</span>);
+<span class="hljs-variable">$s3</span>-&gt;PutObject([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file.jpg'</span>,
     <span class="hljs-string">'ContentLength'</span> =&gt; filesize(<span class="hljs-string">'/path/to/big/file'</span>), <span class="hljs-comment">// This is important</span>
-    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(int $length)</span> <span class="hljs-title">use</span> <span class="hljs-params">($fp)</span>: <span class="hljs-title">string</span> </span>{
-        <span class="hljs-keyword">return</span> fread($fp, $length);
+    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> <span class="hljs-variable">$length</span></span>) <span class="hljs-title">use</span> (<span class="hljs-params"><span class="hljs-variable">$fp</span></span>): <span class="hljs-title">string</span> </span>{
+        <span class="hljs-keyword">return</span> fread(<span class="hljs-variable">$fp</span>, <span class="hljs-variable">$length</span>);
     },
 ]);
 
 <span class="hljs-comment">// Upload with an iterable</span>
-$files = [<span class="hljs-string">'/path/to/file1.txt'</span>, <span class="hljs-string">'/path/to/file2.txt'</span>];
-$s3-&gt;PutObject([
+<span class="hljs-variable">$files</span> = [<span class="hljs-string">'/path/to/file1.txt'</span>, <span class="hljs-string">'/path/to/file2.txt'</span>];
+<span class="hljs-variable">$s3</span>-&gt;PutObject([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file_merged.jpg'</span>,
-    <span class="hljs-string">'ContentLength'</span> =&gt; array_sum(array_map(<span class="hljs-string">'filesize'</span>, $files)), <span class="hljs-comment">// This is important</span>
-    <span class="hljs-string">'Body'</span> =&gt; (<span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> <span class="hljs-title">use</span><span class="hljs-params">($files)</span>: <span class="hljs-title">iterable</span> </span>{
-        <span class="hljs-keyword">foreach</span> ($files <span class="hljs-keyword">as</span> $file) {
-            <span class="hljs-keyword">yield</span> file_get_contents($file);
+    <span class="hljs-string">'ContentLength'</span> =&gt; array_sum(array_map(<span class="hljs-string">'filesize'</span>, <span class="hljs-variable">$files</span>)), <span class="hljs-comment">// This is important</span>
+    <span class="hljs-string">'Body'</span> =&gt; (<span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) <span class="hljs-title">use</span>(<span class="hljs-params"><span class="hljs-variable">$files</span></span>): <span class="hljs-title">iterable</span> </span>{
+        <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$files</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$file</span>) {
+            <span class="hljs-keyword">yield</span> file_get_contents(<span class="hljs-variable">$file</span>);
         }
     })(),
 ]);</code></pre>
@@ -398,29 +398,29 @@ request which could have a performance impact.</p>
 can be used as a string, as a resource, or iterated over. This allows you to handle
 larger files without having them in memory.</p>
 <pre><code class="hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment">// download a file and use it directly as string</span>
-$result = $s3-&gt;GetObject([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$s3</span>-&gt;GetObject([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'metadata.json'</span>,
 ]);
-$metadata = json_decode($result-&gt;getBody()-&gt;getContentAsString());
+<span class="hljs-variable">$metadata</span> = json_decode(<span class="hljs-variable">$result</span>-&gt;getBody()-&gt;getContentAsString());
 
 <span class="hljs-comment">// download a big file and save it efficiently</span>
-$result = $s3-&gt;GetObject([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$s3</span>-&gt;GetObject([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'bunny.mkv'</span>,
 ]);
-$fp = fopen(<span class="hljs-string">'/path/to/big_file.mkv'</span>, <span class="hljs-string">'wb'</span>);
-stream_copy_to_stream($f-&gt;getBody()-&gt;getContentAsResource(), $fp);
+<span class="hljs-variable">$fp</span> = fopen(<span class="hljs-string">'/path/to/big_file.mkv'</span>, <span class="hljs-string">'wb'</span>);
+stream_copy_to_stream(<span class="hljs-variable">$f</span>-&gt;getBody()-&gt;getContentAsResource(), <span class="hljs-variable">$fp</span>);
 
 <span class="hljs-comment">// use an iterable to perform some business logic on chunks while downloading (or show a progress bar)</span>
-$result = $s3-&gt;GetObject([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$s3</span>-&gt;GetObject([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'orders.csv'</span>,
 ]);
-$fp = fopen(<span class="hljs-string">'/path/to/orders.csv'</span>, <span class="hljs-string">'wb'</span>);
-<span class="hljs-keyword">foreach</span> ($result-&gt;getBody()-&gt;getChunks() <span class="hljs-keyword">as</span> $chunk) {
-    fwrite($fp, $chunk);
-    $progress-&gt;advance();
+<span class="hljs-variable">$fp</span> = fopen(<span class="hljs-string">'/path/to/orders.csv'</span>, <span class="hljs-string">'wb'</span>);
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;getBody()-&gt;getChunks() <span class="hljs-keyword">as</span> <span class="hljs-variable">$chunk</span>) {
+    fwrite(<span class="hljs-variable">$fp</span>, <span class="hljs-variable">$chunk</span>);
+    <span class="hljs-variable">$progress</span>-&gt;advance();
 }</code></pre>
 <h2 id="virtual-hosted-style-requests">Virtual Hosted-Style Requests<a href="#virtual-hosted-style-requests" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>When calling AWS endpoints, AsyncAws uses <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html">Virtual Hosted-Style Requests</a>:
@@ -429,13 +429,13 @@ The bucket name is part of the endpoint's host. To change this behavior, and use
 initializing the client.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-$s3 = <span class="hljs-keyword">new</span> S3Client([<span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-keyword">true</span>]);</code></pre>
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([<span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-literal">true</span>]);</code></pre>
 <h2 id="non-aws-s3-endpoints">Non-AWS S3 endpoints<a href="#non-aws-s3-endpoints" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>To use the <code>S3Client</code> with example Digital Oceans' Spaces, you need to initialize
 the <code>S3Client</code> with your endpoint.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>$s3 = <span class="hljs-keyword">new</span> S3Client([
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([
     <span class="hljs-string">'endpoint'</span> =&gt; <span class="hljs-string">'https://fra1.digitaloceanspaces.com'</span>,
-    <span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-keyword">true</span>,
+    <span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-literal">true</span>,
 ]);</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
@@ -455,7 +455,7 @@ the <code>S3Client</code> with your endpoint.</p>
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

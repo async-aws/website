@@ -303,14 +303,14 @@
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
 
-$sqs = <span class="hljs-keyword">new</span> SqsClient();
+<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient();
 
-$input = <span class="hljs-keyword">new</span> SendMessageRequest();
-$input
+<span class="hljs-variable">$input</span> = <span class="hljs-keyword">new</span> SendMessageRequest();
+<span class="hljs-variable">$input</span>
     -&gt;setQueueUrl(<span class="hljs-string">'https://sqs.us-east-2.amazonaws.com/123456789012/invoice'</span>)
     -&gt;setMessageBody(<span class="hljs-string">'invoiceId: 1337'</span>);
 
-$sqs-&gt;sendMessage($input);</code></pre>
+<span class="hljs-variable">$sqs</span>-&gt;sendMessage(<span class="hljs-variable">$input</span>);</code></pre>
 <p>The HTTP request is sent and a HTTP response is received. Everything works as expected.</p>
 <p>A small bonus is that the full HTTP response is not downloaded. Only the first line
 with the status code is fetched from the server.</p>
@@ -319,16 +319,16 @@ with the status code is fetched from the server.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
 
-$sqs = <span class="hljs-keyword">new</span> SqsClient();
+<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient();
 
-$input = <span class="hljs-keyword">new</span> SendMessageRequest();
-$input
+<span class="hljs-variable">$input</span> = <span class="hljs-keyword">new</span> SendMessageRequest();
+<span class="hljs-variable">$input</span>
     -&gt;setQueueUrl(<span class="hljs-string">'https://sqs.us-east-2.amazonaws.com/123456789012/invoice'</span>)
     -&gt;setMessageBody(<span class="hljs-string">'invoiceId: 1337'</span>);
 
-$result = $sqs-&gt;sendMessage($input);
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sqs</span>-&gt;sendMessage(<span class="hljs-variable">$input</span>);
 
-<span class="hljs-keyword">echo</span> $result-&gt;getMessageId();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getMessageId();</code></pre>
 <p>The HTTP request is not actually sent until the properties on <code>$result</code> are accessed.
 On the first call to a getter, the HTTP response will be downloaded and the body
 will be parsed.</p>
@@ -338,20 +338,20 @@ will be parsed.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendSqsMessage</span><span class="hljs-params">($client)</span> </span>{
-    $input = <span class="hljs-keyword">new</span> SendMessageRequest();
-    $input
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendSqsMessage</span>(<span class="hljs-params"><span class="hljs-variable">$client</span></span>) </span>{
+    <span class="hljs-variable">$input</span> = <span class="hljs-keyword">new</span> SendMessageRequest();
+    <span class="hljs-variable">$input</span>
         -&gt;setQueueUrl(<span class="hljs-string">'https://sqs.us-east-2.amazonaws.com/123456789012/invoice'</span>)
         -&gt;setMessageBody(<span class="hljs-string">'invoiceId: 1337'</span>);
 
-    $result = $client-&gt;sendMessage($input);
+    <span class="hljs-variable">$result</span> = <span class="hljs-variable">$client</span>-&gt;sendMessage(<span class="hljs-variable">$input</span>);
 
     <span class="hljs-comment">// 100 lines of business logic</span>
     <span class="hljs-comment">// No line is using $result</span>
 }
 
-$sqs = <span class="hljs-keyword">new</span> SqsClient();
-sendSqsMessage($sqs);</code></pre>
+<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient();
+sendSqsMessage(<span class="hljs-variable">$sqs</span>);</code></pre>
 <p>In this example <code>$result</code> is never used. The HTTP request will be sent on <code>$result-&gt;__destruct()</code>.
 But that does not happen until the end of the block, after the 100 lines of business
 logic. This can be a bit confusing, especially when an exception is thrown.</p>
@@ -403,25 +403,25 @@ the HTTP client will wait until receiving the full response body.</p>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">LambdaClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">InvocationRequest</span>;
 
-$lambda = <span class="hljs-keyword">new</span> LambdaClient();
+<span class="hljs-variable">$lambda</span> = <span class="hljs-keyword">new</span> LambdaClient();
 
-$results = [];
-<span class="hljs-keyword">for</span> ($i = <span class="hljs-number">0</span>; $i &lt; <span class="hljs-number">10</span>; ++$i) {
-    $results[] = $lambda-&gt;invoke(<span class="hljs-keyword">new</span> InvocationRequest([
+<span class="hljs-variable">$results</span> = [];
+<span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; <span class="hljs-number">10</span>; ++<span class="hljs-variable">$i</span>) {
+    <span class="hljs-variable">$results</span>[] = <span class="hljs-variable">$lambda</span>-&gt;invoke(<span class="hljs-keyword">new</span> InvocationRequest([
         <span class="hljs-string">'FunctionName'</span> =&gt; <span class="hljs-string">'app-dev-hello_world'</span>,
-        <span class="hljs-string">'Payload'</span> =&gt; <span class="hljs-string">"{\"name\": $i}"</span>,
+        <span class="hljs-string">'Payload'</span> =&gt; <span class="hljs-string">"{\"name\": <span class="hljs-subst">$i</span>}"</span>,
     ]));
 }
 
-<span class="hljs-keyword">foreach</span> (Result::wait($results, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">true</span>) <span class="hljs-keyword">as</span> $result) {
-    <span class="hljs-keyword">echo</span> $result-&gt;getPayload();
+<span class="hljs-keyword">foreach</span> (Result::wait(<span class="hljs-variable">$results</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">true</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$result</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getPayload();
 }</code></pre>
 <p>The pseudo code at the lambda function:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($event)</span> </span>{
-    $rand = rand (<span class="hljs-number">1</span>, <span class="hljs-number">4</span>);
-    sleep($rand);
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable">$event</span></span>) </span>{
+    <span class="hljs-variable">$rand</span> = rand (<span class="hljs-number">1</span>, <span class="hljs-number">4</span>);
+    sleep(<span class="hljs-variable">$rand</span>);
 
-    <span class="hljs-keyword">return</span> <span class="hljs-string">'Name '</span> . ($event[<span class="hljs-string">'name'</span>]) . <span class="hljs-string">': '</span> . $rand . <span class="hljs-string">'s'</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'Name '</span> . (<span class="hljs-variable">$event</span>[<span class="hljs-string">'name'</span>]) . <span class="hljs-string">': '</span> . <span class="hljs-variable">$rand</span> . <span class="hljs-string">'s'</span>;
 };</code></pre>
 <p>The output will look like:</p>
 <pre><code class="language-text">Name 4: 1s
@@ -446,7 +446,7 @@ Name 1: 4s</code></pre>
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

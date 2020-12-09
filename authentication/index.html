@@ -326,13 +326,13 @@ credentials between each request.</p>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">SymfonyCacheProvider</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Symfony</span>\<span class="hljs-title">Component</span>\<span class="hljs-title">Cache</span>\<span class="hljs-title">Adapter</span>\<span class="hljs-title">FilesystemAdapter</span>;
 
-$provider = ChainProvider::createDefaultChain();
-$provider = <span class="hljs-keyword">new</span> SymfonyCacheProvider($provider, <span class="hljs-keyword">new</span> FilesystemAdapter(<span class="hljs-string">'test'</span>));
+<span class="hljs-variable">$provider</span> = ChainProvider::createDefaultChain();
+<span class="hljs-variable">$provider</span> = <span class="hljs-keyword">new</span> SymfonyCacheProvider(<span class="hljs-variable">$provider</span>, <span class="hljs-keyword">new</span> FilesystemAdapter(<span class="hljs-string">'test'</span>));
 
 <span class="hljs-comment">// optional, decorate the provider with the in-memory Cache provider</span>
-$provider = <span class="hljs-keyword">new</span> CacheProvider($provider);
+<span class="hljs-variable">$provider</span> = <span class="hljs-keyword">new</span> CacheProvider(<span class="hljs-variable">$provider</span>);
 
-$s3 = <span class="hljs-keyword">new</span> S3Client([], $provider);</code></pre>
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([], <span class="hljs-variable">$provider</span>);</code></pre>
 
     </main>
 </div>
@@ -345,7 +345,7 @@ $s3 = <span class="hljs-keyword">new</span> S3Client([], $provider);</code></pre
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

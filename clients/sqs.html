@@ -342,18 +342,18 @@ $sQS = <span class="hljs-keyword">new</span> SQSClient([
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 
-$sqs = <span class="hljs-keyword">new</span> SqsClient();
+<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient();
 
-$queueUrl = $sqs-&gt;getQueueUrl(<span class="hljs-keyword">new</span> GetQueueUrlRequest([
+<span class="hljs-variable">$queueUrl</span> = <span class="hljs-variable">$sqs</span>-&gt;getQueueUrl(<span class="hljs-keyword">new</span> GetQueueUrlRequest([
     <span class="hljs-string">'QueueName'</span> =&gt; <span class="hljs-string">'invoices-queue'</span>,
 ]))-&gt;getQueueUrl();
 
-$result = $sqs-&gt;sendMessage(<span class="hljs-keyword">new</span> SendMessageRequest([
-    <span class="hljs-string">'QueueUrl'</span> =&gt; $queueUrl,
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sqs</span>-&gt;sendMessage(<span class="hljs-keyword">new</span> SendMessageRequest([
+    <span class="hljs-string">'QueueUrl'</span> =&gt; <span class="hljs-variable">$queueUrl</span>,
     <span class="hljs-string">'MessageBody'</span> =&gt; <span class="hljs-string">'invoiceId: 1337'</span>,
 ]));
 
-<span class="hljs-keyword">echo</span> $result-&gt;getMessageId();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getMessageId();</code></pre>
 <h3 id="receive-messages">Receive Messages<a href="#receive-messages" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ChangeMessageVisibilityRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteMessageRequest</span>;
@@ -361,32 +361,32 @@ $result = $sqs-&gt;sendMessage(<span class="hljs-keyword">new</span> SendMessage
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ReceiveMessageRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 
-$sqs = <span class="hljs-keyword">new</span> SqsClient();
+<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient();
 
-$queueUrl = $sqs-&gt;getQueueUrl(<span class="hljs-keyword">new</span> GetQueueUrlRequest([
+<span class="hljs-variable">$queueUrl</span> = <span class="hljs-variable">$sqs</span>-&gt;getQueueUrl(<span class="hljs-keyword">new</span> GetQueueUrlRequest([
     <span class="hljs-string">'QueueName'</span> =&gt; <span class="hljs-string">'invoices-queue'</span>,
 ]))-&gt;getQueueUrl();
 
-$result = $sqs-&gt;receiveMessage(<span class="hljs-keyword">new</span> ReceiveMessageRequest([
-    <span class="hljs-string">'QueueUrl'</span> =&gt; $queueUrl,
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sqs</span>-&gt;receiveMessage(<span class="hljs-keyword">new</span> ReceiveMessageRequest([
+    <span class="hljs-string">'QueueUrl'</span> =&gt; <span class="hljs-variable">$queueUrl</span>,
     <span class="hljs-string">'WaitTimeSeconds'</span> =&gt; <span class="hljs-number">20</span>,
     <span class="hljs-string">'MaxNumberOfMessages'</span> =&gt; <span class="hljs-number">5</span>,
 ]));
-<span class="hljs-keyword">foreach</span> ($result-&gt;getMessages() <span class="hljs-keyword">as</span> $message) {
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;getMessages() <span class="hljs-keyword">as</span> <span class="hljs-variable">$message</span>) {
     <span class="hljs-keyword">try</span> {
         <span class="hljs-comment">// Do something with message</span>
         <span class="hljs-comment">// ...</span>
 
         <span class="hljs-comment">// When finished, delete the message</span>
-        $sqs-&gt;deleteMessage(<span class="hljs-keyword">new</span> DeleteMessageRequest([
-            <span class="hljs-string">'QueueUrl'</span> =&gt; $queueUrl,
-            <span class="hljs-string">'ReceiptHandle'</span> =&gt; $message-&gt;getReceiptHandle(),
+        <span class="hljs-variable">$sqs</span>-&gt;deleteMessage(<span class="hljs-keyword">new</span> DeleteMessageRequest([
+            <span class="hljs-string">'QueueUrl'</span> =&gt; <span class="hljs-variable">$queueUrl</span>,
+            <span class="hljs-string">'ReceiptHandle'</span> =&gt; <span class="hljs-variable">$message</span>-&gt;getReceiptHandle(),
         ]));
-    } <span class="hljs-keyword">catch</span> (\<span class="hljs-keyword">Exception</span> $e) {
+    } <span class="hljs-keyword">catch</span> (\<span class="hljs-built_in">Exception</span> <span class="hljs-variable">$e</span>) {
         <span class="hljs-comment">// Optional : Set the visibility to 0 to be instantaneously requeued</span>
-        $sqs-&gt;changeMessageVisibility(<span class="hljs-keyword">new</span> ChangeMessageVisibilityRequest([
-            <span class="hljs-string">'QueueUrl'</span> =&gt; $queueUrl,
-            <span class="hljs-string">'ReceiptHandle'</span> =&gt; $message-&gt;getReceiptHandle(),
+        <span class="hljs-variable">$sqs</span>-&gt;changeMessageVisibility(<span class="hljs-keyword">new</span> ChangeMessageVisibilityRequest([
+            <span class="hljs-string">'QueueUrl'</span> =&gt; <span class="hljs-variable">$queueUrl</span>,
+            <span class="hljs-string">'ReceiptHandle'</span> =&gt; <span class="hljs-variable">$message</span>-&gt;getReceiptHandle(),
             <span class="hljs-string">'VisibilityTimeout'</span> =&gt; <span class="hljs-number">0</span>,
         ]));
     }
@@ -409,7 +409,7 @@ $result = $sqs-&gt;receiveMessage(<span class="hljs-keyword">new</span> ReceiveM
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

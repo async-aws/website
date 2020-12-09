@@ -341,14 +341,14 @@ $iAM = <span class="hljs-keyword">new</span> IAMClient([
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListUsersRequest</span>;
 
-$iam = <span class="hljs-keyword">new</span> IamClient();
+<span class="hljs-variable">$iam</span> = <span class="hljs-keyword">new</span> IamClient();
 
-$users = $iam-&gt;listUsers(<span class="hljs-keyword">new</span> ListUsersRequest([
+<span class="hljs-variable">$users</span> = <span class="hljs-variable">$iam</span>-&gt;listUsers(<span class="hljs-keyword">new</span> ListUsersRequest([
     <span class="hljs-string">'PathPrefix'</span> =&gt; <span class="hljs-string">'/division_engineering/subdivision_web'</span>,
 ]));
 
-<span class="hljs-keyword">foreach</span> ($users <span class="hljs-keyword">as</span> $user) {
-    <span class="hljs-keyword">echo</span> $user-&gt;getUserName().<span class="hljs-string">' '</span>.($user-&gt;getPasswordLastUsed() ? $user-&gt;getPasswordLastUsed()-&gt;format(<span class="hljs-string">'Y-m-d'</span>) : <span class="hljs-string">''</span>).PHP_EOL;
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$users</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$user</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$user</span>-&gt;getUserName().<span class="hljs-string">' '</span>.(<span class="hljs-variable">$user</span>-&gt;getPasswordLastUsed() ? <span class="hljs-variable">$user</span>-&gt;getPasswordLastUsed()-&gt;format(<span class="hljs-string">'Y-m-d'</span>) : <span class="hljs-string">''</span>).PHP_EOL;
 }</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
@@ -368,7 +368,7 @@ $users = $iam-&gt;listUsers(<span class="hljs-keyword">new</span> ListUsersReque
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

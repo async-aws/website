@@ -302,22 +302,22 @@ tasks. The client will automatically switch to multipart upload for large files.
 <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">SimpleS3</span>\<span class="hljs-title">SimpleS3Client</span>;
 
-$s3 = <span class="hljs-keyword">new</span> SimpleS3Client();
-$resource = \fopen(<span class="hljs-string">'/path/to/cat/image.jpg'</span>, <span class="hljs-string">'r'</span>);
-$s3-&gt;upload(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>, $resource);
-$s3-&gt;upload(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.txt'</span>, <span class="hljs-string">'I like this cat'</span>);
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> SimpleS3Client();
+<span class="hljs-variable">$resource</span> = \fopen(<span class="hljs-string">'/path/to/cat/image.jpg'</span>, <span class="hljs-string">'r'</span>);
+<span class="hljs-variable">$s3</span>-&gt;upload(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>, <span class="hljs-variable">$resource</span>);
+<span class="hljs-variable">$s3</span>-&gt;upload(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.txt'</span>, <span class="hljs-string">'I like this cat'</span>);
 
 <span class="hljs-comment">// Check if a file exists</span>
-$s3-&gt;has(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-variable">$s3</span>-&gt;has(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>); <span class="hljs-comment">// true</span>
 
 <span class="hljs-comment">// Get file URL</span>
-$url = $s3-&gt;getUrl(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>);
-<span class="hljs-keyword">echo</span> $url; <span class="hljs-comment">// https://my-image-bucket.s3.eu-central-1.amazonaws.com/photos/cat_2.jpg</span>
+<span class="hljs-variable">$url</span> = <span class="hljs-variable">$s3</span>-&gt;getUrl(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>);
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$url</span>; <span class="hljs-comment">// https://my-image-bucket.s3.eu-central-1.amazonaws.com/photos/cat_2.jpg</span>
 
 <span class="hljs-comment">// Download a file</span>
-$resource = $s3-&gt;download(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>)-&gt;getContentAsResource();
-$text = $s3-&gt;download(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.txt'</span>)-&gt;getContentAsString();
-<span class="hljs-keyword">echo</span> $text; <span class="hljs-comment">// I like this cat</span></code></pre>
+<span class="hljs-variable">$resource</span> = <span class="hljs-variable">$s3</span>-&gt;download(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>)-&gt;getContentAsResource();
+<span class="hljs-variable">$text</span> = <span class="hljs-variable">$s3</span>-&gt;download(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.txt'</span>)-&gt;getContentAsString();
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$text</span>; <span class="hljs-comment">// I like this cat</span></code></pre>
 
     </main>
 </div>
@@ -330,7 +330,7 @@ $text = $s3-&gt;download(<span class="hljs-string">'my-image-bucket'</span>, <sp
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

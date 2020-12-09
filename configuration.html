@@ -300,13 +300,13 @@
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Configuration</span>;
 
-$config = Configuration::create([
+<span class="hljs-variable">$config</span> = Configuration::create([
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
 ]);
-$sqs = <span class="hljs-keyword">new</span> SqsClient($config);
+<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient(<span class="hljs-variable">$config</span>);
 
 <span class="hljs-comment">// Or with an array</span>
-$sqs = <span class="hljs-keyword">new</span> SqsClient([
+<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient([
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
 ]);</code></pre>
 <h2 id="configuration-reference">Configuration reference<a href="#configuration-reference" title="Permalink to this headline" class="headerlink">¶</a></h2>
@@ -376,7 +376,7 @@ See <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

@@ -306,18 +306,18 @@ All arguments are optional and sensible defaults are used.</p>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">ConfigurationProvider</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
-$config = Configuration::create([
+<span class="hljs-variable">$config</span> = Configuration::create([
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
 ]);
-$credentialProvider = <span class="hljs-keyword">new</span> ConfigurationProvider();
-$httpClient = <span class="hljs-comment">// ... Instance of Symfony's HttpClientInterface</span>
-$logger = <span class="hljs-comment">// ... A PSR-3 logger</span>
+<span class="hljs-variable">$credentialProvider</span> = <span class="hljs-keyword">new</span> ConfigurationProvider();
+<span class="hljs-variable">$httpClient</span> = <span class="hljs-comment">// ... Instance of Symfony's HttpClientInterface</span>
+<span class="hljs-variable">$logger</span> = <span class="hljs-comment">// ... A PSR-3 logger</span>
 
-$dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient($config, $credentialProvider, $httpClient, $logger);</code></pre>
+<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> DynamoDbClient(<span class="hljs-variable">$config</span>, <span class="hljs-variable">$credentialProvider</span>, <span class="hljs-variable">$httpClient</span>, <span class="hljs-variable">$logger</span>);</code></pre>
 <p>A common way to instantiate a DynamoDb client might look like:</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
-$dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient([
+<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> DynamoDbClient([
    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
@@ -344,11 +344,11 @@ client like:</p>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncAwsProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceProvider</span>
 </span>{
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span><span class="hljs-params">()</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">register</span>(<span class="hljs-params"></span>)
     </span>{
         <span class="hljs-keyword">$this</span>-&gt;app-&gt;bind(
             DynamoDbClient::class,
-            <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($app)</span> </span>{
+            <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"><span class="hljs-variable">$app</span></span>) </span>{
                 <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DynamoDbClient([
                    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
                    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
@@ -363,14 +363,14 @@ client like:</p>
 that can be used to instantiate API clients.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
 
-$factory = <span class="hljs-keyword">new</span> AwsClientFactory([
+<span class="hljs-variable">$factory</span> = <span class="hljs-keyword">new</span> AwsClientFactory([
    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
 ]);
 
-$dynamoDb = $factory-&gt;dynamoDb();
-$sqs = $factory-&gt;sqs();</code></pre>
+<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-variable">$factory</span>-&gt;dynamoDb();
+<span class="hljs-variable">$sqs</span> = <span class="hljs-variable">$factory</span>-&gt;sqs();</code></pre>
 <h2 id="use">Use<a href="#use" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Every API client has functions that represent "operations" or API calls. Every such
 function takes an Input object (or array) as parameter and will return a Result.
@@ -479,7 +479,7 @@ for more information.</p>
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

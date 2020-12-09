@@ -300,7 +300,7 @@ client configuration parameters.</p>
 <h2 id="authenticate-with-access-key-and-secret">Authenticate with access key and secret<a href="#authenticate-with-access-key-and-secret" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
 
-$client = <span class="hljs-keyword">new</span> AwsClientFactory([
+<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> AwsClientFactory([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
 ]);</code></pre>
@@ -310,7 +310,7 @@ the <code>roleArn</code> key. You can also specify a <code>roleSessionName</code
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
 
-$client = <span class="hljs-keyword">new</span> AwsClientFactory([
+<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> AwsClientFactory([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
     <span class="hljs-string">'roleArn'</span> =&gt; <span class="hljs-string">'arn:aws:iam::1234567891011:role/name-of-my-role'</span>,
@@ -331,7 +331,7 @@ $client = <span class="hljs-keyword">new</span> AwsClientFactory([
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

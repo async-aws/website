@@ -341,9 +341,9 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeType</span>;
 
-$cognitoIdp = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
+<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
 
-$cognitoIdp-&gt;adminCreateUser([
+<span class="hljs-variable">$cognitoIdp</span>-&gt;adminCreateUser([
     <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
     <span class="hljs-string">'Username'</span> =&gt; <span class="hljs-string">'1c202820-8eb5-11ea-bc55-0242ac130003'</span>,
     <span class="hljs-string">'UserAttributes'</span> =&gt; [
@@ -354,9 +354,9 @@ $cognitoIdp-&gt;adminCreateUser([
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeType</span>;
 
-$cognitoIdp = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
+<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
 
-$result = $cognitoIdp-&gt;adminGetUser([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cognitoIdp</span>-&gt;adminGetUser([
     <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
     <span class="hljs-string">'Username'</span> =&gt; <span class="hljs-string">'1c202820-8eb5-11ea-bc55-0242ac130003'</span>,
     <span class="hljs-string">'UserAttributes'</span> =&gt; [
@@ -364,12 +364,12 @@ $result = $cognitoIdp-&gt;adminGetUser([
     ],
 ]);
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'User status is: '</span> . $result-&gt;getUserStatus() . PHP_EOL;
-$givenNameAttribute = current(array_filter(
-    $result-&gt;getUserAttributes(),
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($attr)</span> </span>{ <span class="hljs-keyword">return</span> $attr-&gt;getName() === <span class="hljs-string">'given_name'</span>; }
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'User status is: '</span> . <span class="hljs-variable">$result</span>-&gt;getUserStatus() . PHP_EOL;
+<span class="hljs-variable">$givenNameAttribute</span> = current(array_filter(
+    <span class="hljs-variable">$result</span>-&gt;getUserAttributes(),
+    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable">$attr</span></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-variable">$attr</span>-&gt;getName() === <span class="hljs-string">'given_name'</span>; }
 ));
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'User given name is: '</span> . $givenNameAttribute-&gt;getValue() . PHP_EOL;</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'User given name is: '</span> . <span class="hljs-variable">$givenNameAttribute</span>-&gt;getValue() . PHP_EOL;</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
@@ -388,7 +388,7 @@ $givenNameAttribute = current(array_filter(
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

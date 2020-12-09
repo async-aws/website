@@ -342,17 +342,17 @@ $codeDeploy = <span class="hljs-keyword">new</span> CodeDeployClient([
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">LifecycleEventStatus</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutLifecycleEventHookExecutionStatusInput</span>;
 
-$codeDeploy = <span class="hljs-keyword">new</span> CodeDeployClient();
+<span class="hljs-variable">$codeDeploy</span> = <span class="hljs-keyword">new</span> CodeDeployClient();
 
-$event = []; <span class="hljs-comment">// fetched from lambda</span>
+<span class="hljs-variable">$event</span> = []; <span class="hljs-comment">// fetched from lambda</span>
 
-$status = $codeDeploy-&gt;putLifecycleEventHookExecutionStatus(<span class="hljs-keyword">new</span> PutLifecycleEventHookExecutionStatusInput([
-    <span class="hljs-string">'deploymentId'</span> =&gt; $event[<span class="hljs-string">'deploymentId'</span>],
-    <span class="hljs-string">'lifecycleEventHookExecutionId'</span> =&gt; $event[<span class="hljs-string">'lifecycleEventHookExecutionId'</span>],
+<span class="hljs-variable">$status</span> = <span class="hljs-variable">$codeDeploy</span>-&gt;putLifecycleEventHookExecutionStatus(<span class="hljs-keyword">new</span> PutLifecycleEventHookExecutionStatusInput([
+    <span class="hljs-string">'deploymentId'</span> =&gt; <span class="hljs-variable">$event</span>[<span class="hljs-string">'deploymentId'</span>],
+    <span class="hljs-string">'lifecycleEventHookExecutionId'</span> =&gt; <span class="hljs-variable">$event</span>[<span class="hljs-string">'lifecycleEventHookExecutionId'</span>],
     <span class="hljs-string">'status'</span> =&gt; LifecycleEventStatus::SUCCEEDED
 ]));
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'ExecutionId: '</span>. $status-&gt;getLifecycleEventHookExecutionId();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'ExecutionId: '</span>. <span class="hljs-variable">$status</span>-&gt;getLifecycleEventHookExecutionId();</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
@@ -371,7 +371,7 @@ $status = $codeDeploy-&gt;putLifecycleEventHookExecutionStatus(<span class="hljs
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

@@ -308,21 +308,21 @@ only Flysystem version 1. Flysystem version 2 has an <a href="https://flysystem.
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Flysystem</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">AsyncAwsS3Adapter</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-$adapter = <span class="hljs-keyword">new</span> AsyncAwsS3Adapter(<span class="hljs-keyword">new</span> S3Client(), <span class="hljs-string">'bucket'</span>);
-$filesystem = <span class="hljs-keyword">new</span> Filesystem($adapter);
-$resource = tmpfile();
+<span class="hljs-variable">$adapter</span> = <span class="hljs-keyword">new</span> AsyncAwsS3Adapter(<span class="hljs-keyword">new</span> S3Client(), <span class="hljs-string">'bucket'</span>);
+<span class="hljs-variable">$filesystem</span> = <span class="hljs-keyword">new</span> Filesystem(<span class="hljs-variable">$adapter</span>);
+<span class="hljs-variable">$resource</span> = tmpfile();
 
-$filesystem-&gt;write(<span class="hljs-string">'dir/path.txt'</span>, <span class="hljs-string">'contents'</span>);
-$filesystem-&gt;writeStream(<span class="hljs-string">'dir/path.txt'</span>, $resource);
+<span class="hljs-variable">$filesystem</span>-&gt;write(<span class="hljs-string">'dir/path.txt'</span>, <span class="hljs-string">'contents'</span>);
+<span class="hljs-variable">$filesystem</span>-&gt;writeStream(<span class="hljs-string">'dir/path.txt'</span>, <span class="hljs-variable">$resource</span>);
 
-$filesystem-&gt;delete(<span class="hljs-string">'dir/path.txt'</span>);
+<span class="hljs-variable">$filesystem</span>-&gt;delete(<span class="hljs-string">'dir/path.txt'</span>);
 
-$filesystem-&gt;createDirectory(<span class="hljs-string">'dir'</span>);
-$filesystem-&gt;deleteDirectory(<span class="hljs-string">'dir'</span>);
+<span class="hljs-variable">$filesystem</span>-&gt;createDirectory(<span class="hljs-string">'dir'</span>);
+<span class="hljs-variable">$filesystem</span>-&gt;deleteDirectory(<span class="hljs-string">'dir'</span>);
 
-$lastModified = $filesystem-&gt;lastModified(<span class="hljs-string">'path.txt'</span>);
-$mimeType = $filesystem-&gt;mimeType(<span class="hljs-string">'path.txt'</span>);
-$fileSize = $filesystem-&gt;fileSize(<span class="hljs-string">'path.txt'</span>);</code></pre>
+<span class="hljs-variable">$lastModified</span> = <span class="hljs-variable">$filesystem</span>-&gt;lastModified(<span class="hljs-string">'path.txt'</span>);
+<span class="hljs-variable">$mimeType</span> = <span class="hljs-variable">$filesystem</span>-&gt;mimeType(<span class="hljs-string">'path.txt'</span>);
+<span class="hljs-variable">$fileSize</span> = <span class="hljs-variable">$filesystem</span>-&gt;fileSize(<span class="hljs-string">'path.txt'</span>);</code></pre>
 
     </main>
 </div>
@@ -335,7 +335,7 @@ $fileSize = $filesystem-&gt;fileSize(<span class="hljs-string">'path.txt'</span>
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

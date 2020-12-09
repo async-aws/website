@@ -305,36 +305,36 @@ and makes sure it returns a <code>PutObjectOutput</code> result.</p>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileUploaderTest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TestCase</span>
 </span>{
-    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testWrite</span><span class="hljs-params">()</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testWrite</span>(<span class="hljs-params"></span>)
     </span>{
-        $file = <span class="hljs-string">'/path/file.txt'</span>;
+        <span class="hljs-variable">$file</span> = <span class="hljs-string">'/path/file.txt'</span>;
 
-        $s3 = <span class="hljs-keyword">$this</span>-&gt;getMockBuilder(S3Client::class)
+        <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">$this</span>-&gt;getMockBuilder(S3Client::class)
             -&gt;disableOriginalConstructor()
             -&gt;onlyMethods([<span class="hljs-string">'putObject'</span>])
             -&gt;getMock();
 
-        $result = ResultMockFactory::create(PutObjectOutput::class);
+        <span class="hljs-variable">$result</span> = ResultMockFactory::create(PutObjectOutput::class);
 
-        $s3-&gt;expects(<span class="hljs-keyword">self</span>::once())
+        <span class="hljs-variable">$s3</span>-&gt;expects(<span class="hljs-built_in">self</span>::once())
             -&gt;method(<span class="hljs-string">'putObject'</span>)
-            -&gt;with(<span class="hljs-keyword">self</span>::callback(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(array $input)</span> <span class="hljs-title">use</span> <span class="hljs-params">($file)</span> </span>{
-                <span class="hljs-keyword">if</span> ($input[<span class="hljs-string">'Key'</span>] !== $file) {
-                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            -&gt;with(<span class="hljs-built_in">self</span>::callback(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-keyword">array</span> <span class="hljs-variable">$input</span></span>) <span class="hljs-title">use</span> (<span class="hljs-params"><span class="hljs-variable">$file</span></span>) </span>{
+                <span class="hljs-keyword">if</span> (<span class="hljs-variable">$input</span>[<span class="hljs-string">'Key'</span>] !== <span class="hljs-variable">$file</span>) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
                 }
-                <span class="hljs-keyword">if</span> (<span class="hljs-string">'my file contents'</span> !== $input[<span class="hljs-string">'Body'</span>]) {
-                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
-                }
-
-                <span class="hljs-keyword">if</span> (<span class="hljs-string">'myBucket'</span> !== $input[<span class="hljs-string">'Bucket'</span>]) {
-                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+                <span class="hljs-keyword">if</span> (<span class="hljs-string">'my file contents'</span> !== <span class="hljs-variable">$input</span>[<span class="hljs-string">'Body'</span>]) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
                 }
 
-                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
-            }))-&gt;willReturn($result);
+                <span class="hljs-keyword">if</span> (<span class="hljs-string">'myBucket'</span> !== <span class="hljs-variable">$input</span>[<span class="hljs-string">'Bucket'</span>]) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                }
 
-        $uploader = <span class="hljs-keyword">new</span> FileUploader($s3);
-        $uploader-&gt;write($file, <span class="hljs-string">'my file contents'</span>);
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            }))-&gt;willReturn(<span class="hljs-variable">$result</span>);
+
+        <span class="hljs-variable">$uploader</span> = <span class="hljs-keyword">new</span> FileUploader(<span class="hljs-variable">$s3</span>);
+        <span class="hljs-variable">$uploader</span>-&gt;write(<span class="hljs-variable">$file</span>, <span class="hljs-string">'my file contents'</span>);
     }
 }
 </code></pre>
@@ -344,7 +344,7 @@ argument to set properties to the result class.</p>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Test</span>\<span class="hljs-title">ResultMockFactory</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Test</span>\<span class="hljs-title">SimpleResultStream</span>;
 
-$result = ResultMockFactory::create(GetObjectOutput::class, [
+<span class="hljs-variable">$result</span> = ResultMockFactory::create(GetObjectOutput::class, [
     <span class="hljs-string">'LastModified'</span> =&gt; <span class="hljs-keyword">new</span> \DateTimeImmutable(),
     <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-keyword">new</span> SimpleResultStream(<span class="hljs-string">'my content'</span>),
 ]);</code></pre>
@@ -360,7 +360,7 @@ $result = ResultMockFactory::create(GetObjectOutput::class, [
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

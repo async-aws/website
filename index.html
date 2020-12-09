@@ -322,27 +322,27 @@ to your application.</li>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
 
-$sqs = <span class="hljs-keyword">new</span> SqsClient([
+<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient([
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
 ]);
 
 <span class="hljs-comment">// Call a client's method with an array</span>
-$result = $sqs-&gt;createQueue([<span class="hljs-string">'QueueName'</span> =&gt; <span class="hljs-string">'invoice'</span>]);
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sqs</span>-&gt;createQueue([<span class="hljs-string">'QueueName'</span> =&gt; <span class="hljs-string">'invoice'</span>]);
 
 <span class="hljs-comment">// Request is automatically sent when reading the result</span>
-<span class="hljs-keyword">echo</span> $result-&gt;getQueueUrl();
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getQueueUrl();
 
 <span class="hljs-comment">// You can also call a client's method with an input object</span>
-$input = <span class="hljs-keyword">new</span> SendMessageRequest();
-$input
+<span class="hljs-variable">$input</span> = <span class="hljs-keyword">new</span> SendMessageRequest();
+<span class="hljs-variable">$input</span>
     -&gt;setQueueUrl(<span class="hljs-string">'https://sqs.us-east-2.amazonaws.com/123456789012/invoice'</span>)
     -&gt;setMessageBody(<span class="hljs-string">'invoiceId: 1337'</span>);
 
 <span class="hljs-comment">// Since the returned value is ignored,</span>
 <span class="hljs-comment">// the HTTP request is sent immediately.</span>
-$sqs-&gt;sendMessage($input);</code></pre>
+<span class="hljs-variable">$sqs</span>-&gt;sendMessage(<span class="hljs-variable">$input</span>);</code></pre>
 <p>Continue reading about our different <a href="/clients/index.html">API clients</a> or select
 a topic in the sidebar.</p>
 <h2 id="how-is-it-async-first">How is it async first?<a href="#how-is-it-async-first" title="Permalink to this headline" class="headerlink">¶</a></h2>
@@ -372,7 +372,7 @@ keep backwards compatibility.</p>
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

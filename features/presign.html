@@ -303,15 +303,15 @@ for a limited time.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetObjectRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-$s3 = <span class="hljs-keyword">new</span> S3Client();
-$input = <span class="hljs-keyword">new</span> GetObjectRequest([
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client();
+<span class="hljs-variable">$input</span> = <span class="hljs-keyword">new</span> GetObjectRequest([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'test'</span>,
 ]);
 
-$url = $s3-&gt;presign($input, <span class="hljs-keyword">new</span> \DateTimeImmutable(<span class="hljs-string">'+60 min'</span>));
+<span class="hljs-variable">$url</span> = <span class="hljs-variable">$s3</span>-&gt;presign(<span class="hljs-variable">$input</span>, <span class="hljs-keyword">new</span> \DateTimeImmutable(<span class="hljs-string">'+60 min'</span>));
 
-<span class="hljs-keyword">echo</span> $url;</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$url</span>;</code></pre>
 <blockquote>
 <p><strong>Note</strong>: AWS has limitations on the expiration length. Read more in <a href="https://aws.amazon.com/premiumsupport/knowledge-center/presigned-url-s3-bucket-expiration/">the docs</a>.</p>
 </blockquote>
@@ -327,7 +327,7 @@ $url = $s3-&gt;presign($input, <span class="hljs-keyword">new</span> \DateTimeIm
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

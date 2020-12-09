@@ -346,9 +346,9 @@ $sES = <span class="hljs-keyword">new</span> SESClient([
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">EmailContent</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Message</span>;
 
-$ses = <span class="hljs-keyword">new</span> SesClient();
+<span class="hljs-variable">$ses</span> = <span class="hljs-keyword">new</span> SesClient();
 
-$result = $ses-&gt;sendEmail(<span class="hljs-keyword">new</span> SendEmailRequest([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$ses</span>-&gt;sendEmail(<span class="hljs-keyword">new</span> SendEmailRequest([
     <span class="hljs-string">'FromEmailAddress'</span> =&gt; <span class="hljs-string">'invoice-bot@my-company.com'</span>,
     <span class="hljs-string">'Content'</span> =&gt; <span class="hljs-keyword">new</span> EmailContent([
         <span class="hljs-string">'Simple'</span> =&gt; <span class="hljs-keyword">new</span> Message([
@@ -363,7 +363,7 @@ $result = $ses-&gt;sendEmail(<span class="hljs-keyword">new</span> SendEmailRequ
     ]),
 ]));
 
-<span class="hljs-keyword">echo</span> $result-&gt;getMessageId();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getMessageId();</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
@@ -382,7 +382,7 @@ $result = $ses-&gt;sendEmail(<span class="hljs-keyword">new</span> SendEmailRequ
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>

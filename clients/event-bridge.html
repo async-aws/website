@@ -342,20 +342,20 @@ $eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient([
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutEventsRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">PutEventsRequestEntry</span>;
 
-$eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient();
+<span class="hljs-variable">$eventBridge</span> = <span class="hljs-keyword">new</span> EventBridgeClient();
 
-$events = $eventBridge-&gt;putEvents(<span class="hljs-keyword">new</span> PutEventsRequest([
+<span class="hljs-variable">$events</span> = <span class="hljs-variable">$eventBridge</span>-&gt;putEvents(<span class="hljs-keyword">new</span> PutEventsRequest([
     <span class="hljs-string">'Entries'</span> =&gt; [
         <span class="hljs-keyword">new</span> PutEventsRequestEntry([
             <span class="hljs-string">'EventBusName'</span> =&gt; <span class="hljs-string">'marketing'</span>,
             <span class="hljs-string">'Source'</span> =&gt; <span class="hljs-string">'acme.newsletter.campaign'</span>,
             <span class="hljs-string">'DetailType'</span> =&gt; <span class="hljs-string">'UserSignUp'</span>,
-            <span class="hljs-string">'Detail'</span> =&gt; json_encode([<span class="hljs-string">'email'</span> =&gt; $userEmail]),
+            <span class="hljs-string">'Detail'</span> =&gt; json_encode([<span class="hljs-string">'email'</span> =&gt; <span class="hljs-variable">$userEmail</span>]),
         ])
     ],
 ]));
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Sent '</span>. count($events-&gt;getEntries()) . <span class="hljs-string">' events, with '</span> . $events-&gt;getFailedEntryCount() . <span class="hljs-string">' failures'</span>;</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'Sent '</span>. count(<span class="hljs-variable">$events</span>-&gt;getEntries()) . <span class="hljs-string">' events, with '</span> . <span class="hljs-variable">$events</span>-&gt;getFailedEntryCount() . <span class="hljs-string">' failures'</span>;</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
@@ -374,7 +374,7 @@ $events = $eventBridge-&gt;putEvents(<span class="hljs-keyword">new</span> PutEv
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/0.1d44819e.js"></script><script src="/assets/app.d03b9422.js"></script>
+<script src="/assets/0.8a395b50.js"></script><script src="/assets/app.d03b9422.js"></script>
 
 
 </body></html>
