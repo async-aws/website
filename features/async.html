@@ -300,7 +300,7 @@
 <p>Let's show some examples to better understand how this library works.</p>
 <h3 id="ignoring-results">Ignoring results<a href="#ignoring-results" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Consider the following example:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
 
 <span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient();
@@ -316,7 +316,7 @@
 with the status code is fetched from the server.</p>
 <h3 id="getting-data-from-result">Getting data from result<a href="#getting-data-from-result" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>The example below is slightly different.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
 
 <span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient();
@@ -335,7 +335,7 @@ will be parsed.</p>
 <p>This behavior can be observed when using a debugger like xDebug.</p>
 <h3 id="not-using-the-result">Not using the result<a href="#not-using-the-result" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Consider this rare scenario:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendSqsMessage</span>(<span class="hljs-params"><span class="hljs-variable">$client</span></span>) </span>{
@@ -399,7 +399,7 @@ all responses are resolved, the loop will stop.</p>
 <p>The function has also a <code>$fullResponse</code> argument. When <code>false</code> (default value)
 the HTTP client will wait only for HTTP status code and headers. When <code>true</code>,
 the HTTP client will wait until receiving the full response body.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Result</span>;
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Result</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">LambdaClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">InvocationRequest</span>;
 
@@ -417,7 +417,7 @@ the HTTP client will wait until receiving the full response body.</p>
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getPayload();
 }</code></pre>
 <p>The pseudo code at the lambda function:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable">$event</span></span>) </span>{
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable">$event</span></span>) </span>{
     <span class="hljs-variable">$rand</span> = rand (<span class="hljs-number">1</span>, <span class="hljs-number">4</span>);
     sleep(<span class="hljs-variable">$rand</span>);
 

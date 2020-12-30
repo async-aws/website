@@ -298,7 +298,7 @@
 <p>When developing, and debugging, the simplest way to configure the client, is to set the credentials in the
 client configuration parameters.</p>
 <h2 id="authenticate-with-access-key-and-secret">Authenticate with access key and secret<a href="#authenticate-with-access-key-and-secret" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
 
 <span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> AwsClientFactory([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
@@ -307,7 +307,7 @@ client configuration parameters.</p>
 <h2 id="assuming-a-role">Assuming a role<a href="#assuming-a-role" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>You can tell the API client to use specific role by providing a ARN to
 the <code>roleArn</code> key. You can also specify a <code>roleSessionName</code>.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
 
 <span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> AwsClientFactory([

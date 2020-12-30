@@ -349,6 +349,11 @@ service you define.</p>
 </table>
 <p>For a complete reference of the configuration please run:</p>
 <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>php bin/console config:dump-reference async_aws</code></pre>
+<blockquote>
+<p><strong>Note</strong>: Multiple clients with different configuration for the same service
+can be created by providing a unique name and defining the service in the
+<code>type</code> sub-property. See client <code>delayed</code> in above example.</p>
+</blockquote>
 <h2 id="using-ssm-to-store-secrets">Using SSM to store secrets<a href="#using-ssm-to-store-secrets" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Since version 4.4, Symfony provides <a href="https://symfony.com/doc/current/configuration/secrets.html">secrets management</a>.
 AsyncAws leverage this feature and by storing secrets in <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS SSM Parameter Store</a>:</p>

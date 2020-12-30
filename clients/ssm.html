@@ -338,7 +338,7 @@ $sSM = <span class="hljs-keyword">new</span> SSMClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="list-parameters">List parameters<a href="#list-parameters" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetParametersByPathRequest</span>;
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetParametersByPathRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">SsmClient</span>;
 
 <span class="hljs-variable">$ssm</span> = <span class="hljs-keyword">new</span> SsmClient();
@@ -354,7 +354,7 @@ $sSM = <span class="hljs-keyword">new</span> SSMClient([
     <span class="hljs-variable">$secrets</span>[<span class="hljs-variable">$parameter</span>-&gt;getName()] = <span class="hljs-variable">$parameter</span>-&gt;getValue();
 }</code></pre>
 <h3 id="store-an-encrypted-parameter">Store an encrypted parameter<a href="#store-an-encrypted-parameter" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ParameterType</span>;
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ParameterType</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutParameterRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">SsmClient</span>;
 

@@ -341,7 +341,7 @@ $rekognition = <span class="hljs-keyword">new</span> RekognitionClient([
 <h3 id="create-collections">Create Collections<a href="#create-collections" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Creating collection is a way to split your rekognition workflows into bags with
 is own characteristics, for easy searching:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">RekognitionClient</span>;
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">RekognitionClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateCollectionRequest</span>;
 
 <span class="hljs-variable">$rekognition</span> = <span class="hljs-keyword">new</span> RekognitionClient();
@@ -356,7 +356,7 @@ is own characteristics, for easy searching:</p>
 <h3 id="add-faces-to-a-collection">Add faces to a collection<a href="#add-faces-to-a-collection" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>If you want to add faces from an image into a collection you will use the method
 indexFaces.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">RekognitionClient</span>;
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">RekognitionClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">IndexFacesRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Image</span>;
 
@@ -376,7 +376,7 @@ indexFaces.</p>
 <h3 id="search-for-a-face-inside-a-collection">Search for a face inside a collection<a href="#search-for-a-face-inside-a-collection" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>When you want to search a face inside a collection with an image you will use
 the method searchFacesByImage.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">RekognitionClient</span>;
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">RekognitionClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">searchFacesByImageRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Image</span>;
 
