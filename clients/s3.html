@@ -430,6 +430,18 @@ initializing the client.</p>
 <pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([<span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-literal">true</span>]);</code></pre>
+<h2 id="chunked-body">Chunked body<a href="#chunked-body" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<p>When sending data to AWS endpoints, AsyncAws split the content in multiple
+chunks. This improves UX by avoiding reading the file twice (required
+<a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-header-based-auth.html">to compute the signature</a>
+) which could be a performance issue when file is really big, or the uploaded
+content is not a file (ie. streamed from an HTTP request). But some 3rd party
+services like Openstack Swift, pretending being "S3-compatible" does not
+support chunked body. To change this behavior, set <code>sendChunkedBody</code> parameter
+to <code>false</code> when initializing the client.</p>
+<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([<span class="hljs-string">'sendChunkedBody'</span> =&gt; <span class="hljs-literal">false</span>]);</code></pre>
 <h2 id="non-aws-s3-endpoints">Non-AWS S3 endpoints<a href="#non-aws-s3-endpoints" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>To use the <code>S3Client</code> with example Digital Oceans' Spaces, you need to initialize
 the <code>S3Client</code> with your endpoint.</p>

@@ -350,7 +350,7 @@ for authentication.</p>
 <h3 id="endpoint">endpoint<a href="#endpoint" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> '<a href="https://%service%.%region%.amazonaws.com">https://%service%.%region%.amazonaws.com</a>'</p>
 <h3 id="rolearn">roleArn<a href="#rolearn" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>The Amazon Resource Name (ARN) of the role that the client should be "assuming" after authentication. </p>
+<p>The Amazon Resource Name (ARN) of the role that the client should be "assuming" after authentication.</p>
 <h3 id="webidentitytokenfile">webIdentityTokenFile<a href="#webidentitytokenfile" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Path to the file that contains the OAuth 2.0 access token when using the <a href="/authentication/web-identity.html">WebIdentity Provider</a></p>
 <h3 id="rolesessionname">roleSessionName<a href="#rolesessionname" title="Permalink to this headline" class="headerlink">¶</a></h3>
@@ -364,6 +364,11 @@ See <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-ia
 <p><strong>Default:</strong> 'false'</p>
 <p>Set to true to send requests to an S3 path style endpoint by default.
 See <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html">Virtual Hosting of Buckets</a> about path style vs virtual host style.</p>
+<h3 id="sendchunkedbody">sendChunkedBody<a href="#sendchunkedbody" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<p><strong>Default:</strong> 'true'</p>
+<p>Set to true to send requests in multiple chunks. This prevents reading the file
+twice to calculate the signature, but is not always allowed by Non-AWS S3
+endpoints.</p>
 
     </main>
 </div>
