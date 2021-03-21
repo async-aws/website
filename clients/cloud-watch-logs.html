@@ -338,7 +338,7 @@ $cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="list-log-streams">List log streams<a href="#list-log-streams" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeLogStreamsRequest</span>;
 
 <span class="hljs-variable">$cloudWatchLogs</span> = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
@@ -351,7 +351,7 @@ $cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient([
     <span class="hljs-keyword">echo</span> <span class="hljs-string">'-'</span>.<span class="hljs-variable">$stream</span>-&gt;getLogStreamName().PHP_EOL;
 }</code></pre>
 <h3 id="push-logs">Push logs<a href="#push-logs" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutLogEventsRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">InputLogEvent</span>;
 

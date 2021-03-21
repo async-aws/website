@@ -321,7 +321,7 @@ to use the <code>NullProvider</code> in tests where you don't provide valid conf
 WebIdentity...) for each request can introduce latency. AsyncAws provides a
 <code>PsrCacheProvider</code> and a <code>SymfonyCacheProvider</code> decorator to persist and reuse
 credentials between each request.</p>
-<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">CacheProvider</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">CacheProvider</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">ChainProvider</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">SymfonyCacheProvider</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Symfony</span>\<span class="hljs-title">Component</span>\<span class="hljs-title">Cache</span>\<span class="hljs-title">Adapter</span>\<span class="hljs-title">FilesystemAdapter</span>;

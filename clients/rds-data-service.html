@@ -338,7 +338,7 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="execute-an-sql-statement">Execute an sql statement<a href="#execute-an-sql-statement" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
 
 <span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> RdsDataServiceClient();
 <span class="hljs-variable">$response</span> = <span class="hljs-variable">$client</span>-&gt;executeStatement([
@@ -355,7 +355,7 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
     <span class="hljs-keyword">echo</span> <span class="hljs-string">"name: "</span> . <span class="hljs-variable">$record</span>[<span class="hljs-number">0</span>]-&gt;getStringValue() . PHP_EOL;
 }</code></pre>
 <h3 id="run-a-transaction">Run a transaction<a href="#run-a-transaction" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
 
 <span class="hljs-variable">$database</span> = [

@@ -300,7 +300,7 @@ tasks. The client will automatically switch to multipart upload for large files.
 <h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/simple-s3</code></pre>
 <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">SimpleS3</span>\<span class="hljs-title">SimpleS3Client</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">SimpleS3</span>\<span class="hljs-title">SimpleS3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> SimpleS3Client();
 <span class="hljs-variable">$resource</span> = \fopen(<span class="hljs-string">'/path/to/cat/image.jpg'</span>, <span class="hljs-string">'r'</span>);

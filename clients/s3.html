@@ -347,7 +347,7 @@ person so they can download a file within the next X minutes. Read more about pr
 <p>If you want to upload a 1 Gb file, you really don't want to put that file in memory
 before uploading. You want to do it a smarter way. AsyncAws allow you to upload
 files using a string, resource, closure or a iterable. See the following examples:</p>
-<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client();
 
@@ -372,7 +372,7 @@ files using a string, resource, closure or a iterable. See the following example
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file.jpg'</span>,
     <span class="hljs-string">'ContentLength'</span> =&gt; filesize(<span class="hljs-string">'/path/to/big/file'</span>), <span class="hljs-comment">// This is important</span>
-    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> <span class="hljs-variable">$length</span></span>) <span class="hljs-title">use</span> (<span class="hljs-params"><span class="hljs-variable">$fp</span></span>): <span class="hljs-title">string</span> </span>{
+    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> <span class="hljs-variable">$length</span></span>) <span class="hljs-keyword">use</span> (<span class="hljs-params"><span class="hljs-variable">$fp</span></span>): <span class="hljs-title">string</span> </span>{
         <span class="hljs-keyword">return</span> fread(<span class="hljs-variable">$fp</span>, <span class="hljs-variable">$length</span>);
     },
 ]);
@@ -383,7 +383,7 @@ files using a string, resource, closure or a iterable. See the following example
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file_merged.jpg'</span>,
     <span class="hljs-string">'ContentLength'</span> =&gt; array_sum(array_map(<span class="hljs-string">'filesize'</span>, <span class="hljs-variable">$files</span>)), <span class="hljs-comment">// This is important</span>
-    <span class="hljs-string">'Body'</span> =&gt; (<span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) <span class="hljs-title">use</span>(<span class="hljs-params"><span class="hljs-variable">$files</span></span>): <span class="hljs-title">iterable</span> </span>{
+    <span class="hljs-string">'Body'</span> =&gt; (<span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) <span class="hljs-keyword">use</span>(<span class="hljs-params"><span class="hljs-variable">$files</span></span>): <span class="hljs-title">iterable</span> </span>{
         <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$files</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$file</span>) {
             <span class="hljs-keyword">yield</span> file_get_contents(<span class="hljs-variable">$file</span>);
         }
@@ -427,7 +427,7 @@ stream_copy_to_stream(<span class="hljs-variable">$f</span>-&gt;getBody()-&gt;ge
 The bucket name is part of the endpoint's host. To change this behavior, and use
 "path styled endpoints" instead, set <code>pathStyleEndpoint</code> parameter to <code>true</code> when
 initializing the client.</p>
-<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([<span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-literal">true</span>]);</code></pre>
 <h2 id="chunked-body">Chunked body<a href="#chunked-body" title="Permalink to this headline" class="headerlink">¶</a></h2>
@@ -439,13 +439,13 @@ content is not a file (ie. streamed from an HTTP request). But some 3rd party
 services like Openstack Swift, pretending being "S3-compatible" does not
 support chunked body. To change this behavior, set <code>sendChunkedBody</code> parameter
 to <code>false</code> when initializing the client.</p>
-<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([<span class="hljs-string">'sendChunkedBody'</span> =&gt; <span class="hljs-literal">false</span>]);</code></pre>
 <h2 id="non-aws-s3-endpoints">Non-AWS S3 endpoints<a href="#non-aws-s3-endpoints" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>To use the <code>S3Client</code> with example Digital Oceans' Spaces, you need to initialize
 the <code>S3Client</code> with your endpoint.</p>
-<pre><code class="language-php hljs php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([
     <span class="hljs-string">'endpoint'</span> =&gt; <span class="hljs-string">'https://fra1.digitaloceanspaces.com'</span>,
     <span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-literal">true</span>,
 ]);</code></pre>
