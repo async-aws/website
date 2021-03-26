@@ -410,7 +410,7 @@ larger files without having them in memory.</p>
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'bunny.mkv'</span>,
 ]);
 <span class="hljs-variable">$fp</span> = fopen(<span class="hljs-string">'/path/to/big_file.mkv'</span>, <span class="hljs-string">'wb'</span>);
-stream_copy_to_stream(<span class="hljs-variable">$f</span>-&gt;getBody()-&gt;getContentAsResource(), <span class="hljs-variable">$fp</span>);
+stream_copy_to_stream(<span class="hljs-variable">$result</span>-&gt;getBody()-&gt;getContentAsResource(), <span class="hljs-variable">$fp</span>);
 
 <span class="hljs-comment">// use an iterable to perform some business logic on chunks while downloading (or show a progress bar)</span>
 <span class="hljs-variable">$result</span> = <span class="hljs-variable">$s3</span>-&gt;GetObject([
