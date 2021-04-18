@@ -294,17 +294,17 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>SNS client</h1>
+    <h1>Sns client</h1>
 
     <p>
-        This page contains examples with the SNS client. See the
+        This page contains examples with the Sns client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The SNS package could be installed with Composer.
+        The Sns package could be installed with Composer.
     </p>
 
     <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/sns</code></pre>
@@ -314,9 +314,9 @@
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">SNS</span>\<span class="hljs-title">SNSClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sns</span>\<span class="hljs-title">SnsClient</span>;
 
-$sNS = <span class="hljs-keyword">new</span> SNSClient();
+$sns = <span class="hljs-keyword">new</span> SnsClient();
 </code></pre>
 
     <p>
@@ -324,9 +324,9 @@ $sNS = <span class="hljs-keyword">new</span> SNSClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">SNS</span>\<span class="hljs-title">SNSClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sns</span>\<span class="hljs-title">SnsClient</span>;
 
-$sNS = <span class="hljs-keyword">new</span> SNSClient([
+$sns = <span class="hljs-keyword">new</span> SnsClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
