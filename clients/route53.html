@@ -74,7 +74,7 @@
                             CodeDeploy
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/cognito-idp.html">
                             Cognito Identity provider
                         </a>
@@ -114,7 +114,7 @@
                             Rekognition
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/route53.html">
                             Route53
                         </a>
@@ -299,29 +299,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>CognitoIdentityProvider client</h1>
+    <h1>Route53 client</h1>
 
     <p>
-        This page contains examples with the CognitoIdentityProvider client. See the
+        This page contains examples with the Route53 client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The CognitoIdentityProvider package could be installed with Composer.
+        The Route53 package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/cognito-identity-provider</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/route53</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Route53</span>\<span class="hljs-title">Route53Client</span>;
 
-$cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
+$route53 = <span class="hljs-keyword">new</span> Route53Client();
 </code></pre>
 
     <p>
@@ -329,9 +329,9 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Route53</span>\<span class="hljs-title">Route53Client</span>;
 
-$cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient([
+$route53 = <span class="hljs-keyword">new</span> Route53Client([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -342,39 +342,14 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="create-a-user-as-an-admin">Create a user as an admin<a href="#create-a-user-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeType</span>;
+<h3 id="create-hosted-zone">Create hosted zone<a href="#create-hosted-zone" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Route53</span>\<span class="hljs-title">Route53Client</span>;
 
-<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
+<span class="hljs-variable">$route53</span> = <span class="hljs-keyword">new</span> Route53Client();
 
-<span class="hljs-variable">$cognitoIdp</span>-&gt;adminCreateUser([
-    <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
-    <span class="hljs-string">'Username'</span> =&gt; <span class="hljs-string">'1c202820-8eb5-11ea-bc55-0242ac130003'</span>,
-    <span class="hljs-string">'UserAttributes'</span> =&gt; [
-        <span class="hljs-keyword">new</span> AttributeType([<span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'phone_number'</span>, <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'+33600000000'</span>])
-    ],
-]);</code></pre>
-<h3 id="get-a-user-as-an-admin">Get a user as an admin<a href="#get-a-user-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeType</span>;
-
-<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
-
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cognitoIdp</span>-&gt;adminGetUser([
-    <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
-    <span class="hljs-string">'Username'</span> =&gt; <span class="hljs-string">'1c202820-8eb5-11ea-bc55-0242ac130003'</span>,
-    <span class="hljs-string">'UserAttributes'</span> =&gt; [
-        <span class="hljs-keyword">new</span> AttributeType([<span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'phone_number'</span>, <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'+33600000000'</span>])
-    ],
-]);
-
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'User status is: '</span> . <span class="hljs-variable">$result</span>-&gt;getUserStatus() . PHP_EOL;
-<span class="hljs-variable">$givenNameAttribute</span> = current(array_filter(
-    <span class="hljs-variable">$result</span>-&gt;getUserAttributes(),
-    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable">$attr</span></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-variable">$attr</span>-&gt;getName() === <span class="hljs-string">'given_name'</span>; }
-));
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'User given name is: '</span> . <span class="hljs-variable">$givenNameAttribute</span>-&gt;getValue() . PHP_EOL;</code></pre>
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$route53</span>-&gt;listHostedZones() <span class="hljs-keyword">as</span> <span class="hljs-variable">$zone</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$zone</span>-&gt;getName();
+}</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
