@@ -349,7 +349,7 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
 <span class="hljs-variable">$response</span> = <span class="hljs-variable">$client</span>-&gt;executeStatement([
     <span class="hljs-string">'database'</span> =&gt; <span class="hljs-string">'my_database'</span>,
     <span class="hljs-string">'resourceArn'</span> =&gt; <span class="hljs-string">'arn:resource'</span>,
-    <span class="hljs-string">'secretArt'</span> =&gt; <span class="hljs-string">'arn:secret'</span>,
+    <span class="hljs-string">'secretArn'</span> =&gt; <span class="hljs-string">'arn:secret'</span>,
     <span class="hljs-string">'sql'</span> =&gt; <span class="hljs-string">'SELECT name FROM users WHERE id = :id'</span>,
     <span class="hljs-string">'parameters'</span> =&gt; [
         [<span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'id'</span>, <span class="hljs-string">'value'</span> =&gt; [<span class="hljs-string">'longValue'</span> =&gt; <span class="hljs-number">5</span>]],
