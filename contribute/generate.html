@@ -336,7 +336,10 @@ is an example for DynamoDB.</p>
 <li>Configure the autoload section of <code>./composer.json</code> to include the new service (<code>"AsyncAws\\DynamoDb\\": "src/Service/DynamoDb/src"</code>)</li>
 <li>Do the same thing with the autoload-dev section of <code>./composer.json</code>.</li>
 <li>Run <code>composer dump-autoload</code></li>
-<li>Adds operations you want following the <a href="#creating-a-new-client-operation">process previously defined</a></li>
+<li>Add the operations you want following the <a href="#creating-a-new-client-operation">process previously defined</a></li>
+<li>Update the packages overview section of the root <code>README.md</code> file</li>
+<li>Create a <code>docs/clients/dynamodb.md</code> file documenting the client</li>
+<li>Update the <code>docs/clients/index.md</code> file to point to the new client documentation</li>
 </ol>
 <p>If you started working on a new client, please submit a "Draft PR" to show your
 progress. Don't hesitate asking for help.</p>
