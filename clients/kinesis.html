@@ -99,7 +99,7 @@
                             IAM
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/kinesis.html">
                             Kinesis
                         </a>
@@ -134,7 +134,7 @@
                             SecretsManager
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/ses.html">
                             SES
                         </a>
@@ -309,29 +309,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>Ses client</h1>
+    <h1>Kinesis client</h1>
 
     <p>
-        This page contains examples with the Ses client. See the
+        This page contains examples with the Kinesis client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The Ses package could be installed with Composer.
+        The Kinesis package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/ses</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/kinesis</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">SesClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kinesis</span>\<span class="hljs-title">KinesisClient</span>;
 
-$ses = <span class="hljs-keyword">new</span> SesClient();
+$kinesis = <span class="hljs-keyword">new</span> KinesisClient();
 </code></pre>
 
     <p>
@@ -339,9 +339,9 @@ $ses = <span class="hljs-keyword">new</span> SesClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">SesClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kinesis</span>\<span class="hljs-title">KinesisClient</span>;
 
-$ses = <span class="hljs-keyword">new</span> SesClient([
+$kinesis = <span class="hljs-keyword">new</span> KinesisClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -352,33 +352,17 @@ $ses = <span class="hljs-keyword">new</span> SesClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="send-a-message">Send a message<a href="#send-a-message" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendEmailRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">SesClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Body</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Content</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Destination</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">EmailContent</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ses</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Message</span>;
+<h3 id="list-streams">List Streams<a href="#list-streams" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kinesis</span>\<span class="hljs-title">KinesisClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kinesis</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListUsersRequest</span>;
 
-<span class="hljs-variable">$ses</span> = <span class="hljs-keyword">new</span> SesClient();
+<span class="hljs-variable">$kinesis</span> = <span class="hljs-keyword">new</span> KinesisClient();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$ses</span>-&gt;sendEmail(<span class="hljs-keyword">new</span> SendEmailRequest([
-    <span class="hljs-string">'FromEmailAddress'</span> =&gt; <span class="hljs-string">'invoice-bot@my-company.com'</span>,
-    <span class="hljs-string">'Content'</span> =&gt; <span class="hljs-keyword">new</span> EmailContent([
-        <span class="hljs-string">'Simple'</span> =&gt; <span class="hljs-keyword">new</span> Message([
-            <span class="hljs-string">'Subject'</span> =&gt; <span class="hljs-keyword">new</span> Content([<span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'New Invoice'</span>]),
-            <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-keyword">new</span> Body([
-                <span class="hljs-string">'Text'</span> =&gt; <span class="hljs-keyword">new</span> Content([<span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'A new invoice is available'</span>]),
-            ]),
-        ]),
-    ]),
-    <span class="hljs-string">'Destination'</span> =&gt; <span class="hljs-keyword">new</span> Destination([
-        <span class="hljs-string">'ToAddresses'</span> =&gt; [<span class="hljs-string">'customer@customer-company.com'</span>]
-    ]),
-]));
+<span class="hljs-variable">$streams</span> = <span class="hljs-variable">$kinesis</span>-&gt;listStreams();
 
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getMessageId();</code></pre>
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$streams</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$stream</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$stream</span>;
+}</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
