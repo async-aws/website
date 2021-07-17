@@ -159,6 +159,11 @@
                             STS
                         </a>
                     </li>
+                                    <li>
+                        <a href="/clients/step-functions.html">
+                            Step Functions
+                        </a>
+                    </li>
                                                         </ul>
                 </li>
                                                             <li>
@@ -360,8 +365,8 @@ $lambda = <span class="hljs-keyword">new</span> LambdaClient([
 <span class="hljs-comment">// Find the value for FunctionName here:</span>
 <span class="hljs-comment">// https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions</span>
 <span class="hljs-variable">$result</span> = <span class="hljs-variable">$lambda</span>-&gt;invoke([
-  <span class="hljs-string">'FunctionName'</span> =&gt; <span class="hljs-string">'app-dev-hello_world'</span>,
-  <span class="hljs-string">'Payload'</span> =&gt; <span class="hljs-string">'{"name": "async-aws/lambda"}'</span>,
+    <span class="hljs-string">'FunctionName'</span> =&gt; <span class="hljs-string">'app-dev-hello_world'</span>,
+    <span class="hljs-string">'Payload'</span> =&gt; <span class="hljs-string">'{"name": "async-aws/lambda"}'</span>,
 ]);
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getPayload();</code></pre>
