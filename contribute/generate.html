@@ -331,6 +331,7 @@ is an example for DynamoDB.</p>
 <li>Copy <code>./src/Service/.template</code> to <code>./src/Service/DynamoDb</code></li>
 <li>Replace all occurrences of <code>Foobar</code> to <code>DynamoDb</code> and <code>foobar</code> to <code>dynamo-db</code></li>
 <li>Rename <code>FoobarClient</code> into <code>DynamoDbClient</code></li>
+<li>Add <code>dynamoDb</code> method to the client factory <code>src/Core/src/AwsClientFactory.php</code></li>
 <li>Register the service in the <code>services</code> section of the <code>./manifest.json</code> file.
 <ol>
 <li>Look at the official SDK for resources in <code>./src/data</code>. (<a href="https://github.com/aws/aws-sdk-php/tree/3.133.23/src/data/dynamodb/2012-08-10">DynamoDB example</a>)</li>
@@ -343,8 +344,8 @@ is an example for DynamoDB.</p>
 <li>Run <code>composer dump-autoload</code></li>
 <li>Add the operations you want following the <a href="#creating-a-new-client-operation">process previously defined</a></li>
 <li>Update the packages overview section of the root <code>README.md</code> file</li>
-<li>Create a <code>docs/clients/dynamodb.md</code> file documenting the client</li>
-<li>Update the <code>docs/clients/index.md</code> file to point to the new client documentation</li>
+<li>Create a <code>./docs/clients/dynamodb.md</code> file documenting the client</li>
+<li>Update the <code>./docs/clients/index.md</code> and <code>./couscous.yml</code> files to point to the new client documentation</li>
 </ol>
 <p>If you started working on a new client, please submit a "Draft PR" to show your
 progress. Don't hesitate asking for help.</p>
