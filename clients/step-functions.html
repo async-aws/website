@@ -358,14 +358,15 @@ $stepFunctions = <span class="hljs-keyword">new</span> StepFunctionsClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="start-a-state-machine-execution">Start a state machine execution<a href="#start-a-state-machine-execution" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">LambdaClient</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">StartExecutionInput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">StepFunctionsClient</span>;
 
 <span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> StepFunctionsClient();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;startExecution([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;startExecution(<span class="hljs-keyword">new</span> StartExecutionInput([
     <span class="hljs-string">'stateMachineArn'</span> =&gt; <span class="hljs-string">'arn:sfn'</span>,
     <span class="hljs-string">'input'</span> =&gt; <span class="hljs-string">'{"foo": "bar"}'</span>,
-]);
+]));
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getExecutionArn();</code></pre>
 
