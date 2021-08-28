@@ -31,7 +31,7 @@
             </a>
             <ul class="list-unstyled p-0 mb-5">
 
-                                                                <li class="current">
+                                                                <li>
                         <a href="/">
                             Start
                         </a>
@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -89,7 +89,7 @@
                             EventBridge
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/firehose.html">
                             Firehose
                         </a>
@@ -319,73 +319,95 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="asyncaws-client">AsyncAws client</h1>
-<p>If you are one of those people that like the Amazon PHP SDK but hate the fact
-that you need to download Guzzle, PSR-7 and <strong>every</strong> AWS API client to use it?</p>
-<p>This is the library for you!</p>
-<h2 id="what-is-new">What is new?<a href="#what-is-new" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>The official <a href="https://github.com/aws/aws-sdk-php">AWS PHP SDK</a> is great. It is
-feature complete, it supports all Amazon APIs and is maintained by some really talented
-developers. This library is different. It is maintained by some dumb and lazy people.</p>
-<p>The goals of this client are:</p>
-<ol>
-<li><strong>Async first.</strong> Everything is asynchronous and responses are only downloaded
-if needed.</li>
-<li><strong>Not feature complete.</strong> AsyncAws is currently covering around a dozen of AWS
-APIs (the most popular ones). We are happy to generate more features if needed.
-Just ask or <a href="./contribute/index.html">contribute</a>.</li>
-<li><strong>Only relevant updates.</strong> Updates are great, but if changes are released multiple
-times every week you cannot keep up-to-date with the changelog. AsyncAws uses
-one package per client so packages are small and the updates are always related
-to your application.</li>
-<li><strong>Readable code.</strong> One should be able to read the code and follow the logic.</li>
-</ol>
-<p>See <a href="./compare.html">full comparison</a> between AsyncAws and the official AWS PHP SDK.</p>
-<h2 id="installation-and-usage">Installation and usage<a href="#installation-and-usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>All APIs are located in different packages. To install SQS run</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/sqs</code></pre>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendMessageRequest</span>;
+    <h1>Firehose client</h1>
 
-<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> SqsClient([
+    <p>
+        This page contains examples with the Firehose client. See the
+        <a href="/clients/">client introduction</a> for a more detailed description
+        how to use a client. You may also want to consider the
+        <a href="/authentication/">authentication</a> documentation to understand
+        the many ways you can authenticate with AWS.
+    </p>
+    <p>
+        The Firehose package could be installed with Composer.
+    </p>
+
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/firehose</code></pre>
+
+    
+    <p>
+        A new client object may be instantiated by:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">FirehoseClient</span>;
+
+$firehose = <span class="hljs-keyword">new</span> FirehoseClient();
+</code></pre>
+
+    <p>
+        The authentication parameters is read from the environment by default.
+        You can also specify a AWS access id and secret:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">FirehoseClient</span>;
+
+$firehose = <span class="hljs-keyword">new</span> FirehoseClient([
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
-    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
-    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
-]);
+]);</code></pre>
 
-<span class="hljs-comment">// Call a client's method with an array</span>
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sqs</span>-&gt;createQueue([<span class="hljs-string">'QueueName'</span> =&gt; <span class="hljs-string">'invoice'</span>]);
+    <p>
+        For all available options, see the <a href="/configuration.html">configuration reference</a>.
+    </p>
 
-<span class="hljs-comment">// Request is automatically sent when reading the result</span>
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getQueueUrl();
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="put-record">Put record<a href="#put-record" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">FirehoseClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutRecordInbound</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Record</span>;
 
-<span class="hljs-comment">// You can also call a client's method with an input object</span>
-<span class="hljs-variable">$input</span> = <span class="hljs-keyword">new</span> SendMessageRequest();
-<span class="hljs-variable">$input</span>
-    -&gt;setQueueUrl(<span class="hljs-string">'https://sqs.us-east-2.amazonaws.com/123456789012/invoice'</span>)
-    -&gt;setMessageBody(<span class="hljs-string">'invoiceId: 1337'</span>);
+<span class="hljs-variable">$firehose</span> = <span class="hljs-keyword">new</span> FirehoseClient();
 
-<span class="hljs-comment">// Since the returned value is ignored,</span>
-<span class="hljs-comment">// the HTTP request is sent immediately.</span>
-<span class="hljs-variable">$sqs</span>-&gt;sendMessage(<span class="hljs-variable">$input</span>);</code></pre>
-<p>Continue reading about our different <a href="/clients/index.html">API clients</a> or select
-a topic in the sidebar.</p>
-<h2 id="how-is-it-async-first">How is it async first?<a href="#how-is-it-async-first" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>The secret ingredient in creating asynchronous first is not implemented in this library.
-It actually comes from <a href="https://symfony.com/doc/current/components/http_client.html">Symfony's HTTP client</a>.
-They have implemented all the cool asynchronous features that this AWS library just
-take advantage of.</p>
-<h4 id="so-what-is-this-library-really-doing">So what is this library really doing?</h4>
-<p>Except for being a wrapper around Symfony's HTTP client and making sure the asynchronous
-features are properly used, AsyncAws also <a href="./authentication/index.html">handles authentication</a>,
-exceptions and provide input and result objects.</p>
-<p>Read more about <a href="./features/async.html">how to use asynchronous features</a>.</p>
-<h2 id="backwards-compatibility-promise">Backwards compatibility promise<a href="#backwards-compatibility-promise" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>Backwards compatibility is the most important feature of any open source library.
-This project is inspired by Symfony and will strictly follow their process to
-keep backwards compatibility.</p>
-<p>See <a href="https://symfony.com/bc">Symfony backwards compatibility promise</a> for more information.</p>
+<span class="hljs-variable">$output</span> = <span class="hljs-variable">$firehose</span>-&gt;putRecord(<span class="hljs-keyword">new</span> PutRecordInbound([
+    <span class="hljs-string">'DeliveryStreamName'</span> =&gt; <span class="hljs-string">'example_stream'</span>,
+    <span class="hljs-string">'Record'</span> =&gt; <span class="hljs-keyword">new</span> Record([
+        <span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'{"message": "foo"}'</span>,
+    ]),
+]));
 
+<span class="hljs-keyword">echo</span> sprintf(<span class="hljs-string">"Record id: %s\n"</span>, <span class="hljs-variable">$output</span>-&gt;getRecordId());</code></pre>
+<h3 id="put-record-batch">Put record batch<a href="#put-record-batch" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">FirehoseClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutRecordBatchInbound</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Record</span>;
+
+<span class="hljs-variable">$firehose</span> = <span class="hljs-keyword">new</span> FirehoseClient();
+
+<span class="hljs-variable">$output</span> = <span class="hljs-variable">$firehose</span>-&gt;putRecordBatch(<span class="hljs-keyword">new</span> PutRecordBatchInbound([
+    <span class="hljs-string">'DeliveryStreamName'</span> =&gt; <span class="hljs-string">'example_stream'</span>,
+    <span class="hljs-string">'Records'</span> =&gt; [
+        <span class="hljs-keyword">new</span> Record([
+            <span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'{"message": "foo"}'</span>,
+        ]),
+        <span class="hljs-keyword">new</span> Record([
+            <span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'{"message": "bar"}'</span>,
+        ]),
+    ],
+]));
+
+<span class="hljs-keyword">echo</span> sprintf(<span class="hljs-string">"Failed count: %d\n"</span>, <span class="hljs-variable">$response</span>-&gt;getFailedPutCount());
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$output</span>-&gt;getRequestResponses() <span class="hljs-keyword">as</span> <span class="hljs-variable">$response</span>) {
+    <span class="hljs-keyword">echo</span> sprintf(<span class="hljs-string">"Record id: %s\n"</span>, <span class="hljs-variable">$response</span>-&gt;getRecordId());
+}</code></pre>
+
+    <hr style="margin-top:6rem; margin-bottom:3rem;">
+
+    <p>
+        The source code to this page is found on
+        <a href="https://github.com/async-aws/aws/tree/master/docs/clients">GitHub</a>.
+    </p>
     </main>
 </div>
 <a href="https://github.com/async-aws/aws" class="contribute" aria-label="View source on GitHub">
