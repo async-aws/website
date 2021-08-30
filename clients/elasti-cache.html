@@ -89,7 +89,7 @@
                             ECR
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/elasti-cache.html">
                             ElastiCache
                         </a>
@@ -99,7 +99,7 @@
                             EventBridge
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/firehose.html">
                             Firehose
                         </a>
@@ -329,29 +329,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>Firehose client</h1>
+    <h1>ElastiCache client</h1>
 
     <p>
-        This page contains examples with the Firehose client. See the
+        This page contains examples with the ElastiCache client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The Firehose package could be installed with Composer.
+        The ElastiCache package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/firehose</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/elasti-cache</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">FirehoseClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">ElastiCache</span>\<span class="hljs-title">ElastiCacheClient</span>;
 
-$firehose = <span class="hljs-keyword">new</span> FirehoseClient();
+$elastiCache = <span class="hljs-keyword">new</span> ElastiCacheClient();
 </code></pre>
 
     <p>
@@ -359,9 +359,9 @@ $firehose = <span class="hljs-keyword">new</span> FirehoseClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">FirehoseClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">ElastiCache</span>\<span class="hljs-title">ElastiCacheClient</span>;
 
-$firehose = <span class="hljs-keyword">new</span> FirehoseClient([
+$elastiCache = <span class="hljs-keyword">new</span> ElastiCacheClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -372,44 +372,15 @@ $firehose = <span class="hljs-keyword">new</span> FirehoseClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="put-record">Put record<a href="#put-record" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">FirehoseClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutRecordInbound</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Record</span>;
+<h3 id="list-all-clusters">List all clusters<a href="#list-all-clusters" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">ElastiCache</span>\<span class="hljs-title">ElastiCacheClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">ElastiCache</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeCacheClustersMessage</span>;
 
-<span class="hljs-variable">$firehose</span> = <span class="hljs-keyword">new</span> FirehoseClient();
+<span class="hljs-variable">$elastiCache</span> = <span class="hljs-keyword">new</span> ElastiCacheClient();
+<span class="hljs-variable">$clusters</span> = <span class="hljs-variable">$elastiCache</span>-&gt;describeCacheClusters();
 
-<span class="hljs-variable">$output</span> = <span class="hljs-variable">$firehose</span>-&gt;putRecord(<span class="hljs-keyword">new</span> PutRecordInbound([
-    <span class="hljs-string">'DeliveryStreamName'</span> =&gt; <span class="hljs-string">'example_stream'</span>,
-    <span class="hljs-string">'Record'</span> =&gt; <span class="hljs-keyword">new</span> Record([
-        <span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'{"message": "foo"}'</span>,
-    ]),
-]));
-
-<span class="hljs-keyword">echo</span> sprintf(<span class="hljs-string">"Record id: %s\n"</span>, <span class="hljs-variable">$output</span>-&gt;getRecordId());</code></pre>
-<h3 id="put-record-batch">Put record batch<a href="#put-record-batch" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">FirehoseClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutRecordBatchInbound</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Record</span>;
-
-<span class="hljs-variable">$firehose</span> = <span class="hljs-keyword">new</span> FirehoseClient();
-
-<span class="hljs-variable">$output</span> = <span class="hljs-variable">$firehose</span>-&gt;putRecordBatch(<span class="hljs-keyword">new</span> PutRecordBatchInbound([
-    <span class="hljs-string">'DeliveryStreamName'</span> =&gt; <span class="hljs-string">'example_stream'</span>,
-    <span class="hljs-string">'Records'</span> =&gt; [
-        <span class="hljs-keyword">new</span> Record([
-            <span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'{"message": "foo"}'</span>,
-        ]),
-        <span class="hljs-keyword">new</span> Record([
-            <span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'{"message": "bar"}'</span>,
-        ]),
-    ],
-]));
-
-<span class="hljs-keyword">echo</span> sprintf(<span class="hljs-string">"Failed count: %d\n"</span>, <span class="hljs-variable">$response</span>-&gt;getFailedPutCount());
-
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$output</span>-&gt;getRequestResponses() <span class="hljs-keyword">as</span> <span class="hljs-variable">$response</span>) {
-    <span class="hljs-keyword">echo</span> sprintf(<span class="hljs-string">"Record id: %s\n"</span>, <span class="hljs-variable">$response</span>-&gt;getRecordId());
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$clusters</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$cluster</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Cluster id: '</span>.<span class="hljs-variable">$cluster</span>-&gt;getCacheClusterId().PHP_EOL;
 }</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
