@@ -384,6 +384,36 @@ $stepFunctions = <span class="hljs-keyword">new</span> StepFunctionsClient([
 ]));
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getExecutionArn();</code></pre>
+<h3 id="send-a-task-heartbeat">Send a task heartbeat<a href="#send-a-task-heartbeat" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendTaskHeartbeatInput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">StepFunctionsClient</span>;
+
+<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> StepFunctionsClient();
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;sendTaskHeartbeat(<span class="hljs-keyword">new</span> SendTaskHeartbeatInput([
+    <span class="hljs-string">'taskToken'</span> =&gt; <span class="hljs-string">'qwertyuiop'</span>,
+]));</code></pre>
+<h3 id="mark-as-task-as-successful">Mark as task as successful<a href="#mark-as-task-as-successful" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendTaskSuccessInput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">StepFunctionsClient</span>;
+
+<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> StepFunctionsClient();
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;sendTaskSuccess(<span class="hljs-keyword">new</span> SendTaskSuccessInput([
+    <span class="hljs-string">'taskToken'</span> =&gt; <span class="hljs-string">'qwertyuiop'</span>,
+    <span class="hljs-string">'output'</span> =&gt; <span class="hljs-string">'{"success": ":partyparrot:"}'</span>,
+]));</code></pre>
+<h3 id="mark-as-task-as-failed">Mark as task as failed<a href="#mark-as-task-as-failed" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendTaskFailureInput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">StepFunctionsClient</span>;
+
+<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> StepFunctionsClient();
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;sendTaskSuccess(<span class="hljs-keyword">new</span> SendTaskFailureInput([
+    <span class="hljs-string">'taskToken'</span> =&gt; <span class="hljs-string">'qwertyuiop'</span>,
+    <span class="hljs-string">'error'</span> =&gt; <span class="hljs-string">'err_foo'</span>,
+    <span class="hljs-string">'cause'</span> =&gt; <span class="hljs-string">'Crash!'</span>,
+]));</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
