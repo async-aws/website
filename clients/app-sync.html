@@ -54,7 +54,7 @@
                             Overview
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/app-sync.html">
                             AppSync
                         </a>
@@ -69,7 +69,7 @@
                             CloudFront
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/cloud-watch.html">
                             CloudWatch
                         </a>
@@ -334,29 +334,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>CloudWatch client</h1>
+    <h1>AppSync client</h1>
 
     <p>
-        This page contains examples with the CloudWatch client. See the
+        This page contains examples with the AppSync client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The CloudWatch package could be installed with Composer.
+        The AppSync package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/cloud-watch</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/app-sync</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatch</span>\<span class="hljs-title">CloudWatchClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">AppSyncClient</span>;
 
-$cloudWatch = <span class="hljs-keyword">new</span> CloudWatchClient();
+$appSync = <span class="hljs-keyword">new</span> AppSyncClient();
 </code></pre>
 
     <p>
@@ -364,9 +364,9 @@ $cloudWatch = <span class="hljs-keyword">new</span> CloudWatchClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatch</span>\<span class="hljs-title">CloudWatchClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">AppSyncClient</span>;
 
-$cloudWatch = <span class="hljs-keyword">new</span> CloudWatchClient([
+$appSync = <span class="hljs-keyword">new</span> AppSyncClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -377,22 +377,54 @@ $cloudWatch = <span class="hljs-keyword">new</span> CloudWatchClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="get-metric-data">Get metric data<a href="#get-metric-data" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatch</span>\<span class="hljs-title">CloudWatchClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatch</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">MetricDataQuery</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">DateTimeImmutable</span>;
+<h3 id="create-resolver">Create resolver<a href="#create-resolver" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">AppSyncClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ResolverKind</span>;
 
-<span class="hljs-variable">$cloudWatch</span> = <span class="hljs-keyword">new</span> CloudWatchClient();
+<span class="hljs-variable">$appSync</span> = <span class="hljs-keyword">new</span> AppSyncClient();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudWatch</span>-&gt;getMetricData(<span class="hljs-keyword">new</span> GetMetricDataInput([
-    <span class="hljs-string">'MetricDataQueries'</span> =&gt; [<span class="hljs-keyword">new</span> MetricDataQuery([<span class="hljs-string">'Id'</span> =&gt; <span class="hljs-string">'metric-id'</span>])],
-    <span class="hljs-string">'StartTime'</span> =&gt; <span class="hljs-keyword">new</span> DateTimeImmutable(<span class="hljs-string">'2021-07-01T00:00:00'</span>),
-    <span class="hljs-string">'EndTime'</span> <span class="hljs-keyword">new</span> DateTimeImmutable(<span class="hljs-string">'2021-07-01T12:00:00'</span>),
-]));
+<span class="hljs-variable">$requestMapping</span> = file_get_contents(<span class="hljs-string">'/mappings/echo.req.vtl'</span>);
+<span class="hljs-variable">$responseMapping</span>  = file_get_contents(<span class="hljs-string">'/mappings/echo.res.vtl'</span>);
 
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;getMetricDataResults() <span class="hljs-keyword">as</span> <span class="hljs-variable">$metricData</span>) {
-    var_dump(<span class="hljs-variable">$metricData</span>);
-}</code></pre>
+<span class="hljs-variable">$appSync</span>-&gt;createResolver([
+    <span class="hljs-string">'apiId'</span> =&gt; <span class="hljs-string">'my-api'</span>,
+    <span class="hljs-string">'typeName'</span> =&gt; <span class="hljs-string">'Query'</span>,
+    <span class="hljs-string">'fieldName'</span> =&gt; <span class="hljs-string">'echo'</span>,
+    <span class="hljs-string">'dataSourceName'</span> =&gt; <span class="hljs-string">'EchoApi'</span>,
+    <span class="hljs-string">'requestMappingTemplate'</span> =&gt; <span class="hljs-variable">$requestMapping</span>,
+    <span class="hljs-string">'responseMappingTemplate'</span> =&gt; <span class="hljs-variable">$responseMapping</span>,
+    <span class="hljs-string">'kind'</span> =&gt; ResolverKind::UNIT,
+]);</code></pre>
+<h3 id="list-resolvers">List resolvers<a href="#list-resolvers" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">AppSyncClient</span>;
+
+<span class="hljs-variable">$appSync</span>= <span class="hljs-keyword">new</span> AppSyncClient();
+
+<span class="hljs-variable">$appSync</span>-&gt;listResolvers([
+    <span class="hljs-string">'apiId'</span> =&gt; <span class="hljs-string">'my-api'</span>,
+    <span class="hljs-string">'typeName'</span> =&gt; <span class="hljs-string">'Query'</span>,
+    <span class="hljs-string">'maxResults'</span> =&gt; <span class="hljs-number">100</span>,
+]);</code></pre>
+<h3 id="start-schema-creation">Start schema creation<a href="#start-schema-creation" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">AppSyncClient</span>;
+
+<span class="hljs-variable">$appSync</span>= <span class="hljs-keyword">new</span> AppSyncClient();
+
+<span class="hljs-variable">$schemaDefinition</span> = file_get_contents(<span class="hljs-string">'/schema.graphql'</span>);
+
+<span class="hljs-variable">$appSync</span>-&gt;startSchemaCreation([
+    <span class="hljs-string">'apiId'</span> =&gt; <span class="hljs-string">'my-api'</span>,
+    <span class="hljs-string">'definition'</span> =&gt; <span class="hljs-variable">$schemaDefinition</span>,
+]);</code></pre>
+<h3 id="list-api-keys">List API keys<a href="#list-api-keys" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">AppSyncClient</span>;
+
+<span class="hljs-variable">$appSync</span>= <span class="hljs-keyword">new</span> AppSyncClient();
+
+<span class="hljs-variable">$appSync</span>-&gt;listApiKeys([
+    <span class="hljs-string">'apiId'</span> =&gt; <span class="hljs-string">'my-api'</span>,
+    <span class="hljs-string">'maxResults'</span> =&gt; <span class="hljs-number">10</span>,
+]);</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
