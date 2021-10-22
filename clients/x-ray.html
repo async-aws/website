@@ -69,12 +69,12 @@
                             CloudFront
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/cloud-watch.html">
                             CloudWatch
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/cloud-watch-logs.html">
                             CloudWatch Logs
                         </a>
@@ -184,7 +184,7 @@
                             Step Functions
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/x-ray.html">
                             X-Ray
                         </a>
@@ -339,29 +339,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>CloudWatchLogs client</h1>
+    <h1>XRay client</h1>
 
     <p>
-        This page contains examples with the CloudWatchLogs client. See the
+        This page contains examples with the XRay client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The CloudWatchLogs package could be installed with Composer.
+        The XRay package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/cloud-watch-logs</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/x-ray</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">XRay</span>\<span class="hljs-title">XRayClient</span>;
 
-$cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
+$xRay = <span class="hljs-keyword">new</span> XRayClient();
 </code></pre>
 
     <p>
@@ -369,9 +369,9 @@ $cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">XRay</span>\<span class="hljs-title">XRayClient</span>;
 
-$cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient([
+$xRay = <span class="hljs-keyword">new</span> XRayClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -382,42 +382,23 @@ $cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="list-log-streams">List log streams<a href="#list-log-streams" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeLogStreamsRequest</span>;
+<h3 id="put-trace-segments">Put trace segments<a href="#put-trace-segments" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">XRay</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutTraceSegmentsInput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">XRay</span>\<span class="hljs-title">XRayClient</span>;
 
-<span class="hljs-variable">$cloudWatchLogs</span> = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
+<span class="hljs-variable">$xRay</span> = <span class="hljs-keyword">new</span> XRayClient();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudWatchLogs</span>-&gt;describeLogStreams(<span class="hljs-keyword">new</span> DescribeLogStreamsRequest([
-    <span class="hljs-string">'logGroupName'</span> =&gt; <span class="hljs-string">'company-website'</span>,
-]));
-
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;getLogStreams() <span class="hljs-keyword">as</span> <span class="hljs-variable">$stream</span>) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-string">'-'</span>.<span class="hljs-variable">$stream</span>-&gt;getLogStreamName().PHP_EOL;
-}</code></pre>
-<h3 id="push-logs">Push logs<a href="#push-logs" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutLogEventsRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">InputLogEvent</span>;
-
-<span class="hljs-variable">$cloudWatchLogs</span> = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
-
-<span class="hljs-comment">// sequenceToken is not required for a new stream</span>
-<span class="hljs-variable">$currentSequenceToken</span> = <span class="hljs-literal">null</span>;
-
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudWatchLogs</span>-&gt;putLogEvents(<span class="hljs-keyword">new</span> PutLogEventsRequest([
-    <span class="hljs-string">'logGroupName'</span> =&gt; <span class="hljs-string">'company-website'</span>,
-    <span class="hljs-string">'logStreamName'</span> =&gt; <span class="hljs-string">'frontend-api'</span>,
-    <span class="hljs-string">'logEvents'</span> =&gt; [
-        <span class="hljs-keyword">new</span> InputLogEvent([
-            <span class="hljs-string">'timestamp'</span> =&gt; date(<span class="hljs-string">'U.u'</span>) * <span class="hljs-number">1000</span>,
-            <span class="hljs-string">'message'</span> =&gt; <span class="hljs-string">'an error occurred'</span>,
+<span class="hljs-variable">$xRay</span>-&gt;publish(<span class="hljs-keyword">new</span> PutTraceSegmentsInput([
+    <span class="hljs-string">'TraceSegmentDocuments'</span> =&gt; [
+        json_encode([
+            <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'service-foo'</span>,
+            <span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'1111111111111111'</span>,
+            <span class="hljs-string">'trace_id'</span> =&gt; <span class="hljs-string">'1-58406520-a006649127e371903a2de979'</span>,
+            <span class="hljs-string">'start_time'</span> =&gt; <span class="hljs-number">1480615200.010</span>,
+            <span class="hljs-string">'end_time'</span> =&gt; <span class="hljs-number">1480615200.090</span>,
         ]),
     ],
-    <span class="hljs-string">'sequenceToken'</span> =&gt; <span class="hljs-variable">$currentSequenceToken</span>,
-]));
-
-<span class="hljs-variable">$currentSequenceToken</span> = <span class="hljs-variable">$result</span>-&gt;getNextSequenceToken();</code></pre>
+]));</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
