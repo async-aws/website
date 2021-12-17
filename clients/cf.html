@@ -405,6 +405,15 @@ $cloudFormation = <span class="hljs-keyword">new</span> CloudFormationClient([
 <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;getStackEvents() <span class="hljs-keyword">as</span> <span class="hljs-variable">$event</span>) {
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$event</span>-&gt;getResourceType().<span class="hljs-string">'-'</span>.<span class="hljs-variable">$event</span>-&gt;getResourceStatus().PHP_EOL;
 }</code></pre>
+<h3 id="detect-stack-drift-status">Detect Stack Drift Status<a href="#detect-stack-drift-status" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeStackEventsInput</span>;
+
+<span class="hljs-variable">$cloudFormation</span> = <span class="hljs-keyword">new</span> CloudFormationClient();
+
+<span class="hljs-variable">$driftStatus</span> = <span class="hljs-variable">$cloudFormation</span>-&gt;describeStackDriftDetectionStatus([
+    <span class="hljs-string">'StackDriftDetectionId'</span> =&gt; <span class="hljs-string">'b78ac9b0-dec1-11e7-a451-503a3example'</span>,
+]);</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
