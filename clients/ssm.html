@@ -386,9 +386,9 @@ $ssm = <span class="hljs-keyword">new</span> SsmClient([
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetParametersByPathRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">SsmClient</span>;
 
-<span class="hljs-variable">$ssm</span> = <span class="hljs-keyword">new</span> SsmClient();
+<span class="hljs-variable">$ssm</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SsmClient</span>();
 
-<span class="hljs-variable">$parameters</span> = <span class="hljs-variable">$ssm</span>-&gt;getParametersByPath(<span class="hljs-keyword">new</span> GetParametersByPathRequest([
+<span class="hljs-variable">$parameters</span> = <span class="hljs-variable">$ssm</span>-&gt;<span class="hljs-title function_ invoke__">getParametersByPath</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetParametersByPathRequest</span>([
     <span class="hljs-string">'Path'</span> =&gt; <span class="hljs-string">'/projects/website'</span>,
     <span class="hljs-string">'Recursive'</span> =&gt; <span class="hljs-literal">true</span>,
     <span class="hljs-string">'WithDecryption'</span> =&gt; <span class="hljs-literal">true</span>,
@@ -396,18 +396,18 @@ $ssm = <span class="hljs-keyword">new</span> SsmClient([
 
 <span class="hljs-variable">$secrets</span> = [];
 <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$parameters</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$parameter</span>) {
-    <span class="hljs-variable">$secrets</span>[<span class="hljs-variable">$parameter</span>-&gt;getName()] = <span class="hljs-variable">$parameter</span>-&gt;getValue();
+    <span class="hljs-variable">$secrets</span>[<span class="hljs-variable">$parameter</span>-&gt;<span class="hljs-title function_ invoke__">getName</span>()] = <span class="hljs-variable">$parameter</span>-&gt;<span class="hljs-title function_ invoke__">getValue</span>();
 }</code></pre>
 <h3 id="store-an-encrypted-parameter">Store an encrypted parameter<a href="#store-an-encrypted-parameter" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ParameterType</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutParameterRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">SsmClient</span>;
 
-<span class="hljs-variable">$ssm</span> = <span class="hljs-keyword">new</span> SsmClient();
-<span class="hljs-variable">$parameters</span> = <span class="hljs-variable">$ssm</span>-&gt;putParameter(<span class="hljs-keyword">new</span> PutParameterRequest([
+<span class="hljs-variable">$ssm</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SsmClient</span>();
+<span class="hljs-variable">$parameters</span> = <span class="hljs-variable">$ssm</span>-&gt;<span class="hljs-title function_ invoke__">putParameter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutParameterRequest</span>([
     <span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'/projects/website/database_password'</span>,
-    <span class="hljs-string">'Value'</span> =&gt; strtr(base64_encode(random_bytes(<span class="hljs-number">24</span>)), <span class="hljs-string">'+/'</span>, <span class="hljs-string">'-_'</span>),
-    <span class="hljs-string">'Type'</span> =&gt; ParameterType::SECURE_STRING,
+    <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-title function_ invoke__">strtr</span>(<span class="hljs-title function_ invoke__">base64_encode</span>(<span class="hljs-title function_ invoke__">random_bytes</span>(<span class="hljs-number">24</span>)), <span class="hljs-string">'+/'</span>, <span class="hljs-string">'-_'</span>),
+    <span class="hljs-string">'Type'</span> =&gt; <span class="hljs-title class_">ParameterType</span>::SECURE_STRING,
     <span class="hljs-comment">// 'KeyId' =&gt; $customKmsKeyId,</span>
 ]));</code></pre>
 

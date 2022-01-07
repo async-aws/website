@@ -387,16 +387,16 @@ $cloudWatch = <span class="hljs-keyword">new</span> CloudWatchClient([
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatch</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">MetricDataQuery</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">DateTimeImmutable</span>;
 
-<span class="hljs-variable">$cloudWatch</span> = <span class="hljs-keyword">new</span> CloudWatchClient();
+<span class="hljs-variable">$cloudWatch</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudWatchClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudWatch</span>-&gt;getMetricData(<span class="hljs-keyword">new</span> GetMetricDataInput([
-    <span class="hljs-string">'MetricDataQueries'</span> =&gt; [<span class="hljs-keyword">new</span> MetricDataQuery([<span class="hljs-string">'Id'</span> =&gt; <span class="hljs-string">'metric-id'</span>])],
-    <span class="hljs-string">'StartTime'</span> =&gt; <span class="hljs-keyword">new</span> DateTimeImmutable(<span class="hljs-string">'2021-07-01T00:00:00'</span>),
-    <span class="hljs-string">'EndTime'</span> <span class="hljs-keyword">new</span> DateTimeImmutable(<span class="hljs-string">'2021-07-01T12:00:00'</span>),
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudWatch</span>-&gt;<span class="hljs-title function_ invoke__">getMetricData</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetMetricDataInput</span>([
+    <span class="hljs-string">'MetricDataQueries'</span> =&gt; [<span class="hljs-keyword">new</span> <span class="hljs-title class_">MetricDataQuery</span>([<span class="hljs-string">'Id'</span> =&gt; <span class="hljs-string">'metric-id'</span>])],
+    <span class="hljs-string">'StartTime'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">DateTimeImmutable</span>(<span class="hljs-string">'2021-07-01T00:00:00'</span>),
+    <span class="hljs-string">'EndTime'</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DateTimeImmutable</span>(<span class="hljs-string">'2021-07-01T12:00:00'</span>),
 ]));
 
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;getMetricDataResults() <span class="hljs-keyword">as</span> <span class="hljs-variable">$metricData</span>) {
-    var_dump(<span class="hljs-variable">$metricData</span>);
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getMetricDataResults</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$metricData</span>) {
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$metricData</span>);
 }</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">

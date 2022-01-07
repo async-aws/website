@@ -385,16 +385,16 @@ $lambda = <span class="hljs-keyword">new</span> LambdaClient([
 <h3 id="invoke-a-function">Invoke a function<a href="#invoke-a-function" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">LambdaClient</span>;
 
-<span class="hljs-variable">$lambda</span> = <span class="hljs-keyword">new</span> LambdaClient();
+<span class="hljs-variable">$lambda</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LambdaClient</span>();
 
 <span class="hljs-comment">// Find the value for FunctionName here:</span>
 <span class="hljs-comment">// https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions</span>
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$lambda</span>-&gt;invoke([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$lambda</span>-&gt;<span class="hljs-title function_ invoke__">invoke</span>([
     <span class="hljs-string">'FunctionName'</span> =&gt; <span class="hljs-string">'app-dev-hello_world'</span>,
     <span class="hljs-string">'Payload'</span> =&gt; <span class="hljs-string">'{"name": "async-aws/lambda"}'</span>,
 ]);
 
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getPayload();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getPayload</span>();</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 

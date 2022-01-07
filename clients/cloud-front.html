@@ -387,17 +387,17 @@ $cloudFront = <span class="hljs-keyword">new</span> CloudFrontClient([
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">InvalidationBatch</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFront</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Paths</span>;
 
-<span class="hljs-variable">$cloudFront</span> = <span class="hljs-keyword">new</span> CloudFrontClient();
+<span class="hljs-variable">$cloudFront</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudFrontClient</span>();
 
 <span class="hljs-variable">$paths</span> = [<span class="hljs-string">'/assets/images/cat.jpg'</span>, <span class="hljs-string">'/image/*'</span>];
-<span class="hljs-variable">$cloudFront</span>-&gt;createInvalidation([
+<span class="hljs-variable">$cloudFront</span>-&gt;<span class="hljs-title function_ invoke__">createInvalidation</span>([
     <span class="hljs-string">'DistributionId'</span> =&gt; <span class="hljs-string">'EQ44GEF5FAALL'</span>,
-    <span class="hljs-string">'InvalidationBatch'</span> =&gt; <span class="hljs-keyword">new</span> InvalidationBatch([
-        <span class="hljs-string">'Paths'</span> =&gt; <span class="hljs-keyword">new</span> Paths([
-            <span class="hljs-string">'Quantity'</span> =&gt; count(<span class="hljs-variable">$paths</span>),
+    <span class="hljs-string">'InvalidationBatch'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">InvalidationBatch</span>([
+        <span class="hljs-string">'Paths'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Paths</span>([
+            <span class="hljs-string">'Quantity'</span> =&gt; <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$paths</span>),
             <span class="hljs-string">'Items'</span> =&gt; <span class="hljs-variable">$paths</span>,
         ]),
-        <span class="hljs-string">'CallerReference'</span> =&gt; time(),
+        <span class="hljs-string">'CallerReference'</span> =&gt; <span class="hljs-title function_ invoke__">time</span>(),
     ]),
 ]);</code></pre>
 

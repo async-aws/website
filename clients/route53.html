@@ -385,23 +385,23 @@ $route53 = <span class="hljs-keyword">new</span> Route53Client([
 <h3 id="list-hosted-zones">List hosted zones<a href="#list-hosted-zones" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Route53</span>\<span class="hljs-title">Route53Client</span>;
 
-<span class="hljs-variable">$route53</span> = <span class="hljs-keyword">new</span> Route53Client();
+<span class="hljs-variable">$route53</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Route53Client</span>();
 
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$route53</span>-&gt;listHostedZones() <span class="hljs-keyword">as</span> <span class="hljs-variable">$zone</span>) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$zone</span>-&gt;getName();
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$route53</span>-&gt;<span class="hljs-title function_ invoke__">listHostedZones</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$zone</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$zone</span>-&gt;<span class="hljs-title function_ invoke__">getName</span>();
 }</code></pre>
 <h3 id="create-hosted-zone">Create hosted zone<a href="#create-hosted-zone" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Route53</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateHostedZoneRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Route53</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">HostedZoneConfig</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Route53</span>\<span class="hljs-title">Route53Client</span>;
 
-<span class="hljs-variable">$route53</span> = <span class="hljs-keyword">new</span> Route53Client();
+<span class="hljs-variable">$route53</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Route53Client</span>();
 
-<span class="hljs-variable">$route53</span>-&gt;createHostedZone(
-    <span class="hljs-keyword">new</span> CreateHostedZoneRequest([
+<span class="hljs-variable">$route53</span>-&gt;<span class="hljs-title function_ invoke__">createHostedZone</span>(
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateHostedZoneRequest</span>([
         <span class="hljs-string">'CallerReference'</span> =&gt; <span class="hljs-string">'uniqueId'</span>,
         <span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'example.com'</span>,
-        <span class="hljs-string">'HostedZoneConfig'</span> =&gt; <span class="hljs-keyword">new</span> HostedZoneConfig([
+        <span class="hljs-string">'HostedZoneConfig'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">HostedZoneConfig</span>([
             <span class="hljs-string">'Comment'</span> =&gt; <span class="hljs-string">'foo'</span>,
         ]),
     ])

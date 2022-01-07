@@ -393,12 +393,12 @@ the process is not blocking until you need to read the result.</p>
 <h3 id="asyncaws">AsyncAws<a href="#asyncaws" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client();
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>();
 <span class="hljs-variable">$files</span> = [];
-<span class="hljs-keyword">foreach</span> (range(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$index</span>) {
-    <span class="hljs-variable">$files</span>[] = <span class="hljs-variable">$s3</span>-&gt;putObject([
+<span class="hljs-keyword">foreach</span> (<span class="hljs-title function_ invoke__">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$index</span>) {
+    <span class="hljs-variable">$files</span>[] = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">putObject</span>([
         <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>,
-        <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file-'</span> . uniqid(<span class="hljs-string">'file-'</span>, <span class="hljs-literal">true</span>),
+        <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file-'</span> . <span class="hljs-title function_ invoke__">uniqid</span>(<span class="hljs-string">'file-'</span>, <span class="hljs-literal">true</span>),
         <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-string">'test'</span>,
     ]);
 }
@@ -407,9 +407,9 @@ the process is not blocking until you need to read the result.</p>
 
 <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$files</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$file</span>) {
     <span class="hljs-comment">// calling $file-&gt;getKey() will wait the response from AWS</span>
-    <span class="hljs-variable">$s3</span>-&gt;deleteObject([
+    <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">deleteObject</span>([
         <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>,
-        <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-variable">$file</span>-&gt;getKey(),
+        <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-variable">$file</span>-&gt;<span class="hljs-title function_ invoke__">getKey</span>(),
     ]);
 }
 
@@ -419,27 +419,27 @@ the process is not blocking until you need to read the result.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">GuzzleHttp</span>\<span class="hljs-title">Promise</span>;
 
-<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([]);
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([]);
 <span class="hljs-variable">$promises</span> = [];
-<span class="hljs-keyword">foreach</span> (range(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$index</span>) {
-    <span class="hljs-variable">$promises</span>[] = <span class="hljs-variable">$s3</span>-&gt;putObjectAsync([
+<span class="hljs-keyword">foreach</span> (<span class="hljs-title function_ invoke__">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$index</span>) {
+    <span class="hljs-variable">$promises</span>[] = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">putObjectAsync</span>([
         <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>,
-        <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file-'</span> . uniqid(<span class="hljs-string">'file-'</span>, <span class="hljs-literal">true</span>),
+        <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file-'</span> . <span class="hljs-title function_ invoke__">uniqid</span>(<span class="hljs-string">'file-'</span>, <span class="hljs-literal">true</span>),
         <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-string">'test'</span>,
     ]);
 }
 
 <span class="hljs-variable">$deletePromises</span> = [];
 <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$promises</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$promise</span>) {
-    <span class="hljs-variable">$file</span> = <span class="hljs-variable">$promise</span>-&gt;wait();
+    <span class="hljs-variable">$file</span> = <span class="hljs-variable">$promise</span>-&gt;<span class="hljs-title function_ invoke__">wait</span>();
 
-    <span class="hljs-variable">$deletePromises</span>[] = <span class="hljs-variable">$s3</span>-&gt;deleteObjectAsync([
+    <span class="hljs-variable">$deletePromises</span>[] = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">deleteObjectAsync</span>([
         <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>,
         <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-variable">$file</span>[<span class="hljs-string">'Key'</span>],
     ]);
 }
 
-Promise\all(<span class="hljs-variable">$deletePromises</span>)-&gt;wait();</code></pre>
+Promise\<span class="hljs-title function_ invoke__">all</span>(<span class="hljs-variable">$deletePromises</span>)-&gt;<span class="hljs-title function_ invoke__">wait</span>();</code></pre>
 <p>Read more about <a href="/features/async.html">how to async works</a>.</p>
 <h2 id="pagination-experience">Pagination experience<a href="#pagination-experience" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>AsyncAws handles the complexity of paginated results. You don't
@@ -448,19 +448,19 @@ iterates over results, AsyncAws do the rest.</p>
 <h3 id="asyncaws-1">AsyncAws<a href="#asyncaws-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client();
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>();
 
-<span class="hljs-variable">$objects</span> = <span class="hljs-variable">$s3</span>-&gt;listObjectsV2([<span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>]);
+<span class="hljs-variable">$objects</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">listObjectsV2</span>([<span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>]);
 <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$objects</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$object</span>) {
     <span class="hljs-comment">// ...</span>
 }</code></pre>
 <h3 id="official-aws-php-sdk-1">Official AWS PHP SDK<a href="#official-aws-php-sdk-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([]);
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([]);
 <span class="hljs-variable">$nextToken</span> = <span class="hljs-literal">null</span>;
 <span class="hljs-keyword">do</span> {
-    <span class="hljs-variable">$objects</span> = <span class="hljs-variable">$s3</span>-&gt;ListObjectsV2([
+    <span class="hljs-variable">$objects</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">ListObjectsV2</span>([
         <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
         <span class="hljs-string">'NextContinuationToken'</span> =&gt; <span class="hljs-variable">$nextToken</span>,
     ]);
@@ -476,7 +476,7 @@ iterates over results, AsyncAws do the rest.</p>
 
 <span class="hljs-comment">// or with paginator</span>
 
-<span class="hljs-variable">$pages</span> = <span class="hljs-variable">$s3</span>-&gt;getPaginator(<span class="hljs-string">'ListObjectsV2'</span>, [<span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>]);
+<span class="hljs-variable">$pages</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">getPaginator</span>(<span class="hljs-string">'ListObjectsV2'</span>, [<span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my.bucket'</span>]);
 <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$pages</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$page</span>) {
     <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$page</span>[<span class="hljs-string">'Contents'</span>] <span class="hljs-keyword">as</span> <span class="hljs-variable">$object</span>) {
         <span class="hljs-comment">// ...</span>
@@ -496,35 +496,35 @@ used in the standard way.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetObjectRequest</span>;
 
-<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client();
-<span class="hljs-variable">$input</span> = <span class="hljs-keyword">new</span> GetObjectRequest([
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>();
+<span class="hljs-variable">$input</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">GetObjectRequest</span>([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'test'</span>,
 ]);
 
 <span class="hljs-comment">// Sign on the fly</span>
-<span class="hljs-variable">$content</span> = <span class="hljs-variable">$s3</span>-&gt;getObject(<span class="hljs-variable">$input</span>);
+<span class="hljs-variable">$content</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">getObject</span>(<span class="hljs-variable">$input</span>);
 
 <span class="hljs-comment">// Presign Url</span>
-<span class="hljs-variable">$url</span> = <span class="hljs-variable">$s3</span>-&gt;presign(<span class="hljs-variable">$input</span>, <span class="hljs-keyword">new</span> \DateTimeImmutable(<span class="hljs-string">'+60 min'</span>));
+<span class="hljs-variable">$url</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">presign</span>(<span class="hljs-variable">$input</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">\DateTimeImmutable</span>(<span class="hljs-string">'+60 min'</span>));
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$url</span>;</code></pre>
 <h3 id="official-aws-php-sdk-2">Official AWS PHP SDK<a href="#official-aws-php-sdk-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([]);
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([]);
 <span class="hljs-comment">// Sign on the fly</span>
-<span class="hljs-variable">$content</span> = <span class="hljs-variable">$s3</span>-&gt;getObject([
+<span class="hljs-variable">$content</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">getObject</span>([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'test'</span>,
 ]);
 
 <span class="hljs-comment">// Presign Url</span>
-<span class="hljs-variable">$command</span> = <span class="hljs-variable">$s3</span>-&gt;getCommand(<span class="hljs-string">'GetObject'</span>, [
+<span class="hljs-variable">$command</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">getCommand</span>(<span class="hljs-string">'GetObject'</span>, [
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'test'</span>,
 ]);
-<span class="hljs-variable">$psr7</span> = <span class="hljs-variable">$s3</span>-&gt;createPresignedRequest(<span class="hljs-variable">$cmd</span>, <span class="hljs-string">'+60 min'</span>);
-<span class="hljs-keyword">echo</span> (<span class="hljs-keyword">string</span>) <span class="hljs-variable">$psr7</span>-&gt;getUri();
+<span class="hljs-variable">$psr7</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">createPresignedRequest</span>(<span class="hljs-variable">$cmd</span>, <span class="hljs-string">'+60 min'</span>);
+<span class="hljs-keyword">echo</span> (<span class="hljs-keyword">string</span>) <span class="hljs-variable">$psr7</span>-&gt;<span class="hljs-title function_ invoke__">getUri</span>();
 </code></pre>
 <blockquote>
 <p><strong>Note</strong>: While official AWS PHP SDK provide methods to presign S3 methods only,

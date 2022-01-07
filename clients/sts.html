@@ -385,26 +385,26 @@ $sts = <span class="hljs-keyword">new</span> StsClient([
 <h3 id="retrieve-current-account">Retrieve current Account<a href="#retrieve-current-account" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Sts</span>\<span class="hljs-title">StsClient</span>;
 
-<span class="hljs-variable">$sts</span> = <span class="hljs-keyword">new</span> StsClient();
+<span class="hljs-variable">$sts</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StsClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sts</span>-&gt;getCallerIdentity();
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sts</span>-&gt;<span class="hljs-title function_ invoke__">getCallerIdentity</span>();
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'current Account:'</span> . <span class="hljs-variable">$result</span>-&gt;getAccount();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'current Account:'</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getAccount</span>();</code></pre>
 <h3 id="retrieve-current-account-1">Retrieve current Account<a href="#retrieve-current-account-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Sts</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">AssumeRoleRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Sts</span>\<span class="hljs-title">StsClient</span>;
 
-<span class="hljs-variable">$sts</span> = <span class="hljs-keyword">new</span> StsClient();
+<span class="hljs-variable">$sts</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StsClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sts</span>-&gt;assumeRole(<span class="hljs-keyword">new</span> AssumeRoleRequest([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sts</span>-&gt;<span class="hljs-title function_ invoke__">assumeRole</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">AssumeRoleRequest</span>([
     <span class="hljs-string">'RoleArn'</span> =&gt; <span class="hljs-string">'arn:aws::iam::123456789012:role/demo'</span>,
     <span class="hljs-string">'RoleSessionName'</span> =&gt; <span class="hljs-string">'demo-session'</span>,
     <span class="hljs-string">'DurationSeconds'</span> =&gt; <span class="hljs-number">3600</span>,
 ]));
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'AccessKeyId:'</span> . <span class="hljs-variable">$result</span>-&gt;getCredentials()-&gt;getAccessKeyId().PHP_EOL;
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'SecretAccessKey:'</span> . <span class="hljs-variable">$result</span>-&gt;getCredentials()-&gt;getSecretAccessKey().PHP_EOL;
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'SessionToken:'</span> . <span class="hljs-variable">$result</span>-&gt;getCredentials()-&gt;getSessionToken();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'AccessKeyId:'</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getCredentials</span>()-&gt;<span class="hljs-title function_ invoke__">getAccessKeyId</span>().PHP_EOL;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'SecretAccessKey:'</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getCredentials</span>()-&gt;<span class="hljs-title function_ invoke__">getSecretAccessKey</span>().PHP_EOL;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'SessionToken:'</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getCredentials</span>()-&gt;<span class="hljs-title function_ invoke__">getSessionToken</span>();</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 

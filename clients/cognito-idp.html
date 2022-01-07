@@ -386,35 +386,35 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeType</span>;
 
-<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
+<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
 
-<span class="hljs-variable">$cognitoIdp</span>-&gt;adminCreateUser([
+<span class="hljs-variable">$cognitoIdp</span>-&gt;<span class="hljs-title function_ invoke__">adminCreateUser</span>([
     <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
     <span class="hljs-string">'Username'</span> =&gt; <span class="hljs-string">'1c202820-8eb5-11ea-bc55-0242ac130003'</span>,
     <span class="hljs-string">'UserAttributes'</span> =&gt; [
-        <span class="hljs-keyword">new</span> AttributeType([<span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'phone_number'</span>, <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'+33600000000'</span>])
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">AttributeType</span>([<span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'phone_number'</span>, <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'+33600000000'</span>])
     ],
 ]);</code></pre>
 <h3 id="get-a-user-as-an-admin">Get a user as an admin<a href="#get-a-user-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeType</span>;
 
-<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> CognitoIdentityProviderClient();
+<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cognitoIdp</span>-&gt;adminGetUser([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cognitoIdp</span>-&gt;<span class="hljs-title function_ invoke__">adminGetUser</span>([
     <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
     <span class="hljs-string">'Username'</span> =&gt; <span class="hljs-string">'1c202820-8eb5-11ea-bc55-0242ac130003'</span>,
     <span class="hljs-string">'UserAttributes'</span> =&gt; [
-        <span class="hljs-keyword">new</span> AttributeType([<span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'phone_number'</span>, <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'+33600000000'</span>])
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">AttributeType</span>([<span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'phone_number'</span>, <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'+33600000000'</span>])
     ],
 ]);
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'User status is: '</span> . <span class="hljs-variable">$result</span>-&gt;getUserStatus() . PHP_EOL;
-<span class="hljs-variable">$givenNameAttribute</span> = current(array_filter(
-    <span class="hljs-variable">$result</span>-&gt;getUserAttributes(),
-    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable">$attr</span></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-variable">$attr</span>-&gt;getName() === <span class="hljs-string">'given_name'</span>; }
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'User status is: '</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getUserStatus</span>() . PHP_EOL;
+<span class="hljs-variable">$givenNameAttribute</span> = <span class="hljs-title function_ invoke__">current</span>(<span class="hljs-title function_ invoke__">array_filter</span>(
+    <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getUserAttributes</span>(),
+    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable">$attr</span></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-variable">$attr</span>-&gt;<span class="hljs-title function_ invoke__">getName</span>() === <span class="hljs-string">'given_name'</span>; }
 ));
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'User given name is: '</span> . <span class="hljs-variable">$givenNameAttribute</span>-&gt;getValue() . PHP_EOL;</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'User given name is: '</span> . <span class="hljs-variable">$givenNameAttribute</span>-&gt;<span class="hljs-title function_ invoke__">getValue</span>() . PHP_EOL;</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 

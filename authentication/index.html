@@ -371,13 +371,13 @@ credentials between each request.</p>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">SymfonyCacheProvider</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Symfony</span>\<span class="hljs-title">Component</span>\<span class="hljs-title">Cache</span>\<span class="hljs-title">Adapter</span>\<span class="hljs-title">FilesystemAdapter</span>;
 
-<span class="hljs-variable">$provider</span> = ChainProvider::createDefaultChain();
-<span class="hljs-variable">$provider</span> = <span class="hljs-keyword">new</span> SymfonyCacheProvider(<span class="hljs-variable">$provider</span>, <span class="hljs-keyword">new</span> FilesystemAdapter(<span class="hljs-string">'test'</span>));
+<span class="hljs-variable">$provider</span> = <span class="hljs-title class_">ChainProvider</span>::<span class="hljs-title function_ invoke__">createDefaultChain</span>();
+<span class="hljs-variable">$provider</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SymfonyCacheProvider</span>(<span class="hljs-variable">$provider</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">FilesystemAdapter</span>(<span class="hljs-string">'test'</span>));
 
 <span class="hljs-comment">// optional, decorate the provider with the in-memory Cache provider</span>
-<span class="hljs-variable">$provider</span> = <span class="hljs-keyword">new</span> CacheProvider(<span class="hljs-variable">$provider</span>);
+<span class="hljs-variable">$provider</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CacheProvider</span>(<span class="hljs-variable">$provider</span>);
 
-<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client([], <span class="hljs-variable">$provider</span>);</code></pre>
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([], <span class="hljs-variable">$provider</span>);</code></pre>
 
     </main>
 </div>

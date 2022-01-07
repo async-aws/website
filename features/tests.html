@@ -354,16 +354,16 @@ and makes sure it returns a <code>PutObjectOutput</code> result.</p>
     </span>{
         <span class="hljs-variable">$file</span> = <span class="hljs-string">'/path/file.txt'</span>;
 
-        <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">$this</span>-&gt;getMockBuilder(S3Client::class)
-            -&gt;disableOriginalConstructor()
-            -&gt;onlyMethods([<span class="hljs-string">'putObject'</span>])
-            -&gt;getMock();
+        <span class="hljs-variable">$s3</span> = <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">getMockBuilder</span>(<span class="hljs-title class_">S3Client</span>::<span class="hljs-variable language_">class</span>)
+            -&gt;<span class="hljs-title function_ invoke__">disableOriginalConstructor</span>()
+            -&gt;<span class="hljs-title function_ invoke__">onlyMethods</span>([<span class="hljs-string">'putObject'</span>])
+            -&gt;<span class="hljs-title function_ invoke__">getMock</span>();
 
-        <span class="hljs-variable">$result</span> = ResultMockFactory::create(PutObjectOutput::class);
+        <span class="hljs-variable">$result</span> = <span class="hljs-title class_">ResultMockFactory</span>::<span class="hljs-title function_ invoke__">create</span>(<span class="hljs-title class_">PutObjectOutput</span>::<span class="hljs-variable language_">class</span>);
 
-        <span class="hljs-variable">$s3</span>-&gt;expects(<span class="hljs-built_in">self</span>::once())
-            -&gt;method(<span class="hljs-string">'putObject'</span>)
-            -&gt;with(<span class="hljs-built_in">self</span>::callback(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-keyword">array</span> <span class="hljs-variable">$input</span></span>) <span class="hljs-keyword">use</span> (<span class="hljs-params"><span class="hljs-variable">$file</span></span>) </span>{
+        <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">expects</span>(<span class="hljs-built_in">self</span>::<span class="hljs-title function_ invoke__">once</span>())
+            -&gt;<span class="hljs-title function_ invoke__">method</span>(<span class="hljs-string">'putObject'</span>)
+            -&gt;<span class="hljs-title function_ invoke__">with</span>(<span class="hljs-built_in">self</span>::<span class="hljs-title function_ invoke__">callback</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-keyword">array</span> <span class="hljs-variable">$input</span></span>) <span class="hljs-keyword">use</span> (<span class="hljs-params"><span class="hljs-variable">$file</span></span>) </span>{
                 <span class="hljs-keyword">if</span> (<span class="hljs-variable">$input</span>[<span class="hljs-string">'Key'</span>] !== <span class="hljs-variable">$file</span>) {
                     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
                 }
@@ -376,10 +376,10 @@ and makes sure it returns a <code>PutObjectOutput</code> result.</p>
                 }
 
                 <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-            }))-&gt;willReturn(<span class="hljs-variable">$result</span>);
+            }))-&gt;<span class="hljs-title function_ invoke__">willReturn</span>(<span class="hljs-variable">$result</span>);
 
-        <span class="hljs-variable">$uploader</span> = <span class="hljs-keyword">new</span> FileUploader(<span class="hljs-variable">$s3</span>);
-        <span class="hljs-variable">$uploader</span>-&gt;write(<span class="hljs-variable">$file</span>, <span class="hljs-string">'my file contents'</span>);
+        <span class="hljs-variable">$uploader</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileUploader</span>(<span class="hljs-variable">$s3</span>);
+        <span class="hljs-variable">$uploader</span>-&gt;<span class="hljs-title function_ invoke__">write</span>(<span class="hljs-variable">$file</span>, <span class="hljs-string">'my file contents'</span>);
     }
 }
 </code></pre>
@@ -389,9 +389,9 @@ argument to set properties to the result class.</p>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Test</span>\<span class="hljs-title">ResultMockFactory</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Test</span>\<span class="hljs-title">SimpleResultStream</span>;
 
-<span class="hljs-variable">$result</span> = ResultMockFactory::create(GetObjectOutput::class, [
-    <span class="hljs-string">'LastModified'</span> =&gt; <span class="hljs-keyword">new</span> \DateTimeImmutable(),
-    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-keyword">new</span> SimpleResultStream(<span class="hljs-string">'my content'</span>),
+<span class="hljs-variable">$result</span> = <span class="hljs-title class_">ResultMockFactory</span>::<span class="hljs-title function_ invoke__">create</span>(<span class="hljs-title class_">GetObjectOutput</span>::<span class="hljs-variable language_">class</span>, [
+    <span class="hljs-string">'LastModified'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">\DateTimeImmutable</span>(),
+    <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleResultStream</span>(<span class="hljs-string">'my content'</span>),
 ]);</code></pre>
 
     </main>

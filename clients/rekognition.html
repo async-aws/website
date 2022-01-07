@@ -389,15 +389,15 @@ is own characteristics, for easy searching:</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">RekognitionClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateCollectionRequest</span>;
 
-<span class="hljs-variable">$rekognition</span> = <span class="hljs-keyword">new</span> RekognitionClient();
+<span class="hljs-variable">$rekognition</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RekognitionClient</span>();
 
-<span class="hljs-variable">$request</span> = <span class="hljs-keyword">new</span> CreateCollectionRequest([
+<span class="hljs-variable">$request</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateCollectionRequest</span>([
     <span class="hljs-string">"collectionId"</span> =&gt; <span class="hljs-string">"dogs-collection"</span>,
 ]);
 
-<span class="hljs-variable">$response</span> = <span class="hljs-variable">$rekognition</span>-&gt;createCollection(<span class="hljs-variable">$request</span>);
+<span class="hljs-variable">$response</span> = <span class="hljs-variable">$rekognition</span>-&gt;<span class="hljs-title function_ invoke__">createCollection</span>(<span class="hljs-variable">$request</span>);
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Version: '</span> . <span class="hljs-variable">$response</span>-&gt;getFaceModelVersion();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'Version: '</span> . <span class="hljs-variable">$response</span>-&gt;<span class="hljs-title function_ invoke__">getFaceModelVersion</span>();</code></pre>
 <h3 id="add-faces-to-a-collection">Add faces to a collection<a href="#add-faces-to-a-collection" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>If you want to add faces from an image into a collection you will use the method
 indexFaces.</p>
@@ -405,18 +405,18 @@ indexFaces.</p>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">IndexFacesRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Image</span>;
 
-<span class="hljs-variable">$rekognition</span> = <span class="hljs-keyword">new</span> RekognitionClient();
+<span class="hljs-variable">$rekognition</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RekognitionClient</span>();
 
-<span class="hljs-variable">$addFacesRequest</span> = <span class="hljs-keyword">new</span> IndexFacesRequest(
+<span class="hljs-variable">$addFacesRequest</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IndexFacesRequest</span>(
     [
-        <span class="hljs-string">'Image'</span> =&gt; <span class="hljs-keyword">new</span> Image([<span class="hljs-string">'Bytes'</span> =&gt; file_get_contents(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">'/resources/snoopy.jpg'</span>)]),
+        <span class="hljs-string">'Image'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Image</span>([<span class="hljs-string">'Bytes'</span> =&gt; <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">'/resources/snoopy.jpg'</span>)]),
         <span class="hljs-string">'CollectionId'</span> =&gt; <span class="hljs-string">'dogs-collection'</span>,
         <span class="hljs-string">'ExternalImageId'</span> =&gt; <span class="hljs-string">'snoopy_1'</span>,
     ]
 );
 
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$rekognition</span>-&gt;indexFaces(<span class="hljs-variable">$addFacesRequest</span>)-&gt;getFaceRecords() <span class="hljs-keyword">as</span> <span class="hljs-variable">$faceRecord</span>) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-string">'face: '</span> . <span class="hljs-variable">$faceRecord</span>-&gt;getFace()-&gt;getFaceId() . <span class="hljs-string">' ('</span> . <span class="hljs-variable">$faceRecord</span>-&gt;getFace()-&gt;getConfidence() . <span class="hljs-string">'%)'</span>;
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$rekognition</span>-&gt;<span class="hljs-title function_ invoke__">indexFaces</span>(<span class="hljs-variable">$addFacesRequest</span>)-&gt;<span class="hljs-title function_ invoke__">getFaceRecords</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$faceRecord</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'face: '</span> . <span class="hljs-variable">$faceRecord</span>-&gt;<span class="hljs-title function_ invoke__">getFace</span>()-&gt;<span class="hljs-title function_ invoke__">getFaceId</span>() . <span class="hljs-string">' ('</span> . <span class="hljs-variable">$faceRecord</span>-&gt;<span class="hljs-title function_ invoke__">getFace</span>()-&gt;<span class="hljs-title function_ invoke__">getConfidence</span>() . <span class="hljs-string">'%)'</span>;
 }</code></pre>
 <h3 id="search-for-a-face-inside-a-collection">Search for a face inside a collection<a href="#search-for-a-face-inside-a-collection" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>When you want to search a face inside a collection with an image you will use
@@ -425,20 +425,20 @@ the method searchFacesByImage.</p>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">searchFacesByImageRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Rekognition</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Image</span>;
 
-<span class="hljs-variable">$rekognition</span> = <span class="hljs-keyword">new</span> RekognitionClient();
+<span class="hljs-variable">$rekognition</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RekognitionClient</span>();
 
-<span class="hljs-variable">$addFacesRequest</span> = <span class="hljs-keyword">new</span> SearchFacesByImageRequest(
+<span class="hljs-variable">$addFacesRequest</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SearchFacesByImageRequest</span>(
     [
-        <span class="hljs-string">'image'</span> =&gt; <span class="hljs-keyword">new</span> Image([<span class="hljs-string">'Bytes'</span> =&gt; file_get_contents(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">'/resources/snoopy.jpg'</span>)]),
+        <span class="hljs-string">'image'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Image</span>([<span class="hljs-string">'Bytes'</span> =&gt; <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">'/resources/snoopy.jpg'</span>)]),
         <span class="hljs-string">'faceMatchThreshold'</span> =&gt; <span class="hljs-number">75.5</span>,
         <span class="hljs-string">'collectionId'</span> =&gt; <span class="hljs-string">'dogs-collection'</span>,
     ]
 );
 
-<span class="hljs-variable">$response</span> = <span class="hljs-variable">$rekognition</span>-&gt;searchFacesByImage(<span class="hljs-variable">$addFacesRequest</span>)-&gt;getSearchedFaceBoundingBox();
+<span class="hljs-variable">$response</span> = <span class="hljs-variable">$rekognition</span>-&gt;<span class="hljs-title function_ invoke__">searchFacesByImage</span>(<span class="hljs-variable">$addFacesRequest</span>)-&gt;<span class="hljs-title function_ invoke__">getSearchedFaceBoundingBox</span>();
 
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$rekognition</span>-&gt;searchFacesByImage(<span class="hljs-variable">$addFacesRequest</span>)-&gt;getFaceMatches() <span class="hljs-keyword">as</span> <span class="hljs-variable">$faceMatch</span>) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-string">'face: '</span> . <span class="hljs-variable">$faceMatch</span>-&gt;getFace()-&gt;getFaceId() . <span class="hljs-string">' ('</span> . <span class="hljs-variable">$faceMatch</span>-&gt;getFace()-&gt;getConfidence() . <span class="hljs-string">'%)'</span>;
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$rekognition</span>-&gt;<span class="hljs-title function_ invoke__">searchFacesByImage</span>(<span class="hljs-variable">$addFacesRequest</span>)-&gt;<span class="hljs-title function_ invoke__">getFaceMatches</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$faceMatch</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'face: '</span> . <span class="hljs-variable">$faceMatch</span>-&gt;<span class="hljs-title function_ invoke__">getFace</span>()-&gt;<span class="hljs-title function_ invoke__">getFaceId</span>() . <span class="hljs-string">' ('</span> . <span class="hljs-variable">$faceMatch</span>-&gt;<span class="hljs-title function_ invoke__">getFace</span>()-&gt;<span class="hljs-title function_ invoke__">getConfidence</span>() . <span class="hljs-string">'%)'</span>;
 }</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">

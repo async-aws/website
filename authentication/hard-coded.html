@@ -345,7 +345,7 @@ client configuration parameters.</p>
 <h2 id="authenticate-with-access-key-and-secret">Authenticate with access key and secret<a href="#authenticate-with-access-key-and-secret" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
 
-<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> AwsClientFactory([
+<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AwsClientFactory</span>([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
 ]);</code></pre>
@@ -355,7 +355,7 @@ the <code>roleArn</code> key. You can also specify a <code>roleSessionName</code
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
 
-<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> AwsClientFactory([
+<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AwsClientFactory</span>([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
     <span class="hljs-string">'roleArn'</span> =&gt; <span class="hljs-string">'arn:aws:iam::1234567891011:role/name-of-my-role'</span>,

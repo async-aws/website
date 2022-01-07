@@ -385,8 +385,8 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
 <h3 id="execute-an-sql-statement">Execute an sql statement<a href="#execute-an-sql-statement" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
 
-<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> RdsDataServiceClient();
-<span class="hljs-variable">$response</span> = <span class="hljs-variable">$client</span>-&gt;executeStatement([
+<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RdsDataServiceClient</span>();
+<span class="hljs-variable">$response</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">executeStatement</span>([
     <span class="hljs-string">'database'</span> =&gt; <span class="hljs-string">'my_database'</span>,
     <span class="hljs-string">'resourceArn'</span> =&gt; <span class="hljs-string">'arn:resource'</span>,
     <span class="hljs-string">'secretArn'</span> =&gt; <span class="hljs-string">'arn:secret'</span>,
@@ -396,8 +396,8 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
     ]
 ]);
 
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$response</span>-&gt;getRecords() <span class="hljs-keyword">as</span> <span class="hljs-variable">$record</span>) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-string">"name: "</span> . <span class="hljs-variable">$record</span>[<span class="hljs-number">0</span>]-&gt;getStringValue() . PHP_EOL;
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$response</span>-&gt;<span class="hljs-title function_ invoke__">getRecords</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$record</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"name: "</span> . <span class="hljs-variable">$record</span>[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getStringValue</span>() . PHP_EOL;
 }</code></pre>
 <h3 id="run-a-transaction">Run a transaction<a href="#run-a-transaction" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>
@@ -409,26 +409,26 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
     <span class="hljs-string">'secretArt'</span> =&gt; <span class="hljs-string">'arn:secret'</span>,
 ];
 
-<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> RdsDataServiceClient();
-<span class="hljs-variable">$transaction</span> = <span class="hljs-variable">$client</span>-&gt;beginTransaction(<span class="hljs-variable">$database</span>);
+<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RdsDataServiceClient</span>();
+<span class="hljs-variable">$transaction</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">beginTransaction</span>(<span class="hljs-variable">$database</span>);
 
 <span class="hljs-keyword">try</span> {
-    <span class="hljs-variable">$result</span> = <span class="hljs-variable">$client</span>-&gt;executeStatement(<span class="hljs-variable">$database</span> + [
-        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;getTransactionId(),
+    <span class="hljs-variable">$result</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">executeStatement</span>(<span class="hljs-variable">$database</span> + [
+        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;<span class="hljs-title function_ invoke__">getTransactionId</span>(),
         <span class="hljs-string">'sql'</span> =&gt; <span class="hljs-string">'SELECT age FROM users WHERE id = :id FOR UPDATE'</span>,
         <span class="hljs-string">'parameters'</span> =&gt; [
             [<span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'id'</span>, <span class="hljs-string">'value'</span> =&gt; [<span class="hljs-string">'longValue'</span> =&gt; <span class="hljs-number">5</span>]],
         ]
     ]);
 
-    <span class="hljs-variable">$user</span> = <span class="hljs-variable">$result</span>-&gt;getRecords()[<span class="hljs-number">0</span>] ?? <span class="hljs-literal">null</span>;
+    <span class="hljs-variable">$user</span> = <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getRecords</span>()[<span class="hljs-number">0</span>] ?? <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">if</span> (<span class="hljs-variable">$user</span> === <span class="hljs-literal">null</span>) {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> \<span class="hljs-built_in">RuntimeException</span>(<span class="hljs-string">"User 5 not found."</span>);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">\RuntimeException</span>(<span class="hljs-string">"User 5 not found."</span>);
     }
 
-    <span class="hljs-variable">$newAge</span> = <span class="hljs-variable">$user</span>[<span class="hljs-number">0</span>]-&gt;getLongValue() + <span class="hljs-number">1</span>;
-    <span class="hljs-variable">$client</span>-&gt;executeStatement(<span class="hljs-variable">$database</span> + [
-        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;getTransactionId(),
+    <span class="hljs-variable">$newAge</span> = <span class="hljs-variable">$user</span>[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getLongValue</span>() + <span class="hljs-number">1</span>;
+    <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">executeStatement</span>(<span class="hljs-variable">$database</span> + [
+        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;<span class="hljs-title function_ invoke__">getTransactionId</span>(),
         <span class="hljs-string">'sql'</span> =&gt; <span class="hljs-string">'UPDATE users SET age = :new_age WHERE id = :id'</span>,
         <span class="hljs-string">'parameters'</span> =&gt; [
             [<span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'id'</span>, <span class="hljs-string">'value'</span> =&gt; [<span class="hljs-string">'longValue'</span> =&gt; <span class="hljs-number">5</span>]],
@@ -436,14 +436,14 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
         ]
     ]);
 
-    <span class="hljs-variable">$client</span>-&gt;commitTransaction(<span class="hljs-variable">$database</span> + [
-        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;getTransactionId(),
+    <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">commitTransaction</span>(<span class="hljs-variable">$database</span> + [
+        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;<span class="hljs-title function_ invoke__">getTransactionId</span>(),
     ]);
 } <span class="hljs-keyword">catch</span> (\<span class="hljs-built_in">Throwable</span> <span class="hljs-variable">$e</span>) {
     <span class="hljs-comment">// Make sure to allways rollback since there is no connection.</span>
     <span class="hljs-comment">// If you forget than the transaction might block tables for up to 5 minutes.</span>
-    <span class="hljs-variable">$client</span>-&gt;rollbackTransaction(<span class="hljs-variable">$database</span> + [
-        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;getTransactionId(),
+    <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">rollbackTransaction</span>(<span class="hljs-variable">$database</span> + [
+        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;<span class="hljs-title function_ invoke__">getTransactionId</span>(),
     ]);
     <span class="hljs-keyword">throw</span> <span class="hljs-variable">$e</span>;
 }</code></pre>

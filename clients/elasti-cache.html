@@ -386,11 +386,11 @@ $elastiCache = <span class="hljs-keyword">new</span> ElastiCacheClient([
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">ElastiCache</span>\<span class="hljs-title">ElastiCacheClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">ElastiCache</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeCacheClustersMessage</span>;
 
-<span class="hljs-variable">$elastiCache</span> = <span class="hljs-keyword">new</span> ElastiCacheClient();
-<span class="hljs-variable">$clusters</span> = <span class="hljs-variable">$elastiCache</span>-&gt;describeCacheClusters();
+<span class="hljs-variable">$elastiCache</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ElastiCacheClient</span>();
+<span class="hljs-variable">$clusters</span> = <span class="hljs-variable">$elastiCache</span>-&gt;<span class="hljs-title function_ invoke__">describeCacheClusters</span>();
 
 <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$clusters</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$cluster</span>) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Cluster id: '</span>.<span class="hljs-variable">$cluster</span>-&gt;getCacheClusterId().PHP_EOL;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Cluster id: '</span>.<span class="hljs-variable">$cluster</span>-&gt;<span class="hljs-title function_ invoke__">getCacheClusterId</span>().PHP_EOL;
 }</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">

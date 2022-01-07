@@ -387,13 +387,13 @@ $codeDeploy = <span class="hljs-keyword">new</span> CodeDeployClient([
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">RevisionLocationType</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateDeploymentInput</span>;
 
-<span class="hljs-variable">$codeDeploy</span> = <span class="hljs-keyword">new</span> CodeDeployClient();
+<span class="hljs-variable">$codeDeploy</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeDeployClient</span>();
 
-<span class="hljs-variable">$deployment</span> = <span class="hljs-variable">$codeDeploy</span>-&gt;createDeployment(mew CreateDeploymentInput([
+<span class="hljs-variable">$deployment</span> = <span class="hljs-variable">$codeDeploy</span>-&gt;<span class="hljs-title function_ invoke__">createDeployment</span>(mew <span class="hljs-title function_ invoke__">CreateDeploymentInput</span>([
     <span class="hljs-string">'applicationName'</span> =&gt; <span class="hljs-string">'my-app'</span>,
     <span class="hljs-string">'deploymentGroupName'</span> =&gt; <span class="hljs-string">'my-deployment-group'</span>,
     <span class="hljs-string">'revision'</span> =&gt; [
-        <span class="hljs-string">'revisionType'</span> =&gt; RevisionLocationType::GIT_HUB,
+        <span class="hljs-string">'revisionType'</span> =&gt; <span class="hljs-title class_">RevisionLocationType</span>::GIT_HUB,
         <span class="hljs-string">'gitHubLocation'</span> =&gt; [
             <span class="hljs-string">'repository'</span> =&gt; <span class="hljs-string">'repo'</span>,
             <span class="hljs-string">'commitId'</span> =&gt; <span class="hljs-string">'commit'</span>,
@@ -401,24 +401,24 @@ $codeDeploy = <span class="hljs-keyword">new</span> CodeDeployClient([
     ],
 ]));
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'DepoymentId: '</span>. <span class="hljs-variable">$deployment</span>-&gt;getDeploymentId();
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'DepoymentId: '</span>. <span class="hljs-variable">$deployment</span>-&gt;<span class="hljs-title function_ invoke__">getDeploymentId</span>();
 </code></pre>
 <h3 id="sets-the-result-of-a-lambda-validation-function">Sets the result of a Lambda validation function<a href="#sets-the-result-of-a-lambda-validation-function" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">CodeDeployClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">LifecycleEventStatus</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutLifecycleEventHookExecutionStatusInput</span>;
 
-<span class="hljs-variable">$codeDeploy</span> = <span class="hljs-keyword">new</span> CodeDeployClient();
+<span class="hljs-variable">$codeDeploy</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeDeployClient</span>();
 
 <span class="hljs-variable">$event</span> = []; <span class="hljs-comment">// fetched from lambda</span>
 
-<span class="hljs-variable">$status</span> = <span class="hljs-variable">$codeDeploy</span>-&gt;putLifecycleEventHookExecutionStatus(<span class="hljs-keyword">new</span> PutLifecycleEventHookExecutionStatusInput([
+<span class="hljs-variable">$status</span> = <span class="hljs-variable">$codeDeploy</span>-&gt;<span class="hljs-title function_ invoke__">putLifecycleEventHookExecutionStatus</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutLifecycleEventHookExecutionStatusInput</span>([
     <span class="hljs-string">'deploymentId'</span> =&gt; <span class="hljs-variable">$event</span>[<span class="hljs-string">'deploymentId'</span>],
     <span class="hljs-string">'lifecycleEventHookExecutionId'</span> =&gt; <span class="hljs-variable">$event</span>[<span class="hljs-string">'lifecycleEventHookExecutionId'</span>],
-    <span class="hljs-string">'status'</span> =&gt; LifecycleEventStatus::SUCCEEDED
+    <span class="hljs-string">'status'</span> =&gt; <span class="hljs-title class_">LifecycleEventStatus</span>::SUCCEEDED
 ]));
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'ExecutionId: '</span>. <span class="hljs-variable">$status</span>-&gt;getLifecycleEventHookExecutionId();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'ExecutionId: '</span>. <span class="hljs-variable">$status</span>-&gt;<span class="hljs-title function_ invoke__">getLifecycleEventHookExecutionId</span>();</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 

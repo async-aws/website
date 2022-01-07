@@ -353,21 +353,21 @@ only Flysystem version 1. Flysystem version 2 has an <a href="https://flysystem.
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Flysystem</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">AsyncAwsS3Adapter</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
-<span class="hljs-variable">$adapter</span> = <span class="hljs-keyword">new</span> AsyncAwsS3Adapter(<span class="hljs-keyword">new</span> S3Client(), <span class="hljs-string">'bucket'</span>);
-<span class="hljs-variable">$filesystem</span> = <span class="hljs-keyword">new</span> Filesystem(<span class="hljs-variable">$adapter</span>);
-<span class="hljs-variable">$resource</span> = tmpfile();
+<span class="hljs-variable">$adapter</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AsyncAwsS3Adapter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>(), <span class="hljs-string">'bucket'</span>);
+<span class="hljs-variable">$filesystem</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Filesystem</span>(<span class="hljs-variable">$adapter</span>);
+<span class="hljs-variable">$resource</span> = <span class="hljs-title function_ invoke__">tmpfile</span>();
 
-<span class="hljs-variable">$filesystem</span>-&gt;write(<span class="hljs-string">'dir/path.txt'</span>, <span class="hljs-string">'contents'</span>);
-<span class="hljs-variable">$filesystem</span>-&gt;writeStream(<span class="hljs-string">'dir/path.txt'</span>, <span class="hljs-variable">$resource</span>);
+<span class="hljs-variable">$filesystem</span>-&gt;<span class="hljs-title function_ invoke__">write</span>(<span class="hljs-string">'dir/path.txt'</span>, <span class="hljs-string">'contents'</span>);
+<span class="hljs-variable">$filesystem</span>-&gt;<span class="hljs-title function_ invoke__">writeStream</span>(<span class="hljs-string">'dir/path.txt'</span>, <span class="hljs-variable">$resource</span>);
 
-<span class="hljs-variable">$filesystem</span>-&gt;delete(<span class="hljs-string">'dir/path.txt'</span>);
+<span class="hljs-variable">$filesystem</span>-&gt;<span class="hljs-title function_ invoke__">delete</span>(<span class="hljs-string">'dir/path.txt'</span>);
 
-<span class="hljs-variable">$filesystem</span>-&gt;createDirectory(<span class="hljs-string">'dir'</span>);
-<span class="hljs-variable">$filesystem</span>-&gt;deleteDirectory(<span class="hljs-string">'dir'</span>);
+<span class="hljs-variable">$filesystem</span>-&gt;<span class="hljs-title function_ invoke__">createDirectory</span>(<span class="hljs-string">'dir'</span>);
+<span class="hljs-variable">$filesystem</span>-&gt;<span class="hljs-title function_ invoke__">deleteDirectory</span>(<span class="hljs-string">'dir'</span>);
 
-<span class="hljs-variable">$lastModified</span> = <span class="hljs-variable">$filesystem</span>-&gt;lastModified(<span class="hljs-string">'path.txt'</span>);
-<span class="hljs-variable">$mimeType</span> = <span class="hljs-variable">$filesystem</span>-&gt;mimeType(<span class="hljs-string">'path.txt'</span>);
-<span class="hljs-variable">$fileSize</span> = <span class="hljs-variable">$filesystem</span>-&gt;fileSize(<span class="hljs-string">'path.txt'</span>);</code></pre>
+<span class="hljs-variable">$lastModified</span> = <span class="hljs-variable">$filesystem</span>-&gt;<span class="hljs-title function_ invoke__">lastModified</span>(<span class="hljs-string">'path.txt'</span>);
+<span class="hljs-variable">$mimeType</span> = <span class="hljs-variable">$filesystem</span>-&gt;<span class="hljs-title function_ invoke__">mimeType</span>(<span class="hljs-string">'path.txt'</span>);
+<span class="hljs-variable">$fileSize</span> = <span class="hljs-variable">$filesystem</span>-&gt;<span class="hljs-title function_ invoke__">fileSize</span>(<span class="hljs-string">'path.txt'</span>);</code></pre>
 
     </main>
 </div>

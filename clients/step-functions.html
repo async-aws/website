@@ -386,30 +386,30 @@ $stepFunctions = <span class="hljs-keyword">new</span> StepFunctionsClient([
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">StartExecutionInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">StepFunctionsClient</span>;
 
-<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> StepFunctionsClient();
+<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StepFunctionsClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;startExecution(<span class="hljs-keyword">new</span> StartExecutionInput([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;<span class="hljs-title function_ invoke__">startExecution</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StartExecutionInput</span>([
     <span class="hljs-string">'stateMachineArn'</span> =&gt; <span class="hljs-string">'arn:sfn'</span>,
     <span class="hljs-string">'input'</span> =&gt; <span class="hljs-string">'{"foo": "bar"}'</span>,
 ]));
 
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getExecutionArn();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getExecutionArn</span>();</code></pre>
 <h3 id="send-a-task-heartbeat">Send a task heartbeat<a href="#send-a-task-heartbeat" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendTaskHeartbeatInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">StepFunctionsClient</span>;
 
-<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> StepFunctionsClient();
+<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StepFunctionsClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;sendTaskHeartbeat(<span class="hljs-keyword">new</span> SendTaskHeartbeatInput([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;<span class="hljs-title function_ invoke__">sendTaskHeartbeat</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">SendTaskHeartbeatInput</span>([
     <span class="hljs-string">'taskToken'</span> =&gt; <span class="hljs-string">'qwertyuiop'</span>,
 ]));</code></pre>
 <h3 id="mark-as-task-as-successful">Mark as task as successful<a href="#mark-as-task-as-successful" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendTaskSuccessInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">StepFunctionsClient</span>;
 
-<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> StepFunctionsClient();
+<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StepFunctionsClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;sendTaskSuccess(<span class="hljs-keyword">new</span> SendTaskSuccessInput([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;<span class="hljs-title function_ invoke__">sendTaskSuccess</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">SendTaskSuccessInput</span>([
     <span class="hljs-string">'taskToken'</span> =&gt; <span class="hljs-string">'qwertyuiop'</span>,
     <span class="hljs-string">'output'</span> =&gt; <span class="hljs-string">'{"success": ":partyparrot:"}'</span>,
 ]));</code></pre>
@@ -417,9 +417,9 @@ $stepFunctions = <span class="hljs-keyword">new</span> StepFunctionsClient([
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">SendTaskFailureInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">StepFunctions</span>\<span class="hljs-title">StepFunctionsClient</span>;
 
-<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> StepFunctionsClient();
+<span class="hljs-variable">$stepFunctions</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">StepFunctionsClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;sendTaskSuccess(<span class="hljs-keyword">new</span> SendTaskFailureInput([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$stepFunctions</span>-&gt;<span class="hljs-title function_ invoke__">sendTaskSuccess</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">SendTaskFailureInput</span>([
     <span class="hljs-string">'taskToken'</span> =&gt; <span class="hljs-string">'qwertyuiop'</span>,
     <span class="hljs-string">'error'</span> =&gt; <span class="hljs-string">'err_foo'</span>,
     <span class="hljs-string">'cause'</span> =&gt; <span class="hljs-string">'Crash!'</span>,

@@ -345,11 +345,11 @@ These results implement <code>\IteratorAggregate</code> and will automatically u
 API to make a new request to fetch the remaining resources in the list.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
 
-<span class="hljs-variable">$cloudFormation</span> = <span class="hljs-keyword">new</span> CloudFormationClient();
+<span class="hljs-variable">$cloudFormation</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudFormationClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudFormation</span>-&gt;describeStacks();
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudFormation</span>-&gt;<span class="hljs-title function_ invoke__">describeStacks</span>();
 <span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$result</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$stack</span>) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$stack</span>-&gt;getStackName();
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$stack</span>-&gt;<span class="hljs-title function_ invoke__">getStackName</span>();
 }</code></pre>
 <p>These results also provide methods to fetch metadata returned by AWS or
 to explicitly access the list of items by using a meaningful method name.</p>
@@ -366,17 +366,17 @@ When iterating over those results, all lists will be mixed in the yielded items.
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AwsObject</span>;
 
-<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> S3Client();
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>();
 
-<span class="hljs-variable">$objects</span> = <span class="hljs-variable">$s3</span>-&gt;listObjectsV2(<span class="hljs-keyword">new</span> ListObjectsV2Request([
+<span class="hljs-variable">$objects</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">listObjectsV2</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListObjectsV2Request</span>([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Delimiter'</span> =&gt; <span class="hljs-string">'/'</span>
 ]));
 <span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$objects</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$object</span>) {
     <span class="hljs-keyword">if</span> (<span class="hljs-variable">$object</span> <span class="hljs-keyword">instanceof</span> AwsObject) {
-        <span class="hljs-keyword">echo</span> <span class="hljs-string">'- '</span>.<span class="hljs-variable">$object</span>-&gt;getKey();
+        <span class="hljs-keyword">echo</span> <span class="hljs-string">'- '</span>.<span class="hljs-variable">$object</span>-&gt;<span class="hljs-title function_ invoke__">getKey</span>();
     } <span class="hljs-keyword">else</span> {
-        <span class="hljs-keyword">echo</span> <span class="hljs-string">'d '</span>.<span class="hljs-variable">$object</span>-&gt;getPrefix();
+        <span class="hljs-keyword">echo</span> <span class="hljs-string">'d '</span>.<span class="hljs-variable">$object</span>-&gt;<span class="hljs-title function_ invoke__">getPrefix</span>();
     }
 }</code></pre>
 

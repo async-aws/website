@@ -386,38 +386,38 @@ $cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient([
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeLogStreamsRequest</span>;
 
-<span class="hljs-variable">$cloudWatchLogs</span> = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
+<span class="hljs-variable">$cloudWatchLogs</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudWatchLogsClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudWatchLogs</span>-&gt;describeLogStreams(<span class="hljs-keyword">new</span> DescribeLogStreamsRequest([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudWatchLogs</span>-&gt;<span class="hljs-title function_ invoke__">describeLogStreams</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DescribeLogStreamsRequest</span>([
     <span class="hljs-string">'logGroupName'</span> =&gt; <span class="hljs-string">'company-website'</span>,
 ]));
 
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;getLogStreams() <span class="hljs-keyword">as</span> <span class="hljs-variable">$stream</span>) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-string">'-'</span>.<span class="hljs-variable">$stream</span>-&gt;getLogStreamName().PHP_EOL;
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getLogStreams</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$stream</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'-'</span>.<span class="hljs-variable">$stream</span>-&gt;<span class="hljs-title function_ invoke__">getLogStreamName</span>().PHP_EOL;
 }</code></pre>
 <h3 id="push-logs">Push logs<a href="#push-logs" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutLogEventsRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">InputLogEvent</span>;
 
-<span class="hljs-variable">$cloudWatchLogs</span> = <span class="hljs-keyword">new</span> CloudWatchLogsClient();
+<span class="hljs-variable">$cloudWatchLogs</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudWatchLogsClient</span>();
 
 <span class="hljs-comment">// sequenceToken is not required for a new stream</span>
 <span class="hljs-variable">$currentSequenceToken</span> = <span class="hljs-literal">null</span>;
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudWatchLogs</span>-&gt;putLogEvents(<span class="hljs-keyword">new</span> PutLogEventsRequest([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudWatchLogs</span>-&gt;<span class="hljs-title function_ invoke__">putLogEvents</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutLogEventsRequest</span>([
     <span class="hljs-string">'logGroupName'</span> =&gt; <span class="hljs-string">'company-website'</span>,
     <span class="hljs-string">'logStreamName'</span> =&gt; <span class="hljs-string">'frontend-api'</span>,
     <span class="hljs-string">'logEvents'</span> =&gt; [
-        <span class="hljs-keyword">new</span> InputLogEvent([
-            <span class="hljs-string">'timestamp'</span> =&gt; date(<span class="hljs-string">'U.u'</span>) * <span class="hljs-number">1000</span>,
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">InputLogEvent</span>([
+            <span class="hljs-string">'timestamp'</span> =&gt; <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">'U.u'</span>) * <span class="hljs-number">1000</span>,
             <span class="hljs-string">'message'</span> =&gt; <span class="hljs-string">'an error occurred'</span>,
         ]),
     ],
     <span class="hljs-string">'sequenceToken'</span> =&gt; <span class="hljs-variable">$currentSequenceToken</span>,
 ]));
 
-<span class="hljs-variable">$currentSequenceToken</span> = <span class="hljs-variable">$result</span>-&gt;getNextSequenceToken();</code></pre>
+<span class="hljs-variable">$currentSequenceToken</span> = <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getNextSequenceToken</span>();</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 

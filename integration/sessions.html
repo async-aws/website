@@ -347,18 +347,18 @@
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDbSession</span>\<span class="hljs-title">SessionHandler</span>;
 
-<span class="hljs-variable">$handler</span> = <span class="hljs-keyword">new</span> SessionHandler(<span class="hljs-keyword">new</span> DynamoDbClient(), [
+<span class="hljs-variable">$handler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SessionHandler</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>(), [
     <span class="hljs-string">'table_name'</span> =&gt; <span class="hljs-string">'php-sessions'</span>,
 ]);
 
-\session_set_save_handler(<span class="hljs-variable">$handler</span>, <span class="hljs-literal">true</span>);</code></pre>
+\<span class="hljs-title function_ invoke__">session_set_save_handler</span>(<span class="hljs-variable">$handler</span>, <span class="hljs-literal">true</span>);</code></pre>
 <hr>
 <p>A DynamoDb table needs to exist in the configured region with the given <code>table_name</code> option.</p>
 <p>The primary key of the table must be a String with key "id". This can be changed with the <code>hash_key</code> option.</p>
 <p>The Time to live attribute of the table must be set on the "expires" attribute. This can be changed with the <code>session_lifetime_attribute</code> option.</p>
 <hr>
 <p>Alternatively, the table can be created programmatically with the setUp method:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$handler</span>-&gt;setUp();</code></pre>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$handler</span>-&gt;<span class="hljs-title function_ invoke__">setUp</span>();</code></pre>
 <p>Creating the table with the method ensures the settings meet the requirements.</p>
 <p>The table is created with On-Demand billing, which you can change to provisioned through the AWS console.</p>
 <h2 id="configuration">Configuration<a href="#configuration" title="Permalink to this headline" class="headerlink">¶</a></h2>

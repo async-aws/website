@@ -345,18 +345,18 @@ until an long operation finished.</p>
 <p>To ease the development, the above code is wrapped in a helper called "waiter".</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
-<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> DynamoDbClient();
-<span class="hljs-variable">$dynamoDb</span>-&gt;createTable([]);
+<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>();
+<span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">createTable</span>([]);
 
 <span class="hljs-comment">// Create a new table.</span>
 <span class="hljs-comment">// It normally takes around 5 seconds to complete this action.</span>
-<span class="hljs-variable">$dynamoDb</span>-&gt;createTable([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>, <span class="hljs-comment">/* ...*/</span>]);
+<span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">createTable</span>([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>, <span class="hljs-comment">/* ...*/</span>]);
 
-<span class="hljs-variable">$waiter</span> = <span class="hljs-variable">$dynamoDb</span>-&gt;tableExists([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>]);
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$waiter</span>-&gt;isSuccess(); <span class="hljs-comment">// false</span>
+<span class="hljs-variable">$waiter</span> = <span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">tableExists</span>([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>]);
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$waiter</span>-&gt;<span class="hljs-title function_ invoke__">isSuccess</span>(); <span class="hljs-comment">// false</span>
 
-<span class="hljs-variable">$waiter</span>-&gt;wait();
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$waiter</span>-&gt;isSuccess(); <span class="hljs-comment">// true</span></code></pre>
+<span class="hljs-variable">$waiter</span>-&gt;<span class="hljs-title function_ invoke__">wait</span>();
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$waiter</span>-&gt;<span class="hljs-title function_ invoke__">isSuccess</span>(); <span class="hljs-comment">// true</span></code></pre>
 <p>A waiter provides methods that let you check the status of the operation.</p>
 <ul>
 <li><code>isSuccess()</code> returns true when operation is successful</li>
@@ -368,20 +368,20 @@ until an long operation finished.</p>
 <p>To make sure to use <code>wait()</code> as non blocking. Set the timeout to <code>0</code>:</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
-<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> DynamoDbClient();
+<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>();
 
-<span class="hljs-variable">$waiter</span> = <span class="hljs-variable">$dynamoDb</span>-&gt;tableExists([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>]);
+<span class="hljs-variable">$waiter</span> = <span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">tableExists</span>([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>]);
 <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) {
-    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$waiter</span>-&gt;wait(<span class="hljs-number">0</span>)) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$waiter</span>-&gt;<span class="hljs-title function_ invoke__">wait</span>(<span class="hljs-number">0</span>)) {
         <span class="hljs-comment">// When method `wait` returns true, the state is resolved.</span>
         <span class="hljs-keyword">break</span>;
     }
 
     <span class="hljs-comment">// perform business logic</span>
-    sleep(<span class="hljs-number">1</span>);
+    <span class="hljs-title function_ invoke__">sleep</span>(<span class="hljs-number">1</span>);
 }
 
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$waiter</span>-&gt;isSuccess();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$waiter</span>-&gt;<span class="hljs-title function_ invoke__">isSuccess</span>();</code></pre>
 
     </main>
 </div>

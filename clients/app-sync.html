@@ -386,26 +386,26 @@ $appSync = <span class="hljs-keyword">new</span> AppSyncClient([
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">AppSyncClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ResolverKind</span>;
 
-<span class="hljs-variable">$appSync</span> = <span class="hljs-keyword">new</span> AppSyncClient();
+<span class="hljs-variable">$appSync</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AppSyncClient</span>();
 
-<span class="hljs-variable">$requestMapping</span> = file_get_contents(<span class="hljs-string">'/mappings/echo.req.vtl'</span>);
-<span class="hljs-variable">$responseMapping</span>  = file_get_contents(<span class="hljs-string">'/mappings/echo.res.vtl'</span>);
+<span class="hljs-variable">$requestMapping</span> = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-string">'/mappings/echo.req.vtl'</span>);
+<span class="hljs-variable">$responseMapping</span>  = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-string">'/mappings/echo.res.vtl'</span>);
 
-<span class="hljs-variable">$appSync</span>-&gt;createResolver([
+<span class="hljs-variable">$appSync</span>-&gt;<span class="hljs-title function_ invoke__">createResolver</span>([
     <span class="hljs-string">'apiId'</span> =&gt; <span class="hljs-string">'my-api'</span>,
     <span class="hljs-string">'typeName'</span> =&gt; <span class="hljs-string">'Query'</span>,
     <span class="hljs-string">'fieldName'</span> =&gt; <span class="hljs-string">'echo'</span>,
     <span class="hljs-string">'dataSourceName'</span> =&gt; <span class="hljs-string">'EchoApi'</span>,
     <span class="hljs-string">'requestMappingTemplate'</span> =&gt; <span class="hljs-variable">$requestMapping</span>,
     <span class="hljs-string">'responseMappingTemplate'</span> =&gt; <span class="hljs-variable">$responseMapping</span>,
-    <span class="hljs-string">'kind'</span> =&gt; ResolverKind::UNIT,
+    <span class="hljs-string">'kind'</span> =&gt; <span class="hljs-title class_">ResolverKind</span>::UNIT,
 ]);</code></pre>
 <h3 id="list-resolvers">List resolvers<a href="#list-resolvers" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">AppSyncClient</span>;
 
-<span class="hljs-variable">$appSync</span>= <span class="hljs-keyword">new</span> AppSyncClient();
+<span class="hljs-variable">$appSync</span>= <span class="hljs-keyword">new</span> <span class="hljs-title class_">AppSyncClient</span>();
 
-<span class="hljs-variable">$appSync</span>-&gt;listResolvers([
+<span class="hljs-variable">$appSync</span>-&gt;<span class="hljs-title function_ invoke__">listResolvers</span>([
     <span class="hljs-string">'apiId'</span> =&gt; <span class="hljs-string">'my-api'</span>,
     <span class="hljs-string">'typeName'</span> =&gt; <span class="hljs-string">'Query'</span>,
     <span class="hljs-string">'maxResults'</span> =&gt; <span class="hljs-number">100</span>,
@@ -413,20 +413,20 @@ $appSync = <span class="hljs-keyword">new</span> AppSyncClient([
 <h3 id="start-schema-creation">Start schema creation<a href="#start-schema-creation" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">AppSyncClient</span>;
 
-<span class="hljs-variable">$appSync</span>= <span class="hljs-keyword">new</span> AppSyncClient();
+<span class="hljs-variable">$appSync</span>= <span class="hljs-keyword">new</span> <span class="hljs-title class_">AppSyncClient</span>();
 
-<span class="hljs-variable">$schemaDefinition</span> = file_get_contents(<span class="hljs-string">'/schema.graphql'</span>);
+<span class="hljs-variable">$schemaDefinition</span> = <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-string">'/schema.graphql'</span>);
 
-<span class="hljs-variable">$appSync</span>-&gt;startSchemaCreation([
+<span class="hljs-variable">$appSync</span>-&gt;<span class="hljs-title function_ invoke__">startSchemaCreation</span>([
     <span class="hljs-string">'apiId'</span> =&gt; <span class="hljs-string">'my-api'</span>,
     <span class="hljs-string">'definition'</span> =&gt; <span class="hljs-variable">$schemaDefinition</span>,
 ]);</code></pre>
 <h3 id="list-api-keys">List API keys<a href="#list-api-keys" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">AppSync</span>\<span class="hljs-title">AppSyncClient</span>;
 
-<span class="hljs-variable">$appSync</span>= <span class="hljs-keyword">new</span> AppSyncClient();
+<span class="hljs-variable">$appSync</span>= <span class="hljs-keyword">new</span> <span class="hljs-title class_">AppSyncClient</span>();
 
-<span class="hljs-variable">$appSync</span>-&gt;listApiKeys([
+<span class="hljs-variable">$appSync</span>-&gt;<span class="hljs-title function_ invoke__">listApiKeys</span>([
     <span class="hljs-string">'apiId'</span> =&gt; <span class="hljs-string">'my-api'</span>,
     <span class="hljs-string">'maxResults'</span> =&gt; <span class="hljs-number">10</span>,
 ]);</code></pre>

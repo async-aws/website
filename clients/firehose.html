@@ -387,39 +387,39 @@ $firehose = <span class="hljs-keyword">new</span> FirehoseClient([
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutRecordInbound</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Record</span>;
 
-<span class="hljs-variable">$firehose</span> = <span class="hljs-keyword">new</span> FirehoseClient();
+<span class="hljs-variable">$firehose</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FirehoseClient</span>();
 
-<span class="hljs-variable">$output</span> = <span class="hljs-variable">$firehose</span>-&gt;putRecord(<span class="hljs-keyword">new</span> PutRecordInbound([
+<span class="hljs-variable">$output</span> = <span class="hljs-variable">$firehose</span>-&gt;<span class="hljs-title function_ invoke__">putRecord</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutRecordInbound</span>([
     <span class="hljs-string">'DeliveryStreamName'</span> =&gt; <span class="hljs-string">'example_stream'</span>,
-    <span class="hljs-string">'Record'</span> =&gt; <span class="hljs-keyword">new</span> Record([
+    <span class="hljs-string">'Record'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Record</span>([
         <span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'{"message": "foo"}'</span>,
     ]),
 ]));
 
-<span class="hljs-keyword">echo</span> sprintf(<span class="hljs-string">"Record id: %s\n"</span>, <span class="hljs-variable">$output</span>-&gt;getRecordId());</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">sprintf</span>(<span class="hljs-string">"Record id: %s\n"</span>, <span class="hljs-variable">$output</span>-&gt;<span class="hljs-title function_ invoke__">getRecordId</span>());</code></pre>
 <h3 id="put-record-batch">Put record batch<a href="#put-record-batch" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">FirehoseClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutRecordBatchInbound</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Firehose</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Record</span>;
 
-<span class="hljs-variable">$firehose</span> = <span class="hljs-keyword">new</span> FirehoseClient();
+<span class="hljs-variable">$firehose</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FirehoseClient</span>();
 
-<span class="hljs-variable">$output</span> = <span class="hljs-variable">$firehose</span>-&gt;putRecordBatch(<span class="hljs-keyword">new</span> PutRecordBatchInbound([
+<span class="hljs-variable">$output</span> = <span class="hljs-variable">$firehose</span>-&gt;<span class="hljs-title function_ invoke__">putRecordBatch</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutRecordBatchInbound</span>([
     <span class="hljs-string">'DeliveryStreamName'</span> =&gt; <span class="hljs-string">'example_stream'</span>,
     <span class="hljs-string">'Records'</span> =&gt; [
-        <span class="hljs-keyword">new</span> Record([
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Record</span>([
             <span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'{"message": "foo"}'</span>,
         ]),
-        <span class="hljs-keyword">new</span> Record([
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Record</span>([
             <span class="hljs-string">'Data'</span> =&gt; <span class="hljs-string">'{"message": "bar"}'</span>,
         ]),
     ],
 ]));
 
-<span class="hljs-keyword">echo</span> sprintf(<span class="hljs-string">"Failed count: %d\n"</span>, <span class="hljs-variable">$response</span>-&gt;getFailedPutCount());
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">sprintf</span>(<span class="hljs-string">"Failed count: %d\n"</span>, <span class="hljs-variable">$response</span>-&gt;<span class="hljs-title function_ invoke__">getFailedPutCount</span>());
 
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$output</span>-&gt;getRequestResponses() <span class="hljs-keyword">as</span> <span class="hljs-variable">$response</span>) {
-    <span class="hljs-keyword">echo</span> sprintf(<span class="hljs-string">"Record id: %s\n"</span>, <span class="hljs-variable">$response</span>-&gt;getRecordId());
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$output</span>-&gt;<span class="hljs-title function_ invoke__">getRequestResponses</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$response</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">sprintf</span>(<span class="hljs-string">"Record id: %s\n"</span>, <span class="hljs-variable">$response</span>-&gt;<span class="hljs-title function_ invoke__">getRecordId</span>());
 }</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">

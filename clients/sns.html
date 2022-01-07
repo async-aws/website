@@ -386,14 +386,14 @@ $sns = <span class="hljs-keyword">new</span> SnsClient([
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sns</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PublishInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sns</span>\<span class="hljs-title">SnsClient</span>;
 
-<span class="hljs-variable">$sns</span> = <span class="hljs-keyword">new</span> SnsClient();
+<span class="hljs-variable">$sns</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SnsClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sns</span>-&gt;publish(<span class="hljs-keyword">new</span> PublishInput([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sns</span>-&gt;<span class="hljs-title function_ invoke__">publish</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PublishInput</span>([
     <span class="hljs-string">'TopicArn'</span> =&gt; <span class="hljs-string">'arn:aws:sns:us-east-1:46563727:purchase'</span>,
     <span class="hljs-string">'Message'</span> =&gt; <span class="hljs-string">'New Purchase order'</span>,
 ]));
 
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;getMessageId();</code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getMessageId</span>();</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
