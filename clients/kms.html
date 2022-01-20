@@ -99,7 +99,7 @@
                             ElastiCache
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/event-bridge.html">
                             EventBridge
                         </a>
@@ -124,7 +124,7 @@
                             Kinesis
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/kms.html">
                             KMS
                         </a>
@@ -344,29 +344,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>EventBridge client</h1>
+    <h1>KMS client</h1>
 
     <p>
-        This page contains examples with the EventBridge client. See the
+        This page contains examples with the KMS client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The EventBridge package could be installed with Composer.
+        The KMS package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/event-bridge</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/kms</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">KMS</span>\<span class="hljs-title">KMSClient</span>;
 
-$eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient();
+$kMS = <span class="hljs-keyword">new</span> KMSClient();
 </code></pre>
 
     <p>
@@ -374,9 +374,9 @@ $eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">KMS</span>\<span class="hljs-title">KMSClient</span>;
 
-$eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient([
+$kMS = <span class="hljs-keyword">new</span> KMSClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -387,25 +387,53 @@ $eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="sends-custom-events">Sends custom events<a href="#sends-custom-events" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutEventsRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">PutEventsRequestEntry</span>;
+<h3 id="encrypt-plaintext">Encrypt plaintext<a href="#encrypt-plaintext" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kms</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">EncryptionAlgorithmSpec</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kms</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">EncryptRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kms</span>\<span class="hljs-title">KmsClient</span>;
 
-<span class="hljs-variable">$eventBridge</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EventBridgeClient</span>();
+<span class="hljs-variable">$kms</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">KmsClient</span>();
 
-<span class="hljs-variable">$events</span> = <span class="hljs-variable">$eventBridge</span>-&gt;<span class="hljs-title function_ invoke__">putEvents</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutEventsRequest</span>([
-    <span class="hljs-string">'Entries'</span> =&gt; [
-        <span class="hljs-keyword">new</span> <span class="hljs-title class_">PutEventsRequestEntry</span>([
-            <span class="hljs-string">'EventBusName'</span> =&gt; <span class="hljs-string">'marketing'</span>,
-            <span class="hljs-string">'Source'</span> =&gt; <span class="hljs-string">'acme.newsletter.campaign'</span>,
-            <span class="hljs-string">'DetailType'</span> =&gt; <span class="hljs-string">'UserSignUp'</span>,
-            <span class="hljs-string">'Detail'</span> =&gt; <span class="hljs-title function_ invoke__">json_encode</span>([<span class="hljs-string">'email'</span> =&gt; <span class="hljs-variable">$userEmail</span>]),
-        ])
-    ],
+<span class="hljs-variable">$output</span> = <span class="hljs-variable">$kms</span>-&gt;<span class="hljs-title function_ invoke__">encrypt</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">EncryptRequest</span>([
+    <span class="hljs-string">'EncryptionAlgorithm'</span> =&gt; <span class="hljs-title class_">EncryptionAlgorithmSpec</span>::SYMMETRIC_DEFAULT,
+    <span class="hljs-string">'KeyId'</span> =&gt; <span class="hljs-string">'1234abcd-12ab-34cd-56ef-1234567890ab'</span>,
+    <span class="hljs-string">'Plaintext'</span> =&gt; <span class="hljs-string">'{"message": "Hello, World!"}'</span>,
 ]));
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Sent '</span>. <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$events</span>-&gt;<span class="hljs-title function_ invoke__">getEntries</span>()) . <span class="hljs-string">' events, with '</span> . <span class="hljs-variable">$events</span>-&gt;<span class="hljs-title function_ invoke__">getFailedEntryCount</span>() . <span class="hljs-string">' failures'</span>;</code></pre>
+<span class="hljs-comment">// binary ciphertext string</span>
+<span class="hljs-variable">$ciphertextBlob</span> = <span class="hljs-variable">$output</span>-&gt;<span class="hljs-title function_ invoke__">getCiphertextBlob</span>();</code></pre>
+<h3 id="decrypt-ciphertext">Decrypt ciphertext<a href="#decrypt-ciphertext" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kms</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">EncryptionAlgorithmSpec</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kms</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DecryptRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kms</span>\<span class="hljs-title">KmsClient</span>;
+
+<span class="hljs-variable">$kms</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">KmsClient</span>();
+
+<span class="hljs-variable">$output</span> = <span class="hljs-variable">$kms</span>-&gt;<span class="hljs-title function_ invoke__">decrypt</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DecryptRequest</span>([
+    <span class="hljs-string">'CiphertextBlob'</span> =&gt; <span class="hljs-string">'binary-ciphertext-string'</span>,
+    <span class="hljs-string">'EncryptionAlgorithm'</span> =&gt; <span class="hljs-title class_">EncryptionAlgorithmSpec</span>::SYMMETRIC_DEFAULT,
+    <span class="hljs-string">'KeyId'</span> =&gt; <span class="hljs-string">'1234abcd-12ab-34cd-56ef-1234567890ab'</span>,
+]));
+
+<span class="hljs-comment">// binary plaintext string</span>
+<span class="hljs-variable">$plaintextBlob</span> = <span class="hljs-variable">$output</span>-&gt;<span class="hljs-title function_ invoke__">getPlaintext</span>();</code></pre>
+<h3 id="generate-data-key">Generate data key<a href="#generate-data-key" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kms</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">DataKeySpec</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kms</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GenerateDataKeyRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Kms</span>\<span class="hljs-title">KmsClient</span>;
+
+<span class="hljs-variable">$kms</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">KmsClient</span>();
+
+<span class="hljs-variable">$output</span> = <span class="hljs-variable">$kms</span>-&gt;<span class="hljs-title function_ invoke__">generateDataKey</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GenerateDataKeyRequest</span>([
+    <span class="hljs-string">'KeyId'</span> =&gt; <span class="hljs-string">'1234abcd-12ab-34cd-56ef-1234567890ab'</span>,
+    <span class="hljs-string">'KeySpec'</span> =&gt; <span class="hljs-title class_">DataKeySpec</span>::AES_256,
+]));
+
+<span class="hljs-comment">// binary ciphertext string</span>
+<span class="hljs-variable">$ciphertextBlob</span> = <span class="hljs-variable">$output</span>-&gt;<span class="hljs-title function_ invoke__">getCiphertextBlob</span>();
+
+<span class="hljs-comment">// binary plaintext string</span>
+<span class="hljs-variable">$plaintextBlob</span> = <span class="hljs-variable">$output</span>-&gt;<span class="hljs-title function_ invoke__">getPlaintext</span>();</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
