@@ -79,6 +79,11 @@
                             CloudWatch Logs
                         </a>
                     </li>
+                                    <li>
+                        <a href="/clients/code-build.html">
+                            CodeBuild
+                        </a>
+                    </li>
                                     <li class="current">
                         <a href="/clients/code-deploy.html">
                             CodeDeploy
@@ -394,7 +399,7 @@ $codeDeploy = <span class="hljs-keyword">new</span> CodeDeployClient([
 
 <span class="hljs-variable">$codeDeploy</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeDeployClient</span>();
 
-<span class="hljs-variable">$deployment</span> = <span class="hljs-variable">$codeDeploy</span>-&gt;<span class="hljs-title function_ invoke__">createDeployment</span>(mew <span class="hljs-title function_ invoke__">CreateDeploymentInput</span>([
+<span class="hljs-variable">$deployment</span> = <span class="hljs-variable">$codeDeploy</span>-&gt;<span class="hljs-title function_ invoke__">createDeployment</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateDeploymentInput</span>([
     <span class="hljs-string">'applicationName'</span> =&gt; <span class="hljs-string">'my-app'</span>,
     <span class="hljs-string">'deploymentGroupName'</span> =&gt; <span class="hljs-string">'my-deployment-group'</span>,
     <span class="hljs-string">'revision'</span> =&gt; [

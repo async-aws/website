@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -79,7 +79,7 @@
                             CloudWatch Logs
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/code-build.html">
                             CodeBuild
                         </a>
@@ -268,7 +268,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
-                    <ul class="collapse list-unstyled show" id="authentication">
+                    <ul class="collapse list-unstyled " id="authentication">
                                                     <li>
                         <a href="/authentication/">
                             Overview
@@ -299,7 +299,7 @@
                             Hard-Coded values
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/authentication/web-identity.html">
                             WebIdentity
                         </a>
@@ -349,19 +349,98 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="using-webidentity">Using WebIdentity</h1>
-<p>When user have been authenticated in a mobile or web application with a web
-identity provider (Amazon Cognito, Login with Amazon, Facebook, Google, or any
-OpenID Connect-compatible identity provider). AsyncAws is able to fetch
-<a href="https://docs.amazonaws.cn/en_us/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html">Credentials from a Role</a>
-assumed by the WebIdentity.</p>
-<p>That authentication mechanism allows use of fined-grained Roles in an EKS
-cluster (AWS managed service for K8S). It let you assign a specific role per
-POD. Similar to <a href="./ec2-metadata.html">EC2 Instance Metadata</a> you
-have nothing to configure on the application, you only configure the role and
-permission assumed by the POD's ServiceAccount. See <a href="https://aws.amazon.com/blogs/opensource/introducing-fine-grained-iam-roles-service-accounts/">AWS documentation</a>
-for more information.</p>
+    <h1>CodeBuild client</h1>
 
+    <p>
+        This page contains examples with the CodeBuild client. See the
+        <a href="/clients/">client introduction</a> for a more detailed description
+        how to use a client. You may also want to consider the
+        <a href="/authentication/">authentication</a> documentation to understand
+        the many ways you can authenticate with AWS.
+    </p>
+    <p>
+        The CodeBuild package could be installed with Composer.
+    </p>
+
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/code-build</code></pre>
+
+    
+    <p>
+        A new client object may be instantiated by:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeBuild</span>\<span class="hljs-title">CodeBuildClient</span>;
+
+$codeBuild = <span class="hljs-keyword">new</span> CodeBuildClient();
+</code></pre>
+
+    <p>
+        The authentication parameters is read from the environment by default.
+        You can also specify a AWS access id and secret:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeBuild</span>\<span class="hljs-title">CodeBuildClient</span>;
+
+$codeBuild = <span class="hljs-keyword">new</span> CodeBuildClient([
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+]);</code></pre>
+
+    <p>
+        For all available options, see the <a href="/configuration.html">configuration reference</a>.
+    </p>
+
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="start-a-build">Start a build<a href="#start-a-build" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeBuild</span>\<span class="hljs-title">CodeBuildClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeBuild</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">StartBuildInput</span>;
+
+<span class="hljs-variable">$codeBuild</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeBuildClient</span>();
+
+<span class="hljs-variable">$buildSpec</span> = <span class="hljs-string">&lt;&lt;&lt;EOS
+version: 0.2
+
+phases:
+    build:
+        commands:
+            - whoami &gt;stdout 2&gt;stderr
+artifacts:
+    files:
+        - stdout
+        - stderr
+EOS</span>;
+
+<span class="hljs-variable">$codeBuild</span>-&gt;<span class="hljs-title function_ invoke__">startBuild</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StartBuildInput</span>([
+    <span class="hljs-string">'projectName'</span> =&gt; <span class="hljs-string">'my-project'</span>,
+    <span class="hljs-string">'environmentVariablesOverride'</span> =&gt; [
+        [
+            <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'APP_ENV'</span>,
+            <span class="hljs-string">'type'</span> =&gt; <span class="hljs-string">'PLAINTEXT'</span>,
+            <span class="hljs-string">'value'</span> =&gt; <span class="hljs-string">'prod'</span>,
+        ]
+    ],
+    <span class="hljs-string">'buildspecOverride'</span> =&gt; <span class="hljs-variable">$buildSpec</span>,
+    <span class="hljs-string">'timeoutInMinutesOverride'</span> =&gt; <span class="hljs-number">10</span>,
+]));</code></pre>
+<h3 id="stop-a-build">Stop a build<a href="#stop-a-build" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeBuild</span>\<span class="hljs-title">CodeBuildClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeBuild</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">StopBuildInput</span>;
+
+<span class="hljs-variable">$codeBuild</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeBuildClient</span>();
+
+<span class="hljs-variable">$response</span> = <span class="hljs-variable">$codeBuild</span>-&gt;<span class="hljs-title function_ invoke__">stopBuild</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StopBuildInput</span>([
+    <span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'build-identifier'</span>,
+]));
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$response</span>-&gt;<span class="hljs-title function_ invoke__">getBuild</span>()-&gt;<span class="hljs-title function_ invoke__">getArtifacts</span>()-&gt;<span class="hljs-title function_ invoke__">getLocation</span>();</code></pre>
+
+    <hr style="margin-top:6rem; margin-bottom:3rem;">
+
+    <p>
+        The source code to this page is found on
+        <a href="https://github.com/async-aws/aws/tree/master/docs/clients">GitHub</a>.
+    </p>
     </main>
 </div>
 <a href="https://github.com/async-aws/aws" class="contribute" aria-label="View source on GitHub">
