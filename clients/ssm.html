@@ -417,8 +417,8 @@ $ssm = <span class="hljs-keyword">new</span> SsmClient([
 <span class="hljs-variable">$parameters</span> = <span class="hljs-variable">$ssm</span>-&gt;<span class="hljs-title function_ invoke__">putParameter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutParameterRequest</span>([
     <span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'/projects/website/database_password'</span>,
     <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-title function_ invoke__">strtr</span>(<span class="hljs-title function_ invoke__">base64_encode</span>(<span class="hljs-title function_ invoke__">random_bytes</span>(<span class="hljs-number">24</span>)), <span class="hljs-string">'+/'</span>, <span class="hljs-string">'-_'</span>),
-    <span class="hljs-string">'Type'</span> =&gt; <span class="hljs-title class_">ParameterType</span>::SECURE_STRING,
-    <span class="hljs-comment">// 'KeyId' =&gt; $customKmsKeyId,</span>
+    <span class="hljs-string">'Type'</span> =&gt; <span class="hljs-title class_">ParameterType</span>::<span class="hljs-variable constant_">SECURE_STRING</span>,
+    // <span class="hljs-string">'KeyId'</span> =&gt; <span class="hljs-variable">$customKmsKeyId</span>,
 ]));</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">

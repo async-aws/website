@@ -422,7 +422,7 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'User status is: '</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getUserStatus</span>() . PHP_EOL;
 <span class="hljs-variable">$givenNameAttribute</span> = <span class="hljs-title function_ invoke__">current</span>(<span class="hljs-title function_ invoke__">array_filter</span>(
     <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getUserAttributes</span>(),
-    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable">$attr</span></span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-variable">$attr</span>-&gt;<span class="hljs-title function_ invoke__">getName</span>() === <span class="hljs-string">'given_name'</span>; }
+    function (<span class="hljs-variable">$attr</span>) { <span class="hljs-keyword">return</span> <span class="hljs-variable">$attr</span>-&gt;<span class="hljs-title function_ invoke__">getName</span>() === <span class="hljs-string">'given_name'</span>; }
 ));
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'User given name is: '</span> . <span class="hljs-variable">$givenNameAttribute</span>-&gt;<span class="hljs-title function_ invoke__">getValue</span>() . PHP_EOL;</code></pre>
 

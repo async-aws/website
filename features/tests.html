@@ -373,7 +373,7 @@ and makes sure it returns a <code>PutObjectOutput</code> result.</p>
 
         <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">expects</span>(<span class="hljs-built_in">self</span>::<span class="hljs-title function_ invoke__">once</span>())
             -&gt;<span class="hljs-title function_ invoke__">method</span>(<span class="hljs-string">'putObject'</span>)
-            -&gt;<span class="hljs-title function_ invoke__">with</span>(<span class="hljs-built_in">self</span>::<span class="hljs-title function_ invoke__">callback</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-keyword">array</span> <span class="hljs-variable">$input</span></span>) <span class="hljs-keyword">use</span> (<span class="hljs-params"><span class="hljs-variable">$file</span></span>) </span>{
+            -&gt;<span class="hljs-title function_ invoke__">with</span>(<span class="hljs-built_in">self</span>::<span class="hljs-title function_ invoke__">callback</span>(function (<span class="hljs-keyword">array</span> <span class="hljs-variable">$input</span>) <span class="hljs-keyword">use</span> (<span class="hljs-variable">$file</span>) {
                 <span class="hljs-keyword">if</span> (<span class="hljs-variable">$input</span>[<span class="hljs-string">'Key'</span>] !== <span class="hljs-variable">$file</span>) {
                     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
                 }

@@ -400,7 +400,7 @@ $kMS = <span class="hljs-keyword">new</span> KMSClient([
 <span class="hljs-variable">$kms</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">KmsClient</span>();
 
 <span class="hljs-variable">$output</span> = <span class="hljs-variable">$kms</span>-&gt;<span class="hljs-title function_ invoke__">encrypt</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">EncryptRequest</span>([
-    <span class="hljs-string">'EncryptionAlgorithm'</span> =&gt; <span class="hljs-title class_">EncryptionAlgorithmSpec</span>::SYMMETRIC_DEFAULT,
+    <span class="hljs-string">'EncryptionAlgorithm'</span> =&gt; <span class="hljs-title class_">EncryptionAlgorithmSpec</span>::<span class="hljs-variable constant_">SYMMETRIC_DEFAULT</span>,
     <span class="hljs-string">'KeyId'</span> =&gt; <span class="hljs-string">'1234abcd-12ab-34cd-56ef-1234567890ab'</span>,
     <span class="hljs-string">'Plaintext'</span> =&gt; <span class="hljs-string">'{"message": "Hello, World!"}'</span>,
 ]));
@@ -416,7 +416,7 @@ $kMS = <span class="hljs-keyword">new</span> KMSClient([
 
 <span class="hljs-variable">$output</span> = <span class="hljs-variable">$kms</span>-&gt;<span class="hljs-title function_ invoke__">decrypt</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DecryptRequest</span>([
     <span class="hljs-string">'CiphertextBlob'</span> =&gt; <span class="hljs-string">'binary-ciphertext-string'</span>,
-    <span class="hljs-string">'EncryptionAlgorithm'</span> =&gt; <span class="hljs-title class_">EncryptionAlgorithmSpec</span>::SYMMETRIC_DEFAULT,
+    <span class="hljs-string">'EncryptionAlgorithm'</span> =&gt; <span class="hljs-title class_">EncryptionAlgorithmSpec</span>::<span class="hljs-variable constant_">SYMMETRIC_DEFAULT</span>,
     <span class="hljs-string">'KeyId'</span> =&gt; <span class="hljs-string">'1234abcd-12ab-34cd-56ef-1234567890ab'</span>,
 ]));
 
@@ -431,7 +431,7 @@ $kMS = <span class="hljs-keyword">new</span> KMSClient([
 
 <span class="hljs-variable">$output</span> = <span class="hljs-variable">$kms</span>-&gt;<span class="hljs-title function_ invoke__">generateDataKey</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GenerateDataKeyRequest</span>([
     <span class="hljs-string">'KeyId'</span> =&gt; <span class="hljs-string">'1234abcd-12ab-34cd-56ef-1234567890ab'</span>,
-    <span class="hljs-string">'KeySpec'</span> =&gt; <span class="hljs-title class_">DataKeySpec</span>::AES_256,
+    <span class="hljs-string">'KeySpec'</span> =&gt; <span class="hljs-title class_">DataKeySpec</span>::<span class="hljs-variable constant_">AES_256</span>,
 ]));
 
 <span class="hljs-comment">// binary ciphertext string</span>
