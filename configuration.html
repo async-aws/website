@@ -420,7 +420,7 @@ See <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-ia
 <p>Set to true to send requests to an S3 path style endpoint by default.
 See <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html">Virtual Hosting of Buckets</a> about path style vs virtual host style.</p>
 <h3 id="sendchunkedbody">sendChunkedBody<a href="#sendchunkedbody" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> 'true'</p>
+<p><strong>Default:</strong> 'false'</p>
 <p>Set to true to send requests in multiple chunks. This prevents reading the file
 twice to calculate the signature, but is not always allowed by Non-AWS S3
 endpoints.</p>
