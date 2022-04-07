@@ -407,7 +407,7 @@ $cloudFront = <span class="hljs-keyword">new</span> CloudFrontClient([
             <span class="hljs-string">'Quantity'</span> =&gt; <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$paths</span>),
             <span class="hljs-string">'Items'</span> =&gt; <span class="hljs-variable">$paths</span>,
         ]),
-        <span class="hljs-string">'CallerReference'</span> =&gt; <span class="hljs-title function_ invoke__">time</span>(),
+        <span class="hljs-string">'CallerReference'</span> =&gt; (<span class="hljs-keyword">string</span>) <span class="hljs-title function_ invoke__">time</span>(),
     ]),
 ]);</code></pre>
 
