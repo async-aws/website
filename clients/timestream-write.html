@@ -114,7 +114,7 @@
                             Firehose
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/dynamodb.html">
                             DynamoDB
                         </a>
@@ -199,7 +199,7 @@
                             Timestream Query
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/timestream-write.html">
                             Timestream Write
                         </a>
@@ -359,29 +359,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>DynamoDb client</h1>
+    <h1>Timestream Write client</h1>
 
     <p>
-        This page contains examples with the DynamoDb client. See the
+        This page contains examples with the Timestream Write client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The DynamoDb package could be installed with Composer.
+        The Timestream Write package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/dynamo-db</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/timestream-write</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Timestream Write</span>\<span class="hljs-title">Timestream WriteClient</span>;
 
-$dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient();
+$timestream Write = <span class="hljs-keyword">new</span> Timestream WriteClient();
 </code></pre>
 
     <p>
@@ -389,9 +389,9 @@ $dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Timestream Write</span>\<span class="hljs-title">Timestream WriteClient</span>;
 
-$dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient([
+$timestream Write = <span class="hljs-keyword">new</span> Timestream WriteClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -402,97 +402,38 @@ $dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="create-a-table">Create a table<a href="#create-a-table" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateTableInput</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeTableInput</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeDefinition</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">KeySchemaElement</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">ProvisionedThroughput</span>;
+<h3 id="write-records">Write records<a href="#write-records" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">TimestreamWrite</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">MeasureValueType</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">TimestreamWrite</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">WriteRecordsResponse</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">TimestreamWrite</span>\<span class="hljs-title">TimestreamWriteClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">TimestreamWrite</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Dimension</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">TimestreamWrite</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Record</span>;
 
-<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>();
+<span class="hljs-variable">$timestreamWrite</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TimestreamWriteClient</span>();
 
-<span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">createTable</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateTableInput</span>([
-        <span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>,
-        <span class="hljs-string">'AttributeDefinitions'</span> =&gt; [
-            <span class="hljs-keyword">new</span> <span class="hljs-title class_">AttributeDefinition</span>([<span class="hljs-string">'AttributeName'</span> =&gt; <span class="hljs-string">'id'</span>, <span class="hljs-string">'AttributeType'</span> =&gt; <span class="hljs-string">'N'</span>]),
-            <span class="hljs-keyword">new</span> <span class="hljs-title class_">AttributeDefinition</span>([<span class="hljs-string">'AttributeName'</span> =&gt; <span class="hljs-string">'time'</span>, <span class="hljs-string">'AttributeType'</span> =&gt; <span class="hljs-string">'N'</span>]),
+<span class="hljs-variable">$timestreamWrite</span>-&gt;<span class="hljs-title function_ invoke__">writeRecords</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">WriteRecordsRequest</span>([
+    <span class="hljs-string">'DatabaseName'</span> =&gt; <span class="hljs-string">'db'</span>,
+    <span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'tbl'</span>,
+    <span class="hljs-string">'CommonAttributes'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Record</span>([
+        <span class="hljs-string">'Dimensions'</span> =&gt; [
+            <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dimension</span>([<span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'region'</span>, <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'us-east-1'</span>]),
         ],
-        <span class="hljs-string">'KeySchema'</span> =&gt; [
-            <span class="hljs-keyword">new</span> <span class="hljs-title class_">KeySchemaElement</span>([<span class="hljs-string">'AttributeName'</span> =&gt; <span class="hljs-string">'id'</span>, <span class="hljs-string">'KeyType'</span> =&gt; <span class="hljs-string">'HASH'</span>]),
-            <span class="hljs-keyword">new</span> <span class="hljs-title class_">KeySchemaElement</span>([<span class="hljs-string">'AttributeName'</span> =&gt; <span class="hljs-string">'time'</span>, <span class="hljs-string">'KeyType'</span> =&gt; <span class="hljs-string">'RANGE'</span>]),
-        ],
-        <span class="hljs-string">'ProvisionedThroughput'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">ProvisionedThroughput</span>([
-            <span class="hljs-string">'ReadCapacityUnits'</span> =&gt; <span class="hljs-number">10</span>,
-            <span class="hljs-string">'WriteCapacityUnits'</span> =&gt; <span class="hljs-number">20</span>
+    ]),
+    <span class="hljs-string">'Records'</span> =&gt; [
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Record</span>([
+            <span class="hljs-string">'MeasureName'</span> =&gt; <span class="hljs-string">'cpu_utilization'</span>,
+            <span class="hljs-string">'MeasureValue'</span> =&gt; <span class="hljs-string">'13.5'</span>,
+            <span class="hljs-string">'MeasureValueType'</span> =&gt; <span class="hljs-title class_">MeasureValueType</span>::<span class="hljs-variable constant_">DOUBLE</span>,
+            <span class="hljs-string">'Time'</span> =&gt; <span class="hljs-number">12345678</span>,
         ]),
-]));
-
-<span class="hljs-comment">// Wait for end of creation</span>
-<span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">tableExists</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DescribeTableInput</span>([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>]))-&gt;<span class="hljs-title function_ invoke__">wait</span>();</code></pre>
-<h3 id="update-a-table">Update a table<a href="#update-a-table" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">UpdateTableInput</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">ProvisionedThroughput</span>;
-
-<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>();
-
-<span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">updateTable</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">UpdateTableInput</span>([
-        <span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>,
-        <span class="hljs-string">'ProvisionedThroughput'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">ProvisionedThroughput</span>([
-            <span class="hljs-string">'ReadCapacityUnits'</span> =&gt; <span class="hljs-number">15</span>,
-            <span class="hljs-string">'WriteCapacityUnits'</span> =&gt; <span class="hljs-number">25</span>
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Record</span>([
+            <span class="hljs-string">'MeasureName'</span> =&gt; <span class="hljs-string">'memory_utilization'</span>,
+            <span class="hljs-string">'MeasureValue'</span> =&gt; <span class="hljs-string">'40'</span>,
+            <span class="hljs-string">'MeasureValueType'</span> =&gt; <span class="hljs-title class_">MeasureValueType</span>::<span class="hljs-variable constant_">BIGINT</span>,
+            <span class="hljs-string">'Time'</span> =&gt; <span class="hljs-number">12345678</span>,
         ]),
+    ],
 ]));</code></pre>
-<h3 id="insert-an-item">Insert an item.<a href="#insert-an-item" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutItemInput</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeValue</span>;
-
-<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>();
-
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">putItem</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutItemInput</span>([
-    <span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>,
-    <span class="hljs-string">'Item'</span> =&gt; [
-        <span class="hljs-string">'id'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">AttributeValue</span>([<span class="hljs-string">'N'</span> =&gt; <span class="hljs-string">'1337'</span>]),
-        <span class="hljs-string">'time'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">AttributeValue</span>([<span class="hljs-string">'N'</span> =&gt; (<span class="hljs-keyword">string</span>) <span class="hljs-title function_ invoke__">time</span>()]),
-        <span class="hljs-string">'error'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">AttributeValue</span>([<span class="hljs-string">'S'</span> =&gt; <span class="hljs-string">'Executive overflow'</span>]),
-        <span class="hljs-string">'message'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">AttributeValue</span>([<span class="hljs-string">'S'</span> =&gt; <span class="hljs-string">'no vacant areas'</span>]),
-    ],
-]));
-
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Consumed capacity: '</span> . (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getConsumedCapacity</span>() ? <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getConsumedCapacity</span>()-&gt;<span class="hljs-title function_ invoke__">getCapacityUnits</span>() : <span class="hljs-literal">null</span>);</code></pre>
-<h3 id="get-table-information">Get table information<a href="#get-table-information" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeTableInput</span>;
-
-<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>();
-
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">describeTable</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DescribeTableInput</span>([
-    <span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>,
-]));
-
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Item count: '</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getTable</span>()-&gt;<span class="hljs-title function_ invoke__">getItemCount</span>();
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Read capacity: '</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getTable</span>()-&gt;<span class="hljs-title function_ invoke__">getProvisionedThroughput</span>()-&gt;<span class="hljs-title function_ invoke__">getReadCapacityUnits</span>() . <span class="hljs-string">"\n"</span>;</code></pre>
-<h3 id="get-an-item">Get an item.<a href="#get-an-item" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetItemInput</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeValue</span>;
-
-<span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>();
-
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">getItem</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetItemInput</span>([
-    <span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>,
-    <span class="hljs-string">'ConsistentRead'</span> =&gt; <span class="hljs-literal">true</span>,
-    <span class="hljs-string">'Key'</span> =&gt; [
-        <span class="hljs-string">'id'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">AttributeValue</span>([<span class="hljs-string">'N'</span> =&gt; <span class="hljs-string">'1201'</span>]),
-        <span class="hljs-string">'time'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">AttributeValue</span>([<span class="hljs-string">'N'</span> =&gt; <span class="hljs-string">'1585503599'</span>]),
-    ],
-]));
-
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Id: '</span>.<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getItem</span>()[<span class="hljs-string">'id'</span>]-&gt;<span class="hljs-title function_ invoke__">getN</span>() . PHP_EOL;
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Error: '</span>.<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getItem</span>()[<span class="hljs-string">'error'</span>]-&gt;<span class="hljs-title function_ invoke__">getS</span>() . PHP_EOL;
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Message: '</span>.<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getItem</span>()[<span class="hljs-string">'message'</span>]-&gt;<span class="hljs-title function_ invoke__">getS</span>() . PHP_EOL;</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
