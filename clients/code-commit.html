@@ -84,7 +84,7 @@
                             CodeBuild
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/code-commit.html">
                             CodeCommit
                         </a>
@@ -144,7 +144,7 @@
                             Lambda
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/rds-data-service.html">
                             RdsDataService
                         </a>
@@ -364,29 +364,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>RdsDataService client</h1>
+    <h1>CodeCommit client</h1>
 
     <p>
-        This page contains examples with the RdsDataService client. See the
+        This page contains examples with the CodeCommit client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The RdsDataService package could be installed with Composer.
+        The CodeCommit package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/rds-data-service</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/code-commit</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 
-$rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient();
+$codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient();
 </code></pre>
 
     <p>
@@ -394,9 +394,9 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 
-$rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
+$codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -407,72 +407,47 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="execute-an-sql-statement">Execute an sql statement<a href="#execute-an-sql-statement" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
+<h3 id="get-a-branch">Get a branch<a href="#get-a-branch" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetBranchInput</span>;
 
-<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RdsDataServiceClient</span>();
-<span class="hljs-variable">$response</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">executeStatement</span>([
-    <span class="hljs-string">'database'</span> =&gt; <span class="hljs-string">'my_database'</span>,
-    <span class="hljs-string">'resourceArn'</span> =&gt; <span class="hljs-string">'arn:resource'</span>,
-    <span class="hljs-string">'secretArn'</span> =&gt; <span class="hljs-string">'arn:secret'</span>,
-    <span class="hljs-string">'sql'</span> =&gt; <span class="hljs-string">'SELECT name FROM users WHERE id = :id'</span>,
-    <span class="hljs-string">'parameters'</span> =&gt; [
-        [<span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'id'</span>, <span class="hljs-string">'value'</span> =&gt; [<span class="hljs-string">'longValue'</span> =&gt; <span class="hljs-number">5</span>]],
-    ]
-]);
+<span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
 
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$response</span>-&gt;<span class="hljs-title function_ invoke__">getRecords</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$record</span>) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-string">"name: "</span> . <span class="hljs-variable">$record</span>[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getStringValue</span>() . PHP_EOL;
+<span class="hljs-variable">$branch</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">getBranch</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetBranchInput</span>([
+    <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-variable">$repoName</span>,
+    <span class="hljs-string">'branchName'</span> =&gt; <span class="hljs-string">'main'</span>
+]));
+
+<span class="hljs-variable">$latestCommitId</span> = <span class="hljs-variable">$branch</span>-&gt;<span class="hljs-title function_ invoke__">getBranch</span>()-&gt;<span class="hljs-title function_ invoke__">getCommitId</span>();</code></pre>
+<h3 id="get-list-of-different-blobs-between-two-commits">Get list of different blobs between two commits<a href="#get-list-of-different-blobs-between-two-commits" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetDifferencesInput</span>;
+
+<span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
+
+<span class="hljs-variable">$differences</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">getDifferences</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetDifferencesInput</span>([
+    <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-variable">$repoName</span>,
+    <span class="hljs-string">'afterCommitSpecifier'</span> =&gt; <span class="hljs-variable">$latestCommitId</span>,
+    <span class="hljs-string">'beforeCommitSpecifier'</span> =&gt; <span class="hljs-variable">$baseCommitId</span>
+]));
+
+<span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$differences</span>-&gt;<span class="hljs-title function_ invoke__">getDifferences</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$diff</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$diff</span>-&gt;<span class="hljs-title function_ invoke__">getAfterBlob</span>()?-&gt;<span class="hljs-title function_ invoke__">getPath</span>(); <span class="hljs-comment">// eg 'composer.json'</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$diff</span>-&gt;<span class="hljs-title function_ invoke__">getAfterBlob</span>()?-&gt;<span class="hljs-title function_ invoke__">getBlobId</span>();
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$diff</span>-&gt;<span class="hljs-title function_ invoke__">getChangeType</span>(); <span class="hljs-comment">// eg 'A', 'M', 'D' for 'Added', 'Modified', 'Deleted'</span>
 }</code></pre>
-<h3 id="run-a-transaction">Run a transaction<a href="#run-a-transaction" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
+<h3 id="get-information-about-a-blob">Get information about a blob<a href="#get-information-about-a-blob" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetBlobInput</span>;
 
-<span class="hljs-variable">$database</span> = [
-    <span class="hljs-string">'database'</span> =&gt; <span class="hljs-string">'my_database'</span>,
-    <span class="hljs-string">'resourceArn'</span> =&gt; <span class="hljs-string">'arn:resource'</span>,
-    <span class="hljs-string">'secretArt'</span> =&gt; <span class="hljs-string">'arn:secret'</span>,
-];
+<span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
 
-<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RdsDataServiceClient</span>();
-<span class="hljs-variable">$transaction</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">beginTransaction</span>(<span class="hljs-variable">$database</span>);
+<span class="hljs-variable">$blob</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">getBlob</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetBlobInput</span>([
+    <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-variable">$repoName</span>,
+    <span class="hljs-string">'blobId'</span> =&gt; <span class="hljs-variable">$blobId</span>
+]));
 
-<span class="hljs-keyword">try</span> {
-    <span class="hljs-variable">$result</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">executeStatement</span>(<span class="hljs-variable">$database</span> + [
-        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;<span class="hljs-title function_ invoke__">getTransactionId</span>(),
-        <span class="hljs-string">'sql'</span> =&gt; <span class="hljs-string">'SELECT age FROM users WHERE id = :id FOR UPDATE'</span>,
-        <span class="hljs-string">'parameters'</span> =&gt; [
-            [<span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'id'</span>, <span class="hljs-string">'value'</span> =&gt; [<span class="hljs-string">'longValue'</span> =&gt; <span class="hljs-number">5</span>]],
-        ]
-    ]);
-
-    <span class="hljs-variable">$user</span> = <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getRecords</span>()[<span class="hljs-number">0</span>] ?? <span class="hljs-literal">null</span>;
-    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$user</span> === <span class="hljs-literal">null</span>) {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">\RuntimeException</span>(<span class="hljs-string">"User 5 not found."</span>);
-    }
-
-    <span class="hljs-variable">$newAge</span> = <span class="hljs-variable">$user</span>[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getLongValue</span>() + <span class="hljs-number">1</span>;
-    <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">executeStatement</span>(<span class="hljs-variable">$database</span> + [
-        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;<span class="hljs-title function_ invoke__">getTransactionId</span>(),
-        <span class="hljs-string">'sql'</span> =&gt; <span class="hljs-string">'UPDATE users SET age = :new_age WHERE id = :id'</span>,
-        <span class="hljs-string">'parameters'</span> =&gt; [
-            [<span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'id'</span>, <span class="hljs-string">'value'</span> =&gt; [<span class="hljs-string">'longValue'</span> =&gt; <span class="hljs-number">5</span>]],
-            [<span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'new_age'</span>, <span class="hljs-string">'value'</span> =&gt; [<span class="hljs-string">'longValue'</span> =&gt; <span class="hljs-variable">$newAge</span>]],
-        ]
-    ]);
-
-    <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">commitTransaction</span>(<span class="hljs-variable">$database</span> + [
-        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;<span class="hljs-title function_ invoke__">getTransactionId</span>(),
-    ]);
-} <span class="hljs-keyword">catch</span> (\<span class="hljs-built_in">Throwable</span> <span class="hljs-variable">$e</span>) {
-    <span class="hljs-comment">// Make sure to allways rollback since there is no connection.</span>
-    <span class="hljs-comment">// If you forget than the transaction might block tables for up to 5 minutes.</span>
-    <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">rollbackTransaction</span>(<span class="hljs-variable">$database</span> + [
-        <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;<span class="hljs-title function_ invoke__">getTransactionId</span>(),
-    ]);
-    <span class="hljs-keyword">throw</span> <span class="hljs-variable">$e</span>;
-}</code></pre>
-<h3><a href="#null" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$blob</span>-&gt;<span class="hljs-title function_ invoke__">getContent</span>(); <span class="hljs-comment">// Lorem ipsum dolor sit amet...</span></code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
