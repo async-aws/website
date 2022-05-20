@@ -374,13 +374,16 @@ some installation instructions and a complete list of clients.</p>
 All arguments are optional and sensible defaults are used.</p>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Configuration</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">ConfigurationProvider</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">HttpClient</span>\<span class="hljs-title">AwsHttpClientFactory</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
 <span class="hljs-variable">$config</span> = <span class="hljs-title class_">Configuration</span>::<span class="hljs-title function_ invoke__">create</span>([
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
 ]);
 <span class="hljs-variable">$credentialProvider</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConfigurationProvider</span>();
-<span class="hljs-variable">$httpClient</span> = <span class="hljs-comment">// ... Instance of Symfony's HttpClientInterface</span>
+<span class="hljs-variable">$httpClient</span> = <span class="hljs-title class_">HttpClient</span>::<span class="hljs-title function_ invoke__">create</span>(); <span class="hljs-comment">// ... Instance of Symfony's HttpClientInterface</span>
+<span class="hljs-comment">// Or, to enable automatic retries on top of your own HttpClient</span>
+<span class="hljs-comment">// $httpClient = AwsHttpClientFactory::createRetryableClient($httpClient); T</span>
 <span class="hljs-variable">$logger</span> = <span class="hljs-comment">// ... A PSR-3 logger</span>
 
 <span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>(<span class="hljs-variable">$config</span>, <span class="hljs-variable">$credentialProvider</span>, <span class="hljs-variable">$httpClient</span>, <span class="hljs-variable">$logger</span>);</code></pre>
