@@ -413,7 +413,22 @@ $translate = <span class="hljs-keyword">new</span> TranslateClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="write-records">Write records<a href="#write-records" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div></code></pre>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Translate</span>\<span class="hljs-title">TranslateClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Translate</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">TranslationSettings</span>;
+
+<span class="hljs-variable">$translate</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TranslateClient</span>();
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$translate</span>-&gt;<span class="hljs-title function_ invoke__">translateText</span>([
+    <span class="hljs-string">'Text'</span> =&gt; <span class="hljs-string">'Jag gillar glass'</span>,
+    <span class="hljs-string">'SourceLanguageCode'</span> =&gt; <span class="hljs-string">'sv'</span>, // <span class="hljs-string">'auto'</span>
+    <span class="hljs-string">'TargetLanguageCode'</span> =&gt; <span class="hljs-string">'en'</span>,
+    <span class="hljs-string">'Settings'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">TranslationSettings</span>([
+        <span class="hljs-string">'Formality'</span> =&gt; <span class="hljs-string">'INFORMAL'</span>, // FORMAL
+        // <span class="hljs-string">'Profanity'</span> =&gt; <span class="hljs-string">'MASK'</span>,
+    ]),
+]);
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getTranslatedText</span>(); <span class="hljs-comment">// "I like ice cream"</span></code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
