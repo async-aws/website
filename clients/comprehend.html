@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -99,7 +99,7 @@
                             Cognito Identity provider
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/comprehend.html">
                             Comprehend
                         </a>
@@ -258,7 +258,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Integration</a>
-                    <ul class="collapse list-unstyled show" id="integration">
+                    <ul class="collapse list-unstyled " id="integration">
                                                     <li>
                         <a href="/integration/symfony-bundle.html">
                             Symfony Bundle
@@ -284,7 +284,7 @@
                             PHP Sessions
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/integration/simple-s3.html">
                             Simple S3
                         </a>
@@ -374,31 +374,72 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="simple-s3-client">Simple S3 client</h1>
-<p>An abstraction layer above the S3Client that provides simpler functions to common
-tasks. The client will automatically switch to multipart upload for large files.</p>
-<h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/simple-s3</code></pre>
-<h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">SimpleS3</span>\<span class="hljs-title">SimpleS3Client</span>;
+    <h1>Comprehend client</h1>
 
-<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleS3Client</span>();
-<span class="hljs-variable">$resource</span> = \<span class="hljs-title function_ invoke__">fopen</span>(<span class="hljs-string">'/path/to/cat/image.jpg'</span>, <span class="hljs-string">'r'</span>);
-<span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">upload</span>(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>, <span class="hljs-variable">$resource</span>);
-<span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">upload</span>(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.txt'</span>, <span class="hljs-string">'I like this cat'</span>);
+    <p>
+        This page contains examples with the Comprehend client. See the
+        <a href="/clients/">client introduction</a> for a more detailed description
+        how to use a client. You may also want to consider the
+        <a href="/authentication/">authentication</a> documentation to understand
+        the many ways you can authenticate with AWS.
+    </p>
+    <p>
+        The Comprehend package could be installed with Composer.
+    </p>
 
-<span class="hljs-comment">// Check if a file exists</span>
-<span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">has</span>(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>); <span class="hljs-comment">// true</span>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/comprehend</code></pre>
 
-<span class="hljs-comment">// Get file URL</span>
-<span class="hljs-variable">$url</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">getUrl</span>(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>);
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$url</span>; <span class="hljs-comment">// https://my-image-bucket.s3.eu-central-1.amazonaws.com/photos/cat_2.jpg</span>
+    
+    <p>
+        A new client object may be instantiated by:
+    </p>
 
-<span class="hljs-comment">// Download a file</span>
-<span class="hljs-variable">$resource</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">download</span>(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.jpg'</span>)-&gt;<span class="hljs-title function_ invoke__">getContentAsResource</span>();
-<span class="hljs-variable">$text</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">download</span>(<span class="hljs-string">'my-image-bucket'</span>, <span class="hljs-string">'photos/cat_2.txt'</span>)-&gt;<span class="hljs-title function_ invoke__">getContentAsString</span>();
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$text</span>; <span class="hljs-comment">// I like this cat</span></code></pre>
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Comprehend</span>\<span class="hljs-title">ComprehendClient</span>;
 
+$comprehend = <span class="hljs-keyword">new</span> ComprehendClient();
+</code></pre>
+
+    <p>
+        The authentication parameters is read from the environment by default.
+        You can also specify a AWS access id and secret:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Comprehend</span>\<span class="hljs-title">ComprehendClient</span>;
+
+$comprehend = <span class="hljs-keyword">new</span> ComprehendClient([
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+]);</code></pre>
+
+    <p>
+        For all available options, see the <a href="/configuration.html">configuration reference</a>.
+    </p>
+
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="detect-language">Detect Language<a href="#detect-language" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Comprehend</span>\<span class="hljs-title">ComprehendClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Comprehend</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DetectDominantLanguageRequest</span>;
+
+<span class="hljs-variable">$comprehend</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ComprehendClient</span>();
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$comprehend</span>-&gt;<span class="hljs-title function_ invoke__">detectDominantLanguage</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DetectDominantLanguageRequest</span>([
+    <span class="hljs-string">'Text'</span> =&gt; <span class="hljs-string">'Jag gillar glass'</span>
+]));
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getLanguages</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$language</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">sprintf</span>(<span class="hljs-string">'%s: %s'</span>, <span class="hljs-variable">$language</span>-&gt;<span class="hljs-title function_ invoke__">getLanguageCode</span>(), <span class="hljs-variable">$language</span>-&gt;<span class="hljs-title function_ invoke__">getScore</span>()).PHP_EOL;
+}
+
+<span class="hljs-comment">// Prints</span>
+<span class="hljs-comment">// sv: 0.99807989597321</span></code></pre>
+
+    <hr style="margin-top:6rem; margin-bottom:3rem;">
+
+    <p>
+        The source code to this page is found on
+        <a href="https://github.com/async-aws/aws/tree/master/docs/clients">GitHub</a>.
+    </p>
     </main>
 </div>
 <a href="https://github.com/async-aws/aws" class="contribute" aria-label="View source on GitHub">
