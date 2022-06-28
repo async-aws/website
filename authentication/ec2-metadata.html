@@ -379,6 +379,8 @@
 <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">Role</a> attached to the instance.</p>
 <p>When running a single application on the Server, this is the simplest way to grant permissions to the application. You
 have nothing to configure on the application, you only grant permissions on the Role attached to the instance.</p>
+<p>AsyncAWS uses the IMDSv1 protocol to read instance metadata. So this authentication method won't work if the v1
+protocol is disabled.</p>
 
     </main>
 </div>
@@ -391,7 +393,7 @@ have nothing to configure on the application, you only grant permissions on the 
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/431.e39800ca.js"></script><script src="/assets/app.b923a301.js"></script>
+<script src="/assets/431.36c884c8.js"></script><script src="/assets/app.b923a301.js"></script>
 
 
 </body></html>
