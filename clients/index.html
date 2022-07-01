@@ -135,6 +135,11 @@
                         </a>
                     </li>
                                     <li>
+                        <a href="/clients/iot.html">
+                            Iot
+                        </a>
+                    </li>
+                                    <li>
                         <a href="/clients/kinesis.html">
                             Kinesis
                         </a>
@@ -414,12 +419,12 @@ client like:</p>
 <pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-attr">services:</span>
     <span class="hljs-string">AsyncAws\DynamoDb\DynamoDbClient:</span>
         <span class="hljs-attr">arguments:</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-attr">region:</span> <span class="hljs-string">'eu-central-1'</span>
-              <span class="hljs-attr">accessKeyId:</span> <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>
-              <span class="hljs-attr">accessKeySecret:</span> <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-attr">region:</span> <span class="hljs-string">"eu-central-1"</span>
+              <span class="hljs-attr">accessKeyId:</span> <span class="hljs-string">"AKIAIOSFODNN7EXAMPLE"</span>
+              <span class="hljs-attr">accessKeySecret:</span> <span class="hljs-string">"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"</span>
             <span class="hljs-bullet">-</span> <span class="hljs-string">~</span> <span class="hljs-comment"># Use the default authentication providers</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-string">'@http_client'</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-string">'@logger'</span></code></pre>
+            <span class="hljs-bullet">-</span> <span class="hljs-string">"@http_client"</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-string">"@logger"</span></code></pre>
 <p>If you are using Symfony you may ease configuration by install the <a href="/integration/symfony-bundle.html">Symfony Bundle</a>.</p>
 <h4 id="laravel">Laravel</h4>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">ServiceProvider</span>;
@@ -539,6 +544,10 @@ for more information.</p>
 <tr>
 <td><a href="./iam.html">IAM</a></td>
 <td><a href="https://packagist.org/packages/async-aws/iam">async-aws/iam</a></td>
+</tr>
+<tr>
+<td><a href="./iot.html">Iot</a></td>
+<td><a href="https://packagist.org/packages/async-aws/iot">async-aws/iot</a></td>
 </tr>
 <tr>
 <td><a href="./kinesis.html">Kinesis</a></td>

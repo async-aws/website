@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -134,7 +134,7 @@
                             IAM
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/iot.html">
                             Iot
                         </a>
@@ -263,7 +263,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Integration</a>
-                    <ul class="collapse list-unstyled show" id="integration">
+                    <ul class="collapse list-unstyled " id="integration">
                                                     <li>
                         <a href="/integration/symfony-bundle.html">
                             Symfony Bundle
@@ -279,7 +279,7 @@
                             Flysystem
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/integration/monolog.html">
                             Monolog
                         </a>
@@ -379,74 +379,69 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="monolog-integration">Monolog integration</h1>
-<p>The Monolog integration supports both Monolog version 1 and version 2.</p>
-<h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/monolog-cloud-watch</code></pre>
-<h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Monolog</span>\<span class="hljs-title">CloudWatch</span>\<span class="hljs-title">CloudWatchLogsHandler</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">Monolog</span>\<span class="hljs-title">Logger</span>;
+    <h1>Iot client</h1>
 
-<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudWatchLogsClient</span>();
+    <p>
+        This page contains examples with the Iot client. See the
+        <a href="/clients/">client introduction</a> for a more detailed description
+        how to use a client. You may also want to consider the
+        <a href="/authentication/">authentication</a> documentation to understand
+        the many ways you can authenticate with AWS.
+    </p>
+    <p>
+        The Iot package could be installed with Composer.
+    </p>
 
-<span class="hljs-variable">$handler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudWatchLogsHandler</span>(<span class="hljs-variable">$client</span>, [
-    <span class="hljs-string">'group'</span> =&gt; <span class="hljs-string">'company-website'</span>,
-    <span class="hljs-string">'stream'</span> =&gt; <span class="hljs-string">'frontend-api'</span>,
-]);
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/iot</code></pre>
 
-<span class="hljs-variable">$logger</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Logger</span>(<span class="hljs-string">'logger'</span>);
-<span class="hljs-variable">$logger</span>-&gt;<span class="hljs-title function_ invoke__">pushHandler</span>(<span class="hljs-variable">$handler</span>);
-<span class="hljs-variable">$logger</span>-&gt;<span class="hljs-title function_ invoke__">error</span>(<span class="hljs-string">'an error occurred'</span>);</code></pre>
-<h2 id="configuration">Configuration<a href="#configuration" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>The CloudWatchLogsHandler accepts the following parameters:</p>
-<ul>
-<li><code>$client</code>: the CloudWatchLogsClient instance</li>
-<li><code>$options</code>: handler configuration (see below)</li>
-<li><code>$level</code> (default <code>Logger::DEBUG</code>): minimum logging level at which this handler will be triggered (see <a href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#log-levels">https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#log-levels</a>)</li>
-<li><code>$bubble</code>(default <code>true</code>): whether the messages that are handled can bubble up the stack or not (see <a href="https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#core-concepts">https://github.com/Seldaek/monolog/blob/master/doc/01-usage.md#core-concepts</a>)</li>
-</ul>
-<p>For the <code>$options</code> parameter, the allowed values are:</p>
-<ul>
-<li><code>batchSize</code> (default <code>10000</code>): number of log records that are pushed to CloudWatch in a single call. This number cannot exceed 10,000.</li>
-<li><code>group</code>: name of the CloudWatch Logs Group which was created previously</li>
-<li><code>stream</code>: name of the CloudWatch Logs Stream which was created previously</li>
-</ul>
-<h2 id="symfony-usage">Symfony usage<a href="#symfony-usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>To ease service configuration, install the <a href="./symfony-bundle.html">AsyncAws Symfony Bundle</a> first.</p>
-<p>The bundle will automatically configure CloudWatchLogsClient with the given credentials.</p>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/services.yaml</span>
+    
+    <p>
+        A new client object may be instantiated by:
+    </p>
 
-<span class="hljs-attr">services:</span>
-    <span class="hljs-attr">monolog.handler.cloud_watch:</span>
-        <span class="hljs-attr">class:</span> <span class="hljs-string">AsyncAws\Monolog\CloudWatch\CloudWatchLogsHandler</span>
-        <span class="hljs-attr">arguments:</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-string">'@async_aws.client.cloud_watch_logs'</span>
-            <span class="hljs-bullet">-</span> <span class="hljs-attr">group:</span> <span class="hljs-string">company-website</span>
-              <span class="hljs-attr">stream:</span> <span class="hljs-string">frontend-api</span>
-              <span class="hljs-comment"># more parameters, see Configuration</span></code></pre>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/prod/monolog.yaml</span>
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iot</span>\<span class="hljs-title">IotClient</span>;
 
-<span class="hljs-attr">monolog:</span>
-    <span class="hljs-attr">handlers:</span>
-        <span class="hljs-attr">main:</span>
-            <span class="hljs-attr">type:</span> <span class="hljs-string">fingers_crossed</span>
-            <span class="hljs-attr">action_level:</span> <span class="hljs-string">error</span>
-            <span class="hljs-attr">handler:</span> <span class="hljs-string">cloud_watch</span>
-        <span class="hljs-attr">cloud_watch:</span>
-            <span class="hljs-attr">type:</span> <span class="hljs-string">service</span>
-            <span class="hljs-attr">id:</span> <span class="hljs-string">monolog.handler.cloud_watch</span></code></pre>
-<h2 id="limitations">Limitations<a href="#limitations" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>The CloudWatchLogs Monolog relies on the AWS CloudWatch Logs API and inherits the underlying limitations, which are
-described in the <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutLogEvents.html">official documentation</a>.</p>
-<p>The integration enforces a few limitations like the maximum batch size, maximum number of events per batch and
-chronological order of events; which should not be taken care of by the developer.</p>
-<p>Please note that CloudWatch Logs accepts only 5 requests per second (with 10,000 log items each) per log stream. Each
-PHP process will cause a new request, regardless of whether the 10,000 items limit was reached. If an application is
-expected to push log records at high rate, you should use different log streams.</p>
-<p>The AWS credentials should have at least the <code>logs:DescribeLogStreams</code> and <code>logs:PutLogEvents</code> permissions for the
-integration to work properly.</p>
+$iot = <span class="hljs-keyword">new</span> IotClient();
+</code></pre>
 
+    <p>
+        The authentication parameters is read from the environment by default.
+        You can also specify a AWS access id and secret:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iot</span>\<span class="hljs-title">IotClient</span>;
+
+$iot = <span class="hljs-keyword">new</span> IotClient([
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+]);</code></pre>
+
+    <p>
+        For all available options, see the <a href="/configuration.html">configuration reference</a>.
+    </p>
+
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="list-things">List Things<a href="#list-things" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iot</span>\<span class="hljs-title">IotClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iot</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListThingsRequest</span>;
+
+<span class="hljs-variable">$iam</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IotClient</span>();
+
+<span class="hljs-variable">$things</span> = <span class="hljs-variable">$iam</span>-&gt;<span class="hljs-title function_ invoke__">listThings</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListThingsRequest</span>([
+    <span class="hljs-string">'thingTypeName'</span> =&gt; <span class="hljs-string">'hvac'</span>,
+]));
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$things</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$thing</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$thing</span>-&gt;<span class="hljs-title function_ invoke__">getThingName</span>().<span class="hljs-string">' '</span>.<span class="hljs-variable">$thing</span>-&gt;<span class="hljs-title function_ invoke__">getThingTypeName</span>().PHP_EOL;
+}</code></pre>
+
+    <hr style="margin-top:6rem; margin-bottom:3rem;">
+
+    <p>
+        The source code to this page is found on
+        <a href="https://github.com/async-aws/aws/tree/master/docs/clients">GitHub</a>.
+    </p>
     </main>
 </div>
 <a href="https://github.com/async-aws/aws" class="contribute" aria-label="View source on GitHub">
