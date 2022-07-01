@@ -418,12 +418,12 @@ $timestream Query = <span class="hljs-keyword">new</span> Timestream QueryClient
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="execute-a-query">Execute a query<a href="#execute-a-query" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">TimestreamQuery</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">QueryInput</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">TimestreamQuery</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">QueryRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">TimestreamQuery</span>\<span class="hljs-title">TimestreamQueryClient</span>;
 
 <span class="hljs-variable">$timestreamQuery</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TimestreamQueryClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$timestreamQuery</span>-&gt;<span class="hljs-title function_ invoke__">query</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryInput</span>([
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$timestreamQuery</span>-&gt;<span class="hljs-title function_ invoke__">query</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryRequest</span>[
     <span class="hljs-string">'ClientToken'</span> =&gt; <span class="hljs-string">'qwertyuiop'</span>,
     <span class="hljs-string">'QueryString'</span> =&gt; <span class="hljs-string">'SELECT * FROM db.tbl ORDER BY time DESC LIMIT 10'</span>,
 ]));
