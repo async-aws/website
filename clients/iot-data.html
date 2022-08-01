@@ -99,7 +99,7 @@
                             Cognito Identity provider
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/comprehend.html">
                             Comprehend
                         </a>
@@ -134,12 +134,12 @@
                             IAM
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/iot.html">
                             Iot
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/iot-data.html">
                             IotData
                         </a>
@@ -384,29 +384,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>Comprehend client</h1>
+    <h1>IotData client</h1>
 
     <p>
-        This page contains examples with the Comprehend client. See the
+        This page contains examples with the IotData client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The Comprehend package could be installed with Composer.
+        The IotData package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/comprehend</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/iot-data</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Comprehend</span>\<span class="hljs-title">ComprehendClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">IotData</span>\<span class="hljs-title">IotDataClient</span>;
 
-$comprehend = <span class="hljs-keyword">new</span> ComprehendClient();
+$iotData = <span class="hljs-keyword">new</span> IotDataClient();
 </code></pre>
 
     <p>
@@ -414,9 +414,9 @@ $comprehend = <span class="hljs-keyword">new</span> ComprehendClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Comprehend</span>\<span class="hljs-title">ComprehendClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">IotData</span>\<span class="hljs-title">IotDataClient</span>;
 
-$comprehend = <span class="hljs-keyword">new</span> ComprehendClient([
+$iotData = <span class="hljs-keyword">new</span> IotDataClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -427,22 +427,17 @@ $comprehend = <span class="hljs-keyword">new</span> ComprehendClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="detect-language">Detect Language<a href="#detect-language" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Comprehend</span>\<span class="hljs-title">ComprehendClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Comprehend</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DetectDominantLanguageRequest</span>;
+<h3 id="list-things">List Things<a href="#list-things" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">IotData</span>\<span class="hljs-title">IotDataClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">IotData</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetThingShadowRequest</span>;
 
-<span class="hljs-variable">$comprehend</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ComprehendClient</span>();
+<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IotDataClient</span>();
 
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$comprehend</span>-&gt;<span class="hljs-title function_ invoke__">detectDominantLanguage</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DetectDominantLanguageRequest</span>([
-    <span class="hljs-string">'Text'</span> =&gt; <span class="hljs-string">'Jag gillar glass'</span>
+<span class="hljs-variable">$response</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">getThingShadow</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetThingShadowRequest</span>([
+    <span class="hljs-string">'thingName'</span> =&gt; <span class="hljs-string">'unit1:hvac'</span>,
 ]));
 
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getLanguages</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$language</span>) {
-    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">sprintf</span>(<span class="hljs-string">'%s: %s'</span>, <span class="hljs-variable">$language</span>-&gt;<span class="hljs-title function_ invoke__">getLanguageCode</span>(), <span class="hljs-variable">$language</span>-&gt;<span class="hljs-title function_ invoke__">getScore</span>()).PHP_EOL;
-}
-
-<span class="hljs-comment">// Prints</span>
-<span class="hljs-comment">// sv: 0.99807989597321</span></code></pre>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$response</span>-&gt;<span class="hljs-title function_ invoke__">getPayload</span>();</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
