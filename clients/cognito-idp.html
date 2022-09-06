@@ -460,6 +460,65 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
     function (<span class="hljs-variable">$attr</span>) { <span class="hljs-keyword">return</span> <span class="hljs-variable">$attr</span>-&gt;<span class="hljs-title function_ invoke__">getName</span>() === <span class="hljs-string">'given_name'</span>; }
 ));
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'User given name is: '</span> . <span class="hljs-variable">$givenNameAttribute</span>-&gt;<span class="hljs-title function_ invoke__">getValue</span>() . PHP_EOL;</code></pre>
+<h3 id="create-group">Create group<a href="#create-group" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+
+<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable language_">$this</span>-&gt;cognitoIdp-&gt;<span class="hljs-title function_ invoke__">createGroup</span>([
+    <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
+    <span class="hljs-string">'GroupName'</span> =&gt; <span class="hljs-string">'1c202820-8eb5-11ea-bc55-0242ac130003'</span>,
+]);
+
+<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> GroupType $group */</span>
+<span class="hljs-variable">$group</span> = <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getGroup</span>();
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'Group name is: '</span> . <span class="hljs-variable">$group</span>-&gt;<span class="hljs-title function_ invoke__">getGroupName</span>() . PHP_EOL;</code></pre>
+<h3 id="list-groups">List groups<a href="#list-groups" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+
+<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable language_">$this</span>-&gt;cognitoIdp-&gt;<span class="hljs-title function_ invoke__">listGroups</span>([
+    <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
+]);
+
+<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> iterable $groups */</span>
+<span class="hljs-variable">$groups</span> = <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getGroups</span>();
+<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> GroupType $group */</span>
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$groups</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$group</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Group name is: '</span> . <span class="hljs-variable">$group</span>-&gt;<span class="hljs-title function_ invoke__">getGroupName</span>() . PHP_EOL;
+}</code></pre>
+<h3 id="add-user-to-group-as-an-admin">Add user to group as an admin<a href="#add-user-to-group-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+
+<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
+
+<span class="hljs-comment">//If the action is successful, the response has an empty body.</span>
+<span class="hljs-variable language_">$this</span>-&gt;cognitoIdp-&gt;<span class="hljs-title function_ invoke__">adminAddUserToGroup</span>([
+    <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
+    <span class="hljs-string">'Username'</span> =&gt; <span class="hljs-string">'username'</span>,
+    <span class="hljs-string">'GroupName'</span> =&gt; <span class="hljs-string">'group_name'</span>,
+]);</code></pre>
+<h3 id="remove-user-from-group-as-an-admin">Remove user from group as an admin<a href="#remove-user-from-group-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
+
+<span class="hljs-comment">//If the action is successful, the response has an empty body.</span>
+<span class="hljs-variable language_">$this</span>-&gt;cognitoIdp-&gt;<span class="hljs-title function_ invoke__">adminRemoveUserFromGroup</span>([
+    <span class="hljs-string">'UserPoolId'</span> =&gt; <span class="hljs-string">'us-east-1_1337oL33t'</span>,
+    <span class="hljs-string">'Username'</span> =&gt; <span class="hljs-string">'username'</span>,
+    <span class="hljs-string">'GroupName'</span> =&gt; <span class="hljs-string">'group_name'</span>,
+]);</code></pre>
+<h3 id="revoke-token">Revoke token<a href="#revoke-token" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
+
+<span class="hljs-comment">//If the action is successful, the response has an empty body.</span>
+<span class="hljs-variable language_">$this</span>-&gt;cognitoIdp-&gt;<span class="hljs-title function_ invoke__">revokeToken</span>([
+    <span class="hljs-string">'Token'</span> =&gt; <span class="hljs-string">'refresh_token'</span>,
+    <span class="hljs-string">'ClientId'</span> =&gt; <span class="hljs-string">'client_id'</span>,
+    <span class="hljs-string">'ClientSecret'</span> =&gt; <span class="hljs-string">'client_secret'</span>,
+]);</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
