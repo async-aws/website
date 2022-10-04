@@ -468,6 +468,25 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 ]));
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$blob</span>-&gt;<span class="hljs-title function_ invoke__">getContent</span>(); <span class="hljs-comment">// Lorem ipsum dolor sit amet...</span></code></pre>
+<h3 id="update-repository-triggers">Update repository triggers<a href="#update-repository-triggers" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutRepositoryTriggersInput</span>;
+
+<span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">putRepositoryTriggers</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutRepositoryTriggersInput</span>([
+            <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-string">'async-aws-monorepo'</span>,
+            <span class="hljs-string">'triggers'</span> =&gt; [<span class="hljs-keyword">new</span> <span class="hljs-title class_">RepositoryTrigger</span>([
+                <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'NotifyOfCodeChanges'</span>,
+                # ARN of your Lambda function which is going to get executed when something happens
+                <span class="hljs-string">'destinationArn'</span> =&gt; <span class="hljs-string">'arn:aws:lambda:eu-west-1:123456789012:function:my-function'</span>,
+                <span class="hljs-string">'customData'</span> =&gt; <span class="hljs-string">'any additional data you want for the execution context - maybe an id of some sort?'</span>,
+                <span class="hljs-string">'branches'</span> =&gt; [<span class="hljs-string">'main'</span>, <span class="hljs-string">'development'</span>], # send a blank <span class="hljs-keyword">array</span> to be triggered on *all* branches
+                <span class="hljs-string">'events'</span> =&gt; [<span class="hljs-string">'createReference'</span>, <span class="hljs-string">'deleteReference'</span>, <span class="hljs-string">'updateReference'</span>], # <span class="hljs-string">'all'</span> is also a valid input
+            ])],
+        ]));
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getConfigurationId</span>(); <span class="hljs-comment">// '6fa51cd8-35c1-EXAMPLE'</span></code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
