@@ -468,6 +468,21 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 ]));
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$blob</span>-&gt;<span class="hljs-title function_ invoke__">getContent</span>(); <span class="hljs-comment">// Lorem ipsum dolor sit amet...</span></code></pre>
+<h3 id="get-information-about-a-commit">Get information about a commit<a href="#get-information-about-a-commit" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetCommitInput</span>;
+
+<span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
+
+<span class="hljs-variable">$commit</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">getCommit</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetCommitInput</span>([
+    <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-variable">$repoName</span>,
+    <span class="hljs-string">'commitId'</span> =&gt; <span class="hljs-string">'b58c341f3d493f7fc0b6b95a648a2e2397d0692f'</span> # must be the full SHA hash of the commit
+]));
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$commit</span>-&gt;<span class="hljs-title function_ invoke__">getCommit</span>()-&gt;<span class="hljs-title function_ invoke__">getMessage</span>(); <span class="hljs-comment">// "Initial commit"</span>
+
+<span class="hljs-comment">// see example response at https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetCommit.html</span>
+<span class="hljs-comment">// for full list of information returned in $commit-&gt;getCommit()</span></code></pre>
 <h3 id="update-repository-triggers">Update repository triggers<a href="#update-repository-triggers" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutRepositoryTriggersInput</span>;
