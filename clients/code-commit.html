@@ -432,6 +432,54 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="list-repositories">List repositories<a href="#list-repositories" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListRepositoriesInput</span>;
+
+<span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
+
+<span class="hljs-variable">$repoList</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">listRepositories</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListRepositoriesInput</span>([
+    <span class="hljs-string">'order'</span> =&gt; <span class="hljs-string">'ascending'</span>, // can also be <span class="hljs-string">'descending'</span>
+    <span class="hljs-string">'sortBy'</span> =&gt; <span class="hljs-string">'repositoryName'</span>, // can also be <span class="hljs-string">'lastModifiedDate'</span>
+    <span class="hljs-string">'nextToken'</span> =&gt; <span class="hljs-string">'TOKEN-FROM-PREVIOUS-RESPONSE-IF-PAGINATING-THROUGH-RESULTS'</span>
+]));
+
+<span class="hljs-variable">$repos</span> = <span class="hljs-variable">$repoList</span>-&gt;<span class="hljs-title function_ invoke__">getRepositories</span>();
+
+<span class="hljs-comment">// see example response at https://docs.aws.amazon.com/codecommit/latest/APIReference/API_ListRepositories.html</span>
+<span class="hljs-comment">// for full list of information returned in $repos-&gt;getRepositories()</span></code></pre>
+<h3 id="create-a-repository">Create a repository<a href="#create-a-repository" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateRepositoryInput</span>;
+
+<span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
+
+<span class="hljs-variable">$repo</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">createRepository</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateRepositoryInput</span>([
+    <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-string">'my-repository-name'</span>, // name must be unique within your account
+    <span class="hljs-string">'repositoryDescription'</span> =&gt; <span class="hljs-string">'this can be null if you like'</span>,
+    <span class="hljs-string">'tags'</span> =&gt; [
+        <span class="hljs-string">'team'</span> =&gt; <span class="hljs-string">'platform-eng'</span>,
+        <span class="hljs-string">'guild'</span> =&gt; <span class="hljs-string">'frontend'</span>,
+        <span class="hljs-string">'any-other-tag'</span> =&gt; <span class="hljs-string">'whatever-you-want'</span>
+    ]
+]));
+
+<span class="hljs-variable">$repo</span>-&gt;<span class="hljs-title function_ invoke__">getRepositoryMetadata</span>();
+
+<span class="hljs-comment">// see example response at https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreateRepository.html</span>
+<span class="hljs-comment">// for full list of information returned in $repo-&gt;getRepositoryMetadata()</span></code></pre>
+<h3 id="delete-a-repository">Delete a repository<a href="#delete-a-repository" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteRepositoryInput</span>;
+
+<span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
+
+<span class="hljs-variable">$repo</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">deleteRepository</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DeleteRepositoryInput</span>([
+    <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-string">'name-of-repo-to-delete'</span>,
+    ]
+]));
+
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$repo</span>-&gt;<span class="hljs-title function_ invoke__">getRepositoryId</span>()); <span class="hljs-comment">// returned id of the deleted repo</span></code></pre>
 <h3 id="get-a-branch">Get a branch<a href="#get-a-branch" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetBranchInput</span>;
