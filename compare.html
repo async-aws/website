@@ -573,7 +573,7 @@ used in the standard way.</p>
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'test'</span>,
 ]);
-<span class="hljs-variable">$psr7</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">createPresignedRequest</span>(<span class="hljs-variable">$cmd</span>, <span class="hljs-string">'+60 min'</span>);
+<span class="hljs-variable">$psr7</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">createPresignedRequest</span>(<span class="hljs-variable">$command</span>, <span class="hljs-string">'+60 min'</span>);
 <span class="hljs-keyword">echo</span> (<span class="hljs-keyword">string</span>) <span class="hljs-variable">$psr7</span>-&gt;<span class="hljs-title function_ invoke__">getUri</span>();
 </code></pre>
 <blockquote>
