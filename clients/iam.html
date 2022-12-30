@@ -445,6 +445,39 @@ $iam = <span class="hljs-keyword">new</span> IamClient([
 <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$users</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$user</span>) {
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">getUserName</span>().<span class="hljs-string">' '</span>.(<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">getPasswordLastUsed</span>() ? <span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">getPasswordLastUsed</span>()-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">'Y-m-d'</span>) : <span class="hljs-string">''</span>).PHP_EOL;
 }</code></pre>
+<h3 id="create--delete-a-users-individual-policy-document">Create / Delete a user's individual policy document<a href="#create--delete-a-users-individual-policy-document" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutUserPolicyRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteUserPolicyRequest</span>;
+
+<span class="hljs-variable">$iam</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IamClient</span>();
+
+<span class="hljs-variable">$iam</span>-&gt;<span class="hljs-title function_ invoke__">putUserPolicy</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutUserPolicyRequest</span>([
+    <span class="hljs-string">'UserName'</span> =&gt; <span class="hljs-string">'Thomas'</span>,
+    <span class="hljs-string">'PolicyName'</span> =&gt; <span class="hljs-string">'Disallow Access To Everything'</span>,
+    <span class="hljs-string">'PolicyDocument'</span> =&gt; <span class="hljs-string">'{"Version":"2012-10-17","Statement":{"Effect":"Deny","Action":"*","Resource":"*"}}'</span>,
+]));
+
+<span class="hljs-comment">// Uh-oh, that policy is a bit *too* restrictive, let's delete it</span>
+
+<span class="hljs-variable">$iam</span>-&gt;<span class="hljs-title function_ invoke__">deleteUserPolicy</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DeleteUserPolicyRequest</span>([
+    <span class="hljs-string">'UserName'</span> =&gt; <span class="hljs-string">'Thomas'</span>,
+    <span class="hljs-string">'PolicyName'</span> =&gt; <span class="hljs-string">'Disallow Access To Everything'</span>,
+]));</code></pre>
+<h3 id="create-service-specific-credentials">Create service-specific credentials<a href="#create-service-specific-credentials" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateServiceSpecificCredentialRequest</span>;
+
+<span class="hljs-variable">$iam</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IamClient</span>();
+
+<span class="hljs-variable">$creds</span> = <span class="hljs-variable">$iam</span>-&gt;<span class="hljs-title function_ invoke__">createServiceSpecificCredential</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateServiceSpecificCredentialRequest</span>([
+    <span class="hljs-string">'UserName'</span> =&gt; <span class="hljs-string">'Thomas'</span>,
+    <span class="hljs-string">'ServiceName'</span> =&gt; <span class="hljs-string">'codecommit.amazonaws.com'</span>,
+]));
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$creds</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredential</span>()-&gt;<span class="hljs-title function_ invoke__">getServiceUserName</span>(); <span class="hljs-comment">// example: thomas-at-123456789012</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$creds</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredential</span>()-&gt;<span class="hljs-title function_ invoke__">getServicePassword</span>(); <span class="hljs-comment">// example: xTBAr/czp+D3EXAMPLE47lrJ6/43r2zqGwR3EXAMPLE=</span>
+</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
