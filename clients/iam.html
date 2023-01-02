@@ -478,6 +478,47 @@ $iam = <span class="hljs-keyword">new</span> IamClient([
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$creds</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredential</span>()-&gt;<span class="hljs-title function_ invoke__">getServiceUserName</span>(); <span class="hljs-comment">// example: thomas-at-123456789012</span>
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$creds</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredential</span>()-&gt;<span class="hljs-title function_ invoke__">getServicePassword</span>(); <span class="hljs-comment">// example: xTBAr/czp+D3EXAMPLE47lrJ6/43r2zqGwR3EXAMPLE=</span>
 </code></pre>
+<h3 id="list-service-specific-credentials">List service-specific credentials<a href="#list-service-specific-credentials" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListServiceSpecificCredentialsRequest</span>;
+
+<span class="hljs-variable">$iam</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IamClient</span>();
+
+<span class="hljs-comment">// list *all* service-specific credentials for this user</span>
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$iam</span>-&gt;<span class="hljs-title function_ invoke__">listServiceSpecificCredentials</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListServiceSpecificCredentialsRequest</span>([
+    <span class="hljs-string">'UserName'</span> =&gt; <span class="hljs-string">'Thomas'</span>,
+]));
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentials</span>()[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getServiceUserName</span>(); <span class="hljs-comment">// example: thomas-at-123456789012</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentials</span>()[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentialId</span>(); <span class="hljs-comment">// example: ACCA67890FGHIEXAMPLE</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentials</span>()[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getServiceName</span>(); <span class="hljs-comment">// example: codecommit.amazonaws.com</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentials</span>()[<span class="hljs-number">1</span>]-&gt;<span class="hljs-title function_ invoke__">getServiceUserName</span>(); <span class="hljs-comment">// example: thomas-at-123456789012</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentials</span>()[<span class="hljs-number">1</span>]-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentialId</span>(); <span class="hljs-comment">// example: IHGF09876ACCAEXAMPLE</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentials</span>()[<span class="hljs-number">1</span>]-&gt;<span class="hljs-title function_ invoke__">getServiceName</span>(); <span class="hljs-comment">// example: dynamodb.amazonaws.com</span>
+
+<span class="hljs-comment">// filter by AWS service</span>
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$iam</span>-&gt;<span class="hljs-title function_ invoke__">listServiceSpecificCredentials</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListServiceSpecificCredentialsRequest</span>([
+    <span class="hljs-string">'UserName'</span> =&gt; <span class="hljs-string">'Thomas'</span>,
+    <span class="hljs-string">'ServiceName'</span> =&gt; <span class="hljs-string">'dynamodb.amazonaws.com'</span>,
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentials</span>()[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getServiceUserName</span>(); // <span class="hljs-attr">example</span>: thomas-at-<span class="hljs-number">123456789012</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentials</span>()[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentialId</span>(); // <span class="hljs-attr">example</span>: IHGF09876ACCAEXAMPLE
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentials</span>()[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getServiceName</span>(); // <span class="hljs-attr">example</span>: dynamodb.amazonaws.com
+]));</code></pre>
+<h3 id="delete-service-specific-credentials">Delete service-specific credentials<a href="#delete-service-specific-credentials" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteServiceSpecificCredentialRequest</span>;
+
+<span class="hljs-variable">$iam</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IamClient</span>();
+
+<span class="hljs-variable">$iam</span>-&gt;<span class="hljs-title function_ invoke__">deleteServiceSpecificCredential</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DeleteServiceSpecificCredentialRequest</span>([
+     // UserName is not required <span class="hljs-keyword">if</span> the user owning the credentials is the same user <span class="hljs-keyword">as</span> is authenticated via the SDK
+     // put simply, this means that <span class="hljs-keyword">if</span> you<span class="hljs-string">'re deleting your own credentials you *do not* need to supply this parameter.
+     // In all other cases you should probably include it.
+     // see https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceSpecificCredential.html for more details
+    '</span>UserName<span class="hljs-string">' =&gt; '</span>Thomas<span class="hljs-string">',
+    '</span>ServiceSpecificCredentialId<span class="hljs-string">' =&gt; '</span>ACCA67890FGHIEXAMPLE<span class="hljs-string">'
+]));</span></code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
