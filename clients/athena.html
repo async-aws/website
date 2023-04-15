@@ -59,7 +59,7 @@
                             AppSync
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/athena.html">
                             Athena
                         </a>
@@ -119,7 +119,7 @@
                             ElastiCache
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/event-bridge.html">
                             EventBridge
                         </a>
@@ -394,29 +394,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>EventBridge client</h1>
+    <h1>Athena client</h1>
 
     <p>
-        This page contains examples with the EventBridge client. See the
+        This page contains examples with the Athena client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The EventBridge package could be installed with Composer.
+        The Athena package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/event-bridge</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/athena</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">AthenaClient</span>;
 
-$eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient();
+$athena = <span class="hljs-keyword">new</span> AthenaClient();
 </code></pre>
 
     <p>
@@ -424,9 +424,9 @@ $eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">AthenaClient</span>;
 
-$eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient([
+$athena = <span class="hljs-keyword">new</span> AthenaClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -437,25 +437,92 @@ $eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="sends-custom-events">Sends custom events<a href="#sends-custom-events" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutEventsRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">PutEventsRequestEntry</span>;
+<h3 id="list-databases">List Databases<a href="#list-databases" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">AthenaClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListDatabasesInput</span>;
 
-<span class="hljs-variable">$eventBridge</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EventBridgeClient</span>();
+<span class="hljs-variable">$athena</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AthenaClient</span>();
 
-<span class="hljs-variable">$events</span> = <span class="hljs-variable">$eventBridge</span>-&gt;<span class="hljs-title function_ invoke__">putEvents</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutEventsRequest</span>([
-    <span class="hljs-string">'Entries'</span> =&gt; [
-        <span class="hljs-keyword">new</span> <span class="hljs-title class_">PutEventsRequestEntry</span>([
-            <span class="hljs-string">'EventBusName'</span> =&gt; <span class="hljs-string">'marketing'</span>,
-            <span class="hljs-string">'Source'</span> =&gt; <span class="hljs-string">'acme.newsletter.campaign'</span>,
-            <span class="hljs-string">'DetailType'</span> =&gt; <span class="hljs-string">'UserSignUp'</span>,
-            <span class="hljs-string">'Detail'</span> =&gt; <span class="hljs-title function_ invoke__">json_encode</span>([<span class="hljs-string">'email'</span> =&gt; <span class="hljs-variable">$userEmail</span>]),
-        ])
-    ],
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$athena</span>-&gt;<span class="hljs-title function_ invoke__">listDatabases</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListDatabasesInput</span>([
+    <span class="hljs-string">'CatalogName'</span> =&gt; <span class="hljs-string">'my_catalog'</span>
 ]));
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Sent '</span>. <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$events</span>-&gt;<span class="hljs-title function_ invoke__">getEntries</span>()) . <span class="hljs-string">' events, with '</span> . <span class="hljs-variable">$events</span>-&gt;<span class="hljs-title function_ invoke__">getFailedEntryCount</span>() . <span class="hljs-string">' failures'</span>;</code></pre>
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getDatabaseList</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$database</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Database name : '</span> . <span class="hljs-variable">$database</span>-&gt;<span class="hljs-title function_ invoke__">getName</span>();
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Database description : '</span> . <span class="hljs-variable">$database</span>-&gt;<span class="hljs-title function_ invoke__">getDescription</span>();
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Database parameter : '</span>.PHP_EOL;
+    <span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$database</span>-&gt;<span class="hljs-title function_ invoke__">getParameters</span>());
+}
+</code></pre>
+<p>more information <a href="https://docs.aws.amazon.com/athena/latest/APIReference/API_ListDatabases.html">listDatabases</a></p>
+<h3 id="query-to-amazon-athena">Query to Amazon Athena<a href="#query-to-amazon-athena" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">AthenaClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">StartQueryExecutionInput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeTableInput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">QueryExecutionContext</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">ResultConfiguration</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">EncryptionConfiguration</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AclConfiguration</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">ResultReuseByAgeConfiguration</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetQueryExecutionInput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetQueryResultsInput</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Row</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Datum</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Athena</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">QueryExecutionState</span>;
+
+<span class="hljs-variable">$athena</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AthenaClient</span>();
+
+<span class="hljs-comment">// Submits a sample query to Amazon Athena and returns the execution ID of the query.</span>
+<span class="hljs-variable">$startQueryResult</span> = <span class="hljs-variable">$athena</span>-&gt;<span class="hljs-title function_ invoke__">startQueryExecution</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StartQueryExecutionInput</span>([
+        <span class="hljs-string">'QueryString'</span> =&gt; <span class="hljs-string">'select * from product limit 30'</span>,
+        <span class="hljs-string">'QueryExecutionContext'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryExecutionContext</span>([
+             <span class="hljs-string">'Database'</span> =&gt; <span class="hljs-string">'production_db'</span>, // REQUIRED
+        ]),
+        <span class="hljs-string">'ResultConfiguration'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResultConfiguration</span>([
+            <span class="hljs-string">'OutputLocation'</span> =&gt; <span class="hljs-string">'s3://test_output_bucket'</span>, <span class="hljs-comment">// REQUIRED</span>
+            <span class="hljs-string">'EncryptionConfiguration'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">EncryptionConfiguration</span>([
+                <span class="hljs-string">'EncryptionOption'</span> =&gt; <span class="hljs-string">'SSE_S3'</span>, <span class="hljs-comment">// REQUIRED</span>
+            ])
+        ]),
+]));
+
+<span class="hljs-comment">// Wait for an Amazon Athena query to complete, fail or to be cancelled.</span>
+<span class="hljs-variable">$isQueryStillRunning</span> = <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">while</span> (<span class="hljs-variable">$isQueryStillRunning</span>) {
+    <span class="hljs-variable">$queryExecutionResult</span> = <span class="hljs-variable">$athena</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecution</span>( <span class="hljs-keyword">new</span> <span class="hljs-title class_">GetQueryExecutionInput</span>([
+        <span class="hljs-string">'QueryExecutionId'</span> =&gt; <span class="hljs-variable">$startQueryResult</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecutionId</span>(), // REQUIRED
+    ]));
+    <span class="hljs-variable">$queryState</span>=<span class="hljs-variable">$queryExecutionResult</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecution</span>()-&gt;<span class="hljs-title function_ invoke__">getStatus</span>()-&gt;<span class="hljs-title function_ invoke__">getState</span>();
+    <span class="hljs-keyword">if</span>(<span class="hljs-variable">$queryState</span> === <span class="hljs-title class_">QueryExecutionState</span>::<span class="hljs-variable constant_">FAILED</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">\Exception</span>(
+        <span class="hljs-string">'Athena query failed to run with error message: '</span>.<span class="hljs-variable">$queryExecutionResult</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecution</span>()-&gt;<span class="hljs-title function_ invoke__">getStatus</span>()-&gt;<span class="hljs-title function_ invoke__">getStateChangeReason</span>()
+        )
+    } <span class="hljs-keyword">elseif</span> (<span class="hljs-variable">$queryState</span> === <span class="hljs-title class_">QueryExecutionState</span>::<span class="hljs-variable constant_">CANCELLED</span>) {
+        <span class="hljs-keyword">throw</span>  <span class="hljs-keyword">new</span> <span class="hljs-title class_">\Exception</span>(<span class="hljs-string">'Athena query was cancelled.'</span>)
+    } <span class="hljs-keyword">elseif</span> (<span class="hljs-variable">$queryState</span> === <span class="hljs-title class_">QueryExecutionState</span>::<span class="hljs-variable constant_">SUCCEEDED</span>) {
+        <span class="hljs-variable">$isQueryStillRunning</span> = <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'The current status is: : '</span> . <span class="hljs-variable">$queryState</span>;
+}
+
+<span class="hljs-comment">// retrieves the results of a query</span>
+<span class="hljs-variable">$results</span> = <span class="hljs-variable">$athena</span>-&gt;<span class="hljs-title function_ invoke__">getQueryResults</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetQueryResultsInput</span>([
+    <span class="hljs-string">'QueryExecutionId'</span> =&gt; <span class="hljs-variable">$startQueryResult</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecutionId</span>(),
+    <span class="hljs-string">'MaxResults'</span> =&gt; <span class="hljs-number">10000</span>
+]));
+
+<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> Row $row */</span>
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$results</span> =&gt; <span class="hljs-variable">$row</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$index</span> === <span class="hljs-number">0</span>) {
+        <span class="hljs-variable">$columnLabels</span> = <span class="hljs-title function_ invoke__">array_column</span>(<span class="hljs-variable">$row</span>-&gt;<span class="hljs-title function_ invoke__">getData</span>(), <span class="hljs-string">'VarCharValue'</span>); <span class="hljs-comment">// $row-&gt;getData() return [ 'VarCharValue' =&gt; value, ...]</span>
+    }
+    <span class="hljs-variable">$columnValues</span>[] = <span class="hljs-title function_ invoke__">array_column</span>(<span class="hljs-variable">$row</span>-&gt;<span class="hljs-title function_ invoke__">getData</span>(), <span class="hljs-string">'VarCharValue'</span>);
+}
+
+<span class="hljs-comment">// retrieves the results column structure details</span>
+<span class="hljs-variable">$columnsDetail</span> = <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getResultSet</span>()-&gt;<span class="hljs-title function_ invoke__">getResultSetMetadata</span>()-&gt;<span class="hljs-title function_ invoke__">getColumnInfo</span>();
+
+<span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$columnsDetail</span>);</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
