@@ -507,22 +507,27 @@ $athena = <span class="hljs-keyword">new</span> AthenaClient([
 
 <span class="hljs-comment">// retrieves the results of a query</span>
 <span class="hljs-variable">$results</span> = <span class="hljs-variable">$athena</span>-&gt;<span class="hljs-title function_ invoke__">getQueryResults</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetQueryResultsInput</span>([
-    <span class="hljs-string">'QueryExecutionId'</span> =&gt; <span class="hljs-variable">$startQueryResult</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecutionId</span>(),
-    <span class="hljs-string">'MaxResults'</span> =&gt; <span class="hljs-number">10000</span>
+    <span class="hljs-string">'QueryExecutionId'</span> =&gt; <span class="hljs-variable">$startQueryResult</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecutionId</span>()
 ]));
 
-<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> Row $row */</span>
-<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$results</span> =&gt; <span class="hljs-variable">$row</span>) {
-    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$index</span> === <span class="hljs-number">0</span>) {
-        <span class="hljs-variable">$columnLabels</span> = <span class="hljs-title function_ invoke__">array_column</span>(<span class="hljs-variable">$row</span>-&gt;<span class="hljs-title function_ invoke__">getData</span>(), <span class="hljs-string">'VarCharValue'</span>); <span class="hljs-comment">// $row-&gt;getData() return [ 'VarCharValue' =&gt; value, ...]</span>
-    }
-    <span class="hljs-variable">$columnValues</span>[] = <span class="hljs-title function_ invoke__">array_column</span>(<span class="hljs-variable">$row</span>-&gt;<span class="hljs-title function_ invoke__">getData</span>(), <span class="hljs-string">'VarCharValue'</span>);
-}
+<span class="hljs-comment">// Check results structure</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$results</span>);
 
+<span class="hljs-comment">//Retrieve results rows values as Array</span>
+<span class="hljs-comment">/** <span class="hljs-doctag">@var</span> Row $row */</span>
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$results</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$row</span>) {
+    <span class="hljs-variable">$resultRowsToArray</span> [] = <span class="hljs-title function_ invoke__">array_map</span>(
+        <span class="hljs-built_in">static</span> function (<span class="hljs-variable">$data</span>) {
+            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">string</span>)<span class="hljs-variable">$data</span>-&gt;<span class="hljs-title function_ invoke__">getVarCharValue</span>();
+        },
+        <span class="hljs-variable">$row</span>-&gt;<span class="hljs-title function_ invoke__">getData</span>()
+    );
+}
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$resultRowsToArray</span>);
 <span class="hljs-comment">// retrieves the results column structure details</span>
 <span class="hljs-variable">$columnsDetail</span> = <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getResultSet</span>()-&gt;<span class="hljs-title function_ invoke__">getResultSetMetadata</span>()-&gt;<span class="hljs-title function_ invoke__">getColumnInfo</span>();
 
-<span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$columnsDetail</span>);</code></pre>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$columnsDetail</span>);</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
