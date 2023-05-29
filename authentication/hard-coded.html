@@ -407,18 +407,18 @@ client configuration parameters.</p>
 <h2 id="assuming-a-role">Assuming a role<a href="#assuming-a-role" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>You can tell the API client to use specific role by providing a ARN to
 the <code>roleArn</code> key. You can also specify a <code>roleSessionName</code>.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
 
 <span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AwsClientFactory</span>([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'AKIAIOSFODNN7EXAMPLE'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'</span>,
     <span class="hljs-string">'roleArn'</span> =&gt; <span class="hljs-string">'arn:aws:iam::1234567891011:role/name-of-my-role'</span>,
     <span class="hljs-string">'roleSessionName'</span> =&gt; <span class="hljs-string">'my-session-name'</span>, <span class="hljs-comment">// Optionnal</span>
-]);
-
-&gt; **Warning**: Hard-coding your credentials can be dangerous because it’s easy to commit your credentials into an SCM
-&gt; repository accidentally</code></pre>
+]);</code></pre>
+<blockquote>
+<p><strong>Warning</strong>: Hard-coding your credentials can be dangerous because it’s easy to commit your credentials into an SCM
+repository accidentally</p>
+</blockquote>
 
     </main>
 </div>
