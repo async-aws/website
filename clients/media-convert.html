@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -164,7 +164,7 @@
                             Lambda
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/media-convert.html">
                             MediaConvert
                         </a>
@@ -318,7 +318,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
-                    <ul class="collapse list-unstyled show" id="authentication">
+                    <ul class="collapse list-unstyled " id="authentication">
                                                     <li>
                         <a href="/authentication/">
                             Overview
@@ -329,7 +329,7 @@
                             Credentials file
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/authentication/ec2-metadata.html">
                             EC2 instance metadata
                         </a>
@@ -399,13 +399,88 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="using-ec2-instance-metadata">Using EC2 Instance Metadata</h1>
-<p>When you run code within an EC2 instance (or EKS, Lambda), AsyncAws is able to fetch Credentials from the
-<a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">Role</a> attached to the instance.</p>
-<p>When running a single application on the Server, this is the simplest way to grant permissions to the application. You
-have nothing to configure on the application, you only grant permissions on the Role attached to the instance.</p>
-<p>AsyncAWS uses the IMDSv2 protocol to read instance metadata and fallback to the IMDSv1 protocol if it isn't supported.</p>
+    <h1>MediaConvert client</h1>
 
+    <p>
+        This page contains examples with the MediaConvert client. See the
+        <a href="/clients/">client introduction</a> for a more detailed description
+        how to use a client. You may also want to consider the
+        <a href="/authentication/">authentication</a> documentation to understand
+        the many ways you can authenticate with AWS.
+    </p>
+    <p>
+        The MediaConvert package could be installed with Composer.
+    </p>
+
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/media-convert</code></pre>
+
+    
+    <p>
+        A new client object may be instantiated by:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">MediaConvert</span>\<span class="hljs-title">MediaConvertClient</span>;
+
+$mediaConvert = <span class="hljs-keyword">new</span> MediaConvertClient();
+</code></pre>
+
+    <p>
+        The authentication parameters is read from the environment by default.
+        You can also specify a AWS access id and secret:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">MediaConvert</span>\<span class="hljs-title">MediaConvertClient</span>;
+
+$mediaConvert = <span class="hljs-keyword">new</span> MediaConvertClient([
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+]);</code></pre>
+
+    <p>
+        For all available options, see the <a href="/configuration.html">configuration reference</a>.
+    </p>
+
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="create-jobs">Create jobs<a href="#create-jobs" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">MediaConvert</span>\<span class="hljs-title">MediaConvertClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">MediaConvert</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateJobRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">MediaConvert</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Input</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">MediaConvert</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">JobSettings</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">MediaConvert</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">Output</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">MediaConvert</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">OutputGroup</span>;
+
+<span class="hljs-variable">$mediaConvert</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MediaConvertClient</span>();
+
+<span class="hljs-variable">$request</span> = <span class="hljs-variable">$mediaConvert</span>-&gt;<span class="hljs-title function_ invoke__">createJob</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateJobRequest</span>([
+    <span class="hljs-string">'Settings'</span> =&gt; [
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">JobSettings</span>([
+            <span class="hljs-string">'Inputs'</span> =&gt; [
+                <span class="hljs-keyword">new</span> <span class="hljs-title class_">Input</span>([<span class="hljs-string">'FileInput'</span> =&gt; <span class="hljs-string">'s3://my-bucket/file.mov'</span>])
+            ],
+            <span class="hljs-string">'OutputGroups'</span> =&gt; [
+                <span class="hljs-keyword">new</span> <span class="hljs-title class_">OutputGroup</span>([
+                    <span class="hljs-string">'Outputs'</span> =&gt; [<span class="hljs-keyword">new</span> <span class="hljs-title class_">Output</span>([
+                        <span class="hljs-string">'Preset'</span> =&gt; <span class="hljs-string">'h264'</span>
+                    ])],
+                ]),
+            ],
+        ])
+    ],
+]));
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'Started the processing for the job '</span>. <span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">getJob</span>()-&gt;<span class="hljs-title function_ invoke__">getId</span>();</code></pre>
+<blockquote>
+<p>Note: The <code>MediaConvertClient</code> takes care automatically of the discovery of the account-specific
+endpoint needed for most operations (unlike what the official SDK implements).</p>
+</blockquote>
+
+    <hr style="margin-top:6rem; margin-bottom:3rem;">
+
+    <p>
+        The source code to this page is found on
+        <a href="https://github.com/async-aws/aws/tree/master/docs/clients">GitHub</a>.
+    </p>
     </main>
 </div>
 <a href="https://github.com/async-aws/aws" class="contribute" aria-label="View source on GitHub">
