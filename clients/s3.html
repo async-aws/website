@@ -527,6 +527,27 @@ larger files without having them in memory.</p>
     <span class="hljs-title function_ invoke__">fwrite</span>(<span class="hljs-variable">$fp</span>, <span class="hljs-variable">$chunk</span>);
     <span class="hljs-variable">$progress</span>-&gt;<span class="hljs-title function_ invoke__">advance</span>();
 }</code></pre>
+<h3 id="add-tags-to-a-bucket">Add tags to a bucket<a href="#add-tags-to-a-bucket" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<p>You can add tags to your buckets to help you find related resources in the AWS cost explorer; eg all AWS resources tagged
+with <code>environment = staging</code> would show you the amount you're spending on your pre-prod environment each month</p>
+<pre><code class="hljs language-php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">putBucketTagging</span>(
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">PutBucketTaggingRequest</span>([
+        <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-website-assets-bucket'</span>,
+
+        <span class="hljs-string">'Tagging'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Tagging</span>([
+            <span class="hljs-string">'TagSet'</span> =&gt; [
+                <span class="hljs-keyword">new</span> <span class="hljs-title class_">Tag</span>([
+                    <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'environment'</span>,
+                    <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'production'</span>,
+                ]),
+                <span class="hljs-keyword">new</span> <span class="hljs-title class_">Tag</span>([
+                    <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'project-name'</span>,
+                    <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'unicorn'</span>,
+                ])
+            ],
+        ]),
+    ])
+);</code></pre>
 <h2 id="virtual-hosted-style-requests">Virtual Hosted-Style Requests<a href="#virtual-hosted-style-requests" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>When calling AWS endpoints, AsyncAws uses <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html">Virtual Hosted-Style Requests</a>:
 The bucket name is part of the endpoint's host. To change this behavior, and use
