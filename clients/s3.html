@@ -548,6 +548,38 @@ with <code>environment = staging</code> would show you the amount you're spendin
         ]),
     ])
 );</code></pre>
+<h3 id="managing-object-tags">Managing object tags<a href="#managing-object-tags" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<p>You can associate multiple key-value pairs (tags) with each of your S3 objects, with the ability to change them at any time.
+The tags can be used to manage and control access, set up lifecycle rules, customize S3 Storage Class Analysis, and filter CloudWatch metrics.</p>
+<p>Learn more at <a href="https://aws.amazon.com/blogs/storage/simplify-your-data-lifecycle-by-using-object-tags-with-amazon-s3-lifecycle/">Simplify your data lifecycle by using object tags with Amazon S3 Lifecycle</a></p>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">putObjectTagging</span>(
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">PutObjectTaggingRequest</span>([
+        <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'examplebucket'</span>,
+        <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'baz/HappyFace.jpg'</span>,
+        <span class="hljs-string">'Tagging'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Tagging</span>([
+            <span class="hljs-string">'TagSet'</span> =&gt; [
+                <span class="hljs-keyword">new</span> <span class="hljs-title class_">Tag</span>([
+                    <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'expire-after-30-days'</span>,
+                    <span class="hljs-string">'Value'</span> =&gt; <span class="hljs-string">'1'</span>,
+                ])
+            ],
+        ]),
+    ])
+);
+
+<span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">getObjectTagging</span>(
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">GetObjectTaggingRequest</span>([
+        <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'examplebucket'</span>,
+        <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'baz/HappyFace.jpg'</span>,
+    ])
+);
+
+<span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">deleteObjectTagging</span>(
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">DeleteObjectTaggingRequest</span>([
+        <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'examplebucket'</span>,
+        <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'baz/HappyFace.jpg'</span>,
+    ])
+);</code></pre>
 <h2 id="virtual-hosted-style-requests">Virtual Hosted-Style Requests<a href="#virtual-hosted-style-requests" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>When calling AWS endpoints, AsyncAws uses <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html">Virtual Hosted-Style Requests</a>:
 The bucket name is part of the endpoint's host. To change this behavior, and use
