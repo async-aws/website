@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -164,7 +164,7 @@
                             Lambda
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/location-service.html">
                             LocationService
                         </a>
@@ -323,8 +323,8 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
-                    <ul class="collapse list-unstyled show" id="authentication">
-                                                    <li class="current">
+                    <ul class="collapse list-unstyled " id="authentication">
+                                                    <li>
                         <a href="/authentication/">
                             Overview
                         </a>
@@ -404,46 +404,97 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="authentication">Authentication</h1>
-<p>To make requests to AWS, <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">credentials</a>
-are required. There are multiple ways to authenticate and the method you prefer probably
-depends on where and how you run the code.</p>
-<h2 id="how-authentication-works">How authentication works<a href="#how-authentication-works" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>Each API client needs an Authentication provider. The provider will use some logic
-to return a <code>Credentials</code> object. It is a value object to store username and
-password (in simple terms).</p>
-<p>By default AsyncAws uses a ChainProvider that iterates over all providers and uses
-the first provider in the chain that returns credentials without an error.</p>
-<p>The providers are currently chained in the following order:</p>
-<ol>
-<li><a href="./hard-coded.html">Hard-Coded Configuration</a></li>
-<li><a href="./environment.html">Environment Variables</a></li>
-<li><a href="./web-identity.html">WebIdentity</a></li>
-<li><a href="./credentials-file.html">Credential and Configuration Files</a></li>
-<li><a href="./ecs-container.html">ECS Container Credentials</a></li>
-<li><a href="./ec2-metadata.html">EC2 Instance Metadata</a></li>
-</ol>
-<h2 id="testing-with-authentication-providers">Testing with authentication providers<a href="#testing-with-authentication-providers" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>The default provider chain could be too slow or too complex for testing. It is recommended
-to use the <code>NullProvider</code> in tests where you don't provide valid configuration values.</p>
-<h2 id="caching-credential">Caching credential<a href="#caching-credential" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>Fetching credential from AWS metadata endpoint (EC2 Instance, ECS Container,
-WebIdentity...) for each request can introduce latency. AsyncAws provides a
-<code>PsrCacheProvider</code> and a <code>SymfonyCacheProvider</code> decorator to persist and reuse
-credentials between each request.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">CacheProvider</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">ChainProvider</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">SymfonyCacheProvider</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">Symfony</span>\<span class="hljs-title">Component</span>\<span class="hljs-title">Cache</span>\<span class="hljs-title">Adapter</span>\<span class="hljs-title">FilesystemAdapter</span>;
+    <h1>LocationService client</h1>
 
-<span class="hljs-variable">$provider</span> = <span class="hljs-title class_">ChainProvider</span>::<span class="hljs-title function_ invoke__">createDefaultChain</span>();
-<span class="hljs-variable">$provider</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SymfonyCacheProvider</span>(<span class="hljs-variable">$provider</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">FilesystemAdapter</span>(<span class="hljs-string">'test'</span>));
+    <p>
+        This page contains examples with the LocationService client. See the
+        <a href="/clients/">client introduction</a> for a more detailed description
+        how to use a client. You may also want to consider the
+        <a href="/authentication/">authentication</a> documentation to understand
+        the many ways you can authenticate with AWS.
+    </p>
+    <p>
+        The LocationService package could be installed with Composer.
+    </p>
 
-<span class="hljs-comment">// optional, decorate the provider with the in-memory Cache provider</span>
-<span class="hljs-variable">$provider</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CacheProvider</span>(<span class="hljs-variable">$provider</span>);
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/location-service</code></pre>
 
-<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([], <span class="hljs-variable">$provider</span>);</code></pre>
+    
+    <p>
+        A new client object may be instantiated by:
+    </p>
 
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">LocationServiceClient</span>;
+
+$locationService = <span class="hljs-keyword">new</span> LocationServiceClient();
+</code></pre>
+
+    <p>
+        The authentication parameters is read from the environment by default.
+        You can also specify a AWS access id and secret:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">LocationServiceClient</span>;
+
+$locationService = <span class="hljs-keyword">new</span> LocationServiceClient([
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+]);</code></pre>
+
+    <p>
+        For all available options, see the <a href="/configuration.html">configuration reference</a>.
+    </p>
+
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="calculateroute">CalculateRoute<a href="#calculateroute" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">LocationServiceClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">DimensionUnit</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">DistanceUnit</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">TravelMode</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">VehicleWeightUnit</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CalculateRouteRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">CalculateRouteTruckModeOptions</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">TruckDimensions</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">LocationService</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">TruckWeight</span>;
+
+<span class="hljs-variable">$location</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LocationServiceClient</span>();
+
+<span class="hljs-variable">$request</span> = <span class="hljs-variable">$location</span>-&gt;<span class="hljs-title function_ invoke__">calculateRoute</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CalculateRouteRequest</span>([
+    <span class="hljs-string">'CalculatorName'</span> =&gt; <span class="hljs-string">'CalculatorName'</span>,
+    <span class="hljs-string">'DepartNow'</span> =&gt; <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'DeparturePosition'</span> =&gt; [-<span class="hljs-number">123.115</span>, <span class="hljs-number">49.285</span>],
+    <span class="hljs-string">'DepartureTime'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">\DateTimeImmutable</span>(<span class="hljs-string">'2023-06-27T06:17:31+00:00'</span>),
+    <span class="hljs-string">'DestinationPosition'</span> =&gt; [-<span class="hljs-number">123.115</span>, <span class="hljs-number">49.285</span>],
+    <span class="hljs-string">'DistanceUnit'</span> =&gt; <span class="hljs-title class_">DistanceUnit</span>::<span class="hljs-variable constant_">KILOMETERS</span>,
+    <span class="hljs-string">'IncludeLegGeometry'</span> =&gt; <span class="hljs-literal">false</span>,
+    <span class="hljs-string">'TravelMode'</span> =&gt; <span class="hljs-title class_">TravelMode</span>::<span class="hljs-variable constant_">TRUCK</span>,
+    <span class="hljs-string">'TruckModeOptions'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">CalculateRouteTruckModeOptions</span>([
+        <span class="hljs-string">'AvoidFerries'</span> =&gt; <span class="hljs-literal">false</span>,
+        <span class="hljs-string">'AvoidTolls'</span> =&gt; <span class="hljs-literal">false</span>,
+        <span class="hljs-string">'Dimensions'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">TruckDimensions</span>([
+            <span class="hljs-string">'Height'</span> =&gt; <span class="hljs-number">4</span>,
+            <span class="hljs-string">'Length'</span> =&gt; <span class="hljs-number">20</span>,
+            <span class="hljs-string">'Unit'</span> =&gt; <span class="hljs-title class_">DimensionUnit</span>::<span class="hljs-variable constant_">METERS</span>,
+            <span class="hljs-string">'Width'</span> =&gt; <span class="hljs-number">3</span>,
+        ]),
+        <span class="hljs-string">'Weight'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">TruckWeight</span>([
+            <span class="hljs-string">'Total'</span> =&gt; <span class="hljs-number">20000</span>,
+            <span class="hljs-string">'Unit'</span> =&gt; <span class="hljs-title class_">VehicleWeightUnit</span>::<span class="hljs-variable constant_">KILOGRAMS</span>,
+        ]),
+    ]),
+    <span class="hljs-string">'WaypointPositions'</span> =&gt; [[-<span class="hljs-number">123.115</span>, <span class="hljs-number">49.285</span>]],
+]));
+
+<span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">getSummary</span>();</code></pre>
+
+    <hr style="margin-top:6rem; margin-bottom:3rem;">
+
+    <p>
+        The source code to this page is found on
+        <a href="https://github.com/async-aws/aws/tree/master/docs/clients">GitHub</a>.
+    </p>
     </main>
 </div>
 <a href="https://github.com/async-aws/aws" class="contribute" aria-label="View source on GitHub">
