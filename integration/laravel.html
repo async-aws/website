@@ -407,7 +407,7 @@
     <h1 id="asyncaws-for-laravel">AsyncAws for Laravel</h1>
 <p>The AsyncAws integrations for Laravel are similar to the integrations for the
 official AWS SDK. The sections below describe how you can install and configure
-Cache, Filesystem, Mail and Queue.</p>
+Cache, Mail and Queue.</p>
 <h2 id="illuminate-cache">Illuminate Cache<a href="#illuminate-cache" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Use DynamoDb as a Illuminate Cache store.</p>
 <h3 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h3>
@@ -427,27 +427,11 @@ key will not work.</p>
      'table' =&gt; env('DYNAMODB_CACHE_TABLE', 'cache'),
      'endpoint' =&gt; env('DYNAMODB_ENDPOINT'),
  ],</code></pre>
-<h2 id="illuminate-filesystem">Illuminate Filesystem<a href="#illuminate-filesystem" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>Use S3 as filesystem.</p>
-<h3 id="install-1">Install<a href="#install-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-filesystem</code></pre>
-<h3 id="configure-1">Configure<a href="#configure-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-diff hljs"># config/filesystems.php
-
- 's3' =&gt; [
-<span class="hljs-deletion">-    'driver' =&gt; 's3',</span>
-<span class="hljs-addition">+    'driver' =&gt; 'async-aws-s3',</span>
-     'key' =&gt; env('AWS_ACCESS_KEY_ID'),
-     'secret' =&gt; env('AWS_SECRET_ACCESS_KEY'),
-     'region' =&gt; env('AWS_DEFAULT_REGION'),
-     'bucket' =&gt; env('AWS_BUCKET'),
-     'endpoint' =&gt; env('AWS_ENDPOINT'),
- ],</code></pre>
 <h2 id="illuminate-mail">Illuminate Mail<a href="#illuminate-mail" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Send emails with SES.</p>
-<h3 id="install-2">Install<a href="#install-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<h3 id="install-1">Install<a href="#install-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-mail</code></pre>
-<h3 id="configure-2">Configure<a href="#configure-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<h3 id="configure-1">Configure<a href="#configure-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-diff hljs"># config/mail.php
 
  'ses' =&gt; [
@@ -458,9 +442,9 @@ key will not work.</p>
  ],</code></pre>
 <h2 id="illuminate-queue">Illuminate Queue<a href="#illuminate-queue" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Use SQS with Illuminate Queue.</p>
-<h3 id="install-3">Install<a href="#install-3" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<h3 id="install-2">Install<a href="#install-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-queue</code></pre>
-<h3 id="configure-3">Configure<a href="#configure-3" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<h3 id="configure-2">Configure<a href="#configure-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-diff hljs"># config/queue.php
 
  'sqs' =&gt; [
