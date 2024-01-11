@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $iam = <span class="hljs-keyword">new</span> IamClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="list-users">List Users<a href="#list-users" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListUsersRequest</span>;
 
 <span class="hljs-variable">$iam</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IamClient</span>();
@@ -461,7 +461,7 @@ $iam = <span class="hljs-keyword">new</span> IamClient([
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">getUserName</span>().<span class="hljs-string">' '</span>.(<span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">getPasswordLastUsed</span>() ? <span class="hljs-variable">$user</span>-&gt;<span class="hljs-title function_ invoke__">getPasswordLastUsed</span>()-&gt;<span class="hljs-title function_ invoke__">format</span>(<span class="hljs-string">'Y-m-d'</span>) : <span class="hljs-string">''</span>).PHP_EOL;
 }</code></pre>
 <h3 id="create--delete-a-users-individual-policy-document">Create / Delete a user's individual policy document<a href="#create--delete-a-users-individual-policy-document" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutUserPolicyRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteUserPolicyRequest</span>;
 
@@ -480,7 +480,7 @@ $iam = <span class="hljs-keyword">new</span> IamClient([
     <span class="hljs-string">'PolicyName'</span> =&gt; <span class="hljs-string">'Disallow Access To Everything'</span>,
 ]));</code></pre>
 <h3 id="create-service-specific-credentials">Create service-specific credentials<a href="#create-service-specific-credentials" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateServiceSpecificCredentialRequest</span>;
 
 <span class="hljs-variable">$iam</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IamClient</span>();
@@ -494,7 +494,7 @@ $iam = <span class="hljs-keyword">new</span> IamClient([
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$creds</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredential</span>()-&gt;<span class="hljs-title function_ invoke__">getServicePassword</span>(); <span class="hljs-comment">// example: xTBAr/czp+D3EXAMPLE47lrJ6/43r2zqGwR3EXAMPLE=</span>
 </code></pre>
 <h3 id="list-service-specific-credentials">List service-specific credentials<a href="#list-service-specific-credentials" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListServiceSpecificCredentialsRequest</span>;
 
 <span class="hljs-variable">$iam</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IamClient</span>();
@@ -521,7 +521,7 @@ $iam = <span class="hljs-keyword">new</span> IamClient([
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getServiceSpecificCredentials</span>()[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getServiceName</span>(); // <span class="hljs-attr">example</span>: dynamodb.amazonaws.com
 ]));</code></pre>
 <h3 id="delete-service-specific-credentials">Delete service-specific credentials<a href="#delete-service-specific-credentials" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">IamClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Iam</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteServiceSpecificCredentialRequest</span>;
 
 <span class="hljs-variable">$iam</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IamClient</span>();

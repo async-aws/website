@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="list-repositories">List repositories<a href="#list-repositories" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListRepositoriesInput</span>;
 
 <span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
@@ -464,7 +464,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 <span class="hljs-comment">// see example response at https://docs.aws.amazon.com/codecommit/latest/APIReference/API_ListRepositories.html</span>
 <span class="hljs-comment">// for full list of information returned in $repos-&gt;getRepositories()</span></code></pre>
 <h3 id="create-a-repository">Create a repository<a href="#create-a-repository" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateRepositoryInput</span>;
 
 <span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
@@ -484,7 +484,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 <span class="hljs-comment">// see example response at https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreateRepository.html</span>
 <span class="hljs-comment">// for full list of information returned in $repo-&gt;getRepositoryMetadata()</span></code></pre>
 <h3 id="delete-a-repository">Delete a repository<a href="#delete-a-repository" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteRepositoryInput</span>;
 
 <span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
@@ -496,7 +496,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 
 <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$repo</span>-&gt;<span class="hljs-title function_ invoke__">getRepositoryId</span>()); <span class="hljs-comment">// returned id of the deleted repo</span></code></pre>
 <h3 id="get-a-branch">Get a branch<a href="#get-a-branch" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetBranchInput</span>;
 
 <span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
@@ -508,7 +508,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 
 <span class="hljs-variable">$latestCommitId</span> = <span class="hljs-variable">$branch</span>-&gt;<span class="hljs-title function_ invoke__">getBranch</span>()-&gt;<span class="hljs-title function_ invoke__">getCommitId</span>();</code></pre>
 <h3 id="get-list-of-different-blobs-between-two-commits">Get list of different blobs between two commits<a href="#get-list-of-different-blobs-between-two-commits" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetDifferencesInput</span>;
 
 <span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
@@ -525,7 +525,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$diff</span>-&gt;<span class="hljs-title function_ invoke__">getChangeType</span>(); <span class="hljs-comment">// eg 'A', 'M', 'D' for 'Added', 'Modified', 'Deleted'</span>
 }</code></pre>
 <h3 id="get-information-about-a-blob">Get information about a blob<a href="#get-information-about-a-blob" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetBlobInput</span>;
 
 <span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
@@ -537,7 +537,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$blob</span>-&gt;<span class="hljs-title function_ invoke__">getContent</span>(); <span class="hljs-comment">// Lorem ipsum dolor sit amet...</span></code></pre>
 <h3 id="get-information-about-a-commit">Get information about a commit<a href="#get-information-about-a-commit" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetCommitInput</span>;
 
 <span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
@@ -552,7 +552,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 <span class="hljs-comment">// see example response at https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetCommit.html</span>
 <span class="hljs-comment">// for full list of information returned in $commit-&gt;getCommit()</span></code></pre>
 <h3 id="update-repository-triggers">Update repository triggers<a href="#update-repository-triggers" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">CodeCommitClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeCommit</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutRepositoryTriggersInput</span>;
 
 <span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();

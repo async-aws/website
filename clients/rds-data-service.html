@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="execute-an-sql-statement">Execute an sql statement<a href="#execute-an-sql-statement" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
 
 <span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RdsDataServiceClient</span>();
 <span class="hljs-variable">$response</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">executeStatement</span>([
@@ -465,7 +465,7 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
     <span class="hljs-keyword">echo</span> <span class="hljs-string">"name: "</span> . <span class="hljs-variable">$record</span>[<span class="hljs-number">0</span>]-&gt;<span class="hljs-title function_ invoke__">getStringValue</span>() . PHP_EOL;
 }</code></pre>
 <h3 id="run-a-transaction">Run a transaction<a href="#run-a-transaction" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div>
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">RdsDataService</span>\<span class="hljs-title">RdsDataServiceClient</span>;
 
 <span class="hljs-variable">$database</span> = [

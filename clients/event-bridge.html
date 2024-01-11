@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="sends-custom-events">Sends custom events<a href="#sends-custom-events" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutEventsRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">PutEventsRequestEntry</span>;
 
@@ -457,7 +457,7 @@ $eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient([
 <span class="hljs-variable">$events</span> = <span class="hljs-variable">$eventBridge</span>-&gt;<span class="hljs-title function_ invoke__">putEvents</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutEventsRequest</span>([
     <span class="hljs-string">'Entries'</span> =&gt; [
         <span class="hljs-keyword">new</span> <span class="hljs-title class_">PutEventsRequestEntry</span>([
-            <span class="hljs-string">'EventBusName'</span> =&gt; <span class="hljs-string">'marketing'</span>,
+            <span class="hljs-string">'EventBusName'</span> =&gt; <span class="hljs-string">'arn:aws:events:region:account:event-bus/event-bus-name'</span>,
             <span class="hljs-string">'Source'</span> =&gt; <span class="hljs-string">'acme.newsletter.campaign'</span>,
             <span class="hljs-string">'DetailType'</span> =&gt; <span class="hljs-string">'UserSignUp'</span>,
             <span class="hljs-string">'Detail'</span> =&gt; <span class="hljs-title function_ invoke__">json_encode</span>([<span class="hljs-string">'email'</span> =&gt; <span class="hljs-variable">$userEmail</span>]),

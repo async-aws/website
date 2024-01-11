@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="create-a-table">Create a table<a href="#create-a-table" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateTableInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeTableInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeDefinition</span>;
@@ -476,7 +476,7 @@ $dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient([
 <span class="hljs-comment">// Wait for end of creation</span>
 <span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">tableExists</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DescribeTableInput</span>([<span class="hljs-string">'TableName'</span> =&gt; <span class="hljs-string">'errors'</span>]))-&gt;<span class="hljs-title function_ invoke__">wait</span>();</code></pre>
 <h3 id="update-a-table">Update a table<a href="#update-a-table" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">UpdateTableInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">ProvisionedThroughput</span>;
 
@@ -490,7 +490,7 @@ $dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient([
         ]),
 ]));</code></pre>
 <h3 id="insert-an-item">Insert an item.<a href="#insert-an-item" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutItemInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeValue</span>;
 
@@ -508,7 +508,7 @@ $dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient([
 
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'Consumed capacity: '</span> . (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getConsumedCapacity</span>() ? <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getConsumedCapacity</span>()-&gt;<span class="hljs-title function_ invoke__">getCapacityUnits</span>() : <span class="hljs-literal">null</span>);</code></pre>
 <h3 id="get-table-information">Get table information<a href="#get-table-information" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeTableInput</span>;
 
 <span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>();
@@ -520,7 +520,7 @@ $dynamoDb = <span class="hljs-keyword">new</span> DynamoDbClient([
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'Item count: '</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getTable</span>()-&gt;<span class="hljs-title function_ invoke__">getItemCount</span>();
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'Read capacity: '</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getTable</span>()-&gt;<span class="hljs-title function_ invoke__">getProvisionedThroughput</span>()-&gt;<span class="hljs-title function_ invoke__">getReadCapacityUnits</span>() . <span class="hljs-string">"\n"</span>;</code></pre>
 <h3 id="get-an-item">Get an item.<a href="#get-an-item" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetItemInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeValue</span>;
 

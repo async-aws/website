@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -407,9 +407,9 @@
     <h1 id="dynamodb-sessions-integration">DynamoDB Sessions integration</h1>
 <p>Store your PHP Sessions in DynamoDB.</p>
 <h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/dynamo-db-session</code></pre>
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/dynamo-db-session</code></pre>
 <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDbSession</span>\<span class="hljs-title">SessionHandler</span>;
 
 <span class="hljs-variable">$handler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SessionHandler</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>(), [
@@ -423,7 +423,7 @@
 <p>The Time to live attribute of the table must be set on the "expires" attribute. This can be changed with the <code>session_lifetime_attribute</code> option.</p>
 <hr>
 <p>Alternatively, the table can be created programmatically with the setUp method:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$handler</span>-&gt;<span class="hljs-title function_ invoke__">setUp</span>();</code></pre>
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$handler</span>-&gt;<span class="hljs-title function_ invoke__">setUp</span>();</code></pre>
 <p>Creating the table with the method ensures the settings meet the requirements.</p>
 <p>The table is created with On-Demand billing, which you can change to provisioned through the AWS console.</p>
 <h2 id="configuration">Configuration<a href="#configuration" title="Permalink to this headline" class="headerlink">¶</a></h2>
@@ -472,7 +472,7 @@
 <h2 id="symfony-usage">Symfony usage<a href="#symfony-usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>To ease service configuration, install the <a href="./symfony-bundle.html">AsyncAws Symfony Bundle</a> first.</p>
 <p>The bundle will automatically configure DynamoDbClient with the given credentials.</p>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/services.yaml</span>
+<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/services.yaml</span>
 
 <span class="hljs-attr">services:</span>
     <span class="hljs-string">AsyncAws\DynamoDbSession\SessionHandler:</span>
@@ -480,7 +480,7 @@
             <span class="hljs-bullet">-</span> <span class="hljs-string">'@async_aws.client.dynamo_db'</span>
             <span class="hljs-bullet">-</span> <span class="hljs-attr">table_name:</span> <span class="hljs-string">php-sessions</span>
               <span class="hljs-comment"># for more options, see Configuration</span></code></pre>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/framework.yaml</span>
+<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/framework.yaml</span>
 
 <span class="hljs-attr">framework:</span>
     <span class="hljs-attr">session:</span>

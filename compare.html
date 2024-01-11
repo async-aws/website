@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -456,7 +456,7 @@
 <a href="https://symfony.com/doc/current/components/http_client.html">Symfony HTTP client</a>
 the process is not blocking until you need to read the result.</p>
 <h3 id="asyncaws">AsyncAws<a href="#asyncaws" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>();
 <span class="hljs-variable">$files</span> = [];
@@ -481,7 +481,7 @@ the process is not blocking until you need to read the result.</p>
 <span class="hljs-comment">// No need to wait ends of deleteObject.</span>
 <span class="hljs-comment">// It will be automatically resolved on destruct.</span></code></pre>
 <h3 id="official-aws-php-sdk">Official AWS PHP SDK<a href="#official-aws-php-sdk" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">GuzzleHttp</span>\<span class="hljs-title">Promise</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([]);
@@ -511,7 +511,7 @@ Promise\<span class="hljs-title function_ invoke__">all</span>(<span class="hljs
 have to worry about <code>IsTruncated</code> or <code>NextMarker</code> or calling magic methods, just
 iterates over results, AsyncAws do the rest.</p>
 <h3 id="asyncaws-1">AsyncAws<a href="#asyncaws-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>();
 
@@ -520,7 +520,7 @@ iterates over results, AsyncAws do the rest.</p>
     <span class="hljs-comment">// ...</span>
 }</code></pre>
 <h3 id="official-aws-php-sdk-1">Official AWS PHP SDK<a href="#official-aws-php-sdk-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([]);
 <span class="hljs-variable">$nextToken</span> = <span class="hljs-literal">null</span>;
@@ -558,7 +558,7 @@ without exposing the key. For instance, provide a link to download an S3 Object.
 AsyncAws provides a fancy way to generate such url by reusing the same objects
 used in the standard way.</p>
 <h3 id="asyncaws-2">AsyncAws<a href="#asyncaws-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetObjectRequest</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>();
@@ -574,7 +574,7 @@ used in the standard way.</p>
 <span class="hljs-variable">$url</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">presign</span>(<span class="hljs-variable">$input</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">\DateTimeImmutable</span>(<span class="hljs-string">'+60 min'</span>));
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$url</span>;</code></pre>
 <h3 id="official-aws-php-sdk-2">Official AWS PHP SDK<a href="#official-aws-php-sdk-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Aws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([]);
 <span class="hljs-comment">// Sign on the fly</span>
@@ -636,14 +636,14 @@ the official AWS PHP SDK uses magic methods and undocumented array accessor.</p>
 enables users to specify which AWS Region to call by providing an <code>@region</code>
 input parameter. But AsyncAws don't require to create new objects.</p>
 <h3 id="asyncaws-3">AsyncAws<a href="#asyncaws-3" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-diff hljs"> $lambda = new LambdaClient();
+<pre><code class="language-diff hljs" data-highlighted="yes"> $lambda = new LambdaClient();
  $result = $lambda-&gt;invoke([
    'FunctionName' =&gt; 'app-dev-hello_world',
    'Payload' =&gt; '{"name": "async-aws/lambda"}',
 <span class="hljs-addition">+  '@region' =&gt; 'eu-west-1',</span>
  ]);</code></pre>
 <h3 id="official-aws-php-sdk-3">Official AWS PHP SDK<a href="#official-aws-php-sdk-3" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-diff hljs"><span class="hljs-deletion">-$lambda = new LambdaClient();</span>
+<pre><code class="language-diff hljs" data-highlighted="yes"><span class="hljs-deletion">-$lambda = new LambdaClient();</span>
 <span class="hljs-addition">+$lambda = (new \Aws\Sdk)-&gt;createMultiRegionLambda(['version' =&gt; 'latest']);</span>
 
  $result = $lambda-&gt;invoke([

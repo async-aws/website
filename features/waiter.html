@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -408,7 +408,7 @@
 <p>Similar to Official AWS PHP SDK, AsyncAws provides waiters to let you wait
 until an long operation finished.</p>
 <p>To ease the development, the above code is wrapped in a helper called "waiter".</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
 <span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>();
 <span class="hljs-variable">$dynamoDb</span>-&gt;<span class="hljs-title function_ invoke__">createTable</span>([]);
@@ -431,7 +431,7 @@ until an long operation finished.</p>
 <li><code>wait($timeout, $delay)</code> waits until the state of the operation is determinate.</li>
 </ul>
 <p>To make sure to use <code>wait()</code> as non blocking. Set the timeout to <code>0</code>:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
 <span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>();
 

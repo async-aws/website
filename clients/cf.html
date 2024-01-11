@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $cloudFormation = <span class="hljs-keyword">new</span> CloudFormationClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="list-stacks">List stacks<a href="#list-stacks" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
 
 <span class="hljs-variable">$cloudFormation</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudFormationClient</span>();
 
@@ -458,7 +458,7 @@ $cloudFormation = <span class="hljs-keyword">new</span> CloudFormationClient([
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$stack</span>-&gt;<span class="hljs-title function_ invoke__">getStackName</span>().<span class="hljs-string">'-'</span>.<span class="hljs-variable">$stack</span>-&gt;<span class="hljs-title function_ invoke__">getStackStatus</span>().PHP_EOL;
 }</code></pre>
 <h3 id="list-stacks-events">List stack's events<a href="#list-stacks-events" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeStackEventsInput</span>;
 
 <span class="hljs-variable">$cloudFormation</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudFormationClient</span>();
@@ -471,7 +471,7 @@ $cloudFormation = <span class="hljs-keyword">new</span> CloudFormationClient([
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$event</span>-&gt;<span class="hljs-title function_ invoke__">getResourceType</span>().<span class="hljs-string">'-'</span>.<span class="hljs-variable">$event</span>-&gt;<span class="hljs-title function_ invoke__">getResourceStatus</span>().PHP_EOL;
 }</code></pre>
 <h3 id="detect-stack-drift-status">Detect Stack Drift Status<a href="#detect-stack-drift-status" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeStackEventsInput</span>;
 
 <span class="hljs-variable">$cloudFormation</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudFormationClient</span>();

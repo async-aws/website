@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $scheduler = <span class="hljs-keyword">new</span> SchedulerClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="create-a-schedule-group">Create a schedule group<a href="#create-a-schedule-group" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateScheduleGroupInput</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateScheduleGroupInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">SchedulerClient</span>;
 
 <span class="hljs-variable">$scheduler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SchedulerClient</span>();
@@ -460,7 +460,7 @@ $scheduler = <span class="hljs-keyword">new</span> SchedulerClient([
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getScheduleGroupArn</span>();</code></pre>
 <h3 id="delete-a-schedule-group">Delete a schedule group<a href="#delete-a-schedule-group" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteScheduleGroupInput</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteScheduleGroupInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">SchedulerClient</span>;
 
 <span class="hljs-variable">$scheduler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SchedulerClient</span>();
@@ -470,7 +470,7 @@ $scheduler = <span class="hljs-keyword">new</span> SchedulerClient([
     <span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'notifications'</span>,
 ]));</code></pre>
 <h3 id="get-a-schedule-group">Get a schedule group<a href="#get-a-schedule-group" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetScheduleGroupInput</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetScheduleGroupInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">SchedulerClient</span>;
 
 <span class="hljs-variable">$scheduler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SchedulerClient</span>();
@@ -481,7 +481,7 @@ $scheduler = <span class="hljs-keyword">new</span> SchedulerClient([
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getScheduleGroupArn</span>();</code></pre>
 <h3 id="list-the-schedule-groups">List the schedule groups<a href="#list-the-schedule-groups" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListScheduleGroupsInput</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListScheduleGroupsInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">SchedulerClient</span>;
 
 <span class="hljs-variable">$scheduler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SchedulerClient</span>();
@@ -495,7 +495,7 @@ $scheduler = <span class="hljs-keyword">new</span> SchedulerClient([
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$scheduleGroup</span>-&gt;<span class="hljs-title function_ invoke__">getScheduleGroupArn</span>().<span class="hljs-string">"\n"</span>;
 }</code></pre>
 <h3 id="create-a-schedule">Create a schedule<a href="#create-a-schedule" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">FlexibleTimeWindowMode</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">FlexibleTimeWindowMode</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ScheduleState</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateScheduleInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">SchedulerClient</span>;
@@ -533,7 +533,7 @@ $scheduler = <span class="hljs-keyword">new</span> SchedulerClient([
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getScheduleArn</span>();</code></pre>
 <h3 id="update-a-schedule">Update a schedule<a href="#update-a-schedule" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">FlexibleTimeWindowMode</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">FlexibleTimeWindowMode</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ScheduleState</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">UpdateScheduleInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">SchedulerClient</span>;
@@ -571,7 +571,7 @@ $scheduler = <span class="hljs-keyword">new</span> SchedulerClient([
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getScheduleArn</span>();</code></pre>
 <h3 id="delete-a-schedule">Delete a schedule<a href="#delete-a-schedule" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteScheduleInput</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteScheduleInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">SchedulerClient</span>;
 
 <span class="hljs-variable">$scheduler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SchedulerClient</span>();
@@ -582,7 +582,7 @@ $scheduler = <span class="hljs-keyword">new</span> SchedulerClient([
     <span class="hljs-string">'Name'</span> =&gt; <span class="hljs-string">'dave1'</span>,
 ]));</code></pre>
 <h3 id="get-a-schedule">Get a schedule<a href="#get-a-schedule" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetScheduleInput</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetScheduleInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">SchedulerClient</span>;
 
 <span class="hljs-variable">$scheduler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SchedulerClient</span>();
@@ -594,7 +594,7 @@ $scheduler = <span class="hljs-keyword">new</span> SchedulerClient([
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getScheduleArn</span>();</code></pre>
 <h3 id="list-the-schedules">List the schedules<a href="#list-the-schedules" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListSchedulesInput</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListSchedulesInput</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Scheduler</span>\<span class="hljs-title">SchedulerClient</span>;
 
 <span class="hljs-variable">$scheduler</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SchedulerClient</span>();

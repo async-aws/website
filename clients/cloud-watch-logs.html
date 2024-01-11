@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="list-log-streams">List log streams<a href="#list-log-streams" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DescribeLogStreamsRequest</span>;
 
 <span class="hljs-variable">$cloudWatchLogs</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudWatchLogsClient</span>();
@@ -461,7 +461,7 @@ $cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient([
     <span class="hljs-keyword">echo</span> <span class="hljs-string">'-'</span>.<span class="hljs-variable">$stream</span>-&gt;<span class="hljs-title function_ invoke__">getLogStreamName</span>().PHP_EOL;
 }</code></pre>
 <h3 id="push-logs">Push logs<a href="#push-logs" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutLogEventsRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">InputLogEvent</span>;
 

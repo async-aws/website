@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -457,7 +457,7 @@ party so they can download a file within the next X minutes. Read more about pre
 <p>If you want to upload a 1 Gb file, you really don't want to put that file in memory
 before uploading. You want to do it a smarter way. AsyncAws allow you to upload
 files using a string, resource, closure or a iterable. See the following examples:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>();
 
@@ -507,7 +507,7 @@ request which could have a performance impact.</p>
 <p>When you download a file from S3, AsyncAws gives you a <code>ResultStream</code> which
 can be used as a string, as a resource, or iterated over. This allows you to handle
 larger files without having them in memory.</p>
-<pre><code class="hljs language-php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment">// download a file and use it directly as string</span>
+<pre><code data-highlighted="yes" class="hljs language-php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment">// download a file and use it directly as string</span>
 <span class="hljs-variable">$result</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">getObject</span>([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'metadata.json'</span>,
@@ -535,7 +535,7 @@ larger files without having them in memory.</p>
 <h3 id="add-tags-to-a-bucket">Add tags to a bucket<a href="#add-tags-to-a-bucket" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>You can add tags to your buckets to help you find related resources in the AWS cost explorer; eg all AWS resources tagged
 with <code>environment = staging</code> would show you the amount you're spending on your pre-prod environment each month</p>
-<pre><code class="hljs language-php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">putBucketTagging</span>(
+<pre><code data-highlighted="yes" class="hljs language-php"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">putBucketTagging</span>(
     <span class="hljs-keyword">new</span> <span class="hljs-title class_">PutBucketTaggingRequest</span>([
         <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-website-assets-bucket'</span>,
 
@@ -557,7 +557,7 @@ with <code>environment = staging</code> would show you the amount you're spendin
 <p>You can associate multiple key-value pairs (tags) with each of your S3 objects, with the ability to change them at any time.
 The tags can be used to manage and control access, set up lifecycle rules, customize S3 Storage Class Analysis, and filter CloudWatch metrics.</p>
 <p>Learn more at <a href="https://aws.amazon.com/blogs/storage/simplify-your-data-lifecycle-by-using-object-tags-with-amazon-s3-lifecycle/">Simplify your data lifecycle by using object tags with Amazon S3 Lifecycle</a></p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">putObjectTagging</span>(
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">putObjectTagging</span>(
     <span class="hljs-keyword">new</span> <span class="hljs-title class_">PutObjectTaggingRequest</span>([
         <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'examplebucket'</span>,
         <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'baz/HappyFace.jpg'</span>,
@@ -590,7 +590,7 @@ The tags can be used to manage and control access, set up lifecycle rules, custo
 The bucket name is part of the endpoint's host. To change this behavior, and use
 "path styled endpoints" instead, set <code>pathStyleEndpoint</code> parameter to <code>true</code> when
 initializing the client.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([<span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-literal">true</span>]);</code></pre>
 <h2 id="chunked-body">Chunked body<a href="#chunked-body" title="Permalink to this headline" class="headerlink">¶</a></h2>
@@ -602,13 +602,13 @@ content is not a file (ie. streamed from an HTTP request). But some 3rd party
 services like Openstack Swift, pretending being "S3-compatible" does not
 support chunked body. To change this behavior, set <code>sendChunkedBody</code> parameter
 to <code>false</code> when initializing the client.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([<span class="hljs-string">'sendChunkedBody'</span> =&gt; <span class="hljs-literal">false</span>]);</code></pre>
 <h2 id="non-aws-s3-endpoints">Non-AWS S3 endpoints<a href="#non-aws-s3-endpoints" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>To use the <code>S3Client</code> with example Digital Oceans' Spaces, you need to initialize
 the <code>S3Client</code> with your endpoint.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([
     <span class="hljs-string">'endpoint'</span> =&gt; <span class="hljs-string">'https://fra1.digitaloceanspaces.com'</span>,
     <span class="hljs-string">'pathStyleEndpoint'</span> =&gt; <span class="hljs-literal">true</span>,
 ]);</code></pre>

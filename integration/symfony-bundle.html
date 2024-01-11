@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -407,13 +407,13 @@
     <h1 id="asyncaws-symfony-bundle">AsyncAws Symfony Bundle</h1>
 <p>A small SymfonyBundle that helps with configuration and autowiring.</p>
 <h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/async-aws-bundle</code></pre>
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/async-aws-bundle</code></pre>
 <h2 id="configure">Configure<a href="#configure" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>The bundle will autowire all AsyncAws clients that you have installed. You can
 provide default configuration to all clients and specific configuration of each
 service you define.</p>
 <p>This example assume you have installed core, ses, sqs and s3:</p>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/async_aws.yaml</span>
+<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/async_aws.yaml</span>
 
 <span class="hljs-attr">async_aws:</span>
     <span class="hljs-attr">config:</span> <span class="hljs-comment"># Will be merged with other configuration</span>
@@ -458,7 +458,7 @@ service you define.</p>
 </tbody>
 </table>
 <p>For a complete reference of the configuration please run:</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>php bin/console config:dump-reference async_aws</code></pre>
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>php bin/console config:dump-reference async_aws</code></pre>
 <blockquote>
 <p><strong>Note</strong>: Multiple clients with different configuration for the same service
 can be created by providing a unique name and defining the service in the
@@ -467,7 +467,7 @@ can be created by providing a unique name and defining the service in the
 <h2 id="using-ssm-to-store-secrets">Using SSM to store secrets<a href="#using-ssm-to-store-secrets" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Since version 4.4, Symfony provides <a href="https://symfony.com/doc/current/configuration/secrets.html">secrets management</a>.
 AsyncAws leverage this feature and by storing secrets in <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS SSM Parameter Store</a>:</p>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/async_aws.yaml</span>
+<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/async_aws.yaml</span>
 
 <span class="hljs-attr">async_aws:</span>
     <span class="hljs-attr">secrets:</span> <span class="hljs-string">~</span>
@@ -485,7 +485,7 @@ AsyncAws leverage this feature and by storing secrets in <a href="https://docs.a
 <p><strong>Warning</strong>: Fetching parameters from SSM is billed by AWS. AsyncAws provide
 an optional cache layer that can be enabled with the <code>cache</code> configuration.</p>
 </blockquote>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/doctrine.yaml</span>
+<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/doctrine.yaml</span>
 
 <span class="hljs-attr">doctrine:</span>
     <span class="hljs-attr">dbal:</span>

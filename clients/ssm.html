@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $ssm = <span class="hljs-keyword">new</span> SsmClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="list-parameters">List parameters<a href="#list-parameters" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetParametersByPathRequest</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetParametersByPathRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">SsmClient</span>;
 
 <span class="hljs-variable">$ssm</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SsmClient</span>();
@@ -464,7 +464,7 @@ $ssm = <span class="hljs-keyword">new</span> SsmClient([
     <span class="hljs-variable">$secrets</span>[<span class="hljs-variable">$parameter</span>-&gt;<span class="hljs-title function_ invoke__">getName</span>()] = <span class="hljs-variable">$parameter</span>-&gt;<span class="hljs-title function_ invoke__">getValue</span>();
 }</code></pre>
 <h3 id="store-an-encrypted-parameter">Store an encrypted parameter<a href="#store-an-encrypted-parameter" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ParameterType</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ParameterType</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutParameterRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Ssm</span>\<span class="hljs-title">SsmClient</span>;
 

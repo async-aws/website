@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -408,7 +408,7 @@
 <p>Some API Results are lists of items, like the result of <code>CloudFormationClient::DescribeStacks()</code>.
 These results implement <code>\IteratorAggregate</code> and will automatically use AWS's pagination
 API to make a new request to fetch the remaining resources in the list.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudFormation</span>\<span class="hljs-title">CloudFormationClient</span>;
 
 <span class="hljs-variable">$cloudFormation</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudFormationClient</span>();
 
@@ -418,16 +418,16 @@ API to make a new request to fetch the remaining resources in the list.</p>
 }</code></pre>
 <p>These results also provide methods to fetch metadata returned by AWS or
 to explicitly access the list of items by using a meaningful method name.</p>
-<pre><code class="language-diff hljs"><span class="hljs-deletion">-foreach($result as $stack) {</span>
+<pre><code class="language-diff hljs" data-highlighted="yes"><span class="hljs-deletion">-foreach($result as $stack) {</span>
 <span class="hljs-addition">+foreach($result-&gt;getStacks() as $stack) {</span></code></pre>
 <p>If you want to disable pagination, you may call the <code>getStacks()</code> function with
 boolean <code>true</code> as first argument.</p>
-<pre><code class="language-diff hljs"><span class="hljs-deletion">-foreach($result-&gt;getStacks() as $stack) {</span>
+<pre><code class="language-diff hljs" data-highlighted="yes"><span class="hljs-deletion">-foreach($result-&gt;getStacks() as $stack) {</span>
 <span class="hljs-addition">+foreach($result-&gt;getStacks(true) as $stack) {</span></code></pre>
 <p>Some endpoints return several lists of items in the same response, like the
 result of <code>S3::ListObjectsV2()</code>.
 When iterating over those results, all lists will be mixed in the yielded items.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListObjectsV2Request</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListObjectsV2Request</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AwsObject</span>;
 

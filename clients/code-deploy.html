@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $codeDeploy = <span class="hljs-keyword">new</span> CodeDeployClient([
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="create-deployment">Create deployment<a href="#create-deployment" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">CodeDeployClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">CodeDeployClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">RevisionLocationType</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateDeploymentInput</span>;
 
@@ -469,7 +469,7 @@ $codeDeploy = <span class="hljs-keyword">new</span> CodeDeployClient([
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'DepoymentId: '</span>. <span class="hljs-variable">$deployment</span>-&gt;<span class="hljs-title function_ invoke__">getDeploymentId</span>();
 </code></pre>
 <h3 id="sets-the-result-of-a-lambda-validation-function">Sets the result of a Lambda validation function<a href="#sets-the-result-of-a-lambda-validation-function" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">CodeDeployClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">CodeDeployClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">LifecycleEventStatus</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CodeDeploy</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutLifecycleEventHookExecutionStatusInput</span>;
 

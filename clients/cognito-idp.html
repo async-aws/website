@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -448,7 +448,7 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="create-a-user-as-an-admin">Create a user as an admin<a href="#create-a-user-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeType</span>;
 
 <span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
@@ -461,7 +461,7 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
     ],
 ]);</code></pre>
 <h3 id="get-a-user-as-an-admin">Get a user as an admin<a href="#get-a-user-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">AttributeType</span>;
 
 <span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
@@ -481,7 +481,7 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
 ));
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'User given name is: '</span> . <span class="hljs-variable">$givenNameAttribute</span>-&gt;<span class="hljs-title function_ invoke__">getValue</span>() . PHP_EOL;</code></pre>
 <h3 id="create-group">Create group<a href="#create-group" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 
 <span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
 
@@ -494,7 +494,7 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
 <span class="hljs-variable">$group</span> = <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getGroup</span>();
 <span class="hljs-keyword">echo</span> <span class="hljs-string">'Group name is: '</span> . <span class="hljs-variable">$group</span>-&gt;<span class="hljs-title function_ invoke__">getGroupName</span>() . PHP_EOL;</code></pre>
 <h3 id="list-groups">List groups<a href="#list-groups" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 
 <span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
 
@@ -509,7 +509,7 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
     <span class="hljs-keyword">echo</span> <span class="hljs-string">'Group name is: '</span> . <span class="hljs-variable">$group</span>-&gt;<span class="hljs-title function_ invoke__">getGroupName</span>() . PHP_EOL;
 }</code></pre>
 <h3 id="add-user-to-group-as-an-admin">Add user to group as an admin<a href="#add-user-to-group-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 
 <span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
 
@@ -520,7 +520,7 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
     <span class="hljs-string">'GroupName'</span> =&gt; <span class="hljs-string">'group_name'</span>,
 ]);</code></pre>
 <h3 id="remove-user-from-group-as-an-admin">Remove user from group as an admin<a href="#remove-user-from-group-as-an-admin" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 <span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
 
 <span class="hljs-comment">//If the action is successful, the response has an empty body.</span>
@@ -530,7 +530,7 @@ $cognitoIdentityProvider = <span class="hljs-keyword">new</span> CognitoIdentity
     <span class="hljs-string">'GroupName'</span> =&gt; <span class="hljs-string">'group_name'</span>,
 ]);</code></pre>
 <h3 id="revoke-token">Revoke token<a href="#revoke-token" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CognitoIdentityProvider</span>\<span class="hljs-title">CognitoIdentityProviderClient</span>;
 <span class="hljs-variable">$cognitoIdp</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CognitoIdentityProviderClient</span>();
 
 <span class="hljs-comment">//If the action is successful, the response has an empty body.</span>

@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -409,10 +409,10 @@
 some installation instructions and a complete list of clients.</p>
 <h2 id="install-and-configure">Install and configure<a href="#install-and-configure" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>You install a client with Composer. Here is an example to install DynamoDb:</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/dynamo-db</code></pre>
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/dynamo-db</code></pre>
 <p>To instantiate a DynamoDb client (or any other client) you could provide four arguments.
 All arguments are optional and sensible defaults are used.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Configuration</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Configuration</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">ConfigurationProvider</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">HttpClient</span>\<span class="hljs-title">AwsHttpClientFactory</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
@@ -428,7 +428,7 @@ All arguments are optional and sensible defaults are used.</p>
 
 <span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>(<span class="hljs-variable">$config</span>, <span class="hljs-variable">$credentialProvider</span>, <span class="hljs-variable">$httpClient</span>, <span class="hljs-variable">$logger</span>);</code></pre>
 <p>A common way to instantiate a DynamoDb client might look like:</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
 <span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>([
    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -441,7 +441,7 @@ different ways to authenticate.</p>
 <p>If your application is using a dependency injection container, you may configure a
 client like:</p>
 <h4 id="symfony">Symfony</h4>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-attr">services:</span>
+<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-attr">services:</span>
     <span class="hljs-string">AsyncAws\DynamoDb\DynamoDbClient:</span>
         <span class="hljs-attr">arguments:</span>
             <span class="hljs-bullet">-</span> <span class="hljs-attr">region:</span> <span class="hljs-string">"eu-central-1"</span>
@@ -452,7 +452,7 @@ client like:</p>
             <span class="hljs-bullet">-</span> <span class="hljs-string">"@logger"</span></code></pre>
 <p>If you are using Symfony you may ease configuration by install the <a href="/integration/symfony-bundle.html">Symfony Bundle</a>.</p>
 <h4 id="laravel">Laravel</h4>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">ServiceProvider</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">ServiceProvider</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncAwsProvider</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ServiceProvider</span>
@@ -474,7 +474,7 @@ client like:</p>
 <h3 id="client-factory">Client factory<a href="#client-factory" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>If you don't use dependency injection, you might be interested in the <code>AwsClientFactory</code>
 that can be used to instantiate API clients.</p>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">AwsClientFactory</span>;
 
 <span class="hljs-variable">$factory</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AwsClientFactory</span>([
    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,

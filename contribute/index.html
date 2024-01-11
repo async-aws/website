@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -432,7 +432,7 @@ are equally important. Some super helpful things include (in no particular order
 <p>Sometimes, it's helpful to test the PR in a real project. This can be achieved
 by using the provided <code>link</code> binary which detects AsyncAws dependencies used by
 the project and replaces them by a symlink to the AsyncAws source code.</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-built_in">cd</span> my-test-project
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-built_in">cd</span> my-test-project
 
 /path-to-async-aws/link
 <span class="hljs-string">"async-aws/core"</span> has been linked to <span class="hljs-string">"/path-to-async-aws/src/./Core"</span>.
@@ -466,17 +466,17 @@ correctness and it will be easy to keep up to with API changes.</p>
 <p>As a rule of thumb all code in <code>src/Service</code> is generated. That code cannot be manually
 changed. Only the test code can be manually changed.</p>
 <p>To create a class run the <code>generate</code> command.</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>./generate
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>./generate
 
 <span class="hljs-comment"># Or</span>
 ./generate S3 CreateBucket</code></pre>
 <p>The <code>./manifest.json</code> file contains information where the source is located
 and some metadata about the generated files and methods.</p>
 <p>You may also regenerate an existing operation and result classes:</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>./generate S3 CreateBucket
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>./generate S3 CreateBucket
 ./generate S3 --all</code></pre>
 <p>Or regenerate everything:</p>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>./generate --all</code></pre>
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>./generate --all</code></pre>
 <p>Read more about generating new code <a href="./generate.html">here</a>.</p>
 
     </main>

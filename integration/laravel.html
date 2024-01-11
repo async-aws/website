@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -411,12 +411,12 @@ Cache and Queue.</p>
 <h2 id="illuminate-cache">Illuminate Cache<a href="#illuminate-cache" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Use DynamoDb as a Illuminate Cache store.</p>
 <h3 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-cache</code></pre>
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-cache</code></pre>
 <p>Go to Aws Console to create a DynamoDb table. It is important that the table is using
 a Primary key (also called Partition key) to <code>key</code>. Any other value of the Primary
 key will not work.</p>
 <h3 id="configure">Configure<a href="#configure" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-diff hljs"># config/cache.php
+<pre><code class="language-diff hljs" data-highlighted="yes"># config/cache.php
 
  'dynamodb' =&gt; [
 <span class="hljs-deletion">-    'driver' =&gt; 'dynamodb',</span>
@@ -430,9 +430,9 @@ key will not work.</p>
 <h2 id="illuminate-queue">Illuminate Queue<a href="#illuminate-queue" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Use SQS with Illuminate Queue.</p>
 <h3 id="install-1">Install<a href="#install-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-queue</code></pre>
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/illuminate-queue</code></pre>
 <h3 id="configure-1">Configure<a href="#configure-1" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-diff hljs"># config/queue.php
+<pre><code class="language-diff hljs" data-highlighted="yes"># config/queue.php
 
  'sqs' =&gt; [
 <span class="hljs-deletion">-    'driver' =&gt; 'sqs',</span>

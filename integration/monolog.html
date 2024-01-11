@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/988.559d6ad7.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/988.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -407,9 +407,9 @@
     <h1 id="monolog-integration">Monolog integration</h1>
 <p>The Monolog integration supports both Monolog version 1 and version 2.</p>
 <h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/monolog-cloud-watch</code></pre>
+<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/monolog-cloud-watch</code></pre>
 <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">CloudWatchLogs</span>\<span class="hljs-title">CloudWatchLogsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Monolog</span>\<span class="hljs-title">CloudWatch</span>\<span class="hljs-title">CloudWatchLogsHandler</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">Monolog</span>\<span class="hljs-title">Logger</span>;
 
@@ -440,7 +440,7 @@
 <h2 id="symfony-usage">Symfony usage<a href="#symfony-usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>To ease service configuration, install the <a href="./symfony-bundle.html">AsyncAws Symfony Bundle</a> first.</p>
 <p>The bundle will automatically configure CloudWatchLogsClient with the given credentials.</p>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/services.yaml</span>
+<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/services.yaml</span>
 
 <span class="hljs-attr">services:</span>
     <span class="hljs-attr">monolog.handler.cloud_watch:</span>
@@ -450,7 +450,7 @@
             <span class="hljs-bullet">-</span> <span class="hljs-attr">group:</span> <span class="hljs-string">company-website</span>
               <span class="hljs-attr">stream:</span> <span class="hljs-string">frontend-api</span>
               <span class="hljs-comment"># more parameters, see Configuration</span></code></pre>
-<pre><code class="language-yaml hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/prod/monolog.yaml</span>
+<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/prod/monolog.yaml</span>
 
 <span class="hljs-attr">monolog:</span>
     <span class="hljs-attr">handlers:</span>
