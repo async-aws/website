@@ -411,13 +411,20 @@ parameters.</p>
 <p>This feature can be used if you want to give a user access to a file on S3 but only
 for a limited time.</p>
 <pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetObjectRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutObjectRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>();
+<span class="hljs-comment">// To allow reading of a file use:</span>
 <span class="hljs-variable">$input</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">GetObjectRequest</span>([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-bucket'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'test'</span>,
 ]);
+<span class="hljs-comment">// To allow uploading a file use:</span>
+<span class="hljs-comment">// $input = new PutObjectRequest([</span>
+<span class="hljs-comment">//     'Bucket' =&gt; 'my-bucket',</span>
+<span class="hljs-comment">//     'Key' =&gt; 'test',</span>
+<span class="hljs-comment">// ]);</span>
 
 <span class="hljs-variable">$url</span> = <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">presign</span>(<span class="hljs-variable">$input</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">\DateTimeImmutable</span>(<span class="hljs-string">'+60 min'</span>));
 
