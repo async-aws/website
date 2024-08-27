@@ -544,6 +544,22 @@ Name 8: 3s
 Name 5: 3s
 Name 0: 4s
 Name 1: 4s</code></pre>
+<p>Note that if you do not need to use the result of the HTTP calls, you can skip <code>Result::wait()</code>. For example:</p>
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">LambdaClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Lambda</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">InvocationRequest</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-variable">$lambda</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LambdaClient</span>();
+
+    <span class="hljs-variable">$results</span> = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; <span class="hljs-number">10</span>; ++<span class="hljs-variable">$i</span>) {
+        <span class="hljs-variable">$results</span>[] = <span class="hljs-variable">$lambda</span>-&gt;<span class="hljs-title function_ invoke__">invoke</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InvocationRequest</span>([
+            <span class="hljs-string">'FunctionName'</span> =&gt; <span class="hljs-string">'app-dev-hello_world'</span>,
+            <span class="hljs-string">'Payload'</span> =&gt; <span class="hljs-string">"{\"name\": <span class="hljs-subst">$i</span>}"</span>,
+        ]));
+    }
+}</code></pre>
+<p>By holding all results in the <code>$results</code> array, we prevent destructing each response immediately. When <code>$results</code> is destructed (at the end of the function), all pending HTTP requests will be awaited.</p>
 
     </main>
 </div>
