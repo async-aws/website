@@ -41,7 +41,7 @@
                             Compare with AWS
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/configuration.html">
                             Configuration
                         </a>
@@ -323,7 +323,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
-                    <ul class="collapse list-unstyled " id="authentication">
+                    <ul class="collapse list-unstyled show" id="authentication">
                                                     <li>
                         <a href="/authentication/">
                             Overview
@@ -344,7 +344,7 @@
                             ECS container metadata
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/authentication/pod-identity.html">
                             ECS container metadata
                         </a>
@@ -409,89 +409,11 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="configuration">Configuration</h1>
-<p>There are some configuration you can pass to an API client. Use an instance of the
-<code>Configuration</code> class or a plain array.</p>
-<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Configuration</span>;
-
-<span class="hljs-variable">$config</span> = <span class="hljs-title class_">Configuration</span>::<span class="hljs-title function_ invoke__">create</span>([
-    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
-]);
-<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SqsClient</span>(<span class="hljs-variable">$config</span>);
-
-<span class="hljs-comment">// Or with an array</span>
-<span class="hljs-variable">$sqs</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SqsClient</span>([
-    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
-]);</code></pre>
-<h2 id="configuration-reference">Configuration reference<a href="#configuration-reference" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>Below is a list of all supported configuration keys, their default value and what
-they are used for.</p>
-<h3 id="region">region<a href="#region" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> 'us-east-1'</p>
-<p>The AWS region the client should be targeting.</p>
-<blockquote>
-<p><strong>Note</strong>: Region can also be defined by providing a <code>@region</code> parameter in
-operation's input</p>
-</blockquote>
-<h3 id="debug">debug<a href="#debug" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> 'false'</p>
-<p>When this is set to <code>true</code> we will write the full HTTP request and response as
-an <code>debug</code> log entry. Make sure you pass a logger to the <code>Client</code>.</p>
-<blockquote>
-<p><strong>Note</strong>: This will have an negative impact on performance.</p>
-</blockquote>
-<h3 id="profile">profile<a href="#profile" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> 'default'</p>
-<p>The name of the AWS Profile configured when using <a href="/authentication/credentials-file.html">credential and configuration files</a>
-for authentication.</p>
-<h3 id="accesskeyid">accessKeyId<a href="#accesskeyid" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>The AWS access key id used for authentication.</p>
-<h3 id="accesskeysecret">accessKeySecret<a href="#accesskeysecret" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>The AWS access key secret used for authentication.</p>
-<h3 id="sessiontoken">sessionToken<a href="#sessiontoken" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>The AWS session token passed alongside temporary credentials.</p>
-<p>See <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html">AWS documentation</a>
-and <a href="https://docs.aws.amazon.com/cli/latest/reference/sts/get-session-token.html">CLI reference</a>
-for more information.</p>
-<h3 id="sharedcredentialsfile">sharedCredentialsFile<a href="#sharedcredentialsfile" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> '~/.aws/credentials'</p>
-<p>The credentials file to look in when using <a href="/authentication/credentials-file.html">credential and configuration files</a>
-for authentication.</p>
-<h3 id="sharedconfigfile">sharedConfigFile<a href="#sharedconfigfile" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> '~/.aws/config'</p>
-<p>The config file to look in when using <a href="/authentication/credentials-file.html">credential and configuration files</a>
-for authentication.</p>
-<h3 id="endpoint">endpoint<a href="#endpoint" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> '<a href="https://%service%.%region%.amazonaws.com">https://%service%.%region%.amazonaws.com</a>'</p>
-<h3 id="rolearn">roleArn<a href="#rolearn" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>The Amazon Resource Name (ARN) of the role that the client should be "assuming" after authentication.</p>
-<h3 id="webidentitytokenfile">webIdentityTokenFile<a href="#webidentitytokenfile" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>Path to the file that contains the OAuth 2.0 access token when using the <a href="/authentication/web-identity.html">WebIdentity Provider</a></p>
-<h3 id="rolesessionname">roleSessionName<a href="#rolesessionname" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> 'async-aws-' followed by random chars</p>
-<p>An identifier for the assumed role session</p>
-<h3 id="containercredentialsrelativeuri">containerCredentialsRelativeUri<a href="#containercredentialsrelativeuri" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>The relative path that is used to fetch credentials inside and ECS instance.
-See <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html">IAM Roles for Tasks</a> for more information.</p>
-<h3 id="endpointdiscoveryenabled">endpointDiscoveryEnabled<a href="#endpointdiscoveryenabled" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> 'false'</p>
-<p>Enable the endpoint discovery when the operation support it
-See <a href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoint-discovery.html">Endpoint discovery</a> for more information.</p>
-<h3 id="podidentitycredentialsfulluri">podIdentityCredentialsFullUri<a href="#podidentitycredentialsfulluri" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>Full Uri to the endpoint of the Pod Identity agent, which should already be injected by the Pod Identity agent when using the <a href="/authentication/pod-identity.html">PodIdentity Provider</a></p>
-<h3 id="podidentityauthorizationtokenfile">podIdentityAuthorizationTokenFile<a href="#podidentityauthorizationtokenfile" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>Path to the file that contains the Pod Identity access token, which should already be injected by the Pod Identity agent when using the <a href="/authentication/pod-identity.html">PodIdentity Provider</a></p>
-<h2 id="s3-specific-configuration-reference">S3 specific Configuration reference<a href="#s3-specific-configuration-reference" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="pathstyleendpoint">pathStyleEndpoint<a href="#pathstyleendpoint" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> 'false'</p>
-<p>Set to true to send requests to an S3 path style endpoint by default.
-See <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html">Virtual Hosting of Buckets</a> about path style vs virtual host style.</p>
-<h3 id="sendchunkedbody">sendChunkedBody<a href="#sendchunkedbody" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p><strong>Default:</strong> 'false'</p>
-<p>Set to true to send requests in multiple chunks. This prevents reading the file
-twice to calculate the signature, but is not always allowed by Non-AWS S3
-endpoints.</p>
+    <h1 id="using-eks-pod-identity">Using EKS Pod Identity</h1>
+<p>When you run code within an EKS cluster that has the Pod Identity Agent enabled, AsyncAws is able to fetch Credentials from the service account attached to
+your pod using the <a href="https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html">Pod Identity Agent</a>.</p>
+<p>When running an application on EKS, this is the simplest way to grant permissions to the application. You
+have nothing to configure on the application, you only grant permissions on the Role attached to the service account.</p>
 
     </main>
 </div>
