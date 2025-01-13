@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -224,12 +224,12 @@
                             SSM
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/sso.html">
                             SSO
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/sso-oidc.html">
                             SSOOIDC
                         </a>
@@ -328,7 +328,7 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Authentication</a>
-                    <ul class="collapse list-unstyled show" id="authentication">
+                    <ul class="collapse list-unstyled " id="authentication">
                                                     <li>
                         <a href="/authentication/">
                             Overview
@@ -349,7 +349,7 @@
                             ECS container metadata
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/authentication/pod-identity.html">
                             ECS container metadata
                         </a>
@@ -414,12 +414,70 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="using-eks-pod-identity">Using EKS Pod Identity</h1>
-<p>When you run code within an EKS cluster that has the Pod Identity Agent enabled, AsyncAws is able to fetch Credentials from the service account attached to
-your pod using the <a href="https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html">Pod Identity Agent</a>.</p>
-<p>When running an application on EKS, this is the simplest way to grant permissions to the application. You
-have nothing to configure on the application, you only grant permissions on the Role attached to the service account.</p>
+    <h1>SSOOIDC client</h1>
 
+    <p>
+        This page contains examples with the SSOOIDC client. See the
+        <a href="/clients/">client introduction</a> for a more detailed description
+        how to use a client. You may also want to consider the
+        <a href="/authentication/">authentication</a> documentation to understand
+        the many ways you can authenticate with AWS.
+    </p>
+    <p>
+        The SSOOIDC package could be installed with Composer.
+    </p>
+
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/sso-oidc</code></pre>
+
+    
+    <p>
+        A new client object may be instantiated by:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sso</span>\<span class="hljs-title">SsoOidcClient</span>;
+
+$sSOOIDC = <span class="hljs-keyword">new</span> SSOOIDCClient();
+</code></pre>
+
+    <p>
+        The authentication parameters is read from the environment by default.
+        You can also specify a AWS access id and secret:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sso</span>\<span class="hljs-title">SsoOidcClient</span>;
+
+$sSOOIDC = <span class="hljs-keyword">new</span> SSOOIDCClient([
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+]);</code></pre>
+
+    <p>
+        For all available options, see the <a href="/configuration.html">configuration reference</a>.
+    </p>
+
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="create-a-token">Create a token<a href="#create-a-token" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">SsoOidc</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">CreateToken</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">SsoOidc</span>\<span class="hljs-title">SsoOidcClient</span>;
+
+<span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SsoOidcClient</span>();
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">createToken</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateToken</span>([
+    <span class="hljs-string">'clientId'</span> =&gt; <span class="hljs-string">'YourClientId'</span>,
+    <span class="hljs-string">'clientSecret'</span> =&gt; <span class="hljs-string">'YourClientSecret'</span>,
+    <span class="hljs-string">'grantType'</span> =&gt; <span class="hljs-string">'authorization_code'</span>,
+]));
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'AccessToken:'</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getAccessToken</span>().PHP_EOL;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'Expiration:'</span> . <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getExpiresIn</span>().PHP_EOL;</code></pre>
+
+    <hr style="margin-top:6rem; margin-bottom:3rem;">
+
+    <p>
+        The source code to this page is found on
+        <a href="https://github.com/async-aws/aws/tree/master/docs/clients">GitHub</a>.
+    </p>
     </main>
 </div>
 <a href="https://github.com/async-aws/aws" class="contribute" aria-label="View source on GitHub">
