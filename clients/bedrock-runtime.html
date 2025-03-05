@@ -64,7 +64,7 @@
                             Athena
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/bedrock-runtime.html">
                             Bedrock Runtime
                         </a>
@@ -124,7 +124,7 @@
                             ElastiCache
                         </a>
                     </li>
-                                    <li class="current">
+                                    <li>
                         <a href="/clients/event-bridge.html">
                             EventBridge
                         </a>
@@ -419,29 +419,29 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1>EventBridge client</h1>
+    <h1>BedrockRuntime client</h1>
 
     <p>
-        This page contains examples with the EventBridge client. See the
+        This page contains examples with the BedrockRuntime client. See the
         <a href="/clients/">client introduction</a> for a more detailed description
         how to use a client. You may also want to consider the
         <a href="/authentication/">authentication</a> documentation to understand
         the many ways you can authenticate with AWS.
     </p>
     <p>
-        The EventBridge package could be installed with Composer.
+        The BedrockRuntime package could be installed with Composer.
     </p>
 
-    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/event-bridge</code></pre>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/bedrock-runtime</code></pre>
 
     
     <p>
         A new client object may be instantiated by:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockRuntime</span>\<span class="hljs-title">BedrockRuntimeClient</span>;
 
-$eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient();
+$bedrockRuntime = <span class="hljs-keyword">new</span> BedrockRuntimeClient();
 </code></pre>
 
     <p>
@@ -449,9 +449,9 @@ $eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient();
         You can also specify a AWS access id and secret:
     </p>
 
-    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockRuntime</span>\<span class="hljs-title">BedrockRuntimeClient</span>;
 
-$eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient([
+$bedrockRuntime = <span class="hljs-keyword">new</span> BedrockRuntimeClient([
     <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
     <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -462,25 +462,37 @@ $eventBridge = <span class="hljs-keyword">new</span> EventBridgeClient([
     </p>
 
     <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<h3 id="sends-custom-events">Sends custom events<a href="#sends-custom-events" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">EventBridgeClient</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">PutEventsRequest</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">EventBridge</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">PutEventsRequestEntry</span>;
+<h3 id="invokemodel">InvokeModel<a href="#invokemodel" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockRuntime</span>\<span class="hljs-title">BedrockRuntimeClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockRuntime</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">InvokeModelRequest</span>;
 
-<span class="hljs-variable">$eventBridge</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EventBridgeClient</span>();
+<span class="hljs-variable">$bedrockRuntime</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BedrockRuntimeClient</span>();
 
-<span class="hljs-variable">$events</span> = <span class="hljs-variable">$eventBridge</span>-&gt;<span class="hljs-title function_ invoke__">putEvents</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutEventsRequest</span>([
-    <span class="hljs-string">'Entries'</span> =&gt; [
-        <span class="hljs-keyword">new</span> <span class="hljs-title class_">PutEventsRequestEntry</span>([
-            <span class="hljs-string">'EventBusName'</span> =&gt; <span class="hljs-string">'arn:aws:events:region:account:event-bus/event-bus-name'</span>,
-            <span class="hljs-string">'Source'</span> =&gt; <span class="hljs-string">'acme.newsletter.campaign'</span>,
-            <span class="hljs-string">'DetailType'</span> =&gt; <span class="hljs-string">'UserSignUp'</span>,
-            <span class="hljs-string">'Detail'</span> =&gt; <span class="hljs-title function_ invoke__">json_encode</span>([<span class="hljs-string">'email'</span> =&gt; <span class="hljs-variable">$userEmail</span>]),
-        ])
+<span class="hljs-variable">$body</span> = [
+    <span class="hljs-string">'anthropic_version'</span> =&gt; <span class="hljs-string">'bedrock-2023-05-31'</span>,
+    <span class="hljs-string">'max_tokens'</span> =&gt; <span class="hljs-number">4096</span>,
+    <span class="hljs-string">'messages'</span> =&gt; [
+        [
+            <span class="hljs-string">'role'</span> =&gt; <span class="hljs-string">'user'</span>,
+            <span class="hljs-string">'content'</span> =&gt; [
+                [<span class="hljs-string">'type'</span> =&gt; <span class="hljs-string">'text'</span>, <span class="hljs-string">'text'</span> =&gt; <span class="hljs-string">'Write me a love poem.'</span>]
+            ]
+        ]
     ],
+    <span class="hljs-string">'temperature'</span> =&gt; <span class="hljs-number">1</span>
+];
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$bedrockRuntime</span>-&gt;<span class="hljs-title function_ invoke__">invokeModel</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InvokeModelRequest</span>([
+    <span class="hljs-string">'modelId'</span> =&gt; <span class="hljs-string">'us.anthropic.claude-3-7-sonnet-20250219-v1:0'</span>,
+    <span class="hljs-string">'contentType'</span> =&gt; <span class="hljs-string">'application/json'</span>,
+    <span class="hljs-string">'body'</span> =&gt; <span class="hljs-title function_ invoke__">json_encode</span>(<span class="hljs-variable">$body</span>, JSON_THROW_ON_ERROR)
 ]));
 
-<span class="hljs-keyword">echo</span> <span class="hljs-string">'Sent '</span>. <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$events</span>-&gt;<span class="hljs-title function_ invoke__">getEntries</span>()) . <span class="hljs-string">' events, with '</span> . <span class="hljs-variable">$events</span>-&gt;<span class="hljs-title function_ invoke__">getFailedEntryCount</span>() . <span class="hljs-string">' failures'</span>;</code></pre>
+<span class="hljs-variable">$response</span> = <span class="hljs-title function_ invoke__">json_decode</span>(<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getBody</span>(), <span class="hljs-literal">true</span>, <span class="hljs-number">512</span>, JSON_THROW_ON_ERROR);
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$response</span>[<span class="hljs-string">'content'</span>][<span class="hljs-number">0</span>][<span class="hljs-string">'text'</span>];
+</code></pre>
+<p>more information <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModel.html">InvokeModel</a></p>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 
