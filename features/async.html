@@ -516,7 +516,7 @@ for the response. Use <code>$result-&gt;resolve(0)</code> for a non-blocking cal
 their result. The HTTP response that is downloaded first will be printed first. The order
 the requests are created do not matter.</p>
 <p>The <code>Result::wait()</code> function will iterate over provided results, and yield
-the the response as soon as it has been resolved.</p>
+the response as soon as it has been resolved.</p>
 <p>The function has a <code>?float $timeout = null</code> argument. If the timeout is set to
 <code>2.0</code>, the HTTP client will wait up to 2 seconds for responses. Each time a response
 is received, the function will yield the response. If the timeout is reached, or
