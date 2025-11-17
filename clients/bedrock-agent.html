@@ -48,7 +48,7 @@
                     </li>
                                                                                 <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Api clients</a>
-                    <ul class="collapse list-unstyled " id="clients">
+                    <ul class="collapse list-unstyled show" id="clients">
                                                     <li>
                         <a href="/clients/">
                             Overview
@@ -64,7 +64,7 @@
                             Athena
                         </a>
                     </li>
-                                    <li>
+                                    <li class="current">
                         <a href="/clients/bedrock-agent.html">
                             Bedrock Agent
                         </a>
@@ -308,8 +308,8 @@
                 </li>
                                                             <li>
                     <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Integration</a>
-                    <ul class="collapse list-unstyled show" id="integration">
-                                                    <li class="current">
+                    <ul class="collapse list-unstyled " id="integration">
+                                                    <li>
                         <a href="/integration/symfony-bundle.html">
                             Symfony Bundle
                         </a>
@@ -424,99 +424,174 @@
 
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
-    <h1 id="asyncaws-symfony-bundle">AsyncAws Symfony Bundle</h1>
-<p>A small SymfonyBundle that helps with configuration and autowiring.</p>
-<h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/async-aws-bundle</code></pre>
-<h2 id="configure">Configure<a href="#configure" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>The bundle will autowire all AsyncAws clients that you have installed. You can
-provide default configuration to all clients and specific configuration of each
-service you define.</p>
-<p>This example assume you have installed core, ses, sqs and s3:</p>
-<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/async_aws.yaml</span>
+    <h1>BedrockAgent client</h1>
 
-<span class="hljs-attr">async_aws:</span>
-    <span class="hljs-attr">config:</span> <span class="hljs-comment"># Will be merged with other configuration</span>
-        <span class="hljs-attr">region:</span> <span class="hljs-string">eu-central-1</span>
+    <p>
+        This page contains examples with the BedrockAgent client. See the
+        <a href="/clients/">client introduction</a> for a more detailed description
+        how to use a client. You may also want to consider the
+        <a href="/authentication/">authentication</a> documentation to understand
+        the many ways you can authenticate with AWS.
+    </p>
+    <p>
+        The BedrockAgent package could be installed with Composer.
+    </p>
 
-    <span class="hljs-attr">clients:</span>
-        <span class="hljs-attr">ses:</span> <span class="hljs-string">~</span> <span class="hljs-comment"># This will complain if we don't have that package installed</span>
-        <span class="hljs-attr">sqs:</span>
-            <span class="hljs-attr">config:</span>
-                <span class="hljs-attr">region:</span> <span class="hljs-string">us-west-1</span>
-        <span class="hljs-attr">delayed:</span>
-            <span class="hljs-attr">type:</span> <span class="hljs-string">sqs</span></code></pre>
-<p>The config above will create the following services:</p>
-<table>
-<thead>
-<tr>
-<th>Service name</th>
-<th>Autowired with</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>async_aws.client.ses</code></td>
-<td>AsyncAws\Ses\SesClient</td>
-</tr>
-<tr>
-<td><code>async_aws.client.sqs</code></td>
-<td>AsyncAws\Sqs\SqsClient</td>
-</tr>
-<tr>
-<td><code>async_aws.client.delayed</code></td>
-<td>AsyncAws\Sqs\SqsClient $delayed</td>
-</tr>
-<tr>
-<td><code>async_aws.client.s3</code></td>
-<td>AsyncAws\S3\S3Client</td>
-</tr>
-<tr>
-<td><code>async_aws.client.sts</code></td>
-<td>AsyncAws\Core\Sts\StsClient</td>
-</tr>
-</tbody>
-</table>
-<p>For a complete reference of the configuration please run:</p>
-<pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>php bin/console config:dump-reference async_aws</code></pre>
-<blockquote>
-<p><strong>Note</strong>: Multiple clients with different configuration for the same service
-can be created by providing a unique name and defining the service in the
-<code>type</code> sub-property. See client <code>delayed</code> in above example.</p>
-</blockquote>
-<h2 id="using-ssm-to-store-secrets">Using SSM to store secrets<a href="#using-ssm-to-store-secrets" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>Since version 4.4, Symfony provides <a href="https://symfony.com/doc/current/configuration/secrets.html">secrets management</a>.
-AsyncAws leverage this feature and by storing secrets in <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS SSM Parameter Store</a>:</p>
-<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/async_aws.yaml</span>
+    <pre><code class="language-shell hljs"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/bedrock-agent</code></pre>
 
-<span class="hljs-attr">async_aws:</span>
-    <span class="hljs-attr">secrets:</span> <span class="hljs-string">~</span>
-<span class="hljs-comment">#        path: /parameters/my-project</span>
-<span class="hljs-comment">#        recursive: true</span>
-<span class="hljs-comment">#        max_results: 20</span>
-<span class="hljs-comment">#        client: app-secret</span>
-<span class="hljs-comment">#        cache:</span>
-<span class="hljs-comment">#            pool: cache.app</span>
-<span class="hljs-comment">#            ttl: 3600</span>
-<span class="hljs-comment">#    clients:</span>
-<span class="hljs-comment">#        app-secret:</span>
-<span class="hljs-comment">#            type: ssm</span></code></pre>
-<p>Parameters stored in SSM will be available as env variable:</p>
-<blockquote>
-<p><strong>Warning</strong>: Fetching parameters from SSM is billed by AWS. AsyncAws provide
-an optional cache layer that can be enabled with the <code>cache</code> configuration.</p>
-</blockquote>
-<pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/doctrine.yaml</span>
+    
+    <p>
+        A new client object may be instantiated by:
+    </p>
 
-<span class="hljs-attr">doctrine:</span>
-    <span class="hljs-attr">dbal:</span>
-        <span class="hljs-attr">password:</span> <span class="hljs-string">'%env(DATABASE_PASSWORD)%'</span></code></pre>
-<p>When <code>recursive</code> option is <code>true</code>, AsyncAws Bundle will retrieve all parameters
-within a hierarchy, then will trim the <code>path</code> prefix option, replace <code>/</code> by <code>_</code>
-and uppercase the parameter name. ie. in the above configuration, a parameter
-stored in <code>/parameters/my-project/database/password</code> will be referenced by
-<code>DATABASE_PASSWORD</code>.</p>
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">BedrockAgentClient</span>;
 
+$bedrockAgent = <span class="hljs-keyword">new</span> BedrockAgentClient();
+</code></pre>
+
+    <p>
+        The authentication parameters is read from the environment by default.
+        You can also specify a AWS access id and secret:
+    </p>
+
+    <pre><code class="language-php hljs"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">BedrockAgentClient</span>;
+
+$bedrockAgent = <span class="hljs-keyword">new</span> BedrockAgentClient([
+    <span class="hljs-string">'accessKeyId'</span> =&gt; <span class="hljs-string">'my_access_key'</span>,
+    <span class="hljs-string">'accessKeySecret'</span> =&gt; <span class="hljs-string">'my_access_secret'</span>,
+    <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
+]);</code></pre>
+
+    <p>
+        For all available options, see the <a href="/configuration.html">configuration reference</a>.
+    </p>
+
+    <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
+<h3 id="delete-knowledge-base-documents">Delete knowledge base documents<a href="#delete-knowledge-base-documents" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">BedrockAgentClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ContentDataSourceType</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">DeleteKnowledgeBaseDocumentsRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">DocumentIdentifier</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">S3Location</span>;
+
+<span class="hljs-variable">$bedrockAgent</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BedrockAgentClient</span>();
+
+<span class="hljs-variable">$request</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DeleteKnowledgeBaseDocumentsRequest</span>([
+    <span class="hljs-string">'knowledgeBaseId'</span> =&gt; <span class="hljs-string">'kb-1234567890abcdef'</span>,
+    <span class="hljs-string">'dataSourceId'</span> =&gt; <span class="hljs-string">'ds-abcdef1234567890'</span>,
+    <span class="hljs-string">'clientToken'</span> =&gt; <span class="hljs-string">'token-1234'</span>,
+    <span class="hljs-string">'documentIdentifiers'</span> =&gt; [<span class="hljs-keyword">new</span> <span class="hljs-title class_">DocumentIdentifier</span>([
+        <span class="hljs-string">'dataSourceType'</span> =&gt; <span class="hljs-title class_">ContentDataSourceType</span>::<span class="hljs-variable constant_">S3</span>,
+        <span class="hljs-string">'s3'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Location</span>([
+            <span class="hljs-string">'uri'</span> =&gt; <span class="hljs-string">'s3://my-bucket/documents/'</span>,
+        ]),
+    ])],
+]);
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$bedrockAgent</span>-&gt;<span class="hljs-title function_ invoke__">deleteKnowledgeBaseDocuments</span>(<span class="hljs-variable">$request</span>);
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getDocumentDetails</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$documentDetail</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$documentDetail</span>-&gt;<span class="hljs-title function_ invoke__">getStatus</span>() . PHP_EOL;
+}
+</code></pre>
+<p>See <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_DeleteKnowledgeBaseDocuments.html"><code>DeleteKnowledgeBaseDocuments</code></a> for more information.</p>
+<h3 id="get-knowledge-base-documents">Get knowledge base documents<a href="#get-knowledge-base-documents" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">BedrockAgentClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ContentDataSourceType</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">GetKnowledgeBaseDocumentsRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">DocumentIdentifier</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">S3Location</span>;
+
+<span class="hljs-variable">$bedrockAgent</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BedrockAgentClient</span>();
+
+<span class="hljs-variable">$request</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">GetKnowledgeBaseDocumentsRequest</span>([
+    <span class="hljs-string">'knowledgeBaseId'</span> =&gt; <span class="hljs-string">'kb-1234567890abcdef'</span>,
+    <span class="hljs-string">'dataSourceId'</span> =&gt; <span class="hljs-string">'ds-abcdef1234567890'</span>,
+    <span class="hljs-string">'documentIdentifiers'</span> =&gt; [<span class="hljs-keyword">new</span> <span class="hljs-title class_">DocumentIdentifier</span>([
+        <span class="hljs-string">'dataSourceType'</span> =&gt; <span class="hljs-title class_">ContentDataSourceType</span>::<span class="hljs-variable constant_">S3</span>,
+        <span class="hljs-string">'s3'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Location</span>([
+            <span class="hljs-string">'uri'</span> =&gt; <span class="hljs-string">'s3://my-bucket/documents/'</span>,
+        ]),
+    ])],
+]);
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$bedrockAgent</span>-&gt;<span class="hljs-title function_ invoke__">getKnowledgeBaseDocuments</span>(<span class="hljs-variable">$request</span>);
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getDocumentDetails</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$documentDetail</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$documentDetail</span>-&gt;<span class="hljs-title function_ invoke__">getIdentifier</span>()-&gt;<span class="hljs-title function_ invoke__">getS3</span>()-&gt;<span class="hljs-title function_ invoke__">getUri</span>() . PHP_EOL;
+}
+</code></pre>
+<p>See <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetKnowledgeBaseDocuments.html"><code>GetKnowledgeBaseDocuments</code></a> for more information.</p>
+<h3 id="ingest-knowledge-base-documents">Ingest knowledge base documents<a href="#ingest-knowledge-base-documents" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ContentDataSourceType</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">MetadataSourceType</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">IngestKnowledgeBaseDocumentsRequest</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">CustomS3Location</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">DocumentContent</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">DocumentMetadata</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">KnowledgeBaseDocument</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">S3Content</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">S3Location</span>;
+
+<span class="hljs-variable">$bedrockAgent</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BedrockAgentClient</span>();
+
+<span class="hljs-variable">$request</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IngestKnowledgeBaseDocumentsRequest</span>([
+    <span class="hljs-string">'knowledgeBaseId'</span> =&gt; <span class="hljs-string">'kb-1234567890abcdef'</span>,
+    <span class="hljs-string">'dataSourceId'</span> =&gt; <span class="hljs-string">'ds-abcdef1234567890'</span>,
+    <span class="hljs-string">'clientToken'</span> =&gt; <span class="hljs-string">'token-1234'</span>,
+    <span class="hljs-string">'documents'</span> =&gt; [<span class="hljs-keyword">new</span> <span class="hljs-title class_">KnowledgeBaseDocument</span>([
+        <span class="hljs-string">'metadata'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">DocumentMetadata</span>([
+            <span class="hljs-string">'type'</span> =&gt; <span class="hljs-title class_">MetadataSourceType</span>::<span class="hljs-variable constant_">S3_LOCATION</span>,
+            <span class="hljs-string">'s3Location'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomS3Location</span>([
+                <span class="hljs-string">'uri'</span> =&gt; <span class="hljs-string">'s3://my-bucket/documents/'</span>,
+                <span class="hljs-string">'bucketOwnerAccountId'</span> =&gt; <span class="hljs-string">'account-1234'</span>,
+            ]),
+        ]),
+        <span class="hljs-string">'content'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">DocumentContent</span>([
+            <span class="hljs-string">'dataSourceType'</span> =&gt; <span class="hljs-title class_">ContentDataSourceType</span>::<span class="hljs-variable constant_">S3</span>,
+            <span class="hljs-string">'s3'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Content</span>([
+                <span class="hljs-string">'s3Location'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Location</span>([
+                    <span class="hljs-string">'uri'</span> =&gt; <span class="hljs-string">'s3://my-bucket/documents/'</span>,
+                ]),
+            ]),
+        ]),
+    ])],
+]);
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$bedrockAgent</span>-&gt;<span class="hljs-title function_ invoke__">ingestKnowledgeBaseDocuments</span>(<span class="hljs-variable">$request</span>);
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getDocumentDetails</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$documentDetail</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$documentDetail</span>-&gt;<span class="hljs-title function_ invoke__">getStatus</span>() . PHP_EOL;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$documentDetail</span>-&gt;<span class="hljs-title function_ invoke__">getIdentifier</span>()-&gt;<span class="hljs-title function_ invoke__">getS3</span>()-&gt;<span class="hljs-title function_ invoke__">getUri</span>() . PHP_EOL;
+}
+</code></pre>
+<p>See <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_IngestKnowledgeBaseDocuments.html"><code>IngestKnowledgeBaseDocuments</code></a> for more information.</p>
+<h3 id="list-knowledge-base-documents">List knowledge base documents<a href="#list-knowledge-base-documents" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">BedrockAgentClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">ListKnowledgeBaseDocumentsRequest</span>;
+
+<span class="hljs-variable">$bedrockAgent</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BedrockAgentClient</span>();
+
+<span class="hljs-variable">$request</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ListKnowledgeBaseDocumentsRequest</span>([
+    <span class="hljs-string">'knowledgeBaseId'</span> =&gt; <span class="hljs-string">'kb-1234567890abcdef'</span>,
+    <span class="hljs-string">'dataSourceId'</span> =&gt; <span class="hljs-string">'ds-abcdef1234567890'</span>,
+    <span class="hljs-string">'maxResults'</span> =&gt; <span class="hljs-number">50</span>,
+]);
+
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$bedrockAgent</span>-&gt;<span class="hljs-title function_ invoke__">listKnowledgeBaseDocuments</span>(<span class="hljs-variable">$request</span>);
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getDocumentDetails</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$documentDetail</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$documentDetail</span>-&gt;<span class="hljs-title function_ invoke__">getIdentifier</span>()-&gt;<span class="hljs-title function_ invoke__">getS3</span>()-&gt;<span class="hljs-title function_ invoke__">getUri</span>() . PHP_EOL;
+}
+</code></pre>
+<p>See <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_ListKnowledgeBaseDocuments.html"><code>ListKnowledgeBaseDocuments</code></a> for more information.</p>
+
+    <hr style="margin-top:6rem; margin-bottom:3rem;">
+
+    <p>
+        The source code to this page is found on
+        <a href="https://github.com/async-aws/aws/tree/master/docs/clients">GitHub</a>.
+    </p>
     </main>
 </div>
 <a href="https://github.com/async-aws/aws" class="contribute" aria-label="View source on GitHub">
