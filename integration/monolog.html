@@ -425,7 +425,7 @@
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
     <h1 id="monolog-integration">Monolog integration</h1>
-<p>The Monolog integration supports both Monolog version 1 and version 2.</p>
+<p>The Monolog integration supports Monolog version 1, version 2 and version 3.</p>
 <h2 id="install">Install<a href="#install" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>composer require async-aws/monolog-cloud-watch</code></pre>
 <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
@@ -463,7 +463,7 @@
 <pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/services.yaml</span>
 
 <span class="hljs-attr">services:</span>
-    <span class="hljs-attr">monolog.handler.cloud_watch:</span>
+    <span class="hljs-attr">app.monolog_handler.cloud_watch:</span>
         <span class="hljs-attr">class:</span> <span class="hljs-string">AsyncAws\Monolog\CloudWatch\CloudWatchLogsHandler</span>
         <span class="hljs-attr">arguments:</span>
             <span class="hljs-bullet">-</span> <span class="hljs-string">'@async_aws.client.cloud_watch_logs'</span>
@@ -480,7 +480,7 @@
             <span class="hljs-attr">handler:</span> <span class="hljs-string">cloud_watch</span>
         <span class="hljs-attr">cloud_watch:</span>
             <span class="hljs-attr">type:</span> <span class="hljs-string">service</span>
-            <span class="hljs-attr">id:</span> <span class="hljs-string">monolog.handler.cloud_watch</span></code></pre>
+            <span class="hljs-attr">id:</span> <span class="hljs-string">app.monolog_handler.cloud_watch</span></code></pre>
 <h2 id="limitations">Limitations<a href="#limitations" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>The CloudWatchLogs Monolog relies on the AWS CloudWatch Logs API and inherits the underlying limitations, which are
 described in the <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutLogEvents.html">official documentation</a>.</p>
