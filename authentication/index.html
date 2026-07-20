@@ -445,8 +445,8 @@ are required. There are multiple ways to authenticate and the method you prefer 
 depends on where and how you run the code.</p>
 <h2 id="how-authentication-works">How authentication works<a href="#how-authentication-works" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Each API client needs an Authentication provider. The provider will use some logic
-to return a <code>Credentials</code> object. It is a value object to store username and
-password (in simple terms).</p>
+to return a <code>Credentials</code> object. It is a value object that stores an access
+key ID, secret key, and optional session token and expiration time.</p>
 <p>By default AsyncAws uses a ChainProvider that iterates over all providers and uses
 the first provider in the chain that returns credentials without an error.</p>
 <p>The providers are currently chained in the following order:</p>

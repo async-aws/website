@@ -588,9 +588,9 @@ iterates over results, AsyncAws do the rest.</p>
 </code></pre>
 <p>Read more about <a href="/features/pagination.html">pagination</a>.</p>
 <h2 id="presign-experience">Presign experience<a href="#presign-experience" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>AWS allow pre-generating sign url that let user access to a resource
-without exposing the key. For instance, provide a link to download an S3 Object.
-AsyncAws provides a fancy way to generate such url by reusing the same objects
+<p>AWS allows pre-generating signed URLs that let users access a resource
+without exposing credentials. For instance, provide a link to download an S3 object.
+AsyncAws provides a way to generate such a URL by reusing the same objects
 used in the standard way.</p>
 <h3 id="asyncaws-2">AsyncAws<a href="#asyncaws-2" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
@@ -627,8 +627,8 @@ used in the standard way.</p>
 <span class="hljs-keyword">echo</span> (<span class="hljs-keyword">string</span>) <span class="hljs-variable">$psr7</span>-&gt;<span class="hljs-title function_ invoke__">getUri</span>();
 </code></pre>
 <blockquote>
-<p><strong>Note</strong>: While official AWS PHP SDK provide methods to presign S3 methods only,
-AsyncAws let you presign requests for every services.</p>
+<p><strong>Note</strong>: While the official AWS SDK for PHP provides methods to presign only S3 requests,
+AsyncAws lets you presign requests for every service.</p>
 </blockquote>
 <p>Read more about <a href="/features/presign.html">presign feature</a>.</p>
 <h2 id="developer-experience">Developer experience<a href="#developer-experience" title="Permalink to this headline" class="headerlink">¶</a></h2>

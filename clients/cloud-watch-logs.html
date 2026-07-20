@@ -502,10 +502,7 @@ $cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient([
 
 <span class="hljs-variable">$cloudWatchLogs</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CloudWatchLogsClient</span>();
 
-<span class="hljs-comment">// sequenceToken is not required for a new stream</span>
-<span class="hljs-variable">$currentSequenceToken</span> = <span class="hljs-literal">null</span>;
-
-<span class="hljs-variable">$result</span> = <span class="hljs-variable">$cloudWatchLogs</span>-&gt;<span class="hljs-title function_ invoke__">putLogEvents</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutLogEventsRequest</span>([
+<span class="hljs-variable">$cloudWatchLogs</span>-&gt;<span class="hljs-title function_ invoke__">putLogEvents</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PutLogEventsRequest</span>([
     <span class="hljs-string">'logGroupName'</span> =&gt; <span class="hljs-string">'company-website'</span>,
     <span class="hljs-string">'logStreamName'</span> =&gt; <span class="hljs-string">'frontend-api'</span>,
     <span class="hljs-string">'logEvents'</span> =&gt; [
@@ -514,10 +511,7 @@ $cloudWatchLogs = <span class="hljs-keyword">new</span> CloudWatchLogsClient([
             <span class="hljs-string">'message'</span> =&gt; <span class="hljs-string">'an error occurred'</span>,
         ]),
     ],
-    <span class="hljs-string">'sequenceToken'</span> =&gt; <span class="hljs-variable">$currentSequenceToken</span>,
-]));
-
-<span class="hljs-variable">$currentSequenceToken</span> = <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getNextSequenceToken</span>();</code></pre>
+]));</code></pre>
 
     <hr style="margin-top:6rem; margin-bottom:3rem;">
 

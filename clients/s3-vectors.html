@@ -568,11 +568,11 @@ $s3Vectors = <span class="hljs-keyword">new</span> S3VectorsClient([
 <h3 id="query-vectors">Query Vectors<a href="#query-vectors" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3Vectors</span>\<span class="hljs-title">S3VectorsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3Vectors</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">QueryVectorsInput</span>;
-<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3Vectors</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">VectorData</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3Vectors</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">VectorDataMemberFloat32</span>;
 
 <span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3VectorsClient</span>();
 
-<span class="hljs-variable">$queryVector</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VectorData</span>([<span class="hljs-string">'float32'</span> =&gt; [<span class="hljs-number">1.23</span>, <span class="hljs-number">4.56</span> <span class="hljs-comment">/* ... */</span>]]);
+<span class="hljs-variable">$queryVector</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VectorDataMemberFloat32</span>([<span class="hljs-string">'float32'</span> =&gt; [<span class="hljs-number">1.23</span>, <span class="hljs-number">4.56</span> <span class="hljs-comment">/* ... */</span>]]);
 
 <span class="hljs-variable">$result</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">queryVectors</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryVectorsInput</span>([
     <span class="hljs-string">'vectorBucketName'</span> =&gt; <span class="hljs-string">'my-vector-bucket'</span>,

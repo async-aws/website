@@ -440,7 +440,7 @@
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
     <h1 id="clients-overview">Clients overview</h1>
-<p>AsyncAws has implemented the most popular API clients. On this page you find
+<p>AsyncAws has implemented the most popular API clients. On this page, you can find
 some installation instructions and a complete list of clients.</p>
 <h2 id="install-and-configure">Install and configure<a href="#install-and-configure" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>You install a client with Composer. Here is an example to install DynamoDb:</p>
@@ -451,6 +451,7 @@ All arguments are optional and sensible defaults are used.</p>
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Credentials</span>\<span class="hljs-title">ConfigurationProvider</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">HttpClient</span>\<span class="hljs-title">AwsHttpClientFactory</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">DynamoDb</span>\<span class="hljs-title">DynamoDbClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Symfony</span>\<span class="hljs-title">Component</span>\<span class="hljs-title">HttpClient</span>\<span class="hljs-title">HttpClient</span>;
 
 <span class="hljs-variable">$config</span> = <span class="hljs-title class_">Configuration</span>::<span class="hljs-title function_ invoke__">create</span>([
     <span class="hljs-string">'region'</span> =&gt; <span class="hljs-string">'eu-central-1'</span>,
@@ -458,7 +459,7 @@ All arguments are optional and sensible defaults are used.</p>
 <span class="hljs-variable">$credentialProvider</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConfigurationProvider</span>();
 <span class="hljs-variable">$httpClient</span> = <span class="hljs-title class_">HttpClient</span>::<span class="hljs-title function_ invoke__">create</span>(); <span class="hljs-comment">// ... Instance of Symfony's HttpClientInterface</span>
 <span class="hljs-comment">// Or, to enable automatic retries on top of your own HttpClient</span>
-<span class="hljs-comment">// $httpClient = AwsHttpClientFactory::createRetryableClient($httpClient); T</span>
+<span class="hljs-comment">// $httpClient = AwsHttpClientFactory::createRetryableClient($httpClient);</span>
 <span class="hljs-variable">$logger</span> = <span class="hljs-comment">// ... A PSR-3 logger</span>
 
 <span class="hljs-variable">$dynamoDb</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DynamoDbClient</span>(<span class="hljs-variable">$config</span>, <span class="hljs-variable">$credentialProvider</span>, <span class="hljs-variable">$httpClient</span>, <span class="hljs-variable">$logger</span>);</code></pre>
@@ -524,8 +525,8 @@ that can be used to instantiate API clients.</p>
 function takes an Input object (or array) as parameter and will return a Result.
 See the API client's class to learn what operations are supported and what the input
 and output are.</p>
-<p>All Input objects for SQS is located in <a href="https://github.com/async-aws/aws/tree/master/src/Service/Sqs/src/Input"><code>AsyncAws\Sqs\Input\*</code></a>
-and all Result objects are located in <a href="https://github.com/async-aws/aws/tree/master/src/Service/Sqs/src/Result"><code>AsyncAws\Sqs\Result\*</code></a>.</p>
+<p>All SQS input objects are located in <a href="https://github.com/async-aws/aws/tree/master/src/Service/Sqs/src/Input"><code>AsyncAws\Sqs\Input\*</code></a>
+and all result objects are located in <a href="https://github.com/async-aws/aws/tree/master/src/Service/Sqs/src/Result"><code>AsyncAws\Sqs\Result\*</code></a>.</p>
 <p>Your IDE will also be helpful to discover function and how to use them. See example
 from PHPStorm:</p>
 <p><a href="/assets/image/compare/aa-method.ab74f3b8.png"><img src="/assets/image/compare/aa-method.ab74f3b8.png" alt="PHPStorm function help"></a></p>
@@ -536,7 +537,7 @@ for more information.</p>
 <table>
 <thead>
 <tr>
-<th>Api Client</th>
+<th>API Client</th>
 <th>Package name</th>
 </tr>
 </thead>
@@ -615,7 +616,7 @@ for more information.</p>
 </tr>
 <tr>
 <td><a href="./firehose.html">Firehose</a></td>
-<td><a href="https://packagist.org/packages/async-aws/firehose">async-aws/event-bridge</a></td>
+<td><a href="https://packagist.org/packages/async-aws/firehose">async-aws/firehose</a></td>
 </tr>
 <tr>
 <td><a href="./iam.html">IAM</a></td>

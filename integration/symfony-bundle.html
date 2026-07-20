@@ -501,7 +501,7 @@ can be created by providing a unique name and defining the service in the
 </blockquote>
 <h2 id="using-ssm-to-store-secrets">Using SSM to store secrets<a href="#using-ssm-to-store-secrets" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Since version 4.4, Symfony provides <a href="https://symfony.com/doc/current/configuration/secrets.html">secrets management</a>.
-AsyncAws leverage this feature and by storing secrets in <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS SSM Parameter Store</a>:</p>
+AsyncAws leverages this feature by storing secrets in <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS SSM Parameter Store</a>:</p>
 <pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/async_aws.yaml</span>
 
 <span class="hljs-attr">async_aws:</span>
@@ -518,7 +518,7 @@ AsyncAws leverage this feature and by storing secrets in <a href="https://docs.a
 <span class="hljs-comment">#            type: ssm</span></code></pre>
 <p>Parameters stored in SSM will be available as env variable:</p>
 <blockquote>
-<p><strong>Warning</strong>: Fetching parameters from SSM is billed by AWS. AsyncAws provide
+<p><strong>Warning</strong>: Fetching parameters from SSM is billed by AWS. AsyncAws provides
 an optional cache layer that can be enabled with the <code>cache</code> configuration.</p>
 </blockquote>
 <pre><code class="language-yaml hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-comment"># config/packages/doctrine.yaml</span>

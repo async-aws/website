@@ -490,8 +490,8 @@ party so they can download a file within the next X minutes. Read more about pre
 <h2 id="usage">Usage<a href="#usage" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <h3 id="upload-files">Upload files<a href="#upload-files" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>If you want to upload a 1 Gb file, you really don't want to put that file in memory
-before uploading. You want to do it a smarter way. AsyncAws allow you to upload
-files using a string, resource, closure or a iterable. See the following examples:</p>
+before uploading. You want to do it in a smarter way. AsyncAws allows you to upload
+files using a string, resource, closure, or an iterable. See the following examples:</p>
 <pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
 
 <span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>();
@@ -633,8 +633,8 @@ initializing the client.</p>
 chunks. This improves UX by avoiding reading the file twice (required
 <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-header-based-auth.html">to compute the signature</a>
 ) which could be a performance issue when file is really big, or the uploaded
-content is not a file (ie. streamed from an HTTP request). But some 3rd party
-services like Openstack Swift, pretending being "S3-compatible" does not
+content is not a file (i.e. streamed from an HTTP request). But some third-party
+services like OpenStack Swift, which present themselves as "S3-compatible," do not
 support chunked body. To change this behavior, set <code>sendChunkedBody</code> parameter
 to <code>false</code> when initializing the client.</p>
 <pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;

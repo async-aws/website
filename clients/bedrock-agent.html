@@ -538,7 +538,8 @@ $bedrockAgent = <span class="hljs-keyword">new</span> BedrockAgentClient([
 </code></pre>
 <p>See <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_GetKnowledgeBaseDocuments.html"><code>GetKnowledgeBaseDocuments</code></a> for more information.</p>
 <h3 id="ingest-knowledge-base-documents">Ingest knowledge base documents<a href="#ingest-knowledge-base-documents" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ContentDataSourceType</span>;
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">BedrockAgentClient</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">ContentDataSourceType</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Enum</span>\<span class="hljs-title">MetadataSourceType</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">Input</span>\<span class="hljs-title">IngestKnowledgeBaseDocumentsRequest</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">BedrockAgent</span>\<span class="hljs-title">ValueObject</span>\<span class="hljs-title">CustomS3Location</span>;

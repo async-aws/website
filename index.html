@@ -451,7 +451,7 @@ developers. This library is different. It is maintained by some dumb and lazy pe
 <ol>
 <li><strong>Async first.</strong> Everything is asynchronous and responses are only downloaded
 if needed.</li>
-<li><strong>Not feature complete.</strong> AsyncAws is currently covering around 40 AWS
+<li><strong>Not feature complete.</strong> AsyncAws currently covers around 40 AWS
 APIs (the most popular ones). We are happy to generate more features if needed.
 Just ask or <a href="./contribute/index.html">contribute</a>.</li>
 <li><strong>Only relevant updates.</strong> Updates are great, but if changes are released multiple
@@ -493,12 +493,11 @@ a topic in the sidebar.</p>
 <h2 id="how-is-it-async-first">How is it async first?<a href="#how-is-it-async-first" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>The secret ingredient in creating asynchronous first is not implemented in this library.
 It actually comes from <a href="https://symfony.com/doc/current/components/http_client.html">Symfony's HTTP client</a>.
-They have implemented all the cool asynchronous features that this AWS library just
-take advantage of.</p>
+It implements the asynchronous features that this AWS library takes advantage of.</p>
 <h4 id="so-what-is-this-library-really-doing">So what is this library really doing?</h4>
 <p>Except for being a wrapper around Symfony's HTTP client and making sure the asynchronous
 features are properly used, AsyncAws also <a href="./authentication/index.html">handles authentication</a>,
-exceptions and provide input and result objects.</p>
+exceptions, and provides input and result objects.</p>
 <p>Read more about <a href="./features/async.html">how to use asynchronous features</a>.</p>
 <h2 id="backwards-compatibility-promise">Backwards compatibility promise<a href="#backwards-compatibility-promise" title="Permalink to this headline" class="headerlink">¶</a></h2>
 <p>Backwards compatibility is the most important feature of any open source library.

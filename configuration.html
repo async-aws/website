@@ -440,7 +440,7 @@
     <main role="main" id="content" class="content p-4 p-md-5 pt-5">
     
     <h1 id="configuration">Configuration</h1>
-<p>There are some configuration you can pass to an API client. Use an instance of the
+<p>There are some configuration options you can pass to an API client. Use an instance of the
 <code>Configuration</code> class or a plain array.</p>
 <pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Sqs</span>\<span class="hljs-title">SqsClient</span>;
 <span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">Core</span>\<span class="hljs-title">Configuration</span>;
@@ -466,10 +466,10 @@ operation's input</p>
 </blockquote>
 <h3 id="debug">debug<a href="#debug" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> 'false'</p>
-<p>When this is set to <code>true</code> we will write the full HTTP request and response as
-an <code>debug</code> log entry. Make sure you pass a logger to the <code>Client</code>.</p>
+<p>When this is set to <code>true</code>, AsyncAws writes the full HTTP request and response as
+a <code>debug</code> log entry. Make sure you pass a logger to the <code>Client</code>.</p>
 <blockquote>
-<p><strong>Note</strong>: This will have an negative impact on performance.</p>
+<p><strong>Note</strong>: This will have a negative impact on performance.</p>
 </blockquote>
 <h3 id="profile">profile<a href="#profile" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> 'default'</p>
@@ -502,11 +502,11 @@ for authentication.</p>
 <p><strong>Default:</strong> 'async-aws-' followed by random chars</p>
 <p>An identifier for the assumed role session</p>
 <h3 id="containercredentialsrelativeuri">containerCredentialsRelativeUri<a href="#containercredentialsrelativeuri" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>The relative path that is used to fetch credentials inside and ECS instance.
+<p>The relative path that is used to fetch credentials inside an ECS instance.
 See <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html">IAM Roles for Tasks</a> for more information.</p>
 <h3 id="endpointdiscoveryenabled">endpointDiscoveryEnabled<a href="#endpointdiscoveryenabled" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p><strong>Default:</strong> 'false'</p>
-<p>Enable the endpoint discovery when the operation support it
+<p>Enable endpoint discovery when the operation supports it.
 See <a href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoint-discovery.html">Endpoint discovery</a> for more information.</p>
 <h3 id="podidentitycredentialsfulluri">podIdentityCredentialsFullUri<a href="#podidentitycredentialsfulluri" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Full Uri to the endpoint of the Pod Identity agent, which should already be injected by the Pod Identity agent when using the <a href="/authentication/pod-identity.html">PodIdentity Provider</a></p>

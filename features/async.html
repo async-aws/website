@@ -456,7 +456,7 @@
     -&gt;<span class="hljs-title function_ invoke__">setMessageBody</span>(<span class="hljs-string">'invoiceId: 1337'</span>);
 
 <span class="hljs-variable">$sqs</span>-&gt;<span class="hljs-title function_ invoke__">sendMessage</span>(<span class="hljs-variable">$input</span>);</code></pre>
-<p>The HTTP request is sent and a HTTP response is received. Everything works as expected.</p>
+<p>The HTTP request is sent and an HTTP response is received. Everything works as expected.</p>
 <p>A small bonus is that the full HTTP response is not downloaded. Only the first line
 with the status code is fetched from the server.</p>
 <h3 id="getting-data-from-result">Getting data from result<a href="#getting-data-from-result" title="Permalink to this headline" class="headerlink">¶</a></h3>
@@ -517,7 +517,7 @@ for more information.</p>
 <pre><code class="language-diff hljs" data-highlighted="yes">     $result = $sqs-&gt;sendMessage($input);
 <span class="hljs-addition">+    $result-&gt;resolve();</span></code></pre>
 <h2 id="advanced-use-cases">Advanced use cases<a href="#advanced-use-cases" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>The common use cases covers 90% of all code. Let's dig in to the advanced stuff.</p>
+<p>The common use cases cover 90% of all code. Let's dig into the advanced stuff.</p>
 <h3 id="using-resolve-function">Using resolve-function<a href="#using-resolve-function" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>The <code>$result-&gt;resolve()</code> function is making sure the request is executed. There is normally no point in using this function, but it may be handy in some scenarios.</p>
 <p>Calling this function with no arguments will either return <code>true</code> or throw an exception.
@@ -534,7 +534,7 @@ for the response. Use <code>$result-&gt;resolve(0)</code> for a non-blocking cal
 <h3 id="batch-requests">Batch requests<a href="#batch-requests" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Consider the following example. It is creating 10 Lambda <code>InvocationRequest</code>s and printing
 their result. The HTTP response that is downloaded first will be printed first. The order
-the requests are created do not matter.</p>
+the requests are created does not matter.</p>
 <p>The <code>Result::wait()</code> function will iterate over provided results, and yield
 the response as soon as it has been resolved.</p>
 <p>The function has a <code>?float $timeout = null</code> argument. If the timeout is set to

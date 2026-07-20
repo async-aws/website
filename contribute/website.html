@@ -447,9 +447,9 @@ repository.</p>
 doesn't require much thought. But it is interesting to understand how one actually
 would improve the website.</p>
 <h2 id="writing-documentation">Writing documentation<a href="#writing-documentation" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>Writing documentation to the website in not more complex than it normally is. Making
-changes to the Markdown files in <code>./docs</code> is everything one need to do.</p>
-<p>If a new file is created and it should be in the website's sidebar menu, then remember
+<p>Writing documentation for the website is no more complex than usual. Making
+changes to the Markdown files in <code>./docs</code> is all one needs to do.</p>
+<p>If a new file is created and should appear in the website's sidebar menu, remember
 to update <code>./couscous.yml</code>.</p>
 <p>Here are some guidelines that are helpful when writing good documentation:</p>
 <ul>
@@ -458,20 +458,20 @@ to update <code>./couscous.yml</code>.</p>
 <li>Try not to write "you".</li>
 <li>Define all variables to make examples executable.</li>
 <li>Use meaningful names of variables and values. Avoid "foobar" and other dummy values.</li>
-<li>Write examples with  use <code>use</code> statements and don't use <code>&lt;?php</code>.</li>
+<li>Write examples with <code>use</code> statements and don't use <code>&lt;?php</code>.</li>
 <li>Use input objects over arrays.</li>
-<li>Use short variable names for clients. Ie <code>$lambda</code> over <code>$lambdaClient</code> and <code>$s3</code> over <code>$s3Client</code>.</li>
+<li>Use short variable names for clients, e.g. <code>$lambda</code> over <code>$lambdaClient</code> and <code>$s3</code> over <code>$s3Client</code>.</li>
 </ul>
 <h2 id="improving-the-websites-appearance">Improving the website's appearance<a href="#improving-the-websites-appearance" title="Permalink to this headline" class="headerlink">¶</a></h2>
-<p>To update the websites HTML or style one need to use Couscous. Its basic operations
+<p>To update the website's HTML or styles, one needs to use Couscous. Its basic operations
 are found in their <a href="http://couscous.io/docs/getting-started.html">Getting started guide</a>.
-You do also need NPM installed to build the assets.</p>
+You also need npm installed to build the assets.</p>
 <p>There is a Makefile script to run <code>npm install</code> and <code>encore prod</code>. It will be executed
 with <code>make website-assets</code>. That script will automatically run before Couscous is
 generating the HTML.</p>
 <p>What you basically need to do is to open two terminals. In one you run</p>
 <pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div>couscous preview</code></pre>
-<p>And to make sure the assets are updating when you making a change to the asset source:</p>
+<p>To make sure the assets update when you make a change to the asset source:</p>
 <pre><code class="language-shell hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-built_in">cd</span> website
 ./node_modules/.bin/encore dev --watch</code></pre>
 <p>Now you are good to go.</p>
@@ -482,17 +482,17 @@ a push to master:</p>
 <p>The first step is to use <a href="http://couscous.io/">Couscous</a> to convert all Markdown files
 in <code>./docs</code> to HTML files. Couscous then looks at the Twig template in <code>./website/template</code>
 to get the basic HTML layout. All markdown files will use the <code>default.twig</code> template
-unless other is specified at the metadata section at the top of the markdown file.</p>
+unless otherwise specified in the metadata section at the top of the Markdown file.</p>
 <p>The sidebar menu structure is defined in <code>./couscous.yml</code>.</p>
-<p>All frontend assets are built using Webpack Encore. The source files lives in
+<p>All frontend assets are built using Webpack Encore. The source files live in
 <code>./website/assets</code>.</p>
 <h3 id="2-process-html-files">2. Process HTML files<a href="#2-process-html-files" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>After the HTML files are generated, Couscous will execute <code>make website-post-process</code>.
-That will look at the generated HTML and make some changes to it. As example it will
+That will look at the generated HTML and make some changes to it. For example, it will
 style all code examples with <code>highlight.js</code>.</p>
 <h3 id="3-publishing-the-files">3. Publishing the files<a href="#3-publishing-the-files" title="Permalink to this headline" class="headerlink">¶</a></h3>
-<p>There is a github action that make sure to generate the HTML and push it do a
-"read only"-repository for the website. That repository is using <a href="https://www.netlify.com/">Netlify</a>
+<p>There is a GitHub Action that generates the HTML and pushes it to a
+"read-only" repository for the website. That repository uses <a href="https://www.netlify.com/">Netlify</a>
 to deploy the contents to <a href="https://github.com/async-aws/aws">async-aws/aws</a>.</p>
 
     </main>
