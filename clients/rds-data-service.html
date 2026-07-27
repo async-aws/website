@@ -540,7 +540,7 @@ $rdsDataService = <span class="hljs-keyword">new</span> RdsDataServiceClient([
         <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;<span class="hljs-title function_ invoke__">getTransactionId</span>(),
     ]);
 } <span class="hljs-keyword">catch</span> (\<span class="hljs-built_in">Throwable</span> <span class="hljs-variable">$e</span>) {
-    <span class="hljs-comment">// Make sure to allways rollback since there is no connection.</span>
+    <span class="hljs-comment">// Make sure to always roll back since there is no connection.</span>
     <span class="hljs-comment">// If you forget than the transaction might block tables for up to 5 minutes.</span>
     <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">rollbackTransaction</span>(<span class="hljs-variable">$database</span> + [
         <span class="hljs-string">'transaction'</span> =&gt; <span class="hljs-variable">$transaction</span>-&gt;<span class="hljs-title function_ invoke__">getTransactionId</span>(),
