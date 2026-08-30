@@ -70,6 +70,11 @@
                         </a>
                     </li>
                                     <li>
+                        <a href="/clients/bedrock-agent-core.html">
+                            Bedrock AgentCore
+                        </a>
+                    </li>
+                                    <li>
                         <a href="/clients/bedrock-runtime.html">
                             Bedrock Runtime
                         </a>
@@ -491,9 +496,9 @@ $s3Vectors = <span class="hljs-keyword">new</span> S3VectorsClient([
 
 <span class="hljs-variable">$result</span> = <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">createVectorBucket</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateVectorBucketInput</span>([
     <span class="hljs-string">'vectorBucketName'</span> =&gt; <span class="hljs-string">'my-vector-bucket'</span>,
-    // <span class="hljs-attr">optional</span>: encryptionConfiguration <span class="hljs-keyword">and</span> tags
-    // <span class="hljs-string">'encryptionConfiguration'</span> =&gt; [<span class="hljs-string">'sseType'</span> =&gt; <span class="hljs-string">'AES256'</span>],
-    // <span class="hljs-string">'tags'</span> =&gt; [<span class="hljs-string">'env'</span> =&gt; <span class="hljs-string">'dev'</span>],
+    <span class="hljs-comment">// optional: encryptionConfiguration and tags</span>
+    <span class="hljs-comment">// 'encryptionConfiguration' =&gt; ['sseType' =&gt; 'AES256'],</span>
+    <span class="hljs-comment">// 'tags' =&gt; ['env' =&gt; 'dev'],</span>
 ]));
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>-&gt;<span class="hljs-title function_ invoke__">getVectorBucketArn</span>() . PHP_EOL;</code></pre>
@@ -506,17 +511,17 @@ $s3Vectors = <span class="hljs-keyword">new</span> S3VectorsClient([
 <span class="hljs-variable">$client</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3VectorsClient</span>();
 
 <span class="hljs-variable">$client</span>-&gt;<span class="hljs-title function_ invoke__">createIndex</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateIndexInput</span>([
-    // Identify the vector bucket where the index will be created. You can also <span class="hljs-keyword">use</span> <span class="hljs-string">'vectorBucketArn'</span>.
+    <span class="hljs-comment">// Identify the vector bucket where the index will be created. You can also use 'vectorBucketArn'.</span>
     <span class="hljs-string">'vectorBucketName'</span> =&gt; <span class="hljs-string">'my-vector-bucket'</span>,
 
-    // The immutable name of the index. Cannot be changed after creation.
+    <span class="hljs-comment">// The immutable name of the index. Cannot be changed after creation.</span>
     <span class="hljs-string">'indexName'</span> =&gt; <span class="hljs-string">'my-index'</span>,
 
-    // Data type <span class="hljs-keyword">for</span> stored vectors. S3 Vectors requires float32 values.
+    <span class="hljs-comment">// Data type for stored vectors. S3 Vectors requires float32 values.</span>
     <span class="hljs-string">'dataType'</span> =&gt; <span class="hljs-title class_">DataType</span>::<span class="hljs-variable constant_">FLOAT32</span>,
 
-    // <span class="hljs-attr">Dimension</span>: number of elements in each embedding vector produced by your model
-    // (e.g. <span class="hljs-number">128</span>, <span class="hljs-number">256</span>, <span class="hljs-number">1536</span>). Every vector you put into this index must have this length.
+    <span class="hljs-comment">// Dimension: number of elements in each embedding vector produced by your model</span>
+    <span class="hljs-comment">// (e.g. 128, 256, 1536). Every vector you put into this index must have this length.</span>
     <span class="hljs-string">'dimension'</span> =&gt; <span class="hljs-number">128</span>,
 
     <span class="hljs-comment">// Distance metric used for similarity search. Choose based on your embeddings/use-case:</span>
@@ -578,7 +583,7 @@ $s3Vectors = <span class="hljs-keyword">new</span> S3VectorsClient([
     <span class="hljs-string">'vectorBucketName'</span> =&gt; <span class="hljs-string">'my-vector-bucket'</span>,
     <span class="hljs-string">'indexName'</span> =&gt; <span class="hljs-string">'my-index'</span>,
 
-    // <span class="hljs-attr">topK</span>: number of nearest neighbours to <span class="hljs-keyword">return</span> (the <span class="hljs-string">'K'</span> in top-K)
+    <span class="hljs-comment">// topK: number of nearest neighbours to return (the 'K' in top-K)</span>
     <span class="hljs-string">'topK'</span> =&gt; <span class="hljs-number">5</span>,
 
     <span class="hljs-comment">// queryVector: the embedding to search with. Use the same embedding model</span>
@@ -634,7 +639,7 @@ $s3Vectors = <span class="hljs-keyword">new</span> S3VectorsClient([
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/app.739732b9.js"></script>
+<script src="/assets/app.63f1e271.js"></script>
 
 
 </body></html>

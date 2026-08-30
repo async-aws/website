@@ -70,6 +70,11 @@
                         </a>
                     </li>
                                     <li>
+                        <a href="/clients/bedrock-agent-core.html">
+                            Bedrock AgentCore
+                        </a>
+                    </li>
+                                    <li>
                         <a href="/clients/bedrock-runtime.html">
                             Bedrock Runtime
                         </a>
@@ -516,7 +521,7 @@ files using a string, resource, closure, or an iterable. See the following examp
 <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">putObject</span>([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file.jpg'</span>,
-    <span class="hljs-string">'ContentLength'</span> =&gt; <span class="hljs-title function_ invoke__">filesize</span>(<span class="hljs-string">'/path/to/big/file'</span>), // This is important
+    <span class="hljs-string">'ContentLength'</span> =&gt; <span class="hljs-title function_ invoke__">filesize</span>(<span class="hljs-string">'/path/to/big/file'</span>), <span class="hljs-comment">// This is important</span>
     <span class="hljs-string">'Body'</span> =&gt; <span class="hljs-built_in">static</span> function(<span class="hljs-keyword">int</span> <span class="hljs-variable">$length</span>) <span class="hljs-keyword">use</span> ($<span class="hljs-title">fp</span>): <span class="hljs-title">string</span> {
         <span class="hljs-title">return</span> <span class="hljs-title">fread</span>($<span class="hljs-title">fp</span>, $<span class="hljs-title">length</span>);
     },
@@ -527,7 +532,7 @@ files using a string, resource, closure, or an iterable. See the following examp
 <span class="hljs-variable">$s3</span>-&gt;<span class="hljs-title function_ invoke__">putObject</span>([
     <span class="hljs-string">'Bucket'</span> =&gt; <span class="hljs-string">'my-company-website'</span>,
     <span class="hljs-string">'Key'</span> =&gt; <span class="hljs-string">'file_merged.jpg'</span>,
-    <span class="hljs-string">'ContentLength'</span> =&gt; <span class="hljs-title function_ invoke__">array_sum</span>(<span class="hljs-title function_ invoke__">array_map</span>(<span class="hljs-string">'filesize'</span>, <span class="hljs-variable">$files</span>)), // This is important
+    <span class="hljs-string">'ContentLength'</span> =&gt; <span class="hljs-title function_ invoke__">array_sum</span>(<span class="hljs-title function_ invoke__">array_map</span>(<span class="hljs-string">'filesize'</span>, <span class="hljs-variable">$files</span>)), <span class="hljs-comment">// This is important</span>
     <span class="hljs-string">'Body'</span> =&gt; (<span class="hljs-built_in">static</span> function() <span class="hljs-keyword">use</span>($<span class="hljs-title">files</span>): <span class="hljs-title">iterable</span> {
         <span class="hljs-title">foreach</span> ($<span class="hljs-title">files</span> <span class="hljs-keyword">as</span> $<span class="hljs-title">file</span>) {
             <span class="hljs-title">yield</span> <span class="hljs-title">file_get_contents</span>($<span class="hljs-title">file</span>);
@@ -665,7 +670,7 @@ the <code>S3Client</code> with your endpoint.</p>
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/app.739732b9.js"></script>
+<script src="/assets/app.63f1e271.js"></script>
 
 
 </body></html>

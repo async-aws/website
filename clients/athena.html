@@ -70,6 +70,11 @@
                         </a>
                     </li>
                                     <li>
+                        <a href="/clients/bedrock-agent-core.html">
+                            Bedrock AgentCore
+                        </a>
+                    </li>
+                                    <li>
                         <a href="/clients/bedrock-runtime.html">
                             Bedrock Runtime
                         </a>
@@ -521,7 +526,7 @@ $athena = <span class="hljs-keyword">new</span> AthenaClient([
 <span class="hljs-variable">$startQueryResult</span> = <span class="hljs-variable">$athena</span>-&gt;<span class="hljs-title function_ invoke__">startQueryExecution</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">StartQueryExecutionInput</span>([
         <span class="hljs-string">'QueryString'</span> =&gt; <span class="hljs-string">'select * from product limit 30'</span>,
         <span class="hljs-string">'QueryExecutionContext'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryExecutionContext</span>([
-             <span class="hljs-string">'Database'</span> =&gt; <span class="hljs-string">'production_db'</span>, // REQUIRED
+             <span class="hljs-string">'Database'</span> =&gt; <span class="hljs-string">'production_db'</span>, <span class="hljs-comment">// REQUIRED</span>
         ]),
         <span class="hljs-string">'ResultConfiguration'</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">ResultConfiguration</span>([
             <span class="hljs-string">'OutputLocation'</span> =&gt; <span class="hljs-string">'s3://test_output_bucket'</span>, <span class="hljs-comment">// REQUIRED</span>
@@ -535,7 +540,7 @@ $athena = <span class="hljs-keyword">new</span> AthenaClient([
 <span class="hljs-variable">$isQueryStillRunning</span> = <span class="hljs-literal">true</span>;
 <span class="hljs-keyword">while</span> (<span class="hljs-variable">$isQueryStillRunning</span>) {
     <span class="hljs-variable">$queryExecutionResult</span> = <span class="hljs-variable">$athena</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecution</span>( <span class="hljs-keyword">new</span> <span class="hljs-title class_">GetQueryExecutionInput</span>([
-        <span class="hljs-string">'QueryExecutionId'</span> =&gt; <span class="hljs-variable">$startQueryResult</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecutionId</span>(), // REQUIRED
+        <span class="hljs-string">'QueryExecutionId'</span> =&gt; <span class="hljs-variable">$startQueryResult</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecutionId</span>(), <span class="hljs-comment">// REQUIRED</span>
     ]));
     <span class="hljs-variable">$queryState</span>=<span class="hljs-variable">$queryExecutionResult</span>-&gt;<span class="hljs-title function_ invoke__">getQueryExecution</span>()-&gt;<span class="hljs-title function_ invoke__">getStatus</span>()-&gt;<span class="hljs-title function_ invoke__">getState</span>();
     <span class="hljs-keyword">if</span>(<span class="hljs-variable">$queryState</span> === <span class="hljs-title class_">QueryExecutionState</span>::<span class="hljs-variable constant_">FAILED</span>) {
@@ -591,7 +596,7 @@ $athena = <span class="hljs-keyword">new</span> AthenaClient([
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/app.739732b9.js"></script>
+<script src="/assets/app.63f1e271.js"></script>
 
 
 </body></html>

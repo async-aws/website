@@ -70,6 +70,11 @@
                         </a>
                     </li>
                                     <li>
+                        <a href="/clients/bedrock-agent-core.html">
+                            Bedrock AgentCore
+                        </a>
+                    </li>
+                                    <li>
                         <a href="/clients/bedrock-runtime.html">
                             Bedrock Runtime
                         </a>
@@ -489,8 +494,8 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 <span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
 
 <span class="hljs-variable">$repoList</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">listRepositories</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListRepositoriesInput</span>([
-    <span class="hljs-string">'order'</span> =&gt; <span class="hljs-string">'ascending'</span>, // can also be <span class="hljs-string">'descending'</span>
-    <span class="hljs-string">'sortBy'</span> =&gt; <span class="hljs-string">'repositoryName'</span>, // can also be <span class="hljs-string">'lastModifiedDate'</span>
+    <span class="hljs-string">'order'</span> =&gt; <span class="hljs-string">'ascending'</span>, <span class="hljs-comment">// can also be 'descending'</span>
+    <span class="hljs-string">'sortBy'</span> =&gt; <span class="hljs-string">'repositoryName'</span>, <span class="hljs-comment">// can also be 'lastModifiedDate'</span>
     <span class="hljs-string">'nextToken'</span> =&gt; <span class="hljs-string">'TOKEN-FROM-PREVIOUS-RESPONSE-IF-PAGINATING-THROUGH-RESULTS'</span>
 ]));
 
@@ -505,7 +510,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 <span class="hljs-variable">$codeCommit</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">CodeCommitClient</span>();
 
 <span class="hljs-variable">$repo</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">createRepository</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateRepositoryInput</span>([
-    <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-string">'my-repository-name'</span>, // name must be unique within your account
+    <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-string">'my-repository-name'</span>, <span class="hljs-comment">// name must be unique within your account</span>
     <span class="hljs-string">'repositoryDescription'</span> =&gt; <span class="hljs-string">'this can be null if you like'</span>,
     <span class="hljs-string">'tags'</span> =&gt; [
         <span class="hljs-string">'team'</span> =&gt; <span class="hljs-string">'platform-eng'</span>,
@@ -579,7 +584,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
 
 <span class="hljs-variable">$commit</span> = <span class="hljs-variable">$codeCommit</span>-&gt;<span class="hljs-title function_ invoke__">getCommit</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">GetCommitInput</span>([
     <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-variable">$repoName</span>,
-    <span class="hljs-string">'commitId'</span> =&gt; <span class="hljs-string">'b58c341f3d493f7fc0b6b95a648a2e2397d0692f'</span> # must be the full SHA hash of the commit
+    <span class="hljs-string">'commitId'</span> =&gt; <span class="hljs-string">'b58c341f3d493f7fc0b6b95a648a2e2397d0692f'</span> <span class="hljs-comment"># must be the full SHA hash of the commit</span>
 ]));
 
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$commit</span>-&gt;<span class="hljs-title function_ invoke__">getCommit</span>()-&gt;<span class="hljs-title function_ invoke__">getMessage</span>(); <span class="hljs-comment">// "Initial commit"</span>
@@ -596,11 +601,11 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
             <span class="hljs-string">'repositoryName'</span> =&gt; <span class="hljs-string">'async-aws-monorepo'</span>,
             <span class="hljs-string">'triggers'</span> =&gt; [<span class="hljs-keyword">new</span> <span class="hljs-title class_">RepositoryTrigger</span>([
                 <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'NotifyOfCodeChanges'</span>,
-                # ARN of your Lambda function which is going to get executed when something happens
+                <span class="hljs-comment"># ARN of your Lambda function which is going to get executed when something happens</span>
                 <span class="hljs-string">'destinationArn'</span> =&gt; <span class="hljs-string">'arn:aws:lambda:eu-west-1:123456789012:function:my-function'</span>,
                 <span class="hljs-string">'customData'</span> =&gt; <span class="hljs-string">'any additional data you want for the execution context - maybe an id of some sort?'</span>,
-                <span class="hljs-string">'branches'</span> =&gt; [<span class="hljs-string">'main'</span>, <span class="hljs-string">'development'</span>], # send a blank <span class="hljs-keyword">array</span> to be triggered on *all* branches
-                <span class="hljs-string">'events'</span> =&gt; [<span class="hljs-string">'createReference'</span>, <span class="hljs-string">'deleteReference'</span>, <span class="hljs-string">'updateReference'</span>], # <span class="hljs-string">'all'</span> is also a valid input
+                <span class="hljs-string">'branches'</span> =&gt; [<span class="hljs-string">'main'</span>, <span class="hljs-string">'development'</span>], <span class="hljs-comment"># send a blank array to be triggered on *all* branches</span>
+                <span class="hljs-string">'events'</span> =&gt; [<span class="hljs-string">'createReference'</span>, <span class="hljs-string">'deleteReference'</span>, <span class="hljs-string">'updateReference'</span>], <span class="hljs-comment"># 'all' is also a valid input</span>
             ])],
         ]));
 
@@ -623,7 +628,7 @@ $codeCommit = <span class="hljs-keyword">new</span> CodeCommitClient([
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/app.739732b9.js"></script>
+<script src="/assets/app.63f1e271.js"></script>
 
 
 </body></html>
