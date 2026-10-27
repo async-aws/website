@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/917.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/329.f1b3e81b.css"><link rel="stylesheet" href="/assets/app.734b6510.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -22,10 +22,10 @@
         <div class="custom-menu-toggle">
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
                 ☰
-                <span class="sr-only">Toggle Menu</span>
+                <span class="visually-hidden">Toggle Menu</span>
             </button>
         </div>
-        <div class="p-4 pt-1">
+        <div class="p-4">
             <a href="/" class="logo mx-auto d-block">
                 <img src="/assets/image/logo.a154d546.png" alt="AsyncAws logo">
             </a>
@@ -572,6 +572,13 @@ larger files without having them in memory.</p>
     <span class="hljs-title function_ invoke__">fwrite</span>(<span class="hljs-variable">$fp</span>, <span class="hljs-variable">$chunk</span>);
     <span class="hljs-variable">$progress</span>-&gt;<span class="hljs-title function_ invoke__">advance</span>();
 }</code></pre>
+<p>The body is buffered into temporary storage so it can be read more than once. To
+read large objects once, directly from the HTTP response, set the
+<a href="/configuration.md#responsebuffermaxsize"><code>responseBufferMaxSize</code></a> option when
+initializing the client.</p>
+<pre><code class="language-php hljs" data-highlighted="yes"><div class="btn-copy" title="copy to clipboard"></div><span class="hljs-keyword">use</span> <span class="hljs-title">AsyncAws</span>\<span class="hljs-title">S3</span>\<span class="hljs-title">S3Client</span>;
+
+<span class="hljs-variable">$s3</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">S3Client</span>([<span class="hljs-string">'responseBufferMaxSize'</span> =&gt; <span class="hljs-string">'1048576'</span>]);</code></pre>
 <h3 id="add-tags-to-a-bucket">Add tags to a bucket<a href="#add-tags-to-a-bucket" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>You can add tags to your buckets to help you find related resources in the AWS cost explorer; eg all AWS resources tagged
 with <code>environment = staging</code> would show you the amount you're spending on your pre-prod environment each month</p>
@@ -670,7 +677,7 @@ the <code>S3Client</code> with your endpoint.</p>
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/app.63f1e271.js"></script>
+<script src="/assets/app.fbffa798.js"></script>
 
 
 </body></html>

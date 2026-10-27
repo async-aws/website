@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/assets/917.3f2358bf.css"><link rel="stylesheet" href="/assets/app.49c1942d.css">
+    <link rel="stylesheet" href="/assets/329.f1b3e81b.css"><link rel="stylesheet" href="/assets/app.734b6510.css">
 
     <title>AsyncAws</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -22,10 +22,10 @@
         <div class="custom-menu-toggle">
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
                 ☰
-                <span class="sr-only">Toggle Menu</span>
+                <span class="visually-hidden">Toggle Menu</span>
             </button>
         </div>
-        <div class="p-4 pt-1">
+        <div class="p-4">
             <a href="/" class="logo mx-auto d-block">
                 <img src="/assets/image/logo.a154d546.png" alt="AsyncAws logo">
             </a>
@@ -513,6 +513,17 @@ See <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-ia
 <p><strong>Default:</strong> 'false'</p>
 <p>Enable endpoint discovery when the operation supports it.
 See <a href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoint-discovery.html">Endpoint discovery</a> for more information.</p>
+<h3 id="responsebuffermaxsize">responseBufferMaxSize<a href="#responsebuffermaxsize" title="Permalink to this headline" class="headerlink">¶</a></h3>
+<p>The size in bytes, with a minimum of 64 KiB, above which a response body with a
+<code>Content-Length</code> is read directly from the HTTP response instead of being
+buffered into temporary storage. Use it for large downloads such as
+<code>S3Client::getObject()</code>.</p>
+<blockquote>
+<p><strong>Note</strong>: This applies to every response of the client. Such a body can be
+read only once, and not after <code>Result::wait()</code> has started downloading it. It
+is left out of the <code>debug</code> log, and its resource is not seekable and so cannot
+be the body of another request.</p>
+</blockquote>
 <h3 id="podidentitycredentialsfulluri">podIdentityCredentialsFullUri<a href="#podidentitycredentialsfulluri" title="Permalink to this headline" class="headerlink">¶</a></h3>
 <p>Full Uri to the endpoint of the Pod Identity agent, which should already be injected by the Pod Identity agent when using the <a href="/authentication/pod-identity.html">PodIdentity Provider</a></p>
 <h3 id="podidentityauthorizationtokenfile">podIdentityAuthorizationTokenFile<a href="#podidentityauthorizationtokenfile" title="Permalink to this headline" class="headerlink">¶</a></h3>
@@ -539,7 +550,7 @@ endpoints.</p>
     <div class="contribute-badge">Contribute</div>
 </a>
 
-<script src="/assets/app.63f1e271.js"></script>
+<script src="/assets/app.fbffa798.js"></script>
 
 
 </body></html>
